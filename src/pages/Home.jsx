@@ -36,6 +36,11 @@ export default function Home() {
             <span className="eyebrow">Luisa Corral's DMCI Homes Buyer Assistance Platform</span>
             <h1>Find Your DMCI Home with a Licensed Real Estate Broker</h1>
             <p>Get guided assistance, updated computations, project availability, and site viewing support from Luisa Corral, Sales Director of DMCI Homes.</p>
+            <div className="hero-stats" aria-label="Buyer assistance highlights">
+              <span><strong>18</strong> project options</span>
+              <span><strong>RFO</strong> & preselling guidance</span>
+              <span><strong>Safe</strong> inquiry-first flow</span>
+            </div>
             <div className="hero-actions">
               <Button to="/request-computation">Request Latest Computation</Button>
               <Button to="/projects" variant="secondary">Browse DMCI Projects</Button>
@@ -45,12 +50,13 @@ export default function Home() {
               {["Licensed Real Estate Broker", "DMCI Homes Sales Director", "Buyer Assistance", "RFO & Preselling Guidance"].map((item) => <span key={item}>{item}</span>)}
             </div>
           </div>
-          <div className="hero-visual" aria-label="Premium property collage placeholder">
-            <div className="collage large" />
-            <div className="collage small top" />
-            <div className="collage small bottom" />
+          <div className="hero-visual premium-hero-card" aria-label="Premium property collage preview">
+            <img src="/assets/img/premium-dmci-hero.png" alt="Premium condominium and amenities collage preview" />
+            <div className="hero-visual-badge">Premium buyer assistance</div>
             <div className="ask-card">
+              <span className="mini">Quick contact</span>
               <strong>Ask Luisa</strong>
+              <p>Message for computation, availability, viewing, or reservation guidance.</p>
               <ContactButtons compact />
             </div>
           </div>
