@@ -1,0 +1,14 @@
+{
+  "name": "tita-dmci-broker-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Luisa Corral DMCI Homes broker website scaffold.",
+  "scripts": {
+    "dev": "node backend/server.js",
+    "start": "node backend/server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {}
+}
