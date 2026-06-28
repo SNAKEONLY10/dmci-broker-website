@@ -39,9 +39,15 @@ p { margin: 0; color: var(--muted); line-height: 1.7; }
 
 .site-header { position: fixed; inset: 0 0 auto; z-index: 80; background: rgba(255,255,255,0.88); border-bottom: 1px solid rgba(229,231,235,0.76); backdrop-filter: blur(18px); box-shadow: 0 12px 30px rgba(15,39,66,0.04); }
 .nav-wrap { min-height: 76px; display: flex; align-items: center; gap: 18px; }
-.brand { display: grid; margin-right: auto; color: var(--navy); }
-.brand span { font-family: "Playfair Display", Georgia, serif; font-size: 1.22rem; font-weight: 700; }
-.brand small { color: var(--gold); font-size: 0.64rem; font-weight: 800; letter-spacing: 0.13em; text-transform: uppercase; }
+.brand { display: inline-flex; align-items: center; gap: 12px; min-width: 0; margin-right: auto; color: var(--navy); }
+.brand-mark { width: 44px; height: 44px; flex: 0 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); align-items: end; gap: 3px; border-radius: 8px; padding: 8px; background: linear-gradient(145deg, var(--navy), #1b466f); box-shadow: 0 12px 24px rgba(15,39,66,0.16); }
+.brand-mark span { display: block; border-radius: 2px 2px 0 0; background: linear-gradient(180deg, #f6d987, var(--gold)); }
+.brand-mark span:nth-child(1) { height: 56%; }
+.brand-mark span:nth-child(2) { height: 84%; }
+.brand-mark span:nth-child(3) { height: 68%; }
+.brand-copy { display: grid; gap: 2px; min-width: 0; }
+.brand-copy strong { font-family: "Playfair Display", Georgia, serif; color: var(--navy); font-size: 1.34rem; line-height: 1; white-space: nowrap; }
+.brand-copy small { color: var(--gold-2); font-size: 0.67rem; font-weight: 900; letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; }
 .desktop-nav { display: flex; align-items: center; gap: 17px; font-size: 0.86rem; font-weight: 700; }
 .desktop-nav a.active, .desktop-nav a:hover { color: var(--gold); }
 .menu-toggle { display: none; width: 44px; height: 44px; border: 1px solid var(--border); border-radius: 8px; background: var(--white); }
@@ -172,8 +178,10 @@ textarea { resize: vertical; }
   .section, .page-section { padding: 56px 0; }
   .page-section { padding-top: 108px; }
   .desktop-cta { display: none; }
-  .brand span { font-size: 1.05rem; }
-  .brand small { max-width: 190px; line-height: 1.25; }
+  .brand { gap: 9px; }
+  .brand-mark { width: 38px; height: 38px; padding: 7px; }
+  .brand-copy strong { font-size: 1.08rem; }
+  .brand-copy small { max-width: 220px; overflow: hidden; text-overflow: ellipsis; font-size: 0.58rem; line-height: 1.25; }
   .hero-section { padding-top: 112px; }
   .hero-grid, .two-column, .about-card, .detail-layout { grid-template-columns: 1fr; }
   .hero-visual { min-height: 430px; }
@@ -197,6 +205,8 @@ textarea { resize: vertical; }
 
 @media (max-width: 430px) {
   .container { width: calc(100% - 20px); }
+  .brand-copy strong { font-size: 1rem; }
+  .brand-copy small { max-width: 160px; }
   .hero-copy h1 { font-size: 2.45rem; }
   .hero-visual { min-height: 385px; }
   .premium-hero-card img { min-height: 385px; }

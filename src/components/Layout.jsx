@@ -22,8 +22,15 @@ export function Layout({ children }) {
       <header className="site-header">
         <div className="container nav-wrap">
           <NavLink className="brand" to="/" onClick={() => setOpen(false)}>
-            <span>{contact.brand}</span>
-            <small>Luisa Corral Buyer Assistance</small>
+            <span className="brand-mark" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </span>
+            <span className="brand-copy">
+              <strong>DMCI Homes</strong>
+              <small>Luisa Corral | Licensed Broker</small>
+            </span>
           </NavLink>
           <nav className="desktop-nav" aria-label="Main navigation">
             {navItems.map(([label, to]) => (
