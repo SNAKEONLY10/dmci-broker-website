@@ -37,6 +37,10 @@ export default function Home() {
             <span className="eyebrow">Luisa Corral's DMCI Homes Buyer Assistance Platform</span>
             <h1>Find Your DMCI Home with a Licensed Real Estate Broker</h1>
             <p>Get guided assistance, updated computations, project availability, and site viewing support from Luisa Corral, Sales Director of DMCI Homes.</p>
+            <div className="hero-proof">
+              <span>Updated computations upon request</span>
+              <span>Availability subject to confirmation</span>
+            </div>
             <div className="hero-stats" aria-label="Buyer assistance highlights">
               <span><strong>18</strong> project options</span>
               <span><strong>RFO</strong> & preselling guidance</span>
@@ -65,7 +69,7 @@ export default function Home() {
                 width="1500"
                 height="1000"
                 decoding="async"
-                fetchPriority="high"
+                fetchpriority="high"
               />
             </picture>
             <div className="hero-visual-badge">Premium buyer assistance</div>
