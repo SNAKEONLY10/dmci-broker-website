@@ -6,6 +6,8 @@ export const contact = {
   whatsapp: "#",
   instagram: "#",
   facebook: "#",
+  officialDmciWebsite: "https://www.dmcihomes.com/",
+  officialDmciFacebook: "https://www.facebook.com/dmcihomesofficial",
   brand: "My DMCI Broker",
   brokerName: "Luisa Corral",
   role: "Sales Director of DMCI Homes",

@@ -85,6 +85,12 @@ function Footer() {
           <p>{contact.email}</p>
           <Button to="/contact" variant="secondary">Message Luisa</Button>
         </div>
+        <div>
+          <h4>Official DMCI References</h4>
+          <a href={contact.officialDmciWebsite} target="_blank" rel="noopener">DMCI Homes Website</a>
+          <a href={contact.officialDmciFacebook} target="_blank" rel="noopener">DMCI Homes Facebook</a>
+          <p>Use official channels for corporate announcements and final project confirmation.</p>
+        </div>
       </div>
       <div className="container"><DisclaimerBanner /></div>
     </footer>

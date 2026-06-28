@@ -12,6 +12,7 @@ import { projects, unitTypes, purposes } from "../data/projects";
 import { locations } from "../data/locations";
 import { guideCards } from "../data/guides";
 import { promos } from "../data/promos";
+import { contact } from "../data/contact";
 
 const computationFields = [
   { name: "fullName", label: "Full Name" },
@@ -48,6 +49,11 @@ export default function Home() {
             </div>
             <div className="trust-badges">
               {["Licensed Real Estate Broker", "DMCI Homes Sales Director", "Buyer Assistance", "RFO & Preselling Guidance"].map((item) => <span key={item}>{item}</span>)}
+            </div>
+            <div className="official-reference">
+              <span>Official DMCI Homes updates</span>
+              <a href={contact.officialDmciFacebook} target="_blank" rel="noopener">Facebook</a>
+              <a href={contact.officialDmciWebsite} target="_blank" rel="noopener">Corporate Site</a>
             </div>
           </div>
           <div className="hero-visual premium-hero-card" aria-label="Premium property collage preview">
