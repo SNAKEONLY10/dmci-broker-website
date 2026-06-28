@@ -1,14 +1,18 @@
 {
-  "name": "tita-dmci-broker-website",
+  "name": "dmci-broker-website",
   "version": "1.0.0",
   "private": true,
-  "description": "Luisa Corral DMCI Homes broker website scaffold.",
+  "description": "Premium DMCI Homes buyer assistance website for Luisa Corral.",
+  "type": "module",
   "scripts": {
-    "dev": "node backend/server.js",
-    "start": "node backend/server.js"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "express": "^4.19.2"
-  },
-  "devDependencies": {}
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0",
+    "vite": "^8.1.0"
+  }
 }
