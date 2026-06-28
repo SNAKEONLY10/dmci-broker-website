@@ -57,7 +57,17 @@ export default function Home() {
             </div>
           </div>
           <div className="hero-visual premium-hero-card" aria-label="Premium property collage preview">
-            <img src="/assets/img/premium-dmci-hero.png" alt="Premium condominium and amenities collage preview" />
+            <picture>
+              <source media="(max-width: 760px)" srcSet="/assets/img/premium-dmci-hero-mobile.jpg" />
+              <img
+                src="/assets/img/premium-dmci-hero.jpg"
+                alt="Premium condominium and amenities collage preview"
+                width="1500"
+                height="1000"
+                decoding="async"
+                fetchPriority="high"
+              />
+            </picture>
             <div className="hero-visual-badge">Premium buyer assistance</div>
             <div className="ask-card">
               <span className="mini">Quick contact</span>
