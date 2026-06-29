@@ -340,7 +340,7 @@ function RichProjectSections({ project }) {
         </div>
       </DetailSection>
 
-      <DetailSection id="reservation" eyebrow="Reservation" title="Reservation Requirements">
+      <DetailSection id="reservation" eyebrow="Reservation" title={project.reservationTitle || "Reservation Requirements"}>
         <div className="reservation-grid">
           <article className="reservation-checklist">
             <h3>Checklist to Prepare</h3>
@@ -349,7 +349,7 @@ function RichProjectSections({ project }) {
           </article>
           <article className="unit-holding-card">
             <h3>Before paying reservation</h3>
-            <p>Confirm computation, availability, payment method, and official requirements with Luisa before making any reservation decision.</p>
+            <p>{project.reservationNote || "Confirm computation, availability, payment method, and official requirements with Luisa before making any reservation decision."}</p>
           </article>
         </div>
       </DetailSection>

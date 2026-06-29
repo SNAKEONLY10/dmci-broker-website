@@ -906,6 +906,226 @@ const mulberryPlace2Details = {
   videoTourUrl: ""
 };
 
+const fortisResidencesDetails = {
+  contentLevel: "rich",
+  assetStatus: "official-assets-needed",
+  verificationStatus: "reference-only",
+  name: "Fortis Residences",
+  tagline: "Signature high-rise living in the heart of Makati.",
+  city: "Makati City",
+  location: "Makati",
+  status: "Preselling",
+  propertyType: "Mixed-use High Rise Buildings",
+  developmentType: "Mixed-use High Rise Buildings",
+  landArea: "4,451 sqm",
+  architecturalTheme: "Modern Contemporary",
+  address: "Chino Roces Avenue, Makati City",
+  turnoverYear: "2027",
+  targetRfo: "December 2027",
+  unitTypes: ["1BR", "2BR", "3BR"],
+  priceRangeLabel: "PHP 14.3M - PHP 39.0M reference range",
+  priceSourceNote: "Reference snapshot only. Prices, promos, terms, unit availability, turnover, and payment details must be confirmed with Luisa before deciding.",
+  sourceUrl: "",
+  lastVerified: "Reference snapshot for confirmation",
+  overview:
+    "Fortis Residences by DMCI Homes is a signature high-rise development along Chino Roces Avenue, Makati City. It combines contemporary design, premium amenities, city convenience, and a tranquil residential setting for homeowners and investors comparing Makati options.",
+  introParagraphs: [
+    "Fortis Residences by DMCI Homes is a signature high-rise development in Makati, located along Chino Roces Avenue, Makati City.",
+    "The project combines contemporary design, premium amenities, city convenience, and a tranquil residential setting for buyers who want access to Makati, BGC, McKinley Hill, Pasay, Ortigas, Alabang via Skyway, and major lifestyle destinations.",
+    "Fortis Residences offers 1BR, 2BR, and 3BR unit options across two mixed-use high-rise buildings with 38 floors and 504 units. All pricing, availability, promos, turnover, and computations shown here are reference-only and must be confirmed with Luisa before deciding."
+  ],
+  projectFacts: [
+    { label: "Location", value: "Chino Roces Avenue, Makati City" },
+    { label: "Developer", value: "DMCI Homes" },
+    { label: "Lot Area", value: "4,451 sqm" },
+    { label: "Type of Development", value: "Mixed-use High Rise Buildings, 2 Buildings" },
+    { label: "Architectural Theme", value: "Modern Contemporary" },
+    { label: "Number of Floors", value: "38" },
+    { label: "Number of Units", value: "504" },
+    { label: "Unit Mix", value: "1-bedroom, 2-bedroom, and 3-bedroom units" },
+    { label: "Turnover Date", value: "December 2027" }
+  ],
+  summaryPricing: [
+    { type: "1BR", floorArea: "55.50 sqm", range: "PHP 14.3M - PHP 15.6M", status: "Available in reference snapshot", monthlyDp: "20% DP: PHP 91.0k - PHP 99.8k/mo", note: "Ask Luisa for latest computation and availability." },
+    { type: "2BR", floorArea: "72.50 - 102.00 sqm", range: "PHP 18.5M - PHP 28.2M", status: "Available in reference snapshot", monthlyDp: "20% DP: PHP 118.6k - PHP 180.8k/mo", note: "Ask Luisa for latest computation and availability." },
+    { type: "3BR", floorArea: "143.50 - 154.00 sqm", range: "PHP 33.9M - PHP 39.0M", status: "Available in reference snapshot", monthlyDp: "20% DP: PHP 217.8k - PHP 250.5k/mo", note: "Ask Luisa for latest computation and availability." }
+  ],
+  aboutLocation:
+    "Fortis Residences enjoys a strategic location along Chino Roces Avenue in Makati City, offering access to commercial, business, medical, educational, leisure, airport, and church destinations. Nearby destinations are reference guide information only.",
+  locationDetails: {
+    title: "Project Location - Chino Roces Avenue, Makati City",
+    text: "Fortis Residences enjoys a strategic location along Chino Roces Avenue in Makati City, offering access to commercial, business, medical, educational, leisure, airport, and church destinations. Its location is suited for buyers who value convenience, city access, and a premium Makati address. Nearby destinations are reference guide information only. Travel times and exact distances should be verified with current maps before viewing or reservation.",
+    exactAddress: "Chino Roces Avenue, Makati City"
+  },
+  nearbyDestinations: [
+    { group: "Central Business District", items: ["Makati - For confirmation", "McKinley Hills - For confirmation", "Bonifacio Global City - For confirmation", "Ortigas via MRT - For confirmation", "Pasay Business District - For confirmation", "Alabang via Skyway - For confirmation"] },
+    { group: "Hospitals", items: ["Makati Medical Center - For confirmation", "St. Luke's Medical Center BGC - For confirmation", "Ospital ng Makati - For confirmation"] },
+    { group: "Schools and Universities", items: ["Don Bosco Technical School - For confirmation", "Assumption College - For confirmation", "Colegio San Agustin - For confirmation", "Asia Pacific College - For confirmation", "Far Eastern University Makati - For confirmation", "MAPUA Makati - For confirmation", "Universities near LRT and MRT - For confirmation"] },
+    { group: "Airport", items: ["NAIA Terminal - For confirmation"] },
+    { group: "Leisure", items: ["Villamor Golf Course - For confirmation", "Manila Golf Club - For confirmation", "Glorietta - For confirmation", "Greenbelt - For confirmation", "Rockwell - For confirmation", "Bonifacio Global City - For confirmation"] },
+    { group: "Church", items: ["St. John Bosco Parish Church - For confirmation", "Sanctuario de San Antonio - For confirmation", "St. Andrew Parish Church - For confirmation"] }
+  ],
+  whyInvest: [
+    "Makati address along Chino Roces Avenue for buyers comparing premium city residences",
+    "Access-oriented location near Makati, BGC, McKinley Hill, Pasay, Ortigas, and Alabang via Skyway",
+    "Modern Contemporary design with premium amenities and tranquil residential planning",
+    "1BR, 2BR, and 3BR options for homeowners and investment-oriented buyers",
+    "Broker-assisted computation, availability checking, viewing coordination, and reservation guidance through Luisa"
+  ],
+  highlights: [
+    "4,451 sqm lot area",
+    "Two mixed-use high-rise buildings",
+    "38 floors and 504 units",
+    "1BR, 2BR, and 3BR unit options",
+    "Target turnover: December 2027"
+  ],
+  themeDescription:
+    "Modern Contemporary design supports premium high-rise city living with polished shared spaces, city convenience, and tranquil residential amenities. Final building details, finishes, and technical specifications must be confirmed with official project materials.",
+  siteDevelopment: {
+    title: "Site Development Plan at Fortis Residences",
+    text:
+      "Fortis Residences is planned as a mixed-use high-rise development in Makati, integrating residential spaces, amenities, and natural elements within a premium urban setting. The site development plan is designed to harmonize luxury living with practical city access and everyday convenience. Amenity spaces, lounge areas, landscaped areas, pools, and shared lifestyle zones are positioned to support relaxation and active lifestyles. Site development details, technical drawings, building placement, and final amenities must be confirmed with official project materials.",
+    keyStats: [
+      { label: "Lot Area", value: "4,451 sqm lot area" },
+      { label: "Buildings", value: "2 mixed-use high-rise buildings" },
+      { label: "Floors", value: "38 floors" },
+      { label: "Units", value: "504 units" },
+      { label: "Theme", value: "Modern Contemporary theme" },
+      { label: "Plan", value: "Ground floor site development plan" },
+      { label: "Amenities", value: "Amenity and lounge areas" },
+      { label: "Setting", value: "Makati city-center setting" }
+    ]
+  },
+  viewHighlights: [
+    { title: "360-degree virtual tour support", text: "Request an approved virtual tour link or online consultation schedule from Luisa when available." },
+    { title: "Makati high-rise city living", text: "Review the city-center lifestyle through approved project presentation materials." },
+    { title: "Modern Contemporary residential setting", text: "Contemporary tower living with amenity spaces and premium shared areas." },
+    { title: "Elevated amenity perspectives", text: "Sky deck, sky promenade, and pool deck amenity perspectives should be confirmed with official visuals." },
+    { title: "Connected destination access", text: "Compare access to major business, leisure, medical, and transport destinations." }
+  ],
+  videoTourTitle: "Explore Fortis Residences: A Virtual Journey",
+  videoTourCopy: "Request a virtual tour link or online consultation schedule from Luisa when approved materials are available.",
+  videoTourNote: "Large videos are not loaded directly here so the website stays fast on mobile.",
+  amenities: ["Sky Bar", "Sky Deck Pool", "Sky Promenade", "Leisure Pool", "Pool Deck", "Lounge Area", "Green Spaces", "Reception Lobby", "Drop-Off Promenade", "Fitness Center", "Children's Play Area", "Basketball Court", "Lounge Areas", "Shared amenity areas"],
+  amenityGroups: [
+    { title: "Sky and Elevated Spaces", items: ["Sky Bar", "Sky Deck Pool", "Sky Promenade"] },
+    { title: "Pools and Leisure", items: ["Leisure Pool", "Pool Deck", "Lounge Area", "Green Spaces"] },
+    { title: "Arrival and Lobby", items: ["Reception Lobby", "Drop-Off Promenade"] },
+    { title: "Fitness, Play, and Active Spaces", items: ["Fitness Center", "Children's Play Area", "Basketball Court"] },
+    { title: "Social and Relaxation Spaces", items: ["Lounge Areas", "Shared amenity areas"] }
+  ],
+  otherAmenities: ["Amenities are based on the reference snapshot and must be confirmed with the latest official project materials."],
+  nearbyLandmarks: ["Makati", "McKinley Hills", "Bonifacio Global City", "Makati Medical Center", "Greenbelt", "Glorietta", "NAIA Terminal"],
+  siteProgressStatus: "Turnover and site progress information should be confirmed through official DMCI channels or Luisa before reservation.",
+  masterPlanNotes: "Master plan visuals, site development plans, floor plan images, and building placement can be added once approved Fortis Residences assets are available.",
+  buildings: [
+    { name: "Fortis Residences Building 1", developmentType: "Mixed-use High Rise Building", levels: ["38 floors", "December 2027 target turnover"], features: ["Building details for confirmation"] },
+    { name: "Fortis Residences Building 2", developmentType: "Mixed-use High Rise Building", levels: ["38 floors", "December 2027 target turnover"], features: ["Building details for confirmation"] }
+  ],
+  unitInventoryPreview: [
+    { type: "1BR", floorArea: "55.50 sqm", indicativeRange: "PHP 14.3M-PHP 15.6M reference range", status: "Ask for latest availability" },
+    { type: "2BR", floorArea: "72.50 - 102.00 sqm", indicativeRange: "PHP 18.5M-PHP 28.2M reference range", status: "Ask for latest availability" },
+    { type: "3BR", floorArea: "143.50 - 154.00 sqm", indicativeRange: "PHP 33.9M-PHP 39.0M reference range", status: "Ask for latest availability" }
+  ],
+  unitSections: [
+    { title: "1 Bedroom Units", description: "Fortis Residences 1BR units are designed for buyers seeking a premium Makati address with a spacious one-bedroom layout and contemporary finishes.", layouts: ["1BR"], rows: [
+      { layout: "1BR", floorArea: "55.50 sqm", status: "Available", priceRange: "PHP 14.3M - PHP 15.6M", monthlyDp: "20% DP: PHP 91.0k - PHP 99.8k/mo" }
+    ] },
+    { title: "2 Bedroom Units", description: "Fortis Residences 2BR units provide larger living spaces for couples, small families, or buyers who want extra space for work, guests, and daily comfort.", layouts: ["2BR A", "2BR B", "2BR C", "2BR F", "2BR G"], rows: [
+      { layout: "2BR", floorArea: "72.50 sqm", status: "Available", priceRange: "PHP 18.5M - PHP 20.8M", monthlyDp: "20% DP: PHP 118.6k - PHP 133.1k/mo" },
+      { layout: "2BR", floorArea: "86.00 sqm", status: "Available", priceRange: "PHP 21.7M - PHP 22.9M", monthlyDp: "20% DP: PHP 139.0k - PHP 146.8k/mo" },
+      { layout: "2BR", floorArea: "91.00 sqm", status: "Available", priceRange: "PHP 22.3M - PHP 24.6M", monthlyDp: "20% DP: PHP 143.0k - PHP 157.9k/mo" },
+      { layout: "2BR", floorArea: "93.50 sqm", status: "Available", priceRange: "PHP 23.3M - PHP 26.1M", monthlyDp: "20% DP: PHP 149.2k - PHP 167.5k/mo" },
+      { layout: "2BR", floorArea: "95.00 sqm", status: "Limited", priceRange: "PHP 24.1M - PHP 26.8M", monthlyDp: "20% DP: PHP 154.6k - PHP 171.7k/mo" },
+      { layout: "2BR", floorArea: "100.00 sqm", status: "Available", priceRange: "PHP 24.8M - PHP 27.4M", monthlyDp: "20% DP: PHP 159.1k - PHP 175.6k/mo" },
+      { layout: "2BR", floorArea: "102.00 sqm", status: "Available", priceRange: "PHP 25.6M - PHP 28.2M", monthlyDp: "20% DP: PHP 163.9k - PHP 180.8k/mo" }
+    ] },
+    { title: "3 Bedroom Units", description: "Fortis Residences 3BR units are designed for larger households and buyers seeking more expansive city residences with premium space, comfort, and privacy.", layouts: ["3BR A", "3BR B", "3BR C", "3BR D"], rows: [
+      { layout: "3BR", floorArea: "143.50 sqm", status: "Limited", priceRange: "PHP 33.9M - PHP 36.2M", monthlyDp: "20% DP: PHP 217.8k - PHP 232.4k/mo" },
+      { layout: "3BR", floorArea: "145.00 sqm", status: "Limited", priceRange: "PHP 34.7M - PHP 37.0M", monthlyDp: "20% DP: PHP 223.2k - PHP 237.5k/mo" },
+      { layout: "3BR", floorArea: "152.50 sqm", status: "Available", priceRange: "PHP 34.0M - PHP 38.4M", monthlyDp: "20% DP: PHP 218.7k - PHP 246.9k/mo" },
+      { layout: "3BR", floorArea: "154.00 sqm", status: "Few left", priceRange: "PHP 35.2M - PHP 39.0M", monthlyDp: "20% DP: PHP 226.1k - PHP 250.5k/mo" }
+    ] }
+  ],
+  floorPlans: [
+    { title: "Floor Plans", text: "Fortis Residences offers floor plans crafted to provide functional and spacious living areas for different family needs and buyer preferences. Floor plan images, unit cuts, technical details, and deliverables must be confirmed with the latest official project materials." },
+    { title: "Fortis Building Floor Plan", text: "Ask Luisa for the latest official layout sheet." },
+    { title: "1BR Floor Plan", text: "Ask Luisa for the latest official layout sheet." },
+    { title: "2BR Floor Plan", text: "Ask Luisa for the latest official layout sheet." },
+    { title: "3BR Floor Plan", text: "Ask Luisa for the latest official layout sheet." },
+    { title: "Amenity / Typical Floor Plan", text: "Ask Luisa for the latest official layout sheet." }
+  ],
+  paymentTerms: {
+    title: "Computation and Payment Guide",
+    text: "Fortis Residences offers payment terms designed to support financial planning for buyers reviewing ownership options in Makati. The reference sample below shows a 20% down payment payable over 17 months with the remaining 80% through bank financing. Terms, promos, discounts, closing fees, monthly payments, financing, and availability must be confirmed with Luisa before deciding.",
+    importantNotes: ["Monthly DP ranges are guide values from the reference snapshot and may vary by unit, term, promo, and current availability.", "Request the latest computation before comparing units or preparing reservation.", "Promos and payment terms may change without prior notice."],
+    sampleComputation: [
+      { label: "Unit", value: "C-Fortis 317" },
+      { label: "Type", value: "1BR" },
+      { label: "Size", value: "55.50 sqm" },
+      { label: "List Price", value: "PHP 14,251,000.00" },
+      { label: "RFO Date", value: "Dec 2027" },
+      { label: "Selected Downpayment", value: "20%" },
+      { label: "Number of Months to Pay", value: "17 months" },
+      { label: "Financing", value: "20% DP, 80% Bank Financing" },
+      { label: "Special Discount", value: "2.0% / PHP 285,020.00" },
+      { label: "Net", value: "PHP 13,965,980.00" },
+      { label: "Regular Discount", value: "0.0% / PHP 0.00" },
+      { label: "Additional Discount", value: "0.0% / PHP 0.00" }
+    ],
+    contractBreakdown: [
+      { label: "Total Contract Price", value: "PHP 13,965,980.00" },
+      { label: "Closing Fee", value: "10.5% / PHP 1,466,427.90" },
+      { label: "Total with Closing Fee", value: "PHP 15,432,407.90" },
+      { label: "Downpayment", value: "20% / PHP 2,793,196.00" },
+      { label: "Less Reservation Fee", value: "PHP 50,000.00" },
+      { label: "Net Downpayment", value: "PHP 2,743,196.00" },
+      { label: "Monthly DP", value: "17 months / PHP 161,364.47/mo" },
+      { label: "Balance", value: "80% / PHP 11,172,784.00" },
+      { label: "Closing Fee", value: "PHP 1,466,427.90" },
+      { label: "Total Balance + Closing Fee", value: "PHP 12,639,211.90" }
+    ],
+    monthlyAmortization: [
+      { label: "10 years | 7.0%", value: "PHP 146,751.97/month" },
+      { label: "15 years | 7.0%", value: "PHP 113,604.81/month" },
+      { label: "20 years | 7.0%", value: "PHP 97,991.68/month" }
+    ],
+    promoReference: "Sample computation only. Prices, discounts, rates, closing fees, monthly amortization, promos, turnover, and availability may change. Request the latest computation from Luisa before deciding.",
+    promoCards: [
+      { title: "20% DP Promo - Extended Payment", items: ["Down Payment Promo: 20% DP", "Special Discount: 1.0% discount on DP Promo Term", "Extended Payment Period: extra 10 months to spread down payment", "Promo Ends: June 30, 2026", "Scope: All Units"] },
+      { title: "20% DP Promo", items: ["Down Payment Promo: 20% DP", "Special Discount: 2.0% discount on DP Promo Term", "Promo Ends: June 30, 2026", "Scope: All Units"] }
+    ],
+    sampleAvailableComputations: [
+      { type: "1BR", size: "55.50 sqm", price: "PHP 15,369,000", rfo: "Dec 2027", note: "HomeReady: Not applicable" },
+      { type: "2BR", size: "95.00 sqm", price: "PHP 26,296,000", rfo: "Dec 2027", note: "HomeReady: Not applicable" },
+      { type: "2BR", size: "102.00 sqm", price: "PHP 27,700,000", rfo: "Dec 2027", note: "HomeReady: Not applicable" },
+      { type: "2BR", size: "91.00 sqm", price: "PHP 24,206,000", rfo: "Dec 2027", note: "HomeReady: Not applicable" },
+      { type: "2BR", size: "100.00 sqm", price: "PHP 26,908,000", rfo: "Dec 2027", note: "HomeReady: Not applicable" }
+    ]
+  },
+  unitHoldingPortal: {
+    title: "Unit Holding Portal at Fortis Residences",
+    text: "Fortis Residences may offer a Unit Holding Portal that allows prospective buyers to temporarily hold preferred units before making a final reservation decision, subject to current availability and holding rules. Ask Luisa to confirm the latest portal process before proceeding.",
+    steps: ["Register through the current unit holding process if available.", "Select preferred unit type, size, and budget range.", "Ask Luisa to confirm current availability and holding rules.", "Request latest computation before proceeding.", "Proceed only through accepted reservation channels.", "Unit holding is for buyer review only and does not guarantee reservation unless official requirements are completed."]
+  },
+  reservationTitle: "Reservation Guidance",
+  reservationNote: "Final reservation requirements, payment channels, forms, IDs, and buyer documents must be confirmed with Luisa and official project materials before proceeding.",
+  reservationRequirements: [
+    "Request latest computation and availability from Luisa.",
+    "Confirm preferred unit, payment term, and promo applicability.",
+    "Ask Luisa for the latest Fortis reservation requirements.",
+    "Prepare valid ID and buyer information if required by the current process.",
+    "Confirm reservation fee and payment channels before paying.",
+    "Proceed only through official reservation channels."
+  ],
+  galleryLabels: ["Project Perspective", "Site Development Plan", "Reception Lobby", "Pool Deck", "Sky Deck Pool", "Sky Promenade", "Lounge Area", "Floor Plan Preview"],
+  newsMedia: [
+    { title: "Project presentation materials", label: "Request Fortis Residences presentation from Luisa", url: "" },
+    { title: "Computation and promo references", label: "Ask Luisa for the latest official computation sheet", url: "" }
+  ],
+  videoTourUrl: ""
+};
+
 const valeronTowerDetails = {
   contentLevel: "rich",
   assetStatus: "official-assets-needed",
@@ -1526,7 +1746,9 @@ export const projects = baseProjects.map(([slug, name, location, city, status, t
           ? { ...base, ...solmeraCoastDetails }
           : slug === "mulberry-place-2"
             ? { ...base, ...mulberryPlace2Details }
-            : base;
+            : slug === "fortis-residences"
+              ? { ...base, ...fortisResidencesDetails }
+              : base;
   return withProjectFallbacks({
     ...project,
     nearbyProperties: baseProjects
@@ -1573,5 +1795,5 @@ function withProjectFallbacks(project) {
 
 export const statuses = ["RFO", "Preselling", "RFO / Preselling Phase 2", "Coming Soon", "New", "Featured"];
 export const unitTypes = ["Studio", "1BR", "2BR", "3BR", "4BR", "House & Lot", "Lot", "Parking"];
-export const propertyTypes = ["High-rise Condo", "Mid-rise Condo", "Mid Rise and High Rise Condominiums", "Leisure Residence", "House & Lot", "Lot"];
+export const propertyTypes = ["High-rise Condo", "Mid-rise Condo", "Mid Rise and High Rise Condominiums", "Mixed-use High Rise Buildings", "Leisure Residence", "House & Lot", "Lot"];
 export const purposes = ["Own Use", "Investment", "Rental", "OFW Friendly", "Family"];
