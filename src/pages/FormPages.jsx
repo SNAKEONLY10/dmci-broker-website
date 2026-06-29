@@ -9,7 +9,16 @@ const locationOptions = locations.map((location) => location.name);
 const inquiryTypes = ["Computation", "Availability", "Site viewing", "Reservation requirements", "Promo", "Resale unit", "Other"];
 
 export function Availability() {
-  return <FormShell title="Check Availability" text="Ask Luisa to check current unit availability, pricing, promos, and payment terms.">
+  return <FormShell
+    title="Check Current Availability"
+    text="Share the project and unit type you are considering. Luisa can help verify current availability, promos, and payment terms before you shortlist."
+    panel={{
+      eyebrow: "Availability Support",
+      title: "Confirm units before deciding",
+      text: "Inventory, promos, and payment terms can change quickly. Send your shortlist and ask for the latest confirmed details.",
+      cta: "Request Availability Check"
+    }}
+  >
     <DemoForm title="Check Availability with Luisa" fields={[
       f("fullName", "Full Name"), f("contactNumber", "Contact Number", "tel"), f("email", "Email", "email"),
       s("project", "Preferred Project", projectOptions), s("location", "Preferred Location", locationOptions), s("unitType", "Unit Type", unitTypes),
@@ -21,9 +30,18 @@ export function Availability() {
 }
 
 export function RequestComputation() {
-  return <FormShell title="Request Latest Computation" text="No hardcoded prices. Submit your preferences and request updated computation.">
-    <DemoForm title="Full Computation Request" fields={[
-      f("fullName", "Full Name"), f("contactNumber", "Mobile Number", "tel"), f("email", "Email Address", "email"), f("messengerLink", "Facebook/Messenger Link Optional"),
+  return <FormShell
+    title="Request Latest Computation"
+    text="Tell Luisa your preferred project, unit type, payment preference, and timeline so she can prepare the right computation reference."
+    panel={{
+      eyebrow: "Computation Request",
+      title: "Get numbers that match your buyer profile",
+      text: "Request updated sample computation, payment terms, fees, and reservation guidance before making a decision.",
+      cta: "Send Computation Request"
+    }}
+  >
+    <DemoForm title="Computation Request Details" fields={[
+      f("fullName", "Full Name"), f("contactNumber", "Mobile Number", "tel"), f("email", "Email Address", "email"), f("messengerLink", "Facebook/Messenger Link"),
       s("location", "Preferred Location", locationOptions), s("project", "Preferred Project", projectOptions), s("unitType", "Unit Type", unitTypes),
       s("budgetRange", "Budget Range", ["Still checking", "Entry level", "Mid range", "Premium range"]),
       s("paymentPreference", "Payment Preference", ["Cash", "In-house", "Bank Financing", "Not sure"]),
@@ -35,26 +53,54 @@ export function RequestComputation() {
 }
 
 export function BookViewing() {
-  return <FormShell title="Book a Site Viewing" text="Schedule confirmation depends on project availability and broker confirmation.">
-    <DemoForm title="Request Viewing Schedule" fields={[
-      f("fullName", "Full Name"), f("contactNumber", "Contact Number", "tel"), s("project", "Preferred Project", projectOptions), s("location", "Preferred Location", locationOptions),
+  return <FormShell
+    title="Book a Site Viewing"
+    text="Choose your preferred viewing setup and schedule. Luisa can help coordinate based on project access and available slots."
+    panel={{
+      eyebrow: "Viewing Coordination",
+      title: "Plan your visit with broker guidance",
+      text: "Ask for a model unit visit, project presentation, or online consultation before reserving.",
+      cta: "Book Viewing"
+    }}
+  >
+    <DemoForm title="Viewing Request Details" fields={[
+      f("fullName", "Full Name"), f("contactNumber", "Contact Number", "tel"), f("email", "Email Address", "email"), s("project", "Preferred Project", projectOptions), s("location", "Preferred Location", locationOptions),
       s("viewingType", "Viewing Type", ["On-site model unit viewing", "Online consultation", "Phone call", "Zoom/Google Meet"]),
-      f("preferredDate", "Preferred Date", "date"), f("preferredTime", "Preferred Time", "time"), f("guests", "Number of Guests", "number"), t()
-    ]} storageKey="dmci_viewing_requests" submitLabel="Request Viewing Schedule" required={["fullName", "contactNumber"]} />
+      f("preferredDate", "Preferred Date", "date"), f("preferredTime", "Preferred Time", "time"), f("guests", "Number of Guests", "number"), s("contactMethod", "Preferred Contact Method", ["Messenger", "Viber", "WhatsApp", "Call", "Email"]), t("Notes or questions")
+    ]} storageKey="dmci_viewing_requests" submitLabel="Request Viewing Schedule" required={["fullName", "contactNumber", "email"]} />
   </FormShell>;
 }
 
 export function Contact() {
-  return <FormShell title="Contact Luisa" text="Choose the concern type and send a buyer-assistance inquiry.">
-    <DemoForm title="Inquiry Form" fields={[
-      f("fullName", "Name"), f("contactNumber", "Contact", "tel"),
+  return <FormShell
+    title="Talk to Luisa"
+    text="Send your question or buyer requirement. This helps Luisa recommend the right project, unit type, computation, or next step."
+    panel={{
+      eyebrow: "Direct Broker Contact",
+      title: "Start with a clear buyer inquiry",
+      text: "Share where you want to buy, your timeline, and how you prefer to be contacted. Luisa can guide the next step.",
+      cta: "Message Luisa"
+    }}
+  >
+    <DemoForm title="Buyer Inquiry Details" fields={[
+      f("fullName", "Full Name"), f("contactNumber", "Mobile Number", "tel"), f("email", "Email Address", "email"),
       s("project", "Project Inquired", projectOptions),
-      s("concernType", "Inquiry Type", inquiryTypes), t()
-    ]} storageKey="dmci_contact_requests" submitLabel="Send Inquiry" required={["fullName", "contactNumber"]} />
+      s("concernType", "Inquiry Type", inquiryTypes),
+      s("buyerType", "Buyer Type", ["Local buyer", "OFW", "Investor", "Family use", "First-time buyer", "Still exploring"]),
+      s("contactMethod", "Preferred Contact Method", ["Messenger", "Viber", "WhatsApp", "Call", "Email"]),
+      t("Message / Buyer Requirement")
+    ]} storageKey="dmci_contact_requests" submitLabel="Send Buyer Inquiry" required={["fullName", "contactNumber", "email", "concernType"]} />
   </FormShell>;
 }
 
-function FormShell({ title, text, children }) {
+function FormShell({ title, text, panel, children }) {
+  const panelContent = {
+    eyebrow: "Buyer Support",
+    title: "Get guided before deciding",
+    text: "Ask for updated details, current availability, and buyer requirements before choosing a project.",
+    cta: "Message Luisa",
+    ...panel
+  };
   return (
     <section className="page-section form-page">
       <div className="container form-shell-grid">
@@ -63,10 +109,15 @@ function FormShell({ title, text, children }) {
             <img src="/assets/img/luisa-corral.jpg" alt="Luisa Corral" />
           </div>
           <div className="form-broker-copy">
-            <span className="eyebrow">Broker Assistance</span>
-            <h2>Ask Luisa for updated details</h2>
-            <p>Request the latest computation, confirmed availability, promos, and viewing schedule before deciding.</p>
-            <Button to="/contact" variant="secondary">Message Luisa</Button>
+            <span className="eyebrow">{panelContent.eyebrow}</span>
+            <h2>{panelContent.title}</h2>
+            <p>{panelContent.text}</p>
+            <ul className="form-benefits">
+              <li>Updated details upon request</li>
+              <li>Availability subject to confirmation</li>
+              <li>Buyer assistance from inquiry to reservation</li>
+            </ul>
+            <Button to="/contact" variant="secondary">{panelContent.cta}</Button>
           </div>
         </aside>
         <div className="form-shell-content">
@@ -79,4 +130,4 @@ function FormShell({ title, text, children }) {
 }
 function f(name, label, type = "text") { return { name, label, type }; }
 function s(name, label, options) { return { name, label, options }; }
-function t() { return { name: "message", label: "Message", type: "textarea", full: true }; }
+function t(label = "Message") { return { name: "message", label, type: "textarea", full: true }; }

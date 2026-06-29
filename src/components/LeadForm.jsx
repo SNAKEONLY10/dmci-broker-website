@@ -41,14 +41,14 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
 
     // TODO: Connect to backend email/CRM endpoint later.
     saveSubmission(storageKey, values);
-    setSuccess("Thank you. Your demo request was saved in this browser. Luisa's email/CRM integration can be connected in the next phase.");
+    setSuccess("Thank you. Your inquiry has been recorded for this preview. The next phase can connect this form to Luisa's email or CRM.");
     setValues({ ...defaults, ...initialValues });
   }
 
   return (
     <form className="form-card" onSubmit={submit} noValidate>
       <div className="form-intro">
-        <span className="eyebrow">Lead Form</span>
+        <span className="eyebrow">Buyer Inquiry</span>
         <h2>{title}</h2>
         {subtitle && <p>{subtitle}</p>}
       </div>
@@ -58,7 +58,7 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
         ))}
         <label className="consent full">
           <input name="consent" type="checkbox" checked={values.consent} onChange={update} />
-          <span>I agree to be contacted regarding my inquiry.</span>
+          <span>I agree to be contacted by Luisa or her team regarding my inquiry.</span>
         </label>
         {errors.consent && <small className="error full">{errors.consent}</small>}
       </div>

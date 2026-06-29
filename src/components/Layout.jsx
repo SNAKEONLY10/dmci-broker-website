@@ -66,37 +66,36 @@ function Footer() {
   return (
     <footer className="site-footer">
       <div className="container footer-grid">
-        <div>
-          <img className="footer-logo" src="/assets/img/dmci-broker-logo.png" alt="DMCI broker logo" />
+        <div className="footer-brand">
           <div className="footer-profile">
-            <img src="/assets/img/luisa-corral.jpg" alt="Luisa Corral" />
+            <img className="footer-logo" src="/assets/img/dmci-broker-mark.png" alt="DMCI broker logo" />
             <div>
               <h3>{contact.brokerName}</h3>
               <p>{contact.role}<br />{contact.license}</p>
             </div>
           </div>
-          <p>Luisa Corral's DMCI Homes buyer assistance platform for project browsing, computation requests, availability checks, viewing schedules, and reservation guidance.</p>
+          <p>Personal buyer assistance for DMCI Homes project discovery, computation requests, availability checks, site viewings, and reservation guidance.</p>
           <p className="footer-note">Buyer assistance website by Luisa Corral. Final project details are subject to official confirmation.</p>
         </div>
-        <div>
+        <div className="footer-links">
           <h4>Buyer Tools</h4>
           <NavLink to="/projects">Projects</NavLink>
           <NavLink to="/availability">Check Availability</NavLink>
           <NavLink to="/reservation-requirements">Reservation Requirements</NavLink>
           <NavLink to="/virtual-tours">Virtual Tours</NavLink>
         </div>
-        <div>
+        <div className="footer-contact">
           <h4>Contact Luisa</h4>
           <p>{contact.phone}</p>
           <p>{contact.email}</p>
           <Button to="/contact" variant="secondary">Message Luisa</Button>
         </div>
-        <div>
-          <h4>Official DMCI References</h4>
+        <div className="footer-links">
+          <h4>Reference Links</h4>
           <a href={contact.officialDmciWebsite} target="_blank" rel="noopener">DMCI Homes Website</a>
           <a href={contact.officialDmciFacebook} target="_blank" rel="noopener">DMCI Homes Facebook</a>
           <NavLink to="/showcase">Client Showcase</NavLink>
-          <p>Use official channels for corporate announcements and final project confirmation.</p>
+          <p>Use official channels for final project confirmation.</p>
         </div>
       </div>
       <div className="container"><DisclaimerBanner /></div>
