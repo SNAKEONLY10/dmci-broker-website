@@ -105,6 +105,14 @@ export default function ProjectDetail() {
 }
 
 function ProjectHero({ project, isRichProject }) {
+  const heroFacts = [
+    { label: "Turnover", value: project.turnoverYear === "Ready" ? "Ready For Occupancy" : `${project.turnoverYear} turnover` },
+    { label: "Location", value: project.city },
+    { label: "Development", value: project.developmentType },
+    { label: "Land Area", value: project.landArea },
+    { label: "Theme", value: project.architecturalTheme },
+    { label: "Unit Types", value: project.unitTypes.join(", ") }
+  ].filter((fact) => isDisplayValue(fact.value));
   const heroImages = [
     { src: project.image, label: project.name, variant: "hero" },
     ...project.gallery.slice(0, 3).map((src, index) => ({
@@ -142,12 +150,7 @@ function ProjectHero({ project, isRichProject }) {
             <span>Subject to final confirmation. Ask Luisa for latest computation.</span>
           </div>
           <div className="project-facts">
-            <Fact label="Turnover" value={project.turnoverYear === "Ready" ? "Ready For Occupancy" : `${project.turnoverYear} turnover`} />
-            <Fact label="Location" value={project.city} />
-            <Fact label="Development" value={project.developmentType} />
-            <Fact label="Land Area" value={project.landArea} />
-            <Fact label="Theme" value={project.architecturalTheme} />
-            <Fact label="Unit Types" value={project.unitTypes.join(", ")} />
+            {heroFacts.map((fact) => <Fact key={fact.label} label={fact.label} value={fact.value} />)}
           </div>
           <div className="hero-actions">
             <Button to="/request-computation">Request Latest Computation</Button>
@@ -167,7 +170,7 @@ function RichProjectSections({ project }) {
     <>
       <ReferenceNotice />
 
-      <DetailSection id="facts" eyebrow="Project Facts" title="Kalea Heights at a Glance">
+      <DetailSection id="facts" eyebrow="Project Facts" title={`${project.name} at a Glance`}>
         <div className="rich-fact-grid">
           {project.projectFacts.map((fact) => <Spec key={fact.label} label={fact.label} value={fact.value} />)}
         </div>
@@ -245,7 +248,7 @@ function RichProjectSections({ project }) {
         {project.unitSections.map((section) => <UnitSection section={section} key={section.title} />)}
       </DetailSection>
 
-      <DetailSection id="floor-plans" eyebrow="Floor Plans" title="Floor Plan Preview">
+      <DetailSection id="floor-plans" eyebrow="Floor Plans" title="Floor Plans">
         <div className="floor-plan-grid">
           {project.floorPlans.map((item) => (
             <article className="floor-plan-card" key={item.title}>
@@ -308,7 +311,7 @@ function RichProjectSections({ project }) {
         </div>
       </DetailSection>
 
-      <DetailSection id="gallery" eyebrow="Gallery" title="Project Gallery">
+      <DetailSection id="gallery" eyebrow="Gallery" title={`${project.name} Gallery`}>
         <Gallery project={project} />
       </DetailSection>
     </>
@@ -453,7 +456,7 @@ function UnitSection({ section }) {
                 <td data-label="Guide Range">{row.priceRange}</td>
                 <td data-label="Status">{row.status}</td>
                 <td data-label="Computation">{row.monthlyDp}</td>
-                <td data-label="Action"><Button to="/request-computation" variant="secondary">Compute</Button></td>
+                <td data-label="Action"><Button to="/request-computation" variant="secondary">Request Computation</Button></td>
               </tr>
             ))}
           </tbody>
@@ -617,4 +620,10 @@ function Fact({ label, value }) {
 
 function Spec({ label, value }) {
   return <div><strong>{label}</strong><span>{value}</span></div>;
+}
+
+function isDisplayValue(value) {
+  if (value == null) return false;
+  const normalized = String(value).trim().toLowerCase();
+  return normalized !== "" && normalized !== "for confirmation" && normalized !== "undefined" && normalized !== "null";
 }

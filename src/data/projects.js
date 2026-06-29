@@ -66,137 +66,147 @@ const kaleaHeightsDetails = {
   verificationStatus: "reference-only",
   tagline: "Resort-inspired living on a grander scale.",
   city: "Cebu City",
+  location: "Cebu",
   status: "Preselling",
-  propertyType: "High Rise Condominiums",
-  developmentType: "High Rise Condominiums",
-  landArea: "46,348 sqm",
-  architecturalTheme: "Modern Tropical",
-  address: "Good Shepherd Road, Banawa Brgy. Guadalupe, Cebu City",
+  propertyType: "High-Rise Residential Condominium",
+  developmentType: "High-Rise Residential Condominium",
+  landArea: "4.6 hectares",
+  architecturalTheme: "Modern Tropical, Resort-Inspired",
+  address: "Good Shepherd Road, Banawa, Brgy. Guadalupe, Cebu City",
   unitTypes: ["1BR", "2BR", "3BR", "Tandem Units"],
-  priceRangeLabel: "PHP 5.613M - PHP 13.426M",
-  priceSourceNote: "Guide price only. Ask Luisa for the latest computation and availability before deciding.",
+  priceRangeLabel: "PHP 5.6M - PHP 13.1M reference range",
+  priceSourceNote: "Reference snapshot only. Prices, promos, terms, and availability must be confirmed with Luisa before deciding.",
   sourceUrl: "https://www.dmcihomes.com/kalea-heights",
   lastVerified: "For confirmation",
-  targetRfo: "September 2029",
+  targetRfo: "December 2029",
   overview:
-    "Kalea Heights is a resort-inspired high-rise condominium community in Banawa, Cebu City. This buyer assistance page helps interested clients review the project direction, unit options, payment guide, and next steps before requesting Luisa's latest computation.",
+    "Kalea Heights by DMCI Homes is a resort-inspired residential condominium located in Guadalupe-Banawa, Cebu City. It introduces DMCI Homes' signature park-centric lifestyle to Central Visayas through expansive open spaces, modern tropical architecture, and thoughtfully planned amenities.",
   introParagraphs: [
-    "Kalea Heights is positioned for buyers who want Cebu City access with a more relaxed, resort-style residential setting. It is useful for end-use buyers, families, OFWs, and investors comparing preselling opportunities in Cebu.",
+    "As DMCI Homes' first condominium development in Cebu, Kalea Heights is positioned for end-users, families, OFWs, first-time condo buyers, and investors comparing pre-selling condominium options in Cebu City.",
+    "The project highlights wellness, everyday comfort, green spaces, resort-style amenities, and views of the Cebu City skyline, surrounding mountains, and nearby coastal areas.",
     "All pricing, unit availability, promos, payment terms, and turnover schedules shown here are for buyer guidance only. Request the latest computation and confirmed availability from Luisa before making decisions."
   ],
   projectFacts: [
-    { label: "Project", value: "Kalea Heights" },
-    { label: "Location", value: "Good Shepherd Road, Banawa, Brgy. Guadalupe, Cebu City" },
+    { label: "Location", value: "Guadalupe-Banawa, Cebu City" },
     { label: "Developer", value: "DMCI Homes" },
-    { label: "Property Type", value: "High Rise Condominiums" },
-    { label: "Development Type", value: "Resort-inspired condominium community" },
-    { label: "Land Area", value: "46,348 sqm" },
-    { label: "Architectural Theme", value: "Modern Tropical" },
-    { label: "Unit Types", value: "1BR, 2BR, 3BR, Tandem Units" },
-    { label: "Target RFO", value: "September 2029" },
-    { label: "Status", value: "Preselling details for confirmation" }
+    { label: "Development Type", value: "High-Rise Residential Condominium" },
+    { label: "Total Land Area", value: "4.6 hectares" },
+    { label: "Open Space", value: "3.6 hectares" },
+    { label: "No. of Buildings", value: "4 High-Rise Towers" },
+    { label: "No. of Floors", value: "41 Residential Floors" },
+    { label: "Parking Levels", value: "2 to 5 Basement Parking Levels" },
+    { label: "Amenity Levels", value: "2 Amenity Levels" },
+    { label: "Architectural Theme", value: "Modern Tropical, Resort-Inspired" },
+    { label: "Project Status", value: "Pre-selling" },
+    { label: "Target RFO", value: "December 2029" }
   ],
   summaryPricing: [
-    { type: "1BR", floorArea: "Approx. 29.5-33.5 sqm", range: "PHP 5.613M - PHP 6.591M", note: "Guide range only" },
-    { type: "2BR", floorArea: "Approx. 53-80.5 sqm", range: "PHP 8.008M - PHP 11.385M", note: "Guide range only" },
-    { type: "3BR", floorArea: "Approx. 81.5-88.5 sqm", range: "PHP 11.936M - PHP 13.426M", note: "Guide range only" }
+    { type: "1BR", floorArea: "29.50 - 33.50 sqm", range: "PHP 5.6M - PHP 6.4M", status: "Available in reference snapshot", monthlyDp: "15% DP: PHP 19.8k - PHP 22.8k/mo", note: "Ask Luisa for latest computation and availability." },
+    { type: "2BR", floorArea: "53.00 - 80.50 sqm", range: "PHP 8.1M - PHP 11.4M", status: "Available in reference snapshot", monthlyDp: "15% DP: PHP 28.8k - PHP 41.1k/mo", note: "Ask Luisa for latest computation and availability." },
+    { type: "3BR", floorArea: "81.50 - 88.50 sqm", range: "PHP 12.0M - PHP 13.1M", status: "Available in reference snapshot", monthlyDp: "15% DP: PHP 43.1k - PHP 47.0k/mo", note: "Ask Luisa for latest computation and availability." }
   ],
   aboutLocation:
-    "Kalea Heights is located along Good Shepherd Road in Banawa, Brgy. Guadalupe, Cebu City. The area gives buyers access to hospitals, schools, malls, business districts, churches, and daily essentials while staying within a residential Cebu City setting.",
+    "Kalea Heights is located along Good Shepherd Road, Banawa, Brgy. Guadalupe, Cebu City, a well-established residential area known for its elevated setting, accessibility, and peaceful surroundings.",
   locationDetails: {
-    title: "Banawa, Cebu City",
-    text: "A city-accessible address for buyers comparing preselling homes near Cebu's major establishments. Distances below are buyer guide markers and should be checked through current maps before site viewing.",
+    title: "Location - Good Shepherd Road, Banawa, Cebu City",
+    text: "Kalea Heights is located along Good Shepherd Road, Banawa, Brgy. Guadalupe, Cebu City, a well-established residential area known for its elevated setting, accessibility, and peaceful surroundings. This location places the development close to Cebu City's key commercial and business districts while offering a more relaxed, private living environment away from heavy traffic. Distances are reference estimates only and should be verified with current maps before viewing or reservation.",
     exactAddress: "Good Shepherd Road, Banawa, Brgy. Guadalupe, Cebu City"
   },
   nearbyDestinations: [
     {
-      group: "Commercial Establishments",
+      group: "Business & Commercial Areas",
       items: [
-        "JY Square Mall - approx. 5 km",
-        "Robinsons Galleria - approx. 6 km",
-        "Ayala Center Cebu - approx. 7 km",
-        "SM City Cebu - approx. 8 km",
-        "SM Seaside City Cebu - approx. 9 km",
-        "Carbon Market - approx. 5 km"
+        "Banawa Centrale - 1.1 km",
+        "Paseo Arcenas - 1.4 km",
+        "Ayala Center Cebu - 4.7 km",
+        "Cebu IT Park - 5.5 km",
+        "Cebu South Road Properties (SRP) - 6.3 km"
+      ]
+    },
+    {
+      group: "Malls & Shopping Centers",
+      items: [
+        "The Marketplace Banawa - 1.1 km",
+        "One Pavilion Mall - 1.6 km",
+        "Metro Supermarket - 1.6 km",
+        "Ayala Center Cebu - 4.7 km",
+        "SM Seaside City Cebu - 5.4 km",
+        "Robinsons Galleria Cebu - 5.6 km",
+        "Ayala Malls Central Bloc - 5.8 km"
       ]
     },
     {
       group: "Schools",
       items: [
-        "SIT - approx. 3 km",
-        "University of San Jose-Recoletos - approx. 4 km",
-        "University of Cebu - approx. 5 km",
-        "University of San Carlos - approx. 5 km",
-        "University of San Pedro - approx. 5 km",
-        "University of the Philippines Cebu - approx. 6 km"
+        "Matias H. Aznar Memorial College of Medicine - 1.2 km",
+        "Cebu South Hills International School - 1.6 km",
+        "One World Montessori House - 1.8 km",
+        "Cebu City National Science High School - 2.3 km",
+        "Cebu Institute of Technology - 2.7 km",
+        "Cebu Normal University (Main) - 4.3 km",
+        "University of Cebu - 4.8 km",
+        "University of San Jose-Recoletos - 4.9 km"
       ]
     },
     {
       group: "Hospitals",
       items: [
-        "Cebu Doctors' University Hospital - approx. 4 km",
-        "Chong Hua Hospital - approx. 4 km",
-        "Visayas Community Medical Center - approx. 5 km",
-        "Cebu Velez General Hospital - approx. 5 km",
-        "Perpetual Succour Hospital - approx. 6 km",
-        "Cebu City Medical Center - approx. 6 km"
-      ]
-    },
-    {
-      group: "Business Districts",
-      items: [
-        "Cebu Business Park - approx. 7 km",
-        "Cebu I.T. Park - approx. 7 km",
-        "South Road Properties - approx. 8 km"
-      ]
-    },
-    {
-      group: "Places of Worship",
-      items: [
-        "Santo Nino Basilica - approx. 5 km",
-        "Cebu Metropolitan Cathedral - approx. 5 km"
+        "Cebu Doctors' University Hospital - 2.7 km",
+        "Chong Hua Hospital - 3.0 km",
+        "Vicente Sotto Memorial Medical Center - 3.2 km",
+        "Adventist Hospital Cebu - 3.8 km",
+        "Visayas Medical Center - 3.9 km",
+        "Cebu City Medical Center - 4.0 km",
+        "Perpetual Succour Hospital - 4.1 km"
       ]
     }
   ],
   whyInvest: [
-    "Cebu City location for buyers comparing end-use, family, and investment options",
-    "Large-scale residential setting with resort-inspired lifestyle positioning",
-    "Multiple unit types for different household sizes and buyer goals",
-    "Modern Tropical design direction for breezy indoor-outdoor living",
+    "DMCI Homes' first condominium development in Cebu",
+    "Park-centric, resort-inspired residential setting in Guadalupe-Banawa",
+    "Expansive open spaces with wellness, leisure, and everyday comfort in mind",
+    "1BR, 2BR, 3BR, and tandem options for different buyer goals",
     "Broker-assisted computation, availability checking, and viewing coordination through Luisa"
   ],
   highlights: [
-    "46,348 sqm master-planned community",
-    "Modern Tropical architectural direction",
+    "4.6-hectare master-planned community",
+    "3.6 hectares dedicated to open space",
+    "4 high-rise residential towers",
     "1BR, 2BR, 3BR, and tandem unit options",
-    "Target RFO: September 2029",
+    "Target RFO: December 2029",
     "Buyer assistance for computation, availability, site viewing, and reservation steps"
   ],
   themeDescription:
-    "Modern Tropical architecture is designed for warm climates, with breezy spaces, large openings, and indoor-outdoor connections. Final project details must be confirmed through official channels.",
+    "Modern Tropical, resort-inspired architecture supports breezy spaces, green views, landscaped amenities, and indoor-outdoor connections. Final project details must be confirmed through official materials.",
   siteDevelopment: {
-    title: "Site Development Plan",
+    title: "Site Development",
     text:
-      "Kalea Heights is presented as a master-planned residential community with multiple towers, landscaped amenities, and shared lifestyle spaces. Final site plan, tower count, and technical details should be verified through official project materials.",
+      "Kalea Heights by DMCI Homes is a master-planned, resort-inspired residential development designed around expansive green spaces and thoughtfully zoned living areas. Set within a 4.6-hectare property, the project dedicates 3.6 hectares to open space. The community is composed of four high-rise residential towers arranged around a central open park, allowing residents to enjoy a connection between indoor living and outdoor spaces. Wide walkways, landscaped gardens, water features, and leisure zones are integrated throughout the property to promote relaxation, wellness, and an active lifestyle.",
     keyStats: [
-      { label: "Land Area", value: "46,348 sqm" },
-      { label: "Design Direction", value: "Modern Tropical" },
-      { label: "Lifestyle", value: "Resort-inspired community" },
-      { label: "Target RFO", value: "September 2029" }
+      { label: "Property", value: "4.6-hectare property" },
+      { label: "Open Space", value: "3.6 hectares open space" },
+      { label: "Towers", value: "4 high-rise towers" },
+      { label: "Open Park", value: "Central open park" },
+      { label: "Landscape", value: "Landscaped gardens and water features" },
+      { label: "Lifestyle", value: "Wide walkways and leisure zones" }
     ]
   },
   viewHighlights: [
     {
-      title: "Project Presentation View",
-      text: "Use Luisa's guided presentation to understand project positioning, location, amenities, unit options, and payment structure."
+      title: "360-Degree Views",
+      text: "Select units and amenity areas may offer 360-degree view potential, subject to unit orientation and final confirmation."
     },
     {
-      title: "Site Viewing Coordination",
-      text: "Request viewing assistance so schedule, meeting point, and project details can be confirmed before going to the site."
+      title: "Cebu City Skyline",
+      text: "Review possible city skyline views with Luisa using the latest project presentation and available unit details."
+    },
+    {
+      title: "Mountain and Coastal Views",
+      text: "Kalea's elevated Banawa-Guadalupe setting may offer surrounding mountain and nearby coastal area views."
     },
     {
       title: "Virtual Tour Link",
-      text: "If an approved 360 tour or video is available, Luisa can share the current official link instead of loading heavy video on the website."
+      text: "Ask Luisa for the latest approved virtual tour link or project presentation when available."
     }
   ],
   buildings: [
@@ -249,72 +259,10 @@ const kaleaHeightsDetails = {
     "Picnic Area"
   ],
   amenityGroups: [
-    {
-      title: "Core Amenities",
-      items: [
-        "Drop-Off Entrance",
-        "Indoor Court Facility",
-        "Basketball Court / Playcourt",
-        "Children's Playground",
-        "Entertainment Room",
-        "Water Garden"
-      ]
-    },
-    {
-      title: "Pools and Leisure",
-      items: [
-        "Lap Pool",
-        "Leisure Pool",
-        "Kiddie Pool",
-        "Pool Deck",
-        "Pool Shower Area",
-        "Open Lawn / Picnic Grove"
-      ]
-    },
-    {
-      title: "Fitness and Social Spaces",
-      items: [
-        "Fitness Gym",
-        "Snack Bar",
-        "Open Lounge",
-        "Lounge Area",
-        "Sky Lounge",
-        "Picnic Area"
-      ]
-    },
-    {
-      title: "Sky Features",
-      items: [
-        "Sky Park",
-        "Sky Bridge",
-        "Sky Patio",
-        "Roof Deck",
-        "View Deck",
-        "Landscaped Atriums"
-      ]
-    },
-    {
-      title: "Community Convenience",
-      items: [
-        "24-hour Security",
-        "Convenience Store",
-        "Laundry Station",
-        "Pet Park",
-        "Community Internet",
-        "100% Power Back-up"
-      ]
-    },
-    {
-      title: "Outdoor Lifestyle",
-      items: [
-        "Grill Pits",
-        "Jogging / Biking Path",
-        "Amphitheater Garden",
-        "Main Entrance Gate",
-        "Perimeter Fence",
-        "Water Feature"
-      ]
-    }
+    { title: "Outdoor Amenities", items: ["Leisure Pool", "Kiddie Pool", "Lap Pool", "Pool Deck & Lounge Areas", "Open Lawn", "Picnic Areas", "Children's Play Area", "Pet Park", "Terraced Gardens", "Water Gardens", "Trellised Walkways", "Viewing Decks", "Amphitheater", "Basketball Court", "Multipurpose / Play Courts", "Open Field", "Walkways & Cycle Paths, approx. 1 km"] },
+    { title: "Indoor & Covered Amenities", items: ["Fitness Gym", "Entertainment Room", "Open Lounge Areas", "Indoor Court Facility", "Building Atriums", "Sky Patios"] },
+    { title: "Roof Deck & Sky Amenities", items: ["Sky Park", "Open Sky Lounge", "Sky Bridge connecting towers", "Roof Deck Leisure Areas with panoramic city, mountain, and sea views"] },
+    { title: "Facilities & Services", items: ["Grand Drop-Off Entrances", "Reception Lobby", "Property Management Office", "Commercial Spaces in selected towers", "Convenience Store", "Laundry Station", "Water Refilling Station", "Snack Bar & Kitchen", "24/7 Security & CCTV", "Standby Power Supply", "Basement Parking Levels"] }
   ],
   otherAmenities: [
     "24-hour Security",
@@ -338,96 +286,153 @@ const kaleaHeightsDetails = {
     "Water Feature",
     "Community Internet"
   ],
-  nearbyLandmarks: ["Good Shepherd Road", "Guadalupe, Cebu City", "Schools and lifestyle destinations", "Major Cebu city access roads"],
+  nearbyLandmarks: ["Good Shepherd Road", "Banawa", "Guadalupe, Cebu City", "Ayala Center Cebu", "Cebu IT Park"],
   siteProgressStatus: "Site progress information should be confirmed through official DMCI channels or Luisa.",
   masterPlanNotes: "Kalea Heights master plan details should be reviewed using official project presentation materials once approved assets are available.",
   unitInventoryPreview: [
-    { type: "1-Bedroom", floorArea: "Approx. 29.5-33.5 sqm", indicativeRange: "PHP 5.6M-PHP 6.6M guide range", status: "Ask for latest availability" },
-    { type: "2-Bedroom", floorArea: "Approx. 53-80.5 sqm", indicativeRange: "PHP 8.0M-PHP 11.4M guide range", status: "Ask for latest availability" },
-    { type: "3-Bedroom", floorArea: "Approx. 81.5-88.5 sqm", indicativeRange: "PHP 11.9M-PHP 13.4M guide range", status: "Ask for latest availability" }
+    { type: "1-Bedroom", floorArea: "29.50 - 33.50 sqm", indicativeRange: "PHP 5.6M-PHP 6.4M reference range", status: "Ask for latest availability" },
+    { type: "2-Bedroom", floorArea: "53.00 - 80.50 sqm", indicativeRange: "PHP 8.1M-PHP 11.4M reference range", status: "Ask for latest availability" },
+    { type: "3-Bedroom", floorArea: "81.50 - 88.50 sqm", indicativeRange: "PHP 12.0M-PHP 13.1M reference range", status: "Ask for latest availability" }
   ],
   unitSections: [
     {
       title: "1-Bedroom Units",
-      description: "Compact unit options for end-use buyers, OFWs, and investors who want a lower entry point within the project.",
-      layouts: ["1BR A", "1BR B"],
+      description: "Ideal for young professionals, couples, first-time buyers, and investors, the 1-bedroom units offer efficient layouts with defined living, dining, and kitchen areas. These units may suit rental income planning and first-time property ownership, subject to latest availability and computation.",
+      layouts: ["1BR B - 31 sqm", "1BR C - 33.5 sqm", "1BR E - 32 sqm", "1BR F - 32.5 sqm", "1BR G - 29.5 sqm", "1BR H - 30 sqm", "1BR J - 31 sqm", "1BR M - 32 sqm"],
       rows: [
-        { layout: "1BR A", floorArea: "Approx. 29.5 sqm", priceRange: "PHP 5.613M - PHP 5.836M", status: "Ask for latest availability", monthlyDp: "Request latest computation" },
-        { layout: "1BR B", floorArea: "Approx. 33.5 sqm", priceRange: "PHP 6.316M - PHP 6.591M", status: "Ask for latest availability", monthlyDp: "Request latest computation" }
+        { layout: "1BR", floorArea: "29.50 sqm", status: "Limited", priceRange: "PHP 5.6M - PHP 6.1M", monthlyDp: "15% DP: PHP 19.8k - PHP 21.6k/mo" },
+        { layout: "1BR", floorArea: "30.00 sqm", status: "Limited", priceRange: "PHP 5.7M - PHP 6.0M", monthlyDp: "15% DP: PHP 20.2k - PHP 21.2k/mo" },
+        { layout: "1BR", floorArea: "31.00 sqm", status: "Limited", priceRange: "PHP 5.8M - PHP 6.2M", monthlyDp: "15% DP: PHP 20.5k - PHP 21.8k/mo" },
+        { layout: "1BR", floorArea: "31.50 sqm", status: "Few left", priceRange: "PHP 6.1M", monthlyDp: "15% DP: PHP 21.6k/mo" },
+        { layout: "1BR", floorArea: "32.00 sqm", status: "Limited", priceRange: "PHP 5.9M - PHP 6.2M", monthlyDp: "15% DP: PHP 20.8k - PHP 21.8k/mo" },
+        { layout: "1BR", floorArea: "32.50 sqm", status: "Limited", priceRange: "PHP 5.9M - PHP 6.1M", monthlyDp: "15% DP: PHP 20.8k - PHP 21.7k/mo" },
+        { layout: "1BR", floorArea: "33.50 sqm", status: "Limited", priceRange: "PHP 6.0M - PHP 6.4M", monthlyDp: "15% DP: PHP 21.2k - PHP 22.8k/mo" }
       ]
     },
     {
       title: "2-Bedroom Units",
-      description: "Flexible options for couples, small families, and investors comparing larger cuts for rental or long-term use.",
-      layouts: ["2BR A", "2BR B", "2BR C", "2BR D", "2BR Tandem"],
+      description: "Designed for small to mid-sized families, 2-bedroom units provide more flexible living spaces and better separation between private and shared areas. Selected layouts include balconies that may open to city, mountain, or garden views, subject to unit orientation and availability.",
+      layouts: ["53.00 sqm", "55.00 sqm", "56.50 sqm", "58.50 sqm", "61.50 sqm", "65.00 sqm", "72.00 sqm", "80.50 sqm"],
       rows: [
-        { layout: "2BR A", floorArea: "Approx. 53 sqm", priceRange: "PHP 8.008M - PHP 8.306M", status: "Ask for latest availability", monthlyDp: "Request latest computation" },
-        { layout: "2BR B", floorArea: "Approx. 56 sqm", priceRange: "PHP 8.463M - PHP 8.952M", status: "Ask for latest availability", monthlyDp: "Request latest computation" },
-        { layout: "2BR C", floorArea: "Approx. 62.5 sqm", priceRange: "PHP 9.304M - PHP 10.026M", status: "Ask for latest availability", monthlyDp: "Request latest computation" },
-        { layout: "2BR D", floorArea: "Approx. 64 sqm", priceRange: "PHP 9.533M - PHP 10.446M", status: "Ask for latest availability", monthlyDp: "Request latest computation" },
-        { layout: "2BR Tandem", floorArea: "Approx. 80.5 sqm", priceRange: "PHP 11.385M guide range", status: "Ask for latest availability", monthlyDp: "Request latest computation" }
+        { layout: "2BR", floorArea: "53.00 sqm", status: "Few left", priceRange: "PHP 8.1M - PHP 8.1M", monthlyDp: "15% DP: PHP 28.8k - PHP 28.9k/mo" },
+        { layout: "2BR", floorArea: "53.50 sqm", status: "Few left", priceRange: "PHP 8.6M", monthlyDp: "15% DP: PHP 30.8k/mo" },
+        { layout: "2BR", floorArea: "55.00 sqm", status: "Available in reference snapshot", priceRange: "PHP 8.1M - PHP 9.0M", monthlyDp: "15% DP: PHP 28.9k - PHP 32.2k/mo" },
+        { layout: "2BR", floorArea: "55.50 sqm", status: "Available in reference snapshot", priceRange: "PHP 8.6M - PHP 9.3M", monthlyDp: "15% DP: PHP 30.7k - PHP 33.5k/mo" },
+        { layout: "2BR", floorArea: "56.50 sqm", status: "Available in reference snapshot", priceRange: "PHP 8.3M - PHP 9.1M", monthlyDp: "15% DP: PHP 29.5k - PHP 32.6k/mo" },
+        { layout: "2BR", floorArea: "58.50 sqm", status: "Available in reference snapshot", priceRange: "PHP 8.4M - PHP 9.5M", monthlyDp: "15% DP: PHP 30.2k - PHP 34.1k/mo" },
+        { layout: "2BR", floorArea: "59.00 sqm", status: "Few left", priceRange: "PHP 8.8M", monthlyDp: "15% DP: PHP 31.3k/mo" },
+        { layout: "2BR", floorArea: "59.50 sqm", status: "Available in reference snapshot", priceRange: "PHP 8.5M - PHP 9.1M", monthlyDp: "15% DP: PHP 30.2k - PHP 32.7k/mo" },
+        { layout: "2BR", floorArea: "61.00 sqm", status: "Limited", priceRange: "PHP 8.8M - PHP 9.2M", monthlyDp: "15% DP: PHP 31.4k - PHP 32.9k/mo" },
+        { layout: "2BR", floorArea: "61.50 sqm", status: "Available in reference snapshot", priceRange: "PHP 9.1M - PHP 9.9M", monthlyDp: "15% DP: PHP 32.6k - PHP 35.6k/mo" },
+        { layout: "2BR", floorArea: "62.00 sqm", status: "Few left", priceRange: "PHP 9.0M - PHP 9.0M", monthlyDp: "15% DP: PHP 32.1k - PHP 32.1k/mo" },
+        { layout: "2BR", floorArea: "63.50 sqm", status: "Limited", priceRange: "PHP 8.9M - PHP 9.2M", monthlyDp: "15% DP: PHP 31.9k - PHP 33.0k/mo" },
+        { layout: "2BR", floorArea: "65.00 sqm", status: "Available in reference snapshot", priceRange: "PHP 9.1M - PHP 9.7M", monthlyDp: "15% DP: PHP 32.5k - PHP 34.7k/mo" },
+        { layout: "2BR", floorArea: "68.00 sqm", status: "Available in reference snapshot", priceRange: "PHP 9.4M - PHP 9.9M", monthlyDp: "15% DP: PHP 33.5k - PHP 35.5k/mo" },
+        { layout: "2BR", floorArea: "70.00 sqm", status: "Few left", priceRange: "PHP 10.3M", monthlyDp: "15% DP: PHP 37.0k/mo" },
+        { layout: "2BR", floorArea: "72.00 sqm", status: "Few left", priceRange: "PHP 10.5M - PHP 10.7M", monthlyDp: "15% DP: PHP 37.7k - PHP 38.5k/mo" },
+        { layout: "2BR", floorArea: "73.00 sqm", status: "Few left", priceRange: "PHP 10.8M", monthlyDp: "15% DP: PHP 38.8k/mo" },
+        { layout: "2BR", floorArea: "75.50 sqm", status: "Limited", priceRange: "PHP 10.2M - PHP 10.9M", monthlyDp: "15% DP: PHP 36.7k - PHP 39.0k/mo" },
+        { layout: "2BR", floorArea: "76.50 sqm", status: "Few left", priceRange: "PHP 11.0M", monthlyDp: "15% DP: PHP 39.5k/mo" },
+        { layout: "2BR", floorArea: "78.00 sqm", status: "Limited", priceRange: "PHP 10.4M - PHP 10.6M", monthlyDp: "15% DP: PHP 37.5k - PHP 38.1k/mo" },
+        { layout: "2BR", floorArea: "78.50 sqm", status: "Few left", priceRange: "PHP 10.7M", monthlyDp: "15% DP: PHP 38.4k/mo" },
+        { layout: "2BR", floorArea: "79.00 sqm", status: "Few left", priceRange: "PHP 11.4M", monthlyDp: "15% DP: PHP 41.1k/mo" },
+        { layout: "2BR", floorArea: "80.50 sqm", status: "Few left", priceRange: "PHP 11.0M - PHP 11.3M", monthlyDp: "15% DP: PHP 39.5k - PHP 40.8k/mo" }
       ]
     },
     {
       title: "3-Bedroom Units",
-      description: "Larger layouts for families or buyers who need more living space and long-term flexibility.",
-      layouts: ["3BR A", "3BR B", "3BR C"],
+      description: "Suitable for larger families and long-term end-users, 3-bedroom units offer more generous living areas, multiple bedrooms, and enhanced privacy. These units are positioned for buyers who want a spacious resort-style home within Cebu City.",
+      layouts: ["81.50 sqm", "84.50 sqm", "88.50 sqm"],
       rows: [
-        { layout: "3BR A", floorArea: "Approx. 81.5 sqm", priceRange: "PHP 11.936M - PHP 12.433M", status: "Ask for latest availability", monthlyDp: "Request latest computation" },
-        { layout: "3BR B", floorArea: "Approx. 88 sqm", priceRange: "PHP 12.546M - PHP 13.190M", status: "Ask for latest availability", monthlyDp: "Request latest computation" },
-        { layout: "3BR C", floorArea: "Approx. 88.5 sqm", priceRange: "PHP 12.678M - PHP 13.426M", status: "Ask for latest availability", monthlyDp: "Request latest computation" }
+        { layout: "3BR", floorArea: "81.50 sqm", status: "Available in reference snapshot", priceRange: "PHP 12.0M - PHP 12.8M", monthlyDp: "15% DP: PHP 43.3k - PHP 46.1k/mo" },
+        { layout: "3BR", floorArea: "84.50 sqm", status: "Available in reference snapshot", priceRange: "PHP 12.0M - PHP 13.1M", monthlyDp: "15% DP: PHP 43.1k - PHP 47.0k/mo" },
+        { layout: "3BR", floorArea: "88.50 sqm", status: "Few left", priceRange: "PHP 12.8M - PHP 12.9M", monthlyDp: "15% DP: PHP 46.1k - PHP 46.5k/mo" }
+      ]
+    },
+    {
+      title: "Tandem Units",
+      description: "Kalea Heights also offers tandem units created by combining two adjacent Type O and Type U 2-bedroom layouts into a larger residence. These provide expanded living and dining areas for extended families, multi-generational living, or buyers who want more space within a condominium setting. Availability and final layout must be confirmed.",
+      layouts: ["Combined Type O + Type U 2BR layouts"],
+      rows: [
+        { layout: "Tandem Unit", floorArea: "For confirmation", status: "Ask for latest availability", priceRange: "Request latest computation", monthlyDp: "Request latest computation" }
       ]
     }
   ],
   floorPlans: [
-    { title: "1BR Floor Plan", text: "Official floor plan preview can be added from approved project materials." },
-    { title: "2BR Floor Plan", text: "Request the latest official layout sheet before comparing unit options." },
-    { title: "3BR Floor Plan", text: "Final layout, cuts, and deliverables must be confirmed through official documents." }
+    { title: "Floor Plans", text: "Kalea Heights offers thoughtfully planned residential floor layouts designed to maximize space efficiency, natural light, and ventilation. The project features well-balanced unit distributions per floor to support privacy, comfort, and a lower-density residential feel despite its high-rise setting." },
+    { title: "Leia Building Floor Plans", text: "Each tower is planned with Lumiventt Design Technology, allowing natural airflow through sky patios and breezeways to improve comfort in common areas." }
   ],
   paymentTerms: {
     title: "Computation and Payment Guide",
     text:
-      "Payment terms, down payment schedule, bank financing, promos, and monthly amortization can change. Use the guide below for orientation only, then request Luisa's latest computation before reservation.",
+      "Kalea Heights follows a standard payment structure where the down payment is payable in monthly installments during the construction period. The remaining balance may be settled through Bank Financing or In-House Financing upon turnover, subject to latest developer terms and buyer qualification. From time to time, special promos with lower down payment options may be available. Buyers must request the latest computation before making any reservation decision.",
     importantNotes: [
-      "Promos and payment terms may change without prior notice.",
-      "Monthly down payment and amortization depend on unit, term, bank rate, and buyer profile.",
-      "Request latest computation before comparing units or preparing reservation."
+      "Standard terms and promo terms may differ.",
+      "The 15% DP promo is a reference snapshot only.",
+      "Ask Luisa to confirm if the promo is still active before using it for decisions."
     ],
     sampleComputation: [
-      { label: "Example Unit", value: "1BR guide unit" },
-      { label: "Guide Price", value: "Starts around PHP 5.613M" },
-      { label: "Computation Type", value: "Request latest computation" },
-      { label: "Availability", value: "Subject to confirmation" }
+      { label: "Unit", value: "C-Leia 1429" },
+      { label: "Type", value: "1BR" },
+      { label: "Size", value: "29.50 sqm" },
+      { label: "List Price", value: "PHP 5,613,000.00" },
+      { label: "RFO Date", value: "Dec 2029" },
+      { label: "Selected Downpayment", value: "15%" },
+      { label: "Months to Pay", value: "41 months" },
+      { label: "Financing", value: "15% DP, 85% Bank Financing" },
+      { label: "Special Discount", value: "3.5% / PHP 196,455.00" },
+      { label: "Net", value: "PHP 5,416,545.00" }
+    ],
+    contractBreakdown: [
+      { label: "Total Contract Price", value: "PHP 5,416,545.00" },
+      { label: "Closing Fee", value: "10.5% / PHP 568,737.23" },
+      { label: "Total with Closing Fee", value: "PHP 5,985,282.23" },
+      { label: "Downpayment", value: "15% / PHP 812,481.75" },
+      { label: "Less Reservation Fee", value: "PHP 30,000.00" },
+      { label: "Net Downpayment", value: "PHP 782,481.75" },
+      { label: "Monthly DP", value: "41 months / PHP 19,084.92/mo" },
+      { label: "Balance", value: "85% / PHP 4,604,063.25" },
+      { label: "Closing Fee", value: "PHP 568,737.23" },
+      { label: "Total Balance + Closing Fee", value: "PHP 5,172,800.47" }
     ],
     monthlyAmortization: [
-      { label: "During DP Term", value: "Request latest monthly DP" },
-      { label: "Bank Financing", value: "Subject to bank approval" },
-      { label: "Promo", value: "Ask for current promo if available" }
+      { label: "10 years | 7.0%", value: "PHP 60,060.60/month" },
+      { label: "15 years | 7.0%", value: "PHP 46,494.59/month" },
+      { label: "20 years | 7.0%", value: "PHP 40,104.67/month" }
     ],
-    promoReference: "Promo availability, discounts, and payment terms must be confirmed by Luisa using current official updates.",
-    sampleAvailableComputations: ["1BR buyer computation", "2BR family-use computation", "3BR end-use computation", "OFW buyer computation"]
+    promoReference: "Sample computation only. Prices, discounts, rates, closing fees, monthly amortization, promos, and availability may change. Request the latest computation from Luisa before deciding.",
+    promoCards: [
+      { title: "15% DP Promo", items: ["Down Payment Promo: 15% DP", "Special Discount: 3.5% discount on DP Promo Term", "Promo Ends: July 31, 2026", "Scope: All Units", "Promo details are reference only and must be confirmed with Luisa before use."] }
+    ],
+    sampleAvailableComputations: [
+      { type: "1BR", size: "32.00 sqm", price: "PHP 6,141,000", rfo: "Dec 2029", note: "HomeReady: Not applicable" },
+      { type: "2BR", size: "63.50 sqm", price: "PHP 9,152,000", rfo: "Dec 2029", note: "HomeReady: Not applicable" },
+      { type: "2BR", size: "55.00 sqm", price: "PHP 8,509,000", rfo: "Dec 2029", note: "HomeReady: Not applicable" },
+      { type: "2BR", size: "56.50 sqm", price: "PHP 8,687,000", rfo: "Dec 2029", note: "HomeReady: Not applicable" },
+      { type: "3BR", size: "88.50 sqm", price: "PHP 12,793,000", rfo: "Dec 2029", note: "HomeReady: Not applicable" }
+    ]
   },
   unitHoldingPortal: {
-    title: "Unit Holding and Reservation Guidance",
+    title: "Unit Holding Portal and Reservation Guidance",
     text:
-      "Luisa can help check current availability, prepare reservation requirements, and guide buyers through the official reservation process. This website does not hold units directly.",
+      "Kalea Heights may offer access to a unit holding portal where buyers can temporarily secure a preferred unit while reviewing payment options and reservation requirements, subject to current availability and holding rules. Ask Luisa to confirm the latest unit holding process.",
     steps: [
-      "Choose preferred unit type and budget range",
-      "Request latest computation and availability",
-      "Confirm payment terms and reservation requirements",
-      "Coordinate site viewing or online presentation",
-      "Proceed only through official reservation channels"
+      "Register online if the latest process requires it",
+      "Review preferred unit type, size, and budget range",
+      "Ask Luisa to confirm availability and holding rules",
+      "Request latest computation before proceeding",
+      "Proceed only through accepted reservation channels"
     ]
   },
   reservationRequirements: [
-    "Valid government-issued ID",
-    "Reservation fee confirmation from official channel",
-    "Buyer information sheet",
-    "Proof of billing or address details",
-    "TIN or tax information if required",
-    "Proof of income or financing documents when applicable",
-    "Marriage certificate or authorization documents when applicable",
-    "Additional requirements may apply for OFW buyers"
+    "Online Client Registration: Begin by registering online to access the Unit Holding Portal or buyer registration process, subject to latest procedure.",
+    "Submit Valid IDs: Provide government-issued IDs for identity verification.",
+    "Philippine TIN Number: Prepare Tax Identification Number because it may be required for reservation processing.",
+    "Reservation Agreement Form: Complete and sign the Reservation Agreement Form.",
+    "Reservation Fee: PHP 30,000 for residential unit.",
+    "Parking Slot Fee: PHP 10,000 for parking slot if applicable.",
+    "Payment Options: Online banking, credit/debit card, or other accepted methods may be available, subject to confirmation.",
+    "Additional Requirements After Reservation: Proof of Billing, Preferred Mode of Payment, post-dated checks, auto-debit arrangement, or other latest policy requirements."
   ],
   newsMedia: [
     { title: "Project presentation materials", label: "Request official presentation from Luisa", url: "" },
@@ -462,6 +467,7 @@ const oneDeltaTerracesDetails = {
   ],
   projectFacts: [
     { label: "Location", value: "West Avenue cor. Quezon Avenue, Quezon City" },
+    { label: "Developer", value: "DMCI Homes" },
     { label: "Architectural Theme", value: "Modern Contemporary" },
     { label: "Development Type", value: "High-Rise Residential Condominium" },
     { label: "Number of Storeys", value: "57 Storeys" },
