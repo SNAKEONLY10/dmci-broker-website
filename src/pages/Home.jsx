@@ -29,30 +29,32 @@ const computationFields = [
 
 export default function Home() {
   const featured = projects.filter((project) => project.featured).slice(0, 6);
+  const spotlightProject = projects.find((project) => project.slug === "kalea-heights") || featured[0];
   return (
     <>
       <section className="hero-section">
         <div className="container hero-grid">
           <div className="hero-copy">
-            <span className="eyebrow">Luisa Corral's DMCI Homes Buyer Assistance Platform</span>
-            <h1>Find Your DMCI Home with a Licensed Real Estate Broker</h1>
-            <p>Get guided assistance, updated computations, project availability, and site viewing support from Luisa Corral, Sales Director of DMCI Homes.</p>
+            <span className="eyebrow">Featured DMCI Project | Cebu City</span>
+            <h1>{spotlightProject.name} Buyer Assistance by Luisa Corral</h1>
+            <p>Explore Kalea Heights with licensed broker guidance. Request the latest computation, updated availability, payment terms, and site viewing support before deciding.</p>
             <div className="hero-proof">
-              <span>Updated computations upon request</span>
-              <span>Availability subject to confirmation</span>
+              <span>{spotlightProject.status}</span>
+              <span>{spotlightProject.turnoverYear} turnover</span>
+              <span>{spotlightProject.unitTypes.join(" | ")}</span>
             </div>
             <div className="hero-stats" aria-label="Buyer assistance highlights">
-              <span><strong>{projects.length}</strong> sample project options</span>
-              <span><strong>RFO</strong> & preselling guidance</span>
-              <span><strong>Luisa</strong> broker-led assistance</span>
+              <span><strong>{spotlightProject.priceRangeLabel}</strong> reference snapshot only</span>
+              <span><strong>{spotlightProject.landArea}</strong> development scale</span>
+              <span><strong>{spotlightProject.architecturalTheme}</strong> theme</span>
             </div>
             <div className="hero-actions">
               <Button to="/request-computation">Request Latest Computation</Button>
-              <Button to="/projects" variant="secondary">Browse DMCI Projects</Button>
+              <Button to={`/projects/${spotlightProject.slug}`} variant="secondary">View Kalea Heights</Button>
               <Button to="/book-viewing" variant="ghost">Book a Site Viewing</Button>
             </div>
             <div className="trust-badges">
-              {["Licensed Real Estate Broker", "DMCI Homes Sales Director", "Buyer Assistance", "RFO & Preselling Guidance"].map((item) => <span key={item}>{item}</span>)}
+              {["Licensed Real Estate Broker", "DMCI Homes Sales Director", "Cebu Project Guidance", "Availability Subject to Confirmation"].map((item) => <span key={item}>{item}</span>)}
             </div>
             <div className="official-reference">
               <span>Broker site with official references</span>
@@ -72,7 +74,7 @@ export default function Home() {
                 fetchpriority="high"
               />
             </picture>
-            <div className="hero-visual-badge">Premium buyer assistance</div>
+            <div className="hero-visual-badge">{spotlightProject.name} | {spotlightProject.location}</div>
             <div className="ask-card">
               <span className="mini">Quick contact</span>
               <strong>Luisa Corral</strong>
