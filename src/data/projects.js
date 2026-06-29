@@ -74,15 +74,15 @@ const kaleaHeightsDetails = {
   address: "Good Shepherd Road, Banawa Brgy. Guadalupe, Cebu City",
   unitTypes: ["1BR", "2BR", "3BR", "Tandem Units"],
   priceRangeLabel: "PHP 5.613M - PHP 13.426M",
-  priceSourceNote: "Reference guide only. Request the latest computation for updated pricing and availability.",
+  priceSourceNote: "Guide price only. Ask Luisa for the latest computation and availability before deciding.",
   sourceUrl: "https://www.dmcihomes.com/kalea-heights",
   lastVerified: "For confirmation",
   targetRfo: "September 2029",
   overview:
-    "Kalea Heights is a resort-inspired high-rise condominium community in Banawa, Cebu City. This page is prepared as Luisa Corral's buyer assistance guide so interested buyers can review the project direction, unit options, payment references, and next steps before requesting the latest official computation.",
+    "Kalea Heights is a resort-inspired high-rise condominium community in Banawa, Cebu City. This buyer assistance page helps interested clients review the project direction, unit options, payment guide, and next steps before requesting Luisa's latest computation.",
   introParagraphs: [
     "Kalea Heights is positioned for buyers who want Cebu City access with a more relaxed, resort-style residential setting. It is useful for end-use buyers, families, OFWs, and investors comparing preselling opportunities in Cebu.",
-    "All pricing, unit availability, promos, payment terms, and turnover schedules shown here are for buyer guidance only. Buyers should request the latest computation and confirmed availability from Luisa before making decisions."
+    "All pricing, unit availability, promos, payment terms, and turnover schedules shown here are for buyer guidance only. Request the latest computation and confirmed availability from Luisa before making decisions."
   ],
   projectFacts: [
     { label: "Project", value: "Kalea Heights" },
@@ -97,15 +97,15 @@ const kaleaHeightsDetails = {
     { label: "Status", value: "Preselling details for confirmation" }
   ],
   summaryPricing: [
-    { type: "1BR", floorArea: "Approx. 29.5-33.5 sqm", range: "PHP 5.613M - PHP 6.591M", note: "Reference range only" },
-    { type: "2BR", floorArea: "Approx. 53-80.5 sqm", range: "PHP 8.008M - PHP 11.385M", note: "Reference range only" },
-    { type: "3BR", floorArea: "Approx. 81.5-88.5 sqm", range: "PHP 11.936M - PHP 13.426M", note: "Reference range only" }
+    { type: "1BR", floorArea: "Approx. 29.5-33.5 sqm", range: "PHP 5.613M - PHP 6.591M", note: "Guide range only" },
+    { type: "2BR", floorArea: "Approx. 53-80.5 sqm", range: "PHP 8.008M - PHP 11.385M", note: "Guide range only" },
+    { type: "3BR", floorArea: "Approx. 81.5-88.5 sqm", range: "PHP 11.936M - PHP 13.426M", note: "Guide range only" }
   ],
   aboutLocation:
     "Kalea Heights is located along Good Shepherd Road in Banawa, Brgy. Guadalupe, Cebu City. The area gives buyers access to hospitals, schools, malls, business districts, churches, and daily essentials while staying within a residential Cebu City setting.",
   locationDetails: {
     title: "Banawa, Cebu City",
-    text: "A city-accessible address for buyers comparing preselling homes near Cebu's major establishments. Distances below are reference markers and should be checked through current maps before site viewing.",
+    text: "A city-accessible address for buyers comparing preselling homes near Cebu's major establishments. Distances below are buyer guide markers and should be checked through current maps before site viewing.",
     exactAddress: "Good Shepherd Road, Banawa, Brgy. Guadalupe, Cebu City"
   },
   nearbyDestinations: [
@@ -169,7 +169,7 @@ const kaleaHeightsDetails = {
     "46,348 sqm master-planned community",
     "Modern Tropical architectural direction",
     "1BR, 2BR, 3BR, and tandem unit options",
-    "Target RFO reference: September 2029",
+    "Target RFO: September 2029",
     "Buyer assistance for computation, availability, site viewing, and reservation steps"
   ],
   themeDescription:
@@ -342,9 +342,9 @@ const kaleaHeightsDetails = {
   siteProgressStatus: "Site progress information should be confirmed through official DMCI channels or Luisa.",
   masterPlanNotes: "Kalea Heights master plan details should be reviewed using official project presentation materials once approved assets are available.",
   unitInventoryPreview: [
-    { type: "1-Bedroom", floorArea: "Approx. 29.5-33.5 sqm", indicativeRange: "PHP 5.6M-PHP 6.6M reference range", status: "Ask for latest availability" },
-    { type: "2-Bedroom", floorArea: "Approx. 53-80.5 sqm", indicativeRange: "PHP 8.0M-PHP 11.4M reference range", status: "Ask for latest availability" },
-    { type: "3-Bedroom", floorArea: "Approx. 81.5-88.5 sqm", indicativeRange: "PHP 11.9M-PHP 13.4M reference range", status: "Ask for latest availability" }
+    { type: "1-Bedroom", floorArea: "Approx. 29.5-33.5 sqm", indicativeRange: "PHP 5.6M-PHP 6.6M guide range", status: "Ask for latest availability" },
+    { type: "2-Bedroom", floorArea: "Approx. 53-80.5 sqm", indicativeRange: "PHP 8.0M-PHP 11.4M guide range", status: "Ask for latest availability" },
+    { type: "3-Bedroom", floorArea: "Approx. 81.5-88.5 sqm", indicativeRange: "PHP 11.9M-PHP 13.4M guide range", status: "Ask for latest availability" }
   ],
   unitSections: [
     {
@@ -352,8 +352,8 @@ const kaleaHeightsDetails = {
       description: "Compact unit options for end-use buyers, OFWs, and investors who want a lower entry point within the project.",
       layouts: ["1BR A", "1BR B"],
       rows: [
-        { layout: "1BR A", floorArea: "Approx. 29.5 sqm", priceRange: "PHP 5.613M - PHP 5.836M", status: "Ask for latest availability", monthlyDp: "Request official computation" },
-        { layout: "1BR B", floorArea: "Approx. 33.5 sqm", priceRange: "PHP 6.316M - PHP 6.591M", status: "Ask for latest availability", monthlyDp: "Request official computation" }
+        { layout: "1BR A", floorArea: "Approx. 29.5 sqm", priceRange: "PHP 5.613M - PHP 5.836M", status: "Ask for latest availability", monthlyDp: "Request latest computation" },
+        { layout: "1BR B", floorArea: "Approx. 33.5 sqm", priceRange: "PHP 6.316M - PHP 6.591M", status: "Ask for latest availability", monthlyDp: "Request latest computation" }
       ]
     },
     {
@@ -361,11 +361,11 @@ const kaleaHeightsDetails = {
       description: "Flexible options for couples, small families, and investors comparing larger cuts for rental or long-term use.",
       layouts: ["2BR A", "2BR B", "2BR C", "2BR D", "2BR Tandem"],
       rows: [
-        { layout: "2BR A", floorArea: "Approx. 53 sqm", priceRange: "PHP 8.008M - PHP 8.306M", status: "Ask for latest availability", monthlyDp: "Request official computation" },
-        { layout: "2BR B", floorArea: "Approx. 56 sqm", priceRange: "PHP 8.463M - PHP 8.952M", status: "Ask for latest availability", monthlyDp: "Request official computation" },
-        { layout: "2BR C", floorArea: "Approx. 62.5 sqm", priceRange: "PHP 9.304M - PHP 10.026M", status: "Ask for latest availability", monthlyDp: "Request official computation" },
-        { layout: "2BR D", floorArea: "Approx. 64 sqm", priceRange: "PHP 9.533M - PHP 10.446M", status: "Ask for latest availability", monthlyDp: "Request official computation" },
-        { layout: "2BR Tandem", floorArea: "Approx. 80.5 sqm", priceRange: "PHP 11.385M reference range", status: "Ask for latest availability", monthlyDp: "Request official computation" }
+        { layout: "2BR A", floorArea: "Approx. 53 sqm", priceRange: "PHP 8.008M - PHP 8.306M", status: "Ask for latest availability", monthlyDp: "Request latest computation" },
+        { layout: "2BR B", floorArea: "Approx. 56 sqm", priceRange: "PHP 8.463M - PHP 8.952M", status: "Ask for latest availability", monthlyDp: "Request latest computation" },
+        { layout: "2BR C", floorArea: "Approx. 62.5 sqm", priceRange: "PHP 9.304M - PHP 10.026M", status: "Ask for latest availability", monthlyDp: "Request latest computation" },
+        { layout: "2BR D", floorArea: "Approx. 64 sqm", priceRange: "PHP 9.533M - PHP 10.446M", status: "Ask for latest availability", monthlyDp: "Request latest computation" },
+        { layout: "2BR Tandem", floorArea: "Approx. 80.5 sqm", priceRange: "PHP 11.385M guide range", status: "Ask for latest availability", monthlyDp: "Request latest computation" }
       ]
     },
     {
@@ -373,9 +373,9 @@ const kaleaHeightsDetails = {
       description: "Larger layouts for families or buyers who need more living space and long-term flexibility.",
       layouts: ["3BR A", "3BR B", "3BR C"],
       rows: [
-        { layout: "3BR A", floorArea: "Approx. 81.5 sqm", priceRange: "PHP 11.936M - PHP 12.433M", status: "Ask for latest availability", monthlyDp: "Request official computation" },
-        { layout: "3BR B", floorArea: "Approx. 88 sqm", priceRange: "PHP 12.546M - PHP 13.190M", status: "Ask for latest availability", monthlyDp: "Request official computation" },
-        { layout: "3BR C", floorArea: "Approx. 88.5 sqm", priceRange: "PHP 12.678M - PHP 13.426M", status: "Ask for latest availability", monthlyDp: "Request official computation" }
+        { layout: "3BR A", floorArea: "Approx. 81.5 sqm", priceRange: "PHP 11.936M - PHP 12.433M", status: "Ask for latest availability", monthlyDp: "Request latest computation" },
+        { layout: "3BR B", floorArea: "Approx. 88 sqm", priceRange: "PHP 12.546M - PHP 13.190M", status: "Ask for latest availability", monthlyDp: "Request latest computation" },
+        { layout: "3BR C", floorArea: "Approx. 88.5 sqm", priceRange: "PHP 12.678M - PHP 13.426M", status: "Ask for latest availability", monthlyDp: "Request latest computation" }
       ]
     }
   ],
@@ -385,18 +385,18 @@ const kaleaHeightsDetails = {
     { title: "3BR Floor Plan", text: "Final layout, cuts, and deliverables must be confirmed through official documents." }
   ],
   paymentTerms: {
-    title: "Payment Terms and Sample Computation",
+    title: "Computation and Payment Guide",
     text:
-      "Payment terms, down payment schedule, bank financing, promos, and monthly amortization can change. The sample below is for buyer orientation only and must be replaced with the latest official computation before reservation.",
+      "Payment terms, down payment schedule, bank financing, promos, and monthly amortization can change. Use the guide below for orientation only, then request Luisa's latest computation before reservation.",
     importantNotes: [
       "Promos and payment terms may change without prior notice.",
       "Monthly down payment and amortization depend on unit, term, bank rate, and buyer profile.",
       "Request latest computation before comparing units or preparing reservation."
     ],
     sampleComputation: [
-      { label: "Sample Unit", value: "1BR reference unit" },
-      { label: "Reference Price", value: "From PHP 5.613M guide" },
-      { label: "Computation Type", value: "Request official computation" },
+      { label: "Example Unit", value: "1BR guide unit" },
+      { label: "Guide Price", value: "Starts around PHP 5.613M" },
+      { label: "Computation Type", value: "Request latest computation" },
       { label: "Availability", value: "Subject to confirmation" }
     ],
     monthlyAmortization: [

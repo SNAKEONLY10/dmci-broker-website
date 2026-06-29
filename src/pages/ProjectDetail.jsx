@@ -130,7 +130,7 @@ function ProjectHero({ project, isRichProject }) {
           <div className="hero-meta-line">
             <Badge>{project.status}</Badge>
             <span>{project.location}</span>
-            {project.targetRfo && <span>{project.targetRfo} target RFO</span>}
+            {project.targetRfo && <span>Target RFO: {project.targetRfo}</span>}
           </div>
           <p className="mini">{project.developmentType}</p>
           <h1>{project.name}</h1>
@@ -174,7 +174,7 @@ function RichProjectSections({ project }) {
       </DetailSection>
 
       <DetailSection id="pricing" eyebrow="Price Guide" title="Indicative Price and Unit Summary">
-        <p className="reference-note">For buyer guidance only. This is not live pricing or guaranteed availability.</p>
+        <p className="reference-note">For buyer guidance only. Prices and availability are subject to final confirmation.</p>
         <div className="pricing-card-grid">
           {project.summaryPricing.map((item) => (
             <article className="pricing-card" key={item.type}>
@@ -238,8 +238,8 @@ function RichProjectSections({ project }) {
         <GroupedList groups={project.amenityGroups} compact />
       </DetailSection>
 
-      <DetailSection id="unit-options" eyebrow="Unit Types" title="Unit Options and Reference Ranges">
-        <p className="reference-note">Reference only. Unit cuts, floor areas, prices, promos, and availability can change.</p>
+      <DetailSection id="unit-options" eyebrow="Unit Types" title="Unit Options and Guide Ranges">
+        <p className="reference-note">For guidance only. Unit cuts, floor areas, prices, promos, and availability can change.</p>
         {project.unitSections.map((section) => <UnitSection section={section} key={section.title} />)}
       </DetailSection>
 
@@ -260,11 +260,11 @@ function RichProjectSections({ project }) {
         <p>{project.paymentTerms.text}</p>
         <div className="payment-grid">
           <article className="payment-card">
-            <h3>Sample Computation Guide</h3>
+            <h3>Computation Guide</h3>
             {project.paymentTerms.sampleComputation.map((item) => <Spec key={item.label} label={item.label} value={item.value} />)}
           </article>
           <article className="payment-card">
-            <h3>Monthly Reference</h3>
+            <h3>Monthly Payment Guide</h3>
             {project.paymentTerms.monthlyAmortization.map((item) => <Spec key={item.label} label={item.label} value={item.value} />)}
           </article>
           <article className="payment-card">
@@ -423,7 +423,7 @@ function UnitSection({ section }) {
             <tr>
               <th>Layout</th>
               <th>Floor Area</th>
-              <th>Reference Range</th>
+              <th>Guide Range</th>
               <th>Status</th>
               <th>Computation</th>
               <th>Action</th>
@@ -434,10 +434,10 @@ function UnitSection({ section }) {
               <tr key={`${section.title}-${row.layout}`}>
                 <td data-label="Layout">{row.layout}</td>
                 <td data-label="Floor Area">{row.floorArea}</td>
-                <td data-label="Reference Range">{row.priceRange}</td>
+                <td data-label="Guide Range">{row.priceRange}</td>
                 <td data-label="Status">{row.status}</td>
                 <td data-label="Computation">{row.monthlyDp}</td>
-                <td data-label="Action"><Button to="/request-computation" variant="secondary">Request</Button></td>
+                <td data-label="Action"><Button to="/request-computation" variant="secondary">Compute</Button></td>
               </tr>
             ))}
           </tbody>
@@ -549,7 +549,7 @@ function VideoTourBlock({ project }) {
 function ReferenceNotice() {
   return (
     <div className="reference-warning">
-      <strong>Reference guide only</strong>
+      <strong>Guide information only</strong>
       <span>Prices, unit availability, promos, payment terms, unit details, and turnover schedules are subject to final confirmation. Request the latest computation from Luisa before making decisions.</span>
     </div>
   );

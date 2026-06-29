@@ -1714,6 +1714,11 @@ textarea {
   background: rgba(255, 255, 255, 0.94);
 }
 
+.project-detail-hero-rich .project-hero-copy .mini {
+  text-transform: none;
+  letter-spacing: 0.07em;
+}
+
 .hero-meta-line {
   display: flex;
   flex-wrap: wrap;
