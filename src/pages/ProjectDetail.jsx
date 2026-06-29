@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Badge } from "../components/Badge";
 import { Button } from "../components/Button";
@@ -104,14 +105,24 @@ export default function ProjectDetail() {
 }
 
 function ProjectHero({ project, isRichProject }) {
+  const heroImages = [
+    { src: project.image, label: project.name, variant: "hero" },
+    ...project.gallery.slice(0, 3).map((src, index) => ({
+      src,
+      label: `${project.name} gallery ${index + 1}`,
+      variant: "gallery"
+    }))
+  ];
+  const [zoomImage, setZoomImage] = useState(null);
+
   return (
     <section className={`project-detail-hero ${isRichProject ? "project-detail-hero-rich" : ""}`}>
       <div className="container project-hero-grid">
         <div className="project-hero-media">
-          <ImagePlaceholder src={project.image} label={project.name} variant="hero" />
+          <ZoomableProjectImage image={heroImages[0]} onOpen={setZoomImage} />
           <div className="project-hero-thumbs">
-            {project.gallery.slice(0, 3).map((src, index) => (
-              <ImagePlaceholder key={`${src}-${index}`} src={src} label={`${project.name} gallery ${index + 1}`} compact variant="gallery" />
+            {heroImages.slice(1).map((image, index) => (
+              <ZoomableProjectImage key={`${image.src}-${index}`} image={image} compact onOpen={setZoomImage} />
             ))}
           </div>
         </div>
@@ -146,6 +157,7 @@ function ProjectHero({ project, isRichProject }) {
           </div>
         </article>
       </div>
+      <ImageLightbox image={zoomImage} onClose={() => setZoomImage(null)} />
     </section>
   );
 }
@@ -467,11 +479,52 @@ function InventoryPreview({ project }) {
 }
 
 function Gallery({ project }) {
+  const [zoomImage, setZoomImage] = useState(null);
+  const images = project.gallery.map((src, index) => ({
+    src,
+    label: `${project.name} gallery ${index + 1}`,
+    variant: "gallery"
+  }));
+
   return (
-    <div className="gallery-grid rich-gallery-grid">
-      {project.gallery.map((src, index) => (
-        <ImagePlaceholder key={`${src}-${index}`} src={src} label={`${project.name} gallery ${index + 1}`} compact variant="gallery" />
-      ))}
+    <>
+      <div className="gallery-grid rich-gallery-grid">
+        {images.map((image, index) => (
+          <ZoomableProjectImage key={`${image.src}-${index}`} image={image} compact onOpen={setZoomImage} />
+        ))}
+      </div>
+      <ImageLightbox image={zoomImage} onClose={() => setZoomImage(null)} />
+    </>
+  );
+}
+
+function ZoomableProjectImage({ image, compact = false, onOpen }) {
+  return (
+    <div className="zoomable-image">
+      <ImagePlaceholder src={image.src} label={image.label} compact={compact} variant={image.variant} />
+      <button
+        className="image-zoom-trigger"
+        type="button"
+        aria-label={`Zoom ${image.label}`}
+        onClick={() => onOpen(image)}
+      >
+        <span aria-hidden="true">⌕</span>
+      </button>
+    </div>
+  );
+}
+
+function ImageLightbox({ image, onClose }) {
+  if (!image) return null;
+
+  return (
+    <div className="image-lightbox" role="dialog" aria-modal="true" aria-label={image.label}>
+      <button className="image-lightbox-backdrop" type="button" aria-label="Close image preview" onClick={onClose} />
+      <div className="image-lightbox-panel">
+        <button className="image-lightbox-close" type="button" onClick={onClose}>Close</button>
+        <ImagePlaceholder src={image.src} label={image.label} variant="hero" />
+        <p>{image.label}</p>
+      </div>
     </div>
   );
 }
