@@ -24,6 +24,7 @@ export function ProjectCard({ project }) {
         <ul>
           {project.highlights.slice(0, 2).map((item) => <li key={item}>{item}</li>)}
         </ul>
+        <p className="content-hint">Updated details available upon request.</p>
         <p className="price-note">{project.priceRangeLabel}</p>
         <small>{project.priceSourceNote}</small>
         <small>Availability subject to confirmation.</small>

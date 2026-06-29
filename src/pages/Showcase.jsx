@@ -1,5 +1,6 @@
 import { Button } from "../components/Button";
 import { DisclaimerBanner } from "../components/DisclaimerBanner";
+import { projectChecklist, projectCompletionPlan } from "../data/projectChecklist";
 
 const audiences = ["Local buyers", "OFWs", "Investors", "Families", "First-time condo buyers", "Buyers comparing RFO and preselling projects"];
 
@@ -169,6 +170,23 @@ export default function Showcase() {
 
       <ShowcaseSection eyebrow="Checklist" title="Asset Checklist Needed From Luisa">
         <Checklist items={checklist} />
+      </ShowcaseSection>
+
+      <ShowcaseSection eyebrow="Project System" title="Project Content Completion Plan">
+        <div className="content-panel showcase-copy">
+          <p>The website is designed so projects can be completed in batches. Kalea Heights can be used as the rich sample. Other projects use the same professional template while official details and Google Drive assets are collected.</p>
+          <div className="completion-plan-grid">
+            {projectCompletionPlan.map((item) => (
+              <article className="info-card" key={item.label}>
+                <h3>{item.label}</h3>
+                <p>{item.value}</p>
+              </article>
+            ))}
+          </div>
+          <p className="safety-note">This avoids manually rebuilding every project page. We only update data and assets per project.</p>
+        </div>
+        <h3 className="showcase-subheading">Per-Project Checklist</h3>
+        <Checklist items={projectChecklist} />
       </ShowcaseSection>
 
       <ShowcaseSection eyebrow="Approval" title="Next Phase After Approval">

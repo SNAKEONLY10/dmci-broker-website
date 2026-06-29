@@ -38,6 +38,10 @@ const genericWhyInvest = [
 
 const genericAmenities = ["Pool area", "Fitness space", "Resident lounge", "Landscaped open spaces", "Function room", "Children's play area"];
 const genericLandmarks = ["Business districts", "Schools", "Retail hubs", "Transport access"];
+const overviewFallback =
+  "This project is included in Luisa Corral's buyer assistance directory for clients comparing DMCI Homes options. Request the latest computation, current availability, and project presentation before making decisions.";
+const locationFallback =
+  "Exact map, nearby landmarks, and travel references can be added after official assets/content are approved.";
 
 function assetPath(slug, file) {
   return `/assets/projects/${slug}/${file}`;
@@ -57,6 +61,9 @@ function inventory(unitTypes) {
 const globalDisclaimer = "Prices, availability, promos, payment terms, unit details, and turnover schedules are subject to change and final confirmation. This website is maintained for buyer assistance and inquiry purposes.";
 
 const kaleaHeightsDetails = {
+  contentLevel: "rich",
+  assetStatus: "placeholder-assets",
+  verificationStatus: "reference-only",
   tagline: "Resort-inspired living on a grander scale.",
   city: "Cebu City",
   status: "Preselling",
@@ -66,7 +73,7 @@ const kaleaHeightsDetails = {
   architecturalTheme: "Modern Tropical",
   address: "Good Shepherd Road, Banawa Brgy. Guadalupe, Cebu City",
   unitTypes: ["1BR", "2BR", "3BR"],
-  priceRangeLabel: "₱5,613,000 - ₱13,426,000",
+  priceRangeLabel: "PHP 5,613,000 - PHP 13,426,000",
   priceSourceNote: "Official reference snapshot only. Request latest computation for updated pricing and availability.",
   sourceUrl: "https://www.dmcihomes.com/kalea-heights",
   lastVerified: "For confirmation",
@@ -157,9 +164,9 @@ const kaleaHeightsDetails = {
   siteProgressStatus: "Site progress information should be confirmed through official DMCI channels or Luisa.",
   masterPlanNotes: "Kalea Heights master plan details should be reviewed using official project presentation materials once approved assets are available.",
   unitInventoryPreview: [
-    { type: "1-Bedroom", floorArea: "Approx. 29.5–33.5 sqm", indicativeRange: "₱5.6M–₱6.6M reference range", status: "Ask for latest availability" },
-    { type: "2-Bedroom", floorArea: "Approx. 53–80.5 sqm", indicativeRange: "₱8.0M–₱11.4M reference range", status: "Ask for latest availability" },
-    { type: "3-Bedroom", floorArea: "Approx. 81.5–88.5 sqm", indicativeRange: "₱11.9M–₱13.4M reference range", status: "Ask for latest availability" }
+    { type: "1-Bedroom", floorArea: "Approx. 29.5-33.5 sqm", indicativeRange: "PHP 5.6M-PHP 6.6M reference range", status: "Ask for latest availability" },
+    { type: "2-Bedroom", floorArea: "Approx. 53-80.5 sqm", indicativeRange: "PHP 8.0M-PHP 11.4M reference range", status: "Ask for latest availability" },
+    { type: "3-Bedroom", floorArea: "Approx. 81.5-88.5 sqm", indicativeRange: "PHP 11.9M-PHP 13.4M reference range", status: "Ask for latest availability" }
   ],
   newsMedia: [
     { title: "Project presentation materials", label: "Reference link placeholder", url: "" },
@@ -172,6 +179,9 @@ export const projects = baseProjects.map(([slug, name, location, city, status, t
     id: index + 1,
     name,
     slug,
+    contentLevel: featured ? "standard" : "placeholder",
+    assetStatus: "official-assets-needed",
+    verificationStatus: "needs-client-confirmation",
     tagline: "DMCI Homes buyer assistance listing",
     location,
     city,
@@ -233,14 +243,49 @@ export const projects = baseProjects.map(([slug, name, location, city, status, t
   };
 
   const project = slug === "kalea-heights" ? { ...base, ...kaleaHeightsDetails } : base;
-  return {
+  return withProjectFallbacks({
     ...project,
     nearbyProperties: baseProjects
       .filter(([otherSlug, , otherLocation]) => otherSlug !== slug && otherLocation === project.location)
       .slice(0, 3)
       .map(([otherSlug]) => otherSlug)
-  };
+  });
 });
+
+function withProjectFallbacks(project) {
+  const safeUnitTypes = project.unitTypes?.length ? project.unitTypes : ["Unit details for confirmation"];
+  return {
+    ...project,
+    overview: project.overview || overviewFallback,
+    whyInvest: project.whyInvest?.length ? project.whyInvest : genericWhyInvest,
+    aboutLocation: project.aboutLocation || locationFallback,
+    highlights: project.highlights?.length ? project.highlights : [
+      "Project matching based on location and buyer purpose",
+      "Updated computation available upon request",
+      "Site viewing and reservation guidance available through Luisa"
+    ],
+    amenities: project.amenities?.length ? project.amenities : ["Amenities and building features for confirmation"],
+    otherAmenities: project.otherAmenities?.length ? project.otherAmenities : ["Official project assets can be added after client approval"],
+    nearbyLandmarks: project.nearbyLandmarks?.length ? project.nearbyLandmarks : [locationFallback],
+    buildings: project.buildings?.length ? project.buildings : [{
+      name: "Building details for confirmation",
+      developmentType: project.developmentType || "Project details for confirmation",
+      levels: ["Ask Luisa for latest project presentation"],
+      features: ["Building details and features for confirmation"]
+    }],
+    unitInventoryPreview: project.unitInventoryPreview?.length ? project.unitInventoryPreview : inventory(safeUnitTypes),
+    newsMedia: project.newsMedia?.length ? project.newsMedia : [{ title: "Project updates for confirmation", label: "Ask Luisa for official references", url: "" }],
+    priceRangeLabel: project.priceRangeLabel || "Request latest computation",
+    priceSourceNote: project.priceSourceNote || "Updated price available upon request.",
+    siteProgressStatus: project.siteProgressStatus || "Site progress information should be confirmed through official DMCI channels or Luisa.",
+    masterPlanNotes: project.masterPlanNotes || "Master plan details can be added after official assets/content are approved.",
+    themeDescription: project.themeDescription || "Theme and design details can be added after official materials are approved.",
+    contentLevel: project.contentLevel || "placeholder",
+    assetStatus: project.assetStatus || "official-assets-needed",
+    verificationStatus: project.verificationStatus || "needs-client-confirmation",
+    disclaimer: project.disclaimer || globalDisclaimer
+  };
+}
 
 export const statuses = ["RFO", "Preselling", "Coming Soon", "New", "Featured"];
 export const unitTypes = ["Studio", "1BR", "2BR", "3BR", "House & Lot", "Lot", "Parking"];

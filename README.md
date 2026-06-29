@@ -68,6 +68,21 @@ public/assets/projects/[project-slug]/brochure.pdf
 
 Images should be compressed and web-optimized before final use. Large videos should not be committed directly to the repository; use thumbnails with external links or hosted video.
 
+Asset mapping rules:
+
+- Use only client-approved assets from Google Drive.
+- Compress images before committing.
+- Do not commit huge videos.
+- Use thumbnails and external links for large videos or 360 tours.
+- Rename assets consistently by project slug.
+- If an asset is missing, use the graceful placeholder UI.
+
+See `docs/google-drive-asset-inventory.md` for the current Drive inventory notes.
+
+## Pricing and Availability Disclaimer
+
+Prices, availability, promos, payment terms, unit details, and turnover schedules are subject to change and final confirmation. This website is maintained for buyer assistance and inquiry purposes.
+
 ## Future Phase
 
 Backend/email integration, CRM routing, official asset replacement, Vercel preview deployment, domain connection, analytics, and optional admin lead dashboard are future phases after client approval.

@@ -62,6 +62,7 @@ export default function ProjectDetail() {
             <div className="price-panel">
               <strong>{project.priceRangeLabel}</strong>
               <span>{project.priceSourceNote}</span>
+              <span>Project details for confirmation. Ask Luisa for latest computation.</span>
             </div>
             <div className="project-facts">
               <Fact label="Turnover" value={project.turnoverYear === "Ready" ? "Ready For Occupancy" : `${project.turnoverYear} turnover`} />
@@ -199,10 +200,11 @@ export default function ProjectDetail() {
           </main>
 
           <aside className="detail-cta-card">
-            <strong>Need updated details?</strong>
-            <p>Ask Luisa for the latest computation, unit availability, promos, and viewing schedule.</p>
+            <strong>Need the latest details?</strong>
+            <p>Prices, unit availability, promos, and payment terms can change. Ask Luisa for the latest computation and confirmed availability before deciding.</p>
             <Button to="/request-computation">Request Latest Computation</Button>
             <Button to="/availability" variant="secondary">Check Availability with Luisa</Button>
+            <Button to="/book-viewing" variant="secondary">Book a Site Viewing</Button>
             <Button to="/contact" variant="ghost">Message Luisa</Button>
             <DisclaimerBanner text="Updated price available upon request. Availability subject to confirmation." />
           </aside>
