@@ -68,6 +68,7 @@ function Footer() {
           <h3>{contact.brand}</h3>
           <p>Luisa Corral's DMCI Homes buyer assistance platform for project browsing, computation requests, availability checks, viewing schedules, and reservation guidance.</p>
           <p><strong>{contact.brokerName}</strong><br />{contact.role}<br />{contact.license}</p>
+          <p className="footer-note">Buyer assistance website by Luisa Corral. Final project details are subject to official confirmation.</p>
         </div>
         <div>
           <h4>Buyer Tools</h4>

@@ -53,6 +53,13 @@ npm run build
 
 ## Asset Structure Plan
 
+Confirmed Google Drive folder:
+
+Marketing Materials:
+https://drive.google.com/drive/folders/19CWq_YMieSFTOx9dpPIsE-dN75yUxoPr
+
+This folder contains project/marketing folders such as `RFO Projects`, `KLH`, `ODT`, `MCC`, `ANH`, `SLC`, `MLP 2`, `Rent-to-own`, and more.
+
 Approved project assets can be added later using this structure:
 
 ```text
@@ -76,6 +83,7 @@ Asset mapping rules:
 - Use thumbnails and external links for large videos or 360 tours.
 - Rename assets consistently by project slug.
 - If an asset is missing, use the graceful placeholder UI.
+- Do not use random Google images.
 
 See `docs/google-drive-asset-inventory.md` for the current Drive inventory notes.
 

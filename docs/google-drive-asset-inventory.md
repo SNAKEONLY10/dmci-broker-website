@@ -2,14 +2,23 @@
 
 Checked through the connected Google Drive connector.
 
-## Folders Found
+## Confirmed Marketing Materials Folder
 
-- `ML` folder: `https://drive.google.com/drive/folders/1l56v8SLnsslixTjHEMyXqeW2SY34qIXq`
-  - Contains `suyo.mp4`, around 28 MB.
+Marketing Materials:
+https://drive.google.com/drive/folders/19CWq_YMieSFTOx9dpPIsE-dN75yUxoPr
 
-## Root Media Observed
+The confirmed folder contains project/marketing folders and files including examples such as:
 
-The Drive root contains many raw media files such as `.MOV`, `.HEIC`, `.PNG`, and `.JPEG` files. Many videos are large, from roughly 10 MB to more than 200 MB each.
+- `RFO Projects`
+- `KLH`
+- `ODT`
+- `MCC`
+- `ANH`
+- `SLC`
+- `MLP 2`
+- `Rent-to-own`
+- Other project/code folders
+- Some large video/image files
 
 ## Repo Policy
 
@@ -18,10 +27,11 @@ The Drive root contains many raw media files such as `.MOV`, `.HEIC`, `.PNG`, an
 - Compress and web-optimize images before committing.
 - Rename approved project assets consistently by project slug.
 - If an asset is missing, the website should keep using graceful placeholders.
+- Do not use random Google images.
 
-## Needed Follow-Up
+## Recommended Mapping
 
-Ask Luisa which Google Drive folder is the official `Marketing Materials` folder if it is different from `ML` or Drive root media. Once confirmed, map approved assets into:
+Final project assets must be selected, approved, compressed, and renamed before being committed. Map approved assets into:
 
 ```text
 public/assets/projects/[project-slug]/hero.jpg

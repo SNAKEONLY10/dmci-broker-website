@@ -73,7 +73,7 @@ const kaleaHeightsDetails = {
   architecturalTheme: "Modern Tropical",
   address: "Good Shepherd Road, Banawa Brgy. Guadalupe, Cebu City",
   unitTypes: ["1BR", "2BR", "3BR"],
-  priceRangeLabel: "PHP 5,613,000 - PHP 13,426,000",
+  priceRangeLabel: "₱5,613,000 - ₱13,426,000",
   priceSourceNote: "Official reference snapshot only. Request latest computation for updated pricing and availability.",
   sourceUrl: "https://www.dmcihomes.com/kalea-heights",
   lastVerified: "For confirmation",
@@ -164,9 +164,9 @@ const kaleaHeightsDetails = {
   siteProgressStatus: "Site progress information should be confirmed through official DMCI channels or Luisa.",
   masterPlanNotes: "Kalea Heights master plan details should be reviewed using official project presentation materials once approved assets are available.",
   unitInventoryPreview: [
-    { type: "1-Bedroom", floorArea: "Approx. 29.5-33.5 sqm", indicativeRange: "PHP 5.6M-PHP 6.6M reference range", status: "Ask for latest availability" },
-    { type: "2-Bedroom", floorArea: "Approx. 53-80.5 sqm", indicativeRange: "PHP 8.0M-PHP 11.4M reference range", status: "Ask for latest availability" },
-    { type: "3-Bedroom", floorArea: "Approx. 81.5-88.5 sqm", indicativeRange: "PHP 11.9M-PHP 13.4M reference range", status: "Ask for latest availability" }
+    { type: "1-Bedroom", floorArea: "Approx. 29.5-33.5 sqm", indicativeRange: "₱5.6M-₱6.6M reference range", status: "Ask for latest availability" },
+    { type: "2-Bedroom", floorArea: "Approx. 53-80.5 sqm", indicativeRange: "₱8.0M-₱11.4M reference range", status: "Ask for latest availability" },
+    { type: "3-Bedroom", floorArea: "Approx. 81.5-88.5 sqm", indicativeRange: "₱11.9M-₱13.4M reference range", status: "Ask for latest availability" }
   ],
   newsMedia: [
     { title: "Project presentation materials", label: "Reference link placeholder", url: "" },

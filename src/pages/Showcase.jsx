@@ -50,6 +50,35 @@ const pages = [
   ["Contact", "/contact", "Message and inquiry options for Luisa."]
 ];
 
+const demoLinks = [
+  ["Homepage", "/"],
+  ["Projects", "/projects"],
+  ["Kalea Heights sample", "/projects/kalea-heights"],
+  ["Request Computation", "/request-computation"],
+  ["Check Availability", "/availability"],
+  ["Book Viewing", "/book-viewing"]
+];
+
+const workingItems = [
+  "Responsive broker-branded homepage",
+  "Searchable project directory",
+  "Shared project detail template for every project",
+  "Rich Kalea Heights reference sample",
+  "Frontend lead forms with validation",
+  "Mobile sticky CTA",
+  "Vercel SPA routing configuration"
+];
+
+const demoOnlyItems = [
+  "Placeholder images until approved Drive assets are selected",
+  "Sample project content except rich Kalea reference data",
+  "Demo contact details until Luisa confirms final links",
+  "Forms save to browser localStorage only",
+  "No live inventory or guaranteed price feed"
+];
+
+const driveFolders = ["RFO Projects", "KLH", "ODT", "MCC", "ANH", "SLC", "MLP 2", "Rent-to-own", "Other project/code folders"];
+
 const limitations = [
   "Placeholder images only",
   "Placeholder contact details",
@@ -132,6 +161,20 @@ export default function Showcase() {
         </div>
       </ShowcaseSection>
 
+      <ShowcaseSection eyebrow="Demo Pages" title="Open Important Demo Pages">
+        <div className="quick-link-grid">
+          {demoLinks.map(([label, to]) => <Button key={to} to={to} variant="secondary">{label}</Button>)}
+        </div>
+      </ShowcaseSection>
+
+      <ShowcaseSection eyebrow="Current Build" title="What Is Already Working">
+        <CardGrid items={workingItems} />
+      </ShowcaseSection>
+
+      <ShowcaseSection eyebrow="Demo Scope" title="What Is Demo Only">
+        <Checklist items={demoOnlyItems} />
+      </ShowcaseSection>
+
       <ShowcaseSection eyebrow="Audience" title="Target Audience">
         <CardGrid items={audiences} />
       </ShowcaseSection>
@@ -163,7 +206,11 @@ export default function Showcase() {
 
       <ShowcaseSection eyebrow="Assets" title="Google Drive Asset Plan">
         <div className="content-panel">
-          <p>Official photos and videos from the shared Google Drive Marketing Materials folder can be used after selecting approved assets. Images should be compressed and web-optimized before final use. Large videos should not be committed directly to the repo; use thumbnails and external links or hosted video.</p>
+          <p>The Google Drive Marketing Materials folder is confirmed. Official photos and videos from this folder can be used after selecting approved assets. Images should be compressed and web-optimized before final use. Large videos should not be committed directly to the repo; use thumbnails and external links or hosted video.</p>
+          <p><strong>Confirmed folder:</strong> <a href="https://drive.google.com/drive/folders/19CWq_YMieSFTOx9dpPIsE-dN75yUxoPr" target="_blank" rel="noopener">Marketing Materials</a></p>
+          <div className="showcase-points">
+            {driveFolders.map((folder) => <span key={folder}>{folder}</span>)}
+          </div>
           <pre className="asset-plan">{assetPaths.join("\n")}</pre>
         </div>
       </ShowcaseSection>

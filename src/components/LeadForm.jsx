@@ -20,6 +20,7 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
   const [values, setValues] = useState({ ...defaults, ...initialValues });
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState("");
+  const requiredSet = new Set(required);
 
   function update(event) {
     const { name, value, type, checked } = event.target;
@@ -40,7 +41,7 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
 
     // TODO: Connect to backend email/CRM endpoint later.
     saveSubmission(storageKey, values);
-    setSuccess("Thank you. Your request was saved for demo. Backend/email integration can be connected later.");
+    setSuccess("Thank you. Your demo request was saved in this browser. Luisa's email/CRM integration can be connected in the next phase.");
     setValues({ ...defaults, ...initialValues });
   }
 
@@ -53,7 +54,7 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
       </div>
       <div className="form-grid">
         {fields.map((field) => (
-          <Field key={field.name} field={field} value={values[field.name] || ""} onChange={update} error={errors[field.name]} />
+          <Field key={field.name} field={field} value={values[field.name] || ""} onChange={update} error={errors[field.name]} required={requiredSet.has(field.name)} />
         ))}
         <label className="consent full">
           <input name="consent" type="checkbox" checked={values.consent} onChange={update} />
@@ -67,12 +68,12 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
   );
 }
 
-function Field({ field, value, onChange, error }) {
+function Field({ field, value, onChange, error, required }) {
   const id = `field-${field.name}`;
-  const shared = { id, name: field.name, value, onChange, placeholder: field.placeholder || "" };
+  const shared = { id, name: field.name, value, onChange, placeholder: field.placeholder || "", required };
   return (
     <div className={`field ${field.full ? "full" : ""}`}>
-      <label htmlFor={id}>{field.label}</label>
+      <label htmlFor={id}>{field.label}{required && <span className="required-mark"> Required</span>}</label>
       {field.type === "textarea" ? (
         <textarea {...shared} rows="5" />
       ) : field.options ? (

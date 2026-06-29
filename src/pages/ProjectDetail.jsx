@@ -158,6 +158,7 @@ export default function ProjectDetail() {
             </DetailSection>
 
             <DetailSection id="unit-inventory" eyebrow="Unit Inventory" title="Unit Inventory Preview">
+              <p className="reference-note">This is not live inventory. Treat this as a reference snapshot only and ask Luisa for latest availability before deciding.</p>
               <div className="inventory-table rich">
                 <div className="inventory-head"><span>Unit Type</span><span>Floor Area</span><span>Indicative Range / Computation</span><span>Status</span><span>Action</span></div>
                 {project.unitInventoryPreview.map((item) => (
