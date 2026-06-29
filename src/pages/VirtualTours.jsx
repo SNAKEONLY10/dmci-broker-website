@@ -10,7 +10,7 @@ export default function VirtualTours() {
   return (
     <section className="page-section">
       <div className="container">
-        <SectionHeader align="left" eyebrow="Virtual Tours" title="Tour Library" text="Image thumbnails only. Optional video placeholders can load later after a buyer clicks." />
+        <SectionHeader align="left" eyebrow="Virtual Tours" title="Tour Library" text="Tour thumbnails are lightweight for now. Approved video or 360 links can be connected after Luisa confirms the official assets." />
         <div className="status-chips">{["", "Studio", "1BR", "2BR", "3BR", "Amenities"].map((item) => <button key={item || "all"} onClick={() => setFilter(item)}>{item || "All"}</button>)}</div>
         <div className="card-grid">{filtered.map((tour) => <VideoTourCard key={tour.title} {...tour} />)}</div>
       </div>

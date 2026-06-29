@@ -73,7 +73,7 @@ const kaleaHeightsDetails = {
   architecturalTheme: "Modern Tropical",
   address: "Good Shepherd Road, Banawa Brgy. Guadalupe, Cebu City",
   unitTypes: ["1BR", "2BR", "3BR"],
-  priceRangeLabel: "₱5,613,000 - ₱13,426,000",
+  priceRangeLabel: "PHP 5.613M - PHP 13.426M",
   priceSourceNote: "Official reference snapshot only. Request latest computation for updated pricing and availability.",
   sourceUrl: "https://www.dmcihomes.com/kalea-heights",
   lastVerified: "For confirmation",
@@ -164,12 +164,12 @@ const kaleaHeightsDetails = {
   siteProgressStatus: "Site progress information should be confirmed through official DMCI channels or Luisa.",
   masterPlanNotes: "Kalea Heights master plan details should be reviewed using official project presentation materials once approved assets are available.",
   unitInventoryPreview: [
-    { type: "1-Bedroom", floorArea: "Approx. 29.5-33.5 sqm", indicativeRange: "₱5.6M-₱6.6M reference range", status: "Ask for latest availability" },
-    { type: "2-Bedroom", floorArea: "Approx. 53-80.5 sqm", indicativeRange: "₱8.0M-₱11.4M reference range", status: "Ask for latest availability" },
-    { type: "3-Bedroom", floorArea: "Approx. 81.5-88.5 sqm", indicativeRange: "₱11.9M-₱13.4M reference range", status: "Ask for latest availability" }
+    { type: "1-Bedroom", floorArea: "Approx. 29.5-33.5 sqm", indicativeRange: "PHP 5.6M-PHP 6.6M reference range", status: "Ask for latest availability" },
+    { type: "2-Bedroom", floorArea: "Approx. 53-80.5 sqm", indicativeRange: "PHP 8.0M-PHP 11.4M reference range", status: "Ask for latest availability" },
+    { type: "3-Bedroom", floorArea: "Approx. 81.5-88.5 sqm", indicativeRange: "PHP 11.9M-PHP 13.4M reference range", status: "Ask for latest availability" }
   ],
   newsMedia: [
-    { title: "Project presentation materials", label: "Reference link placeholder", url: "" },
+    { title: "Project presentation materials", label: "Request official presentation from Luisa", url: "" },
     { title: "Official updates and advisories", label: "Confirm through official channels", url: "" }
   ]
 };
@@ -210,7 +210,7 @@ export const projects = baseProjects.map(([slug, name, location, city, status, t
     buildingFeatures: ["Building details for confirmation", "Common area features subject to official materials"],
     nearbyLandmarks: genericLandmarks,
     siteProgressStatus: status === "RFO" ? "Ready for occupancy status should still be confirmed before reservation." : "Site progress information should be confirmed through official DMCI channels or Luisa.",
-    masterPlanNotes: "Master plan visuals and technical details are placeholders until approved project materials are added.",
+    masterPlanNotes: "Master plan visuals and technical details can be added once approved project materials are selected.",
     themeDescription: `${architecturalTheme} is used as a sample design direction label. Final architectural details must be confirmed through official project materials.`,
     buildings: [
       {
@@ -221,7 +221,7 @@ export const projects = baseProjects.map(([slug, name, location, city, status, t
       }
     ],
     unitInventoryPreview: inventory(unitTypes),
-    newsMedia: [{ title: "Project updates placeholder", label: "Add official updates after approval", url: "" }],
+    newsMedia: [{ title: "Project updates", label: "Ask Luisa for official project updates", url: "" }],
     nearbyProperties: [],
     image: assetPath(slug, "hero.jpg"),
     thumbnail: assetPath(slug, "thumbnail.jpg"),
@@ -269,7 +269,7 @@ function withProjectFallbacks(project) {
     nearbyLandmarks: project.nearbyLandmarks?.length ? project.nearbyLandmarks : [locationFallback],
     buildings: project.buildings?.length ? project.buildings : [{
       name: "Building details for confirmation",
-      developmentType: project.developmentType || "Project details for confirmation",
+      developmentType: project.developmentType || "Updated details available upon request",
       levels: ["Ask Luisa for latest project presentation"],
       features: ["Building details and features for confirmation"]
     }],

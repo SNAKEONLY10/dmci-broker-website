@@ -59,6 +59,20 @@ const demoLinks = [
   ["Book Viewing", "/book-viewing"]
 ];
 
+const demoPreviews = [
+  ["Homepage", "/", "Premium broker landing page with search, featured projects, Luisa contact card, and buyer CTAs."],
+  ["Kalea Heights Project Page", "/projects/kalea-heights", "Rich sample property showcase with overview, facts, unit preview, amenities, and inquiry flow."],
+  ["Request Computation Flow", "/request-computation", "Frontend lead form for buyers asking for updated computation and payment terms."]
+];
+
+const assetPipeline = [
+  "Select approved Drive assets",
+  "Compress and rename",
+  "Add to project folder",
+  "Review on website",
+  "Approve for preview"
+];
+
 const workingItems = [
   "Responsive broker-branded homepage",
   "Searchable project directory",
@@ -167,6 +181,18 @@ export default function Showcase() {
         </div>
       </ShowcaseSection>
 
+      <ShowcaseSection eyebrow="Demo Preview" title="Client Walkthrough Preview">
+        <div className="demo-preview-grid">
+          {demoPreviews.map(([label, to, text]) => (
+            <article className="demo-preview-card" key={to}>
+              <span>{label}</span>
+              <p>{text}</p>
+              <Button to={to} variant="secondary">Open Preview</Button>
+            </article>
+          ))}
+        </div>
+      </ShowcaseSection>
+
       <ShowcaseSection eyebrow="Current Build" title="What Is Already Working">
         <CardGrid items={workingItems} />
       </ShowcaseSection>
@@ -208,6 +234,9 @@ export default function Showcase() {
         <div className="content-panel">
           <p>The Google Drive Marketing Materials folder is confirmed. Official photos and videos from this folder can be used after selecting approved assets. Images should be compressed and web-optimized before final use. Large videos should not be committed directly to the repo; use thumbnails and external links or hosted video.</p>
           <p><strong>Confirmed folder:</strong> <a href="https://drive.google.com/drive/folders/19CWq_YMieSFTOx9dpPIsE-dN75yUxoPr" target="_blank" rel="noopener">Marketing Materials</a></p>
+          <div className="asset-pipeline" aria-label="Asset pipeline">
+            {assetPipeline.map((step) => <span key={step}>{step}</span>)}
+          </div>
           <div className="showcase-points">
             {driveFolders.map((folder) => <span key={folder}>{folder}</span>)}
           </div>

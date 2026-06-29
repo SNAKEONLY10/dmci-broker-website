@@ -28,7 +28,7 @@ export function TestimonialCard({ quote, person }) {
     <article className="testimonial-card">
       <p>"{quote}"</p>
       <strong>{person}</strong>
-      <small>Placeholder testimonial for layout only.</small>
+      <small>Real client feedback can be added after approval.</small>
     </article>
   );
 }
@@ -36,7 +36,7 @@ export function TestimonialCard({ quote, person }) {
 export function VideoTourCard({ title, unitType }) {
   return (
     <article className="tour-card">
-      <ImagePlaceholder label={`${title} thumbnail`} compact />
+      <ImagePlaceholder label={title} compact variant="gallery" />
       <h3>{title}</h3>
       <p>{unitType}</p>
       <div className="card-actions">

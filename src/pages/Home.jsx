@@ -75,8 +75,10 @@ export default function Home() {
             <div className="hero-visual-badge">Premium buyer assistance</div>
             <div className="ask-card">
               <span className="mini">Quick contact</span>
-              <strong>Ask Luisa</strong>
+              <strong>Luisa Corral</strong>
+              <p>DMCI Homes Sales Director<br />Licensed Real Estate Broker</p>
               <p>Message for computation, availability, viewing, or reservation guidance.</p>
+              <Button to="/contact" variant="secondary">Message Luisa</Button>
               <ContactButtons compact />
             </div>
           </div>

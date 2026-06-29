@@ -46,10 +46,10 @@ export default function ProjectDetail() {
       <section className="project-detail-hero">
         <div className="container project-hero-grid">
           <div className="project-hero-media">
-            <ImagePlaceholder src={project.image} label={`${project.name} hero preview`} />
+            <ImagePlaceholder src={project.image} label={project.name} variant="hero" />
             <div className="project-hero-thumbs">
               {project.gallery.slice(0, 3).map((src, index) => (
-                <ImagePlaceholder key={src} src={src} label={`${project.name} gallery ${index + 1}`} compact />
+                <ImagePlaceholder key={src} src={src} label={`${project.name} gallery ${index + 1}`} compact variant="gallery" />
               ))}
             </div>
           </div>
@@ -62,7 +62,7 @@ export default function ProjectDetail() {
             <div className="price-panel">
               <strong>{project.priceRangeLabel}</strong>
               <span>{project.priceSourceNote}</span>
-              <span>Project details for confirmation. Ask Luisa for latest computation.</span>
+              <span>Updated details available upon request. Ask Luisa for latest computation.</span>
             </div>
             <div className="project-facts">
               <Fact label="Turnover" value={project.turnoverYear === "Ready" ? "Ready For Occupancy" : `${project.turnoverYear} turnover`} />
@@ -112,13 +112,13 @@ export default function ProjectDetail() {
             <DetailSection id="location" eyebrow="Location" title="About the Location">
               <p>{project.aboutLocation}</p>
               <ul className="detail-list">{project.nearbyLandmarks.map((item) => <li key={item}>{item}</li>)}</ul>
-              <div className="map-placeholder">Map placeholder. Exact map, directions, and travel times can be connected when approved assets are available.</div>
+              <div className="map-placeholder">Map preview, directions, and travel references can be added once approved project materials are available.</div>
               <Button to="/book-viewing" variant="secondary">Book a Site Viewing</Button>
             </DetailSection>
 
             <DetailSection id="site-progress" eyebrow="Site Progress" title="Construction / Site Progress">
               <div className="split-placeholder">
-                <ImagePlaceholder src={project.siteProgressImage} label={`${project.name} site progress placeholder`} compact />
+                <ImagePlaceholder src={project.siteProgressImage} label={`${project.name} site progress`} compact variant="siteProgress" />
                 <div>
                   <p>{project.siteProgressStatus}</p>
                   <p className="safety-note">Site progress information should be confirmed through official DMCI channels or Luisa.</p>
@@ -128,7 +128,7 @@ export default function ProjectDetail() {
 
             <DetailSection id="master-plan" eyebrow="Master Plan" title="Master Plan">
               <div className="split-placeholder">
-                <ImagePlaceholder src={project.masterPlanImage} label={`${project.name} master plan placeholder`} compact />
+                <ImagePlaceholder src={project.masterPlanImage} label={`${project.name} master plan`} compact variant="masterPlan" />
                 <div>
                   <p>{project.masterPlanNotes}</p>
                   <Button to="/contact" variant="secondary">Request Project Presentation</Button>
@@ -138,7 +138,7 @@ export default function ProjectDetail() {
 
             <DetailSection id="theme" eyebrow="Theme" title={project.architecturalTheme}>
               <div className="split-placeholder">
-                <ImagePlaceholder label={`${project.name} theme placeholder`} compact />
+                <ImagePlaceholder label={`${project.name} design inspiration`} compact variant="gallery" />
                 <p>{project.themeDescription}</p>
               </div>
             </DetailSection>
@@ -187,13 +187,13 @@ export default function ProjectDetail() {
               </div>
             </DetailSection>
 
-            <DetailSection eyebrow="Gallery" title="Project Gallery Placeholders">
-              <div className="gallery-grid">{project.gallery.map((src, index) => <ImagePlaceholder key={src} src={src} label={`${project.name} gallery ${index + 1}`} compact />)}</div>
+            <DetailSection eyebrow="Gallery" title="Project Gallery">
+              <div className="gallery-grid">{project.gallery.map((src, index) => <ImagePlaceholder key={src} src={src} label={`${project.name} gallery ${index + 1}`} compact variant="gallery" />)}</div>
             </DetailSection>
 
             <DetailSection eyebrow="Virtual Tour" title="Virtual Tour">
               <div className="video-placeholder">
-                <strong>No autoplay video loaded.</strong>
+                <strong>Virtual tour preview</strong>
                 <p>Request a virtual tour link or online consultation schedule from Luisa.</p>
                 <Button to="/contact" variant="secondary">Request Virtual Tour Link</Button>
               </div>
