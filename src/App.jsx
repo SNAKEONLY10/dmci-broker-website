@@ -14,6 +14,7 @@ import Promos from "./pages/Promos.jsx";
 import ResaleUnits from "./pages/ResaleUnits.jsx";
 import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
+import Showcase from "./pages/Showcase.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
 export default function App() {
@@ -34,6 +35,7 @@ export default function App() {
         <Route path="/resale-units" element={<ResaleUnits />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/showcase" element={<Showcase />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>

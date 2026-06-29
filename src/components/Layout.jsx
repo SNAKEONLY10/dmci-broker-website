@@ -22,7 +22,11 @@ export function Layout({ children }) {
       <header className="site-header">
         <div className="container nav-wrap">
           <NavLink className="brand" to="/" onClick={() => setOpen(false)}>
-            <img className="brand-logo" src="/assets/img/dmci-homes-logo.png" alt="DMCI Homes" width="216" height="50" />
+            <span className="brand-mark">MB</span>
+            <span className="brand-copy">
+              <strong>My DMCI Broker</strong>
+              <small>Luisa Corral | Licensed Real Estate Broker</small>
+            </span>
           </NavLink>
           <nav className="desktop-nav" aria-label="Main navigation">
             {navItems.map(([label, to]) => (
@@ -63,6 +67,7 @@ function Footer() {
         <div>
           <h3>{contact.brand}</h3>
           <p>Luisa Corral's DMCI Homes buyer assistance platform for project browsing, computation requests, availability checks, viewing schedules, and reservation guidance.</p>
+          <p><strong>{contact.brokerName}</strong><br />{contact.role}<br />{contact.license}</p>
         </div>
         <div>
           <h4>Buyer Tools</h4>
@@ -81,6 +86,7 @@ function Footer() {
           <h4>Official DMCI References</h4>
           <a href={contact.officialDmciWebsite} target="_blank" rel="noopener">DMCI Homes Website</a>
           <a href={contact.officialDmciFacebook} target="_blank" rel="noopener">DMCI Homes Facebook</a>
+          <NavLink to="/showcase">Client Showcase</NavLink>
           <p>Use official channels for corporate announcements and final project confirmation.</p>
         </div>
       </div>

@@ -6,7 +6,7 @@ import { DemoForm } from "../components/LeadForm";
 import { LocationCard } from "../components/LocationCard";
 import { ProjectGrid } from "../components/ProjectGrid";
 import { SectionHeader } from "../components/SectionHeader";
-import { GuideCard, PromoCard, TestimonialCard, VideoTourCard } from "../components/Cards";
+import { GuideCard, PromoCard, VideoTourCard } from "../components/Cards";
 import { DisclaimerBanner } from "../components/DisclaimerBanner";
 import { projects, unitTypes, purposes } from "../data/projects";
 import { locations } from "../data/locations";
@@ -42,9 +42,9 @@ export default function Home() {
               <span>Availability subject to confirmation</span>
             </div>
             <div className="hero-stats" aria-label="Buyer assistance highlights">
-              <span><strong>18</strong> project options</span>
+              <span><strong>{projects.length}</strong> sample project options</span>
               <span><strong>RFO</strong> & preselling guidance</span>
-              <span><strong>Safe</strong> inquiry-first flow</span>
+              <span><strong>Luisa</strong> broker-led assistance</span>
             </div>
             <div className="hero-actions">
               <Button to="/request-computation">Request Latest Computation</Button>
@@ -55,7 +55,7 @@ export default function Home() {
               {["Licensed Real Estate Broker", "DMCI Homes Sales Director", "Buyer Assistance", "RFO & Preselling Guidance"].map((item) => <span key={item}>{item}</span>)}
             </div>
             <div className="official-reference">
-              <span>Official DMCI Homes updates</span>
+              <span>Broker site with official references</span>
               <a href={contact.officialDmciFacebook} target="_blank" rel="noopener">Facebook</a>
               <a href={contact.officialDmciWebsite} target="_blank" rel="noopener">Corporate Site</a>
             </div>
@@ -115,7 +115,7 @@ export default function Home() {
             fields={computationFields}
             storageKey="dmci_leads"
             submitLabel="Send Computation Request"
-            required={["fullName", "contactNumber", "email"]}
+            required={["fullName", "contactNumber", "email", "location", "project", "unitType", "budgetRange", "purpose", "contactMethod", "message"]}
           />
         </div>
       </section>
@@ -144,8 +144,8 @@ function QuickSearch() {
       <div className="container search-panel">
         <div>
           <span className="eyebrow">Find Your Property</span>
-          <h2>Quick Match Search</h2>
-          <p>Filter sample projects client-side, then request confirmation before deciding.</p>
+          <h2>Search Your DMCI Home</h2>
+          <p>Filter demo project data by location, unit type, status, purpose, and budget range.</p>
         </div>
         <div className="search-fields">
           <select name="location" value={filters.location} onChange={update}><option value="">Preferred Location</option>{locations.map((item) => <option key={item.name}>{item.name}</option>)}</select>
@@ -200,7 +200,7 @@ export function AboutCompact() {
 }
 
 function BuyerJourney() {
-  const steps = ["Choose preferred location/project", "Request latest computation", "Review payment terms and availability", "Schedule site viewing or online consultation", "Prepare reservation requirements", "Reserve your chosen unit"];
+  const steps = ["Visitor from Facebook or Instagram", "Browse projects", "Request latest computation", "Check availability", "Book viewing or talk to Luisa", "Reservation guidance"];
   return (
     <section className="section soft">
       <div className="container">
@@ -234,11 +234,11 @@ function PreviewSections() {
       </section>
       <section className="section soft">
         <div className="container">
-          <SectionHeader eyebrow="Testimonials" title="Client Story Placeholders" />
+          <SectionHeader eyebrow="Buyer Assistance" title="What You Can Ask Luisa" text="Use this site as a safe inquiry starting point before making any reservation decision." />
           <div className="card-grid">
-            <TestimonialCard quote="Luisa's assistance helped us understand our options clearly." person="Placeholder Buyer" />
-            <TestimonialCard quote="The computation request flow was easy to follow." person="Placeholder Investor" />
-            <TestimonialCard quote="Site viewing coordination felt organized and professional." person="Placeholder Family" />
+            <article className="info-card"><h3>Computation Review</h3><p>Ask for updated sample computation, payment terms, and promo confirmation.</p></article>
+            <article className="info-card"><h3>Availability Check</h3><p>Request current unit availability and turnover details before shortlisting.</p></article>
+            <article className="info-card"><h3>Viewing Coordination</h3><p>Schedule an on-site viewing or online consultation with broker guidance.</p></article>
           </div>
         </div>
       </section>

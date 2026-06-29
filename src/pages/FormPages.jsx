@@ -5,6 +5,7 @@ import { locations } from "../data/locations";
 
 const projectOptions = projects.map((project) => project.name);
 const locationOptions = locations.map((location) => location.name);
+const inquiryTypes = ["Computation", "Availability", "Site viewing", "Reservation requirements", "Promo", "Resale unit", "Other"];
 
 export function Availability() {
   return <FormShell title="Check Availability" text="Ask Luisa to check current unit availability, pricing, promos, and payment terms.">
@@ -26,6 +27,7 @@ export function RequestComputation() {
       s("budgetRange", "Budget Range", ["Still checking", "Entry level", "Mid range", "Premium range"]),
       s("paymentPreference", "Payment Preference", ["Cash", "In-house", "Bank Financing", "Not sure"]),
       s("buyerType", "Buyer Type", ["Local", "OFW", "Investor", "First-time buyer", "Family use"]),
+      s("inquiryType", "Inquiry Type", inquiryTypes),
       s("timeline", "Timeline", ["Immediately", "1-3 months", "3-6 months", "Still exploring"]), t()
     ]} storageKey="dmci_computation_requests" submitLabel="Send Computation Request" required={["fullName", "contactNumber", "email"]} />
   </FormShell>;
@@ -45,7 +47,8 @@ export function Contact() {
   return <FormShell title="Contact Luisa" text="Choose the concern type and send a buyer-assistance inquiry.">
     <DemoForm title="Inquiry Form" fields={[
       f("fullName", "Name"), f("contactNumber", "Contact", "tel"),
-      s("concernType", "Concern Type", ["Computation", "Availability", "Site viewing", "Reservation requirements", "Promo", "Resale unit", "Other"]), t()
+      s("project", "Project Inquired", projectOptions),
+      s("concernType", "Inquiry Type", inquiryTypes), t()
     ]} storageKey="dmci_contact_requests" submitLabel="Send Inquiry" required={["fullName", "contactNumber"]} />
   </FormShell>;
 }
