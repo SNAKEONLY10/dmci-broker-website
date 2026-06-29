@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useMemo, useState } from "react";
 import { Button } from "../components/Button";
-import { ContactButtons } from "../components/ContactButtons";
 import { DemoForm } from "../components/LeadForm";
 import { LocationCard } from "../components/LocationCard";
 import { ProjectGrid } from "../components/ProjectGrid";
@@ -12,7 +11,6 @@ import { projects, unitTypes, purposes } from "../data/projects";
 import { locations } from "../data/locations";
 import { guideCards } from "../data/guides";
 import { promos } from "../data/promos";
-import { contact } from "../data/contact";
 
 const computationFields = [
   { name: "fullName", label: "Full Name" },
@@ -29,59 +27,23 @@ const computationFields = [
 
 export default function Home() {
   const featured = projects.filter((project) => project.featured).slice(0, 6);
-  const spotlightProject = projects.find((project) => project.slug === "kalea-heights") || featured[0];
   return (
     <>
-      <section className="hero-section">
-        <div className="container hero-grid">
-          <div className="hero-copy">
-            <span className="eyebrow">Featured DMCI Project | Cebu City</span>
-            <h1>{spotlightProject.name} Buyer Assistance by Luisa Corral</h1>
-            <p>Explore Kalea Heights with licensed broker guidance. Request the latest computation, updated availability, payment terms, and site viewing support before deciding.</p>
+      <section className="hero-section hero-landing">
+        <div className="container hero-landing-inner">
+          <div className="hero-copy hero-landing-copy">
+            <span className="eyebrow">Luisa Corral | DMCI Homes Sales Director</span>
+            <h1>Find the right DMCI home with broker-guided assistance</h1>
+            <p>Get a clearer path from project shortlist to computation, availability check, site viewing, and reservation guidance.</p>
             <div className="hero-proof">
-              <span>{spotlightProject.status}</span>
-              <span>{spotlightProject.turnoverYear} turnover</span>
-              <span>{spotlightProject.unitTypes.join(" | ")}</span>
+              <span>Licensed Broker</span>
+              <span>Latest Computation</span>
+              <span>Site Viewing Support</span>
             </div>
-            <div className="hero-stats" aria-label="Buyer assistance highlights">
-              <span><strong>{spotlightProject.priceRangeLabel}</strong> reference snapshot only</span>
-              <span><strong>{spotlightProject.landArea}</strong> development scale</span>
-              <span><strong>{spotlightProject.architecturalTheme}</strong> theme</span>
-            </div>
-            <div className="hero-actions">
-              <Button to="/request-computation">Request Latest Computation</Button>
-              <Button to={`/projects/${spotlightProject.slug}`} variant="secondary">View Kalea Heights</Button>
-              <Button to="/book-viewing" variant="ghost">Book a Site Viewing</Button>
-            </div>
-            <div className="trust-badges">
-              {["Licensed Real Estate Broker", "DMCI Homes Sales Director", "Cebu Project Guidance", "Availability Subject to Confirmation"].map((item) => <span key={item}>{item}</span>)}
-            </div>
-            <div className="official-reference">
-              <span>Broker site with official references</span>
-              <a href={contact.officialDmciFacebook} target="_blank" rel="noopener">Facebook</a>
-              <a href={contact.officialDmciWebsite} target="_blank" rel="noopener">Corporate Site</a>
-            </div>
-          </div>
-          <div className="hero-visual premium-hero-card" aria-label="Premium property collage preview">
-            <picture>
-              <source media="(max-width: 760px)" srcSet="/assets/img/premium-dmci-hero-mobile.jpg" />
-              <img
-                src="/assets/img/premium-dmci-hero.jpg"
-                alt="Premium condominium and amenities collage preview"
-                width="1500"
-                height="1000"
-                decoding="async"
-                fetchpriority="high"
-              />
-            </picture>
-            <div className="hero-visual-badge">{spotlightProject.name} | {spotlightProject.location}</div>
-            <div className="ask-card">
-              <span className="mini">Quick contact</span>
-              <strong>Luisa Corral</strong>
-              <p>DMCI Homes Sales Director<br />Licensed Real Estate Broker</p>
-              <p>Message for computation, availability, viewing, or reservation guidance.</p>
-              <Button to="/contact" variant="secondary">Message Luisa</Button>
-              <ContactButtons compact />
+            <div className="hero-actions center">
+              <Button to="/request-computation">Request Computation</Button>
+              <Button to="/projects" variant="secondary">Explore Projects</Button>
+              <Button to="/book-viewing" variant="ghost">Book Viewing</Button>
             </div>
           </div>
         </div>

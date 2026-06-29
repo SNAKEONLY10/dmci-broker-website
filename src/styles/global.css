@@ -629,3 +629,134 @@ textarea { resize: vertical; }
   .hero-actions .btn { min-height: 50px; }
   .footer-logo { width: min(150px, 78%); }
 }
+
+.hero-landing {
+  min-height: min(740px, 100svh);
+  display: grid;
+  align-items: center;
+  padding: 116px 0 82px;
+  background:
+    linear-gradient(180deg, rgba(7,26,45,0.18), rgba(7,26,45,0.34)),
+    linear-gradient(90deg, rgba(7,26,45,0.78), rgba(15,39,66,0.36) 48%, rgba(250,247,240,0.06)),
+    url("/assets/img/premium-dmci-hero.jpg") center / cover no-repeat;
+}
+.hero-landing::before {
+  inset: 0;
+  height: auto;
+  background: linear-gradient(135deg, rgba(201,162,74,0.18), transparent 36%, rgba(255,255,255,0.1));
+}
+.hero-landing-inner {
+  display: grid;
+  justify-items: start;
+}
+.hero-landing-copy {
+  width: min(760px, 100%);
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  text-shadow: 0 14px 38px rgba(0,0,0,0.26);
+}
+.hero-landing-copy .eyebrow {
+  color: #f2d27a;
+  letter-spacing: 0.1em;
+}
+.hero-landing-copy h1 {
+  max-width: 760px;
+  margin: 14px 0 0;
+  color: var(--white);
+  font-size: clamp(2.45rem, 5.1vw, 4.35rem);
+  line-height: 0.98;
+}
+.hero-landing-copy p {
+  max-width: 620px;
+  margin: 18px 0 22px;
+  color: rgba(255,255,255,0.84);
+  font-size: clamp(1rem, 1.4vw, 1.12rem);
+}
+.hero-landing-copy .hero-proof,
+.hero-landing-copy .trust-badges {
+  justify-content: flex-start;
+}
+.hero-landing-copy .hero-proof {
+  margin: 0 0 22px;
+}
+.hero-landing-copy .hero-proof span:first-child {
+  background: rgba(255,255,255,0.92);
+  color: var(--navy);
+  border-color: rgba(255,255,255,0.38);
+}
+.hero-landing-copy .hero-proof span {
+  background: rgba(255,255,255,0.14);
+  color: rgba(255,255,255,0.9);
+  border-color: rgba(255,255,255,0.22);
+  box-shadow: none;
+}
+.hero-landing-copy .hero-actions {
+  justify-content: flex-start;
+  margin-top: 8px;
+}
+.hero-landing-copy .btn {
+  min-width: 180px;
+}
+.hero-landing-copy .btn-secondary,
+.hero-landing-copy .btn-ghost {
+  color: var(--white);
+  border-color: rgba(255,255,255,0.44);
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(10px);
+}
+
+@media (max-width: 760px) {
+  .hero-landing {
+    min-height: auto;
+    padding: 100px 0 58px;
+    background:
+      linear-gradient(180deg, rgba(7,26,45,0.38), rgba(7,26,45,0.62)),
+      url("/assets/img/premium-dmci-hero-mobile.jpg") center top / cover no-repeat;
+  }
+  .hero-landing-copy {
+    padding: 0;
+    border-radius: 0;
+    text-align: left;
+  }
+  .hero-landing-copy h1 {
+    margin-inline: 0;
+    font-size: clamp(2.05rem, 8vw, 2.85rem);
+    color: var(--white);
+  }
+  .hero-landing-copy p {
+    margin-inline: 0;
+    color: rgba(255,255,255,0.84);
+    font-size: 0.98rem;
+  }
+  .hero-landing-copy .hero-proof,
+  .hero-landing-copy .trust-badges,
+  .hero-landing-copy .hero-actions {
+    justify-content: flex-start;
+  }
+  .hero-landing-copy .hero-actions {
+    display: grid;
+  }
+  .hero-landing-copy .btn {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 430px) {
+  .hero-landing {
+    padding: 92px 0 46px;
+  }
+  .hero-landing-copy h1 {
+    font-size: 2.12rem;
+  }
+  .hero-landing-copy .hero-proof span {
+    font-size: 0.72rem;
+    padding: 7px 9px;
+  }
+}
