@@ -74,15 +74,14 @@ function Footer() {
               <p>{contact.role}<br />{contact.license}</p>
             </div>
           </div>
-          <p>Personal buyer assistance for DMCI Homes project discovery, computation requests, availability checks, site viewings, and reservation guidance.</p>
-          <p className="footer-note">Buyer assistance website by Luisa Corral. Final project details are subject to official confirmation.</p>
+          <p>Personal buyer assistance for DMCI Homes inquiries, computations, availability checks, site viewings, and reservation guidance.</p>
         </div>
         <div className="footer-links">
           <h4>Buyer Tools</h4>
           <NavLink to="/projects">Projects</NavLink>
+          <NavLink to="/request-computation">Request Computation</NavLink>
           <NavLink to="/availability">Check Availability</NavLink>
-          <NavLink to="/reservation-requirements">Reservation Requirements</NavLink>
-          <NavLink to="/virtual-tours">Virtual Tours</NavLink>
+          <NavLink to="/book-viewing">Book Viewing</NavLink>
         </div>
         <div className="footer-contact">
           <h4>Contact Luisa</h4>
@@ -95,7 +94,6 @@ function Footer() {
           <a href={contact.officialDmciWebsite} target="_blank" rel="noopener">DMCI Homes Website</a>
           <a href={contact.officialDmciFacebook} target="_blank" rel="noopener">DMCI Homes Facebook</a>
           <NavLink to="/showcase">Client Showcase</NavLink>
-          <p>Use official channels for final project confirmation.</p>
         </div>
       </div>
       <div className="container"><DisclaimerBanner /></div>

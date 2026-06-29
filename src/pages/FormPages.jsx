@@ -76,9 +76,9 @@ export function Contact() {
     title="Talk to Luisa"
     text="Send your question or buyer requirement. This helps Luisa recommend the right project, unit type, computation, or next step."
     panel={{
-      eyebrow: "Direct Broker Contact",
-      title: "Start with a clear buyer inquiry",
-      text: "Share where you want to buy, your timeline, and how you prefer to be contacted. Luisa can guide the next step.",
+      eyebrow: "Contact Luisa",
+      title: "Tell Luisa what you need",
+      text: "Share your preferred project, budget range, timeline, and best contact method so Luisa can recommend the right next step.",
       cta: "Message Luisa"
     }}
   >
@@ -113,9 +113,9 @@ function FormShell({ title, text, panel, children }) {
             <h2>{panelContent.title}</h2>
             <p>{panelContent.text}</p>
             <ul className="form-benefits">
-              <li>Updated details upon request</li>
-              <li>Availability subject to confirmation</li>
-              <li>Buyer assistance from inquiry to reservation</li>
+              <li>Project recommendations based on your buyer profile</li>
+              <li>Latest computation and availability checking</li>
+              <li>Viewing and reservation guidance</li>
             </ul>
             <Button to="/contact" variant="secondary">{panelContent.cta}</Button>
           </div>
