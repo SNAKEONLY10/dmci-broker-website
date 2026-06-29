@@ -15,7 +15,7 @@ const baseProjects = [
   ["valeron-tower", "Valeron Tower", "Pasig", "Pasig", "Preselling", "2028", "High-rise Condo", "Mixed urban residential tower", "Modern metropolitan", "Pasig City", ["Studio", "1BR", "2BR"], ["Rental", "Investment"], true],
   ["solmera-coast", "Solmera Coast", "Batangas", "San Juan", "Preselling", "2028", "Leisure Residence", "Coastal leisure residence", "Resort-inspired coastal", "San Juan, Batangas", ["1BR", "2BR", "3BR"], ["Own Use", "Family", "Investment"], true],
   ["anissa-heights", "Anissa Heights", "Quezon City", "Quezon City", "Preselling", "2027", "High-rise Condo", "High-rise residential development", "Contemporary resort-inspired", "Quezon City", ["Studio", "1BR", "2BR"], ["Own Use", "OFW Friendly"], false],
-  ["mulberry-place-2", "Mulberry Place 2", "Paranaque", "Paranaque", "RFO", "Ready", "Mid-rise Condo", "Mid-rise residential community", "Garden community", "Paranaque City", ["2BR", "3BR"], ["Family", "Own Use"], true],
+  ["mulberry-place-2", "Mulberry Place 2", "Taguig", "Taguig City", "RFO / Preselling Phase 2", "RFO / 2026-2028 Phase 2", "Mid Rise and High Rise Condominiums", "Mid Rise Condominiums, High Rise Condominiums", "Asian Tropical", "Acacia Estates, Taguig City", ["2BR", "3BR", "4BR"], ["Family", "Own Use"], true],
   ["the-calinea-tower", "The Calinea Tower", "Caloocan", "Caloocan", "Preselling", "2028", "High-rise Condo", "Transit-oriented residential tower", "Contemporary urban", "Caloocan City", ["Studio", "1BR", "2BR"], ["Investment", "Rental"], false],
   ["sage-residences", "Sage Residences", "Mandaluyong", "Mandaluyong", "Preselling", "2027", "High-rise Condo", "Urban residential tower", "Modern city retreat", "Mandaluyong City", ["1BR", "2BR"], ["Own Use", "Investment"], false],
   ["fortis-residences", "Fortis Residences", "Makati", "Makati", "Preselling", "2027", "High-rise Condo", "Premium urban residential tower", "Contemporary premium", "Makati City", ["1BR", "2BR", "3BR"], ["Investment", "Rental"], true],
@@ -674,6 +674,238 @@ const solmeraCoastDetails = {
   videoTourUrl: ""
 };
 
+const mulberryPlace2Details = {
+  contentLevel: "rich",
+  assetStatus: "official-assets-needed",
+  verificationStatus: "reference-only",
+  name: "Mulberry Place 2",
+  tagline: "A sanctuary of modern Asian Tropical living in Acacia Estates, Taguig.",
+  city: "Taguig City",
+  location: "Taguig",
+  status: "RFO / Preselling Phase 2",
+  propertyType: "Mid Rise and High Rise Condominiums",
+  developmentType: "Mid Rise Condominiums, High Rise Condominiums",
+  landArea: "36,474 sqm",
+  architecturalTheme: "Asian Tropical",
+  address: "Acacia Estates, Taguig City",
+  turnoverYear: "RFO / 2026-2028 Phase 2",
+  targetRfo: "Ready For Occupancy; Phase 2 buildings from October 2026 to October 2028",
+  unitTypes: ["2BR", "3BR", "4BR"],
+  priceRangeLabel: "PHP 8.9M - PHP 26.0M reference range",
+  priceSourceNote: "Reference snapshot only. Prices, promos, terms, unit availability, building turnover, and payment details must be confirmed with Luisa before deciding.",
+  sourceUrl: "",
+  lastVerified: "Reference snapshot for confirmation",
+  overview:
+    "Mulberry Place Phase 2 continues the Acacia Estates community in Taguig City with Asian Tropical architecture and traditional Asian home-inspired design. It is positioned for families and buyers looking for a tranquil yet connected residential setting near BGC, McKinley Hill, retail centers, schools, medical institutions, and airport access points.",
+  introParagraphs: [
+    "Mulberry Place Phase 2 is a continuation of the Acacia Estates community in Taguig City, designed for buyers comparing connected residential options in a calmer neighborhood setting.",
+    "The project uses Asian Tropical and traditional Asian home-inspired aesthetics, with planning that emphasizes harmony, respect, nature, and everyday urban convenience.",
+    "It includes both mid-rise and high-rise buildings depending on the phase/building, with 2BR, 3BR, and 4BR unit options for families and end-users. All pricing, availability, promos, building turnover, and computations shown here are reference-only and must be confirmed with Luisa before deciding."
+  ],
+  projectFacts: [
+    { label: "Location", value: "Acacia Estates, Taguig City" },
+    { label: "Developer", value: "DMCI Homes" },
+    { label: "Land Area", value: "36,474 sqm" },
+    { label: "Development Type", value: "Mid Rise Condominiums, High Rise Condominiums" },
+    { label: "Architectural Theme", value: "Asian Tropical" },
+    { label: "Phase 2 Buildings", value: "Shantung: High Rise; Taffeta: High Rise; Paisley: Mid Rise; Zephyr: Mid Rise" },
+    { label: "Phase 1 Buildings", value: "Bengaline: Mid Rise; Cochine: Mid Rise; Dui: Mid Rise; Marcelline: Mid Rise" },
+    { label: "Number of Levels", value: "Mid Rise: 6 Levels; High Rise: 18 Levels" },
+    { label: "Unit Types", value: "2BR, 3BR, 4BR" },
+    { label: "Turnover", value: "Ready For Occupancy" },
+    { label: "Phase 2 Building Turnover", value: "Paisley: October 2026; Shantung: June 2027; Taffeta: August 2028; Zephyr: October 2028" }
+  ],
+  summaryPricing: [
+    { type: "2BR", floorArea: "57.50 - 73.00 sqm", range: "PHP 8.9M - PHP 11.5M", status: "Available in reference snapshot", monthlyDp: "12% DP: PHP 20.8k - PHP 27.1k/mo", note: "Ask Luisa for latest computation and availability." },
+    { type: "3BR", floorArea: "78.50 - 120.00 sqm", range: "PHP 12.1M - PHP 19.6M", status: "Available in reference snapshot", monthlyDp: "12% DP: PHP 28.5k - PHP 46.5k/mo", note: "Ask Luisa for latest computation and availability." },
+    { type: "4BR", floorArea: "144.00 - 152.00 sqm", range: "PHP 23.7M - PHP 26.0M", status: "Limited in reference snapshot", monthlyDp: "12% DP: PHP 56.4k - PHP 61.7k/mo", note: "Ask Luisa for latest computation and availability." }
+  ],
+  aboutLocation:
+    "Mulberry Place Phase 2 is nestled in Acacia Estates, Taguig City, strategically between Town Center and Mahogany Place 2. Distances and travel times are reference estimates only and should be verified with current maps before viewing or reservation.",
+  locationDetails: {
+    title: "Strategic Location of Mulberry Place Phase 2",
+    text: "Mulberry Place Phase 2 is nestled in Acacia Estates, Taguig City, strategically between Town Center and Mahogany Place 2. Its proximity to Bonifacio Global City, McKinley Hill, retail centers, schools, medical institutions, and airport access points makes it a convenient option for buyers comparing connected residential communities in Taguig. Source content also mentions convenient access to SM Savemore, Grace Mall, Vista Mall, and SM Aura. Exact distances for SM Savemore, Grace Mall, and Vista Mall should be confirmed.",
+    exactAddress: "Acacia Estates, Taguig City"
+  },
+  nearbyDestinations: [
+    { group: "Business & Commercial Hubs", items: ["McKinley Hill - 4 km / 15 mins"] },
+    { group: "Medical Institutions", items: ["St. Luke's BGC - 5.4 km / 15 mins"] },
+    { group: "Schools", items: ["International School Manila - 6.1 km / 15 mins"] },
+    { group: "Retail", items: ["SM Aura - 3.5 km / 10 mins", "SM Savemore - For confirmation", "Grace Mall - For confirmation", "Vista Mall - For confirmation"] },
+    { group: "Airport Terminals", items: ["NAIA 3 - 10.5 km / 20 mins"] }
+  ],
+  whyInvest: [
+    "Acacia Estates address in Taguig City for buyers comparing calm residential communities near key business districts",
+    "Asian Tropical, traditional Asian home-inspired design with landscaped shared spaces",
+    "2BR, 3BR, and 4BR unit options for families and end-users",
+    "Phase 2 building options include Paisley, Shantung, Taffeta, and Zephyr",
+    "Broker-assisted computation, availability checking, viewing coordination, and reservation guidance through Luisa"
+  ],
+  highlights: [
+    "36,474 sqm Acacia Estates community",
+    "Mid-rise and high-rise condominium buildings",
+    "2BR, 3BR, and 4BR unit options",
+    "Phase 2 turnover schedule from October 2026 to October 2028",
+    "Access to BGC, McKinley Hill, SM Aura, schools, medical institutions, and NAIA 3"
+  ],
+  themeDescription:
+    "Asian Tropical design supports a calm residential community with garden-style spaces, natural ventilation goals, and everyday convenience. Final building details, deliverables, and technical specifications must be confirmed with official project materials.",
+  siteDevelopment: {
+    title: "Site Development Plan for Mulberry Place Phase 2",
+    text:
+      "Mulberry Place Phase 2 features residential buildings set within expansive green landscapes in Acacia Estates. The development includes recreational amenities such as swimming pools, a children's play area, landscaped gardens, barbecue areas, and outdoor spaces. The community layout prioritizes pedestrian-friendly pathways and shared spaces to enhance everyday living. Site development details, technical drawings, building placement, and final amenities must be confirmed with official project materials.",
+    keyStats: [
+      { label: "Land Area", value: "36,474 sqm land area" },
+      { label: "Community", value: "Acacia Estates community" },
+      { label: "Phase 2 Buildings", value: "Paisley, Shantung, Taffeta, Zephyr" },
+      { label: "Mid Rise", value: "6 levels" },
+      { label: "High Rise", value: "18 levels" },
+      { label: "Pathways", value: "Pedestrian-friendly pathways" },
+      { label: "Outdoor Spaces", value: "Landscaped gardens and outdoor amenities" }
+    ]
+  },
+  viewHighlights: [
+    { title: "Virtual tour support", text: "Request approved Acacia Estates or Mulberry Place Phase 2 virtual tour materials from Luisa when available." },
+    { title: "Acacia Estates community setting", text: "Review the landscaped residential environment through approved project materials." },
+    { title: "Pedestrian-friendly residential environment", text: "Shared pathways and community spaces are part of the buyer review experience." },
+    { title: "Asian Tropical garden-style living", text: "The design direction supports nature, calmness, and everyday residential comfort." },
+    { title: "Taguig lifestyle access", text: "Compare access to Taguig, BGC, McKinley Hill, and nearby lifestyle destinations." }
+  ],
+  videoTourTitle: "Virtual Tour of Acacia Estates",
+  videoTourCopy: "Request a virtual tour link or online consultation schedule from Luisa when approved materials are available.",
+  videoTourNote: "Large videos are not loaded directly here so the website stays fast on mobile.",
+  amenities: ["Lap Pool", "Kiddie Pool", "Swimming Pools", "Picnic Area", "Landscaped Garden", "Barbecue Areas", "Jogging Path", "Entrance Gate", "Roofdeck", "Sky Promenade", "Sky Patio", "Sky Lounge", "Fitness Center", "Children's Play Area", "Function Room", "Store", "Laundry Station"],
+  amenityGroups: [
+    { title: "Pools and Water Amenities", items: ["Lap Pool", "Kiddie Pool", "Swimming Pools"] },
+    { title: "Outdoor and Garden Spaces", items: ["Picnic Area", "Landscaped Garden", "Barbecue Areas", "Jogging Path", "Entrance Gate"] },
+    { title: "Sky and Elevated Spaces", items: ["Roofdeck", "Sky Promenade", "Sky Patio", "Sky Lounge"] },
+    { title: "Fitness, Play, and Community", items: ["Fitness Center", "Children's Play Area", "Function Room", "Communal Spaces"] },
+    { title: "Daily Convenience", items: ["Store", "Laundry Station"] }
+  ],
+  otherAmenities: ["Amenities are based on the reference snapshot and must be confirmed with the latest official project materials."],
+  nearbyLandmarks: ["McKinley Hill", "St. Luke's BGC", "International School Manila", "SM Aura", "NAIA 3"],
+  siteProgressStatus: "Phase and building readiness details should be confirmed through official DMCI channels or Luisa before reservation.",
+  masterPlanNotes: "Master plan visuals, site development plans, floor plan images, and building placement can be added once approved Mulberry Place 2 assets are available.",
+  buildings: [
+    { name: "Paisley", developmentType: "Mid Rise", levels: ["October 2026 target turnover", "6 levels"], features: ["Building details for confirmation"] },
+    { name: "Shantung", developmentType: "High Rise", levels: ["June 2027 target turnover", "18 levels"], features: ["Building details for confirmation"] },
+    { name: "Taffeta", developmentType: "High Rise", levels: ["August 2028 target turnover", "18 levels"], features: ["Building details for confirmation"] },
+    { name: "Zephyr", developmentType: "Mid Rise", levels: ["October 2028 target turnover", "6 levels"], features: ["Building details for confirmation"] }
+  ],
+  unitInventoryPreview: [
+    { type: "2BR", floorArea: "57.50 - 73.00 sqm", indicativeRange: "PHP 8.9M-PHP 11.5M reference range", status: "Ask for latest availability" },
+    { type: "3BR", floorArea: "78.50 - 120.00 sqm", indicativeRange: "PHP 12.1M-PHP 19.6M reference range", status: "Ask for latest availability" },
+    { type: "4BR", floorArea: "144.00 - 152.00 sqm", indicativeRange: "PHP 23.7M-PHP 26.0M reference range", status: "Ask for latest availability" }
+  ],
+  unitSections: [
+    { title: "2 Bedroom Units", description: "The two-bedroom units at Mulberry Place Phase 2 offer practical layouts with enough space for small families, couples, or professionals. Units are designed for comfort, usability, and everyday convenience.", layouts: ["Two Bedroom F", "Two Bedroom A", "Two Bedroom E", "Two Bedroom C"], rows: [
+      { layout: "2BR", floorArea: "57.50 sqm", status: "Available", priceRange: "PHP 8.9M - PHP 9.2M", monthlyDp: "12% DP: PHP 20.8k - PHP 21.5k/mo" },
+      { layout: "2BR", floorArea: "60.00 sqm", status: "Few left", priceRange: "PHP 9.8M - PHP 10.1M", monthlyDp: "12% DP: PHP 22.8k - PHP 23.7k/mo" },
+      { layout: "2BR", floorArea: "64.50 sqm", status: "Few left", priceRange: "PHP 9.4M - PHP 9.5M", monthlyDp: "12% DP: PHP 21.9k - PHP 22.2k/mo" },
+      { layout: "2BR", floorArea: "65.00 sqm", status: "Limited", priceRange: "PHP 9.8M - PHP 10.1M", monthlyDp: "12% DP: PHP 23.0k - PHP 23.7k/mo" },
+      { layout: "2BR", floorArea: "67.00 sqm", status: "Available", priceRange: "PHP 9.8M - PHP 11.4M", monthlyDp: "12% DP: PHP 22.9k - PHP 26.7k/mo" },
+      { layout: "2BR", floorArea: "69.00 sqm", status: "Available", priceRange: "PHP 9.8M - PHP 11.2M", monthlyDp: "12% DP: PHP 23.0k - PHP 26.3k/mo" },
+      { layout: "2BR", floorArea: "73.00 sqm", status: "Available", priceRange: "PHP 10.3M - PHP 11.5M", monthlyDp: "12% DP: PHP 24.2k - PHP 27.1k/mo" }
+    ] },
+    { title: "3 Bedroom Units", description: "Three-bedroom units provide larger living areas for growing families or buyers who need extra room. Layouts are designed with practical storage, daily comfort, and family use in mind.", layouts: ["3 Bedroom C", "3 Bedroom B", "3 Bedroom D", "3 Bedroom C"], rows: [
+      { layout: "3BR", floorArea: "78.50 sqm", status: "Few left", priceRange: "PHP 12.8M", monthlyDp: "12% DP: PHP 30.2k/mo" },
+      { layout: "3BR", floorArea: "81.00 sqm", status: "Few left", priceRange: "PHP 12.9M", monthlyDp: "12% DP: PHP 30.3k/mo" },
+      { layout: "3BR", floorArea: "85.00 sqm", status: "Available", priceRange: "PHP 12.1M - PHP 13.7M", monthlyDp: "12% DP: PHP 28.5k - PHP 32.3k/mo" },
+      { layout: "3BR", floorArea: "101.50 sqm", status: "Few left", priceRange: "PHP 15.5M - PHP 16.4M", monthlyDp: "12% DP: PHP 36.6k - PHP 38.9k/mo" },
+      { layout: "3BR", floorArea: "115.00 sqm", status: "Few left", priceRange: "PHP 18.5M - PHP 18.6M", monthlyDp: "12% DP: PHP 43.9k - PHP 44.1k/mo" },
+      { layout: "3BR", floorArea: "118.00 sqm", status: "Few left", priceRange: "PHP 18.2M - PHP 18.6M", monthlyDp: "12% DP: PHP 43.0k - PHP 44.1k/mo" },
+      { layout: "3BR", floorArea: "120.00 sqm", status: "Few left", priceRange: "PHP 19.5M - PHP 19.6M", monthlyDp: "12% DP: PHP 46.2k - PHP 46.5k/mo" }
+    ] },
+    { title: "4 Bedroom Units", description: "Four-bedroom units offer more expansive living spaces for larger families or buyers looking for additional comfort, privacy, and flexibility. These layouts may include multiple bathrooms and private balcony features, subject to final unit details.", layouts: ["4 Bedroom A", "4 Bedroom C"], rows: [
+      { layout: "4BR", floorArea: "144.00 sqm", status: "Few left", priceRange: "PHP 23.7M - PHP 23.9M", monthlyDp: "12% DP: PHP 56.4k - PHP 56.7k/mo" },
+      { layout: "4BR", floorArea: "152.00 sqm", status: "Few left", priceRange: "PHP 24.9M - PHP 26.0M", monthlyDp: "12% DP: PHP 59.1k - PHP 61.7k/mo" }
+    ] }
+  ],
+  floorPlans: [
+    { title: "Floor Plans at Mulberry Place Phase 2", text: "Mulberry Place Phase 2 incorporates floor plans that use DMCI Homes' Lumiventt technology to support natural lighting and ventilation throughout each building. Floor plan images, unit cuts, building assignment, technical details, and deliverables must be confirmed with the latest official project materials." },
+    { title: "Paisley Building Floor Plan", text: "Ask Luisa for the latest official layout sheet." },
+    { title: "Shantung Building Floor Plan", text: "Ask Luisa for the latest official layout sheet." },
+    { title: "Taffeta Building Floor Plan", text: "Ask Luisa for the latest official layout sheet." },
+    { title: "Zephyr Building Floor Plan", text: "Ask Luisa for the latest official layout sheet." }
+  ],
+  paymentTerms: {
+    title: "Computation and Payment Guide",
+    text: "Mulberry Place Phase 2 offers flexible payment terms for buyers comparing ownership options. The regular payment scheme may require a 30% down payment, while promotional terms may allow lower down payment options such as 12% or 15%, subject to current developer promos. The remaining balance may be settled through bank financing or in-house financing options. Terms, promos, discounts, closing fees, monthly payments, financing, and availability must be confirmed with Luisa before deciding.",
+    rfoSchedule: [
+      { label: "Paisley", value: "October 2026" },
+      { label: "Shantung", value: "June 2027" },
+      { label: "Taffeta", value: "August 2028" },
+      { label: "Zephyr", value: "October 2028" }
+    ],
+    importantNotes: ["Monthly DP ranges are guide values from the reference snapshot and may vary by building, unit, term, promo, and current availability.", "Request the latest computation before comparing units or preparing reservation.", "Promos and payment terms may change without prior notice."],
+    sampleComputation: [
+      { label: "Unit", value: "C-Paisley 611" },
+      { label: "Type", value: "2BR" },
+      { label: "Size", value: "57.50 sqm" },
+      { label: "List Price", value: "PHP 8,924,000.00" },
+      { label: "RFO Date", value: "Oct 2026" },
+      { label: "Selected Downpayment", value: "12%" },
+      { label: "Number of Months to Pay", value: "36 months" },
+      { label: "Financing", value: "12% DP, 88% Bank Financing" },
+      { label: "Special Discount", value: "1.0% / PHP 89,240.00" },
+      { label: "Net", value: "PHP 8,834,760.00" },
+      { label: "Regular Discount", value: "0.0% / PHP 0.00" },
+      { label: "Additional Discount", value: "0.0% / PHP 0.00" }
+    ],
+    contractBreakdown: [
+      { label: "Total Contract Price", value: "PHP 8,834,760.00" },
+      { label: "Closing Fee", value: "10.5% / PHP 927,649.80" },
+      { label: "Total with Closing Fee", value: "PHP 9,762,409.80" },
+      { label: "Downpayment", value: "12% / PHP 1,060,171.20" },
+      { label: "Less Reservation Fee", value: "PHP 30,000.00" },
+      { label: "Net Downpayment", value: "PHP 1,030,171.20" },
+      { label: "Monthly DP", value: "36 months / PHP 28,615.87/mo" },
+      { label: "Balance", value: "88% / PHP 7,774,588.80" },
+      { label: "Closing Fee", value: "PHP 927,649.80" },
+      { label: "Total Balance + Closing Fee", value: "PHP 8,702,238.60" }
+    ],
+    monthlyAmortization: [
+      { label: "10 years | 7.0%", value: "PHP 101,040.37/month" },
+      { label: "15 years | 7.0%", value: "PHP 78,218.18/month" },
+      { label: "20 years | 7.0%", value: "PHP 67,468.36/month" }
+    ],
+    promoReference: "Sample computation only. Prices, discounts, rates, closing fees, monthly amortization, promos, building turnover, and availability may change. Request the latest computation from Luisa before deciding.",
+    promoCards: [
+      { title: "12% DP Promo", items: ["Down Payment Promo: 12% DP", "Special Discount: 1.0% discount on DP Promo Term", "Flexible Down Payment: 36 fixed months", "Promo Ends: July 31, 2026", "Scope: All Units"] },
+      { title: "12% DP Promo - Taffeta and Zephyr", items: ["Down Payment Promo: 12% DP", "Flexible Down Payment: 50 fixed months", "Promo Ends: July 31, 2026", "Scope: Building Taffeta and Building Zephyr"] },
+      { title: "15% DP Promo", items: ["Down Payment Promo: 15% DP", "Flexible Down Payment: 50 fixed months", "Promo Ends: July 31, 2026", "Scope: Building Taffeta and Building Zephyr"] }
+    ],
+    sampleAvailableComputations: [
+      { type: "3BR", size: "120.00 sqm", price: "PHP 19,489,000", rfo: "Oct 2026", note: "HomeReady: Not applicable" },
+      { type: "2BR", size: "60.00 sqm", price: "PHP 10,124,000", rfo: "Oct 2026", note: "HomeReady: Not applicable" },
+      { type: "3BR", size: "120.00 sqm", price: "PHP 19,637,000", rfo: "Oct 2026", note: "HomeReady: Not applicable" },
+      { type: "3BR", size: "115.00 sqm", price: "PHP 18,549,000", rfo: "Oct 2026", note: "HomeReady: Not applicable" },
+      { type: "3BR", size: "115.00 sqm", price: "PHP 18,579,000", rfo: "Oct 2026", note: "HomeReady: Not applicable" }
+    ]
+  },
+  unitHoldingPortal: {
+    title: "Unit Holding Portal for Mulberry Place Phase 2",
+    text: "Mulberry Place Phase 2 may offer an online unit holding portal that allows prospective buyers to temporarily hold a preferred unit before making a final decision, subject to current availability and holding rules. The reference process allows clients to register and hold a unit for free, giving time to decide without immediate commitment.",
+    steps: ["Register through the current unit holding process if available.", "Select preferred building, unit type, size, and budget range.", "Ask Luisa to confirm current availability and holding rules.", "Request latest computation before proceeding.", "Proceed only through accepted reservation channels.", "Unit allocation may follow a systematic, first-come, first-served process, subject to latest rules."]
+  },
+  reservationRequirements: [
+    "Online Client Registration: Begin by registering online to access the unit holding and reservation portals.",
+    "Valid IDs: Submit copies of government-issued identification to confirm identity.",
+    "Philippine TIN Number: Prepare Tax Identification Number because it is required for the reservation process.",
+    "Online Reservation Agreement Form: Complete and submit the digital agreement form detailing the reservation terms and conditions.",
+    "Reservation Fee: PHP 30,000 for the residential unit.",
+    "Parking Reservation Fee: PHP 10,000 for parking, if applicable.",
+    "Payment Channels: Payment may be available through online payment gateway using credit card or BPI Online Banking, subject to latest confirmation.",
+    "Proof of Billing Address: Proof of billing address will be required after the initial reservation as part of ongoing requirements."
+  ],
+  galleryLabels: ["Project Perspective", "Acacia Estates Community", "Site Development Plan", "Roofdeck / Sky Lounge", "Pool and Play Area", "Landscaped Garden", "Floor Plan Preview"],
+  newsMedia: [
+    { title: "Project presentation materials", label: "Request Mulberry Place 2 presentation from Luisa", url: "" },
+    { title: "Computation and promo references", label: "Ask Luisa for the latest official computation sheet", url: "" }
+  ],
+  videoTourUrl: ""
+};
+
 const valeronTowerDetails = {
   contentLevel: "rich",
   assetStatus: "official-assets-needed",
@@ -1292,7 +1524,9 @@ export const projects = baseProjects.map(([slug, name, location, city, status, t
         ? { ...base, ...valeronTowerDetails }
         : slug === "solmera-coast"
           ? { ...base, ...solmeraCoastDetails }
-          : base;
+          : slug === "mulberry-place-2"
+            ? { ...base, ...mulberryPlace2Details }
+            : base;
   return withProjectFallbacks({
     ...project,
     nearbyProperties: baseProjects
@@ -1337,7 +1571,7 @@ function withProjectFallbacks(project) {
   };
 }
 
-export const statuses = ["RFO", "Preselling", "Coming Soon", "New", "Featured"];
-export const unitTypes = ["Studio", "1BR", "2BR", "3BR", "House & Lot", "Lot", "Parking"];
-export const propertyTypes = ["High-rise Condo", "Mid-rise Condo", "Leisure Residence", "House & Lot", "Lot"];
+export const statuses = ["RFO", "Preselling", "RFO / Preselling Phase 2", "Coming Soon", "New", "Featured"];
+export const unitTypes = ["Studio", "1BR", "2BR", "3BR", "4BR", "House & Lot", "Lot", "Parking"];
+export const propertyTypes = ["High-rise Condo", "Mid-rise Condo", "Mid Rise and High Rise Condominiums", "Leisure Residence", "House & Lot", "Lot"];
 export const purposes = ["Own Use", "Investment", "Rental", "OFW Friendly", "Family"];
