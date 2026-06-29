@@ -173,8 +173,8 @@ function RichProjectSections({ project }) {
         </div>
       </DetailSection>
 
-      <DetailSection id="pricing" eyebrow="Reference Snapshot" title="Indicative Price and Unit Summary">
-        <p className="reference-note">Official reference snapshot only. This is not live pricing or guaranteed availability.</p>
+      <DetailSection id="pricing" eyebrow="Price Guide" title="Indicative Price and Unit Summary">
+        <p className="reference-note">For buyer guidance only. This is not live pricing or guaranteed availability.</p>
         <div className="pricing-card-grid">
           {project.summaryPricing.map((item) => (
             <article className="pricing-card" key={item.type}>
@@ -549,7 +549,7 @@ function VideoTourBlock({ project }) {
 function ReferenceNotice() {
   return (
     <div className="reference-warning">
-      <strong>Reference snapshot only</strong>
+      <strong>Reference guide only</strong>
       <span>Prices, unit availability, promos, payment terms, unit details, and turnover schedules are subject to final confirmation. Request the latest computation from Luisa before making decisions.</span>
     </div>
   );

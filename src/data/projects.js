@@ -74,7 +74,7 @@ const kaleaHeightsDetails = {
   address: "Good Shepherd Road, Banawa Brgy. Guadalupe, Cebu City",
   unitTypes: ["1BR", "2BR", "3BR", "Tandem Units"],
   priceRangeLabel: "PHP 5.613M - PHP 13.426M",
-  priceSourceNote: "Official reference snapshot only. Request latest computation for updated pricing and availability.",
+  priceSourceNote: "Reference guide only. Request the latest computation for updated pricing and availability.",
   sourceUrl: "https://www.dmcihomes.com/kalea-heights",
   lastVerified: "For confirmation",
   targetRfo: "September 2029",
@@ -82,7 +82,7 @@ const kaleaHeightsDetails = {
     "Kalea Heights is a resort-inspired high-rise condominium community in Banawa, Cebu City. This page is prepared as Luisa Corral's buyer assistance guide so interested buyers can review the project direction, unit options, payment references, and next steps before requesting the latest official computation.",
   introParagraphs: [
     "Kalea Heights is positioned for buyers who want Cebu City access with a more relaxed, resort-style residential setting. It is useful for end-use buyers, families, OFWs, and investors comparing preselling opportunities in Cebu.",
-    "All pricing, unit availability, promos, payment terms, and turnover schedules shown here are reference snapshots only. Buyers should request the latest computation and confirmed availability from Luisa before making decisions."
+    "All pricing, unit availability, promos, payment terms, and turnover schedules shown here are for buyer guidance only. Buyers should request the latest computation and confirmed availability from Luisa before making decisions."
   ],
   projectFacts: [
     { label: "Project", value: "Kalea Heights" },
@@ -94,7 +94,7 @@ const kaleaHeightsDetails = {
     { label: "Architectural Theme", value: "Modern Tropical" },
     { label: "Unit Types", value: "1BR, 2BR, 3BR, Tandem Units" },
     { label: "Target RFO", value: "September 2029" },
-    { label: "Status", value: "Preselling reference snapshot" }
+    { label: "Status", value: "Preselling details for confirmation" }
   ],
   summaryPricing: [
     { type: "1BR", floorArea: "Approx. 29.5-33.5 sqm", range: "PHP 5.613M - PHP 6.591M", note: "Reference range only" },
@@ -395,7 +395,7 @@ const kaleaHeightsDetails = {
     ],
     sampleComputation: [
       { label: "Sample Unit", value: "1BR reference unit" },
-      { label: "Reference Price", value: "From PHP 5.613M snapshot" },
+      { label: "Reference Price", value: "From PHP 5.613M guide" },
       { label: "Computation Type", value: "Request official computation" },
       { label: "Availability", value: "Subject to confirmation" }
     ],
