@@ -120,6 +120,48 @@ input:focus, select:focus, textarea:focus { border-color: var(--gold); box-shado
 .listing-hero-card p, .cta-strip p { margin: 8px 0 14px; }
 .results-bar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin: 18px 0; padding: 14px 16px; border-radius: 10px; background: var(--navy); color: var(--white); }
 .results-bar span { color: rgba(255,255,255,0.74); font-size: 0.9rem; }
+.pagination-summary {
+  margin: -8px 0 18px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 28px 0 8px;
+}
+.pagination button {
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid rgba(15, 39, 66, 0.14);
+  border-radius: 999px;
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--navy);
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(15, 39, 66, 0.07);
+  transition: transform 0.16s ease, background 0.16s ease, border-color 0.16s ease, opacity 0.16s ease;
+}
+.pagination button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: rgba(201, 162, 74, 0.55);
+  background: #fffaf0;
+}
+.pagination button.active {
+  background: linear-gradient(135deg, var(--navy), #173b60);
+  border-color: var(--navy);
+  color: var(--white);
+}
+.pagination button:disabled {
+  cursor: not-allowed;
+  opacity: 0.46;
+  box-shadow: none;
+}
 .cta-strip { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: 28px; }
 
 .project-detail-hero { padding: 112px 0 52px; background: radial-gradient(circle at 84% 4%, rgba(201,162,74,0.22), transparent 27%), linear-gradient(180deg, var(--ivory), var(--white)); }
