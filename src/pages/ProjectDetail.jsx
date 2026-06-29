@@ -180,7 +180,9 @@ function RichProjectSections({ project }) {
             <article className="pricing-card" key={item.type}>
               <span>{item.type}</span>
               <strong>{item.range}</strong>
-              <p>{item.floorArea}</p>
+              <p>{item.floorArea || item.size}</p>
+              {item.monthlyDp && <p>{item.monthlyDp}</p>}
+              {item.status && <small>{item.status}</small>}
               <small>{item.note}</small>
             </article>
           ))}
@@ -267,14 +269,28 @@ function RichProjectSections({ project }) {
             <h3>Monthly Payment Guide</h3>
             {project.paymentTerms.monthlyAmortization.map((item) => <Spec key={item.label} label={item.label} value={item.value} />)}
           </article>
+          {project.paymentTerms.contractBreakdown && (
+            <article className="payment-card payment-card-wide">
+              <h3>Contract Price and Financing</h3>
+              {project.paymentTerms.contractBreakdown.map((item) => <Spec key={item.label} label={item.label} value={item.value} />)}
+            </article>
+          )}
           <article className="payment-card">
             <h3>Important Notes</h3>
             <ul>{project.paymentTerms.importantNotes.map((item) => <li key={item}>{item}</li>)}</ul>
           </article>
         </div>
-        <div className="sample-computation-list">
-          {project.paymentTerms.sampleAvailableComputations.map((item) => <span key={item}>{item}</span>)}
-        </div>
+        {project.paymentTerms.promoCards && (
+          <div className="promo-card-grid">
+            {project.paymentTerms.promoCards.map((promo) => (
+              <article className="promo-card" key={promo.title}>
+                <h3>{promo.title}</h3>
+                <ul>{promo.items.map((item) => <li key={item}>{item}</li>)}</ul>
+              </article>
+            ))}
+          </div>
+        )}
+        <SampleComputationList items={project.paymentTerms.sampleAvailableComputations} />
         <p className="safety-note">{project.paymentTerms.promoReference}</p>
       </DetailSection>
 
@@ -443,7 +459,37 @@ function UnitSection({ section }) {
           </tbody>
         </table>
       </div>
+      <div className="unit-section-cta">
+        <Button to="/request-computation" variant="secondary">Request latest computation for this unit type</Button>
+      </div>
     </article>
+  );
+}
+
+function SampleComputationList({ items = [] }) {
+  if (!items.length) return null;
+  const hasObjects = typeof items[0] === "object";
+
+  if (!hasObjects) {
+    return (
+      <div className="sample-computation-list">
+        {items.map((item) => <span key={item}>{item}</span>)}
+      </div>
+    );
+  }
+
+  return (
+    <div className="sample-computation-card-grid">
+      {items.map((item) => (
+        <article className="sample-computation-card" key={`${item.type}-${item.size}-${item.price}`}>
+          <strong>{item.type}</strong>
+          <span>{item.size}</span>
+          <b>{item.price}</b>
+          <small>{item.rfo}</small>
+          <small>{item.note}</small>
+        </article>
+      ))}
+    </div>
   );
 }
 

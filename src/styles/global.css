@@ -2079,6 +2079,10 @@ textarea {
   padding: 16px;
 }
 
+.payment-card-wide {
+  grid-column: span 2;
+}
+
 .payment-card div {
   display: grid;
   gap: 4px;
@@ -2089,6 +2093,60 @@ textarea {
 
 .sample-computation-list {
   margin-top: 16px;
+}
+
+.promo-card-grid,
+.sample-computation-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.promo-card,
+.sample-computation-card {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid rgba(16, 51, 84, 0.1);
+  border-radius: 16px;
+  background: linear-gradient(180deg, #ffffff, #f7fbfd);
+  box-shadow: 0 12px 30px rgba(14, 39, 66, 0.045);
+}
+
+.promo-card h3 {
+  margin: 0;
+  color: var(--navy);
+  font-size: 1.05rem;
+}
+
+.promo-card ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.sample-computation-card strong {
+  color: var(--navy);
+  font-size: 1rem;
+}
+
+.sample-computation-card span,
+.sample-computation-card small {
+  color: var(--muted);
+  font-weight: 750;
+}
+
+.sample-computation-card b {
+  color: var(--navy);
+  font-size: 1.05rem;
+}
+
+.unit-section-cta {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px;
 }
 
 .reservation-grid {
@@ -2490,6 +2548,32 @@ textarea {
     grid-column: span 2;
   }
 
+  .promo-card-grid,
+  .sample-computation-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  .promo-card,
+  .sample-computation-card {
+    padding: 12px;
+  }
+
+  .promo-card li,
+  .sample-computation-card span,
+  .sample-computation-card small {
+    font-size: 0.78rem;
+    line-height: 1.35;
+  }
+
+  .unit-section-cta {
+    justify-content: stretch;
+  }
+
+  .unit-section-cta .btn {
+    width: 100%;
+  }
+
   .video-tour-card,
   .unit-holding-card,
   .reservation-checklist {
@@ -2545,6 +2629,11 @@ textarea {
   .pricing-card strong {
     font-size: 0.82rem;
     overflow-wrap: anywhere;
+  }
+
+  .promo-card-grid,
+  .sample-computation-card-grid {
+    grid-template-columns: 1fr;
   }
 
   .floor-plan-card .image-placeholder,
