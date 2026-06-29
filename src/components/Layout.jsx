@@ -106,7 +106,7 @@ function MobileStickyCTA() {
     <nav className="mobile-sticky-cta" aria-label="Quick actions">
       <a href={`tel:${contact.phone.replace(/\s/g, "")}`}>Call</a>
       <a href={contact.messenger}>Message</a>
-      <NavLink to="/request-computation">Compute</NavLink>
+      <NavLink to="/request-computation">Computation</NavLink>
       <NavLink to="/book-viewing">Viewing</NavLink>
     </nav>
   );

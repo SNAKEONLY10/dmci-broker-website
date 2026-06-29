@@ -34,7 +34,9 @@ const richSectionLinks = [
   ["Units", "unit-options"],
   ["Floor Plans", "floor-plans"],
   ["Payment", "payment"],
+  ["Unit Holding", "unit-holding"],
   ["Reservation", "reservation"],
+  ["Gallery", "gallery"],
   ["Contact", "contact-project"]
 ];
 
@@ -266,16 +268,16 @@ function RichProjectSections({ project }) {
         <div className="payment-grid">
           <article className="payment-card">
             <h3>Computation Guide</h3>
-            {project.paymentTerms.sampleComputation.map((item) => <Spec key={item.label} label={item.label} value={item.value} />)}
+            {project.paymentTerms.sampleComputation.map((item, index) => <Spec key={`${item.label}-${index}`} label={item.label} value={item.value} />)}
           </article>
           <article className="payment-card">
             <h3>Monthly Payment Guide</h3>
-            {project.paymentTerms.monthlyAmortization.map((item) => <Spec key={item.label} label={item.label} value={item.value} />)}
+            {project.paymentTerms.monthlyAmortization.map((item, index) => <Spec key={`${item.label}-${index}`} label={item.label} value={item.value} />)}
           </article>
           {project.paymentTerms.contractBreakdown && (
             <article className="payment-card payment-card-wide">
               <h3>Contract Price and Financing</h3>
-              {project.paymentTerms.contractBreakdown.map((item) => <Spec key={item.label} label={item.label} value={item.value} />)}
+              {project.paymentTerms.contractBreakdown.map((item, index) => <Spec key={`${item.label}-${index}`} label={item.label} value={item.value} />)}
             </article>
           )}
           <article className="payment-card">
@@ -297,16 +299,32 @@ function RichProjectSections({ project }) {
         <p className="safety-note">{project.paymentTerms.promoReference}</p>
       </DetailSection>
 
-      <DetailSection id="reservation" eyebrow="Reservation" title="Unit Holding and Reservation Requirements">
+      <DetailSection id="unit-holding" eyebrow="Unit Holding" title={project.unitHoldingPortal.title}>
         <div className="reservation-grid">
           <article className="unit-holding-card">
-            <h3>{project.unitHoldingPortal.title}</h3>
             <p>{project.unitHoldingPortal.text}</p>
             <ol>{project.unitHoldingPortal.steps.map((step) => <li key={step}>{step}</li>)}</ol>
+            {project.unitHoldingPortal.notes?.length ? <ul>{project.unitHoldingPortal.notes.map((note) => <li key={note}>{note}</li>)}</ul> : null}
+            <Button to="/availability" variant="secondary">Ask Luisa About Unit Holding</Button>
           </article>
+          <article className="unit-holding-card">
+            <h3>Buyer reminder</h3>
+            <p>Holding rules, unit availability, and reservation windows can change. Ask Luisa to confirm the current process before proceeding.</p>
+            <Button to="/contact" variant="secondary">Message Luisa</Button>
+          </article>
+        </div>
+      </DetailSection>
+
+      <DetailSection id="reservation" eyebrow="Reservation" title="Reservation Requirements">
+        <div className="reservation-grid">
           <article className="reservation-checklist">
             <h3>Checklist to Prepare</h3>
             <ul>{project.reservationRequirements.map((item) => <li key={item}>{item}</li>)}</ul>
+            <Button to="/contact" variant="secondary">Ask for Reservation Guidance</Button>
+          </article>
+          <article className="unit-holding-card">
+            <h3>Before paying reservation</h3>
+            <p>Confirm computation, availability, payment method, and official requirements with Luisa before making any reservation decision.</p>
           </article>
         </div>
       </DetailSection>
@@ -449,8 +467,8 @@ function UnitSection({ section }) {
             </tr>
           </thead>
           <tbody>
-            {section.rows.map((row) => (
-              <tr key={`${section.title}-${row.layout}`}>
+            {section.rows.map((row, index) => (
+              <tr key={`${section.title}-${row.layout}-${row.floorArea}-${index}`}>
                 <td data-label="Layout">{row.layout}</td>
                 <td data-label="Floor Area">{row.floorArea}</td>
                 <td data-label="Guide Range">{row.priceRange}</td>
@@ -531,7 +549,7 @@ function Gallery({ project }) {
   const [zoomImage, setZoomImage] = useState(null);
   const images = project.gallery.map((src, index) => ({
     src,
-    label: `${project.name} gallery ${index + 1}`,
+    label: project.galleryLabels?.[index] || `${project.name} gallery ${index + 1}`,
     variant: "gallery"
   }));
 
@@ -580,8 +598,9 @@ function VideoTourBlock({ project }) {
     <div className="video-tour-card">
       <ImagePlaceholder label={`${project.name} virtual tour`} compact variant="gallery" />
       <div>
-        <strong>Virtual tour link available upon request</strong>
-        <p>Large videos are not loaded directly here so the website stays fast on mobile. Ask Luisa for the latest approved tour link or project presentation.</p>
+        <strong>{project.videoTourTitle || "Virtual tour link available upon request"}</strong>
+        <p>{project.videoTourCopy || "Large videos are not loaded directly here so the website stays fast on mobile. Ask Luisa for the latest approved tour link or project presentation."}</p>
+        {project.videoTourNote && <p className="safety-note">{project.videoTourNote}</p>}
         {project.videoTourUrl ? (
           <Button href={project.videoTourUrl} target="_blank" rel="noreferrer" variant="secondary">Open Virtual Tour</Button>
         ) : (

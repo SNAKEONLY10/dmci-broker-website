@@ -440,6 +440,254 @@ const kaleaHeightsDetails = {
   ]
 };
 
+const valeronTowerDetails = {
+  contentLevel: "rich",
+  assetStatus: "official-assets-needed",
+  verificationStatus: "reference-only",
+  tagline: "Modern artisanal high-rise living at the C-5 Ortigas Corridor.",
+  city: "Pasig City",
+  location: "Pasig",
+  status: "Preselling",
+  propertyType: "High-Rise Condominium",
+  developmentType: "High-Rise Condominium",
+  landArea: "8,390 sqm",
+  architecturalTheme: "Modern Artisanal",
+  address: "C-5 cor. P.E. Antonio St., Brgy. Ugong, Pasig City",
+  turnoverYear: "2029",
+  targetRfo: "July 2029",
+  unitTypes: ["Studio", "1BR", "2BR", "3BR", "Tandem"],
+  priceRangeLabel: "PHP 7.0M - PHP 16.8M reference range",
+  priceSourceNote: "Reference snapshot only. Prices, promos, terms, and availability must be confirmed with Luisa before deciding.",
+  sourceUrl: "",
+  lastVerified: "Reference snapshot for confirmation",
+  overview:
+    "Valeron Tower by DMCI Homes is located at C-5 cor. P.E. Antonio St., Brgy. Ugong, Pasig City. Positioned at the gateway of the C-5 Ortigas Corridor, it is a high-rise condominium with a Modern Artisanal theme for buyers who want Pasig and Ortigas access, city convenience, and a more refined residential setting.",
+  introParagraphs: [
+    "Valeron Tower offers Studio, 1BR, 2BR, 3BR, and Tandem unit options for modern urban living near Pasig, Ortigas, C-5, and nearby townships.",
+    "The project highlights resort-like amenities, sky-level spaces, landscaped shared areas, and a strong amenity and open-space ratio.",
+    "All pricing, unit availability, promos, payment terms, distances, and turnover details shown here are reference-only buyer assistance notes. Request the latest computation and confirmed availability from Luisa before deciding."
+  ],
+  projectFacts: [
+    { label: "Address", value: "C-5 cor. P.E. Antonio St., Brgy. Ugong, Pasig City" },
+    { label: "Developer", value: "DMCI Homes" },
+    { label: "Land Area", value: "8,390 sqm" },
+    { label: "Architectural Theme", value: "Modern Artisanal" },
+    { label: "Development Type", value: "High-Rise Condominium" },
+    { label: "Number of Storeys", value: "55 storeys including amenities, commercial spaces, and parking levels" },
+    { label: "Unit Types", value: "Studio, 1BR, 2BR, 3BR, Tandem" },
+    { label: "Amenity and Open Space Ratio", value: "76%" },
+    { label: "Turnover Date / RFO Date", value: "July 2029" }
+  ],
+  summaryPricing: [
+    { type: "Studio", floorArea: "32.50 - 38.50 sqm", range: "PHP 7.0M - PHP 8.8M", status: "Available in reference snapshot", monthlyDp: "15% DP: PHP 21.2k - PHP 27.0k/mo", note: "Ask Luisa for latest computation and availability." },
+    { type: "1BR", floorArea: "46.50 - 48.50 sqm", range: "PHP 8.9M - PHP 11.4M", status: "Available in reference snapshot", monthlyDp: "15% DP: PHP 27.3k - PHP 34.9k/mo", note: "Ask Luisa for latest computation and availability." },
+    { type: "2BR", floorArea: "59.00 - 91.00 sqm", range: "PHP 10.9M - PHP 16.2M", status: "Available in reference snapshot", monthlyDp: "15% DP: PHP 33.4k - PHP 50.0k/mo", note: "Ask Luisa for latest computation and availability." },
+    { type: "3BR", floorArea: "76.00 - 84.50 sqm", range: "PHP 13.7M - PHP 16.8M", status: "Available in reference snapshot", monthlyDp: "15% DP: PHP 42.3k - PHP 52.0k/mo", note: "Ask Luisa for latest computation and availability." }
+  ],
+  aboutLocation:
+    "Valeron Tower is located at the intersection of C-5 and P.E. Antonio St. in Brgy. Ugong, Pasig City, giving buyers access to major business areas, retail centers, schools, healthcare facilities, and nearby townships.",
+  locationDetails: {
+    title: "Discover the Prime Location of Valeron Tower",
+    text: "Valeron Tower is located at the intersection of C-5 and P.E. Antonio St. in Brgy. Ugong, Pasig City. Positioned at the gateway of the C-5 Ortigas Corridor, it offers access to major business areas, retail centers, schools, healthcare facilities, and nearby townships. Distances and travel times are guide estimates only and should be verified with current maps before site viewing or reservation.",
+    exactAddress: "C-5 cor. P.E. Antonio St., Brgy. Ugong, Pasig City"
+  },
+  nearbyDestinations: [
+    { group: "Educational Institutions", items: ["Reedley International School - 400 m, 5 mins", "University of Asia and the Pacific - 2.3 km, 8 mins"] },
+    { group: "Retail Establishments", items: ["SM Center Pasig - 250 m, 3 mins", "Ayala Malls the 30th - 1.9 km, 6 mins"] },
+    { group: "Healthcare Facilities", items: ["The Medical City - 1.7 km, 6 mins", "Pasig City General Hospital - 3.7 km, 10 mins"] },
+    { group: "Townships", items: ["Arcovia City - 450 m, 1 min", "Ortigas Center - 2.1 km, 9 mins"] }
+  ],
+  whyInvest: [
+    "C-5 Ortigas Corridor location for Pasig, Ortigas, and nearby township access",
+    "Modern Artisanal high-rise concept with resort-like amenities and sky-level spaces",
+    "Studio to tandem unit options for end-use, family, rental, or investment comparison",
+    "Broker-assisted computation, availability checking, viewing coordination, and reservation guidance through Luisa"
+  ],
+  highlights: [
+    "8,390 sqm land area",
+    "55-storey high-rise condominium",
+    "76% amenity and open-space ratio",
+    "Studio, 1BR, 2BR, 3BR, and Tandem unit options",
+    "Target RFO: July 2029"
+  ],
+  themeDescription:
+    "Modern Artisanal design gives Valeron Tower a refined city-residential character. Final design details, finishes, and technical drawings must be verified through current official project materials.",
+  siteDevelopment: {
+    title: "Valeron Tower: A Blueprint for Elevated Living",
+    text:
+      "Valeron Tower is planned as a high-rise residential development at the C-5 Ortigas Corridor, designed to balance city access with refined residential comfort. The site development plan includes ground floor development, amenity floor development, and roof deck development. Resort-like amenities, leisure pools, open lounges, sky lounges, landscaped areas, and shared lifestyle spaces are planned across different levels. Site development details, floor layouts, and technical drawings are reference-only until official project materials are reviewed.",
+    keyStats: [
+      { label: "Land Area", value: "8,390 sqm land area" },
+      { label: "Storeys", value: "55 storeys" },
+      { label: "Theme", value: "Modern Artisanal theme" },
+      { label: "Open Space", value: "76% amenity and open space ratio" },
+      { label: "Ground Level", value: "Ground Floor Development Plan" },
+      { label: "Amenity Level", value: "Amenity Floor Development Plan" },
+      { label: "Roof Deck", value: "Roof Deck Development Plan" }
+    ]
+  },
+  viewHighlights: [
+    { title: "360-degree virtual tour support", text: "Request an approved virtual tour link or online presentation schedule from Luisa when available." },
+    { title: "C-5 Ortigas Corridor location", text: "Review project fit for buyers prioritizing Pasig, Ortigas, C-5, and nearby township access." },
+    { title: "Modern Artisanal high-rise design", text: "A refined high-rise concept for buyers comparing premium city-residential options." },
+    { title: "Sky deck and sky promenade perspectives", text: "Sky-level amenities and roof deck areas should be reviewed using official project materials." },
+    { title: "Pasig and Ortigas urban living", text: "Suitable for buyers comparing city convenience, work access, and residential comfort." }
+  ],
+  videoTourTitle: "Discover Valeron Tower in 360 Degrees",
+  videoTourCopy: "Request a virtual tour link or online consultation schedule from Luisa when approved materials are available.",
+  videoTourNote: "Large videos are not loaded directly here so the website stays fast on mobile.",
+  amenities: ["Sky Deck", "Sky Deck Pool", "Sky Promenade", "Sky Lounge", "Leisure Pool", "Kiddie Pool", "Fitness Center", "Basketball Court", "Children's Play Area", "Reception Lobby"],
+  amenityGroups: [
+    { title: "Sky Deck and Roof Amenities", items: ["Sky Deck", "Sky Deck Pool", "Sky Promenade", "Sky Lounge"] },
+    { title: "Pools and Leisure", items: ["Leisure Pool", "Kiddie Pool", "Sky Deck Pool", "Open Lawn"] },
+    { title: "Fitness and Active Spaces", items: ["Fitness Center", "Basketball Court", "Children's Play Area"] },
+    { title: "Indoor and Social Spaces", items: ["7th Floor Open Lounge", "Reception Lobby", "Snack Bar"] },
+    { title: "Landscape and Shared Lifestyle Spaces", items: ["Lush Gardens", "Open Lounge Areas", "Resort-like shared amenities"] }
+  ],
+  otherAmenities: ["Amenities are based on the reference snapshot and must be confirmed with the latest official project materials."],
+  buildingFeatures: ["55 storeys including amenities, commercial spaces, and parking levels", "Ground floor development", "Amenity floor development", "Roof deck development"],
+  nearbyLandmarks: ["C-5", "P.E. Antonio St.", "SM Center Pasig", "Arcovia City", "Ortigas Center"],
+  siteProgressStatus: "Site progress information should be confirmed through official DMCI channels or Luisa.",
+  masterPlanNotes: "Ground floor, amenity floor, roof deck, and site development visuals can be added once approved Valeron Tower assets are available.",
+  buildings: [
+    { name: "Valeron Tower", developmentType: "High-Rise Condominium", levels: ["55 storeys including amenities, commercial spaces, and parking levels"], features: ["Modern Artisanal theme", "Commercial spaces", "Amenity levels", "Roof deck amenities"] }
+  ],
+  unitInventoryPreview: [
+    { type: "Studio", floorArea: "32.50 - 38.50 sqm", indicativeRange: "PHP 7.0M-PHP 8.8M reference range", status: "Ask for latest availability" },
+    { type: "1BR", floorArea: "46.50 - 48.50 sqm", indicativeRange: "PHP 8.9M-PHP 11.4M reference range", status: "Ask for latest availability" },
+    { type: "2BR", floorArea: "59.00 - 91.00 sqm", indicativeRange: "PHP 10.9M-PHP 16.2M reference range", status: "Ask for latest availability" },
+    { type: "3BR", floorArea: "76.00 - 84.50 sqm", indicativeRange: "PHP 13.7M-PHP 16.8M reference range", status: "Ask for latest availability" }
+  ],
+  unitSections: [
+    { title: "Studio Units", description: "Ideal for young professionals or singles, Studio units are designed with efficiency and style in mind, offering a smart living space that blends function with modern aesthetics.", layouts: ["STUDIO A - 32.5 sqm", "STUDIO B - 34.5 sqm"], rows: [
+      { layout: "STUDIO", floorArea: "32.50 sqm", status: "Available in reference snapshot", priceRange: "PHP 7.0M - PHP 8.8M", monthlyDp: "15% DP: PHP 21.2k - PHP 27.0k/mo" },
+      { layout: "STUDIO", floorArea: "34.50 sqm", status: "Few left", priceRange: "PHP 8.2M", monthlyDp: "15% DP: PHP 24.9k/mo" },
+      { layout: "STUDIO", floorArea: "38.50 sqm", status: "Few left", priceRange: "PHP 8.6M", monthlyDp: "15% DP: PHP 26.3k/mo" }
+    ] },
+    { title: "1-Bedroom Units", description: "Perfect for individuals or couples, 1-bedroom units offer more room with separate living and sleeping areas for comfortable city living.", layouts: ["1BR B - 46.5 sqm", "1BR C - 48.5 sqm", "1BR A - 53 sqm"], rows: [
+      { layout: "1BR", floorArea: "46.50 sqm", status: "Available in reference snapshot", priceRange: "PHP 8.9M - PHP 11.4M", monthlyDp: "15% DP: PHP 27.3k - PHP 34.9k/mo" },
+      { layout: "1BR", floorArea: "48.50 sqm", status: "Available in reference snapshot", priceRange: "PHP 9.4M - PHP 11.3M", monthlyDp: "15% DP: PHP 28.7k - PHP 34.8k/mo" }
+    ] },
+    { title: "2-Bedroom Units", description: "Suited for small families or professionals needing extra room, 2-bedroom units feature larger spaces designed for comfort, privacy, relaxation, and work-from-home flexibility.", layouts: ["2BR J - 59 sqm", "2BR Q - 61 sqm", "2BR C - 61.5 sqm", "2BR F - 63 sqm", "2BR A - 65.5 sqm", "2BR D - 65.5 sqm", "2BR M - 66.5 sqm", "2BR G - 67 sqm", "2BR I - 67 sqm", "2BR K - 67 sqm", "2BR N - 67.5 sqm", "2BR O - 67.5 sqm", "2BR S - 68.5 sqm", "2BR P - 69 sqm", "2BR R - 69.5 sqm", "2BR L - 77.5 sqm", "2BR B - 78 sqm", "2BR H - 82 sqm", "2BR T - 87 sqm", "2BR U - 91 sqm"], rows: [
+      { layout: "2BR", floorArea: "59.00 sqm", status: "Available in reference snapshot", priceRange: "PHP 11.1M - PHP 12.4M", monthlyDp: "15% DP: PHP 34.1k - PHP 38.0k/mo" },
+      { layout: "2BR", floorArea: "61.00 sqm", status: "Limited", priceRange: "PHP 11.4M - PHP 12.7M", monthlyDp: "15% DP: PHP 35.1k - PHP 39.0k/mo" },
+      { layout: "2BR", floorArea: "61.50 sqm", status: "Available in reference snapshot", priceRange: "PHP 11.1M - PHP 12.3M", monthlyDp: "15% DP: PHP 34.1k - PHP 37.7k/mo" },
+      { layout: "2BR", floorArea: "63.00 sqm", status: "Available in reference snapshot", priceRange: "PHP 10.9M - PHP 13.3M", monthlyDp: "15% DP: PHP 33.4k - PHP 40.8k/mo" },
+      { layout: "2BR", floorArea: "65.50 sqm", status: "Available in reference snapshot", priceRange: "PHP 11.1M - PHP 13.8M", monthlyDp: "15% DP: PHP 34.1k - PHP 42.5k/mo" },
+      { layout: "2BR", floorArea: "66.50 sqm", status: "Few left", priceRange: "PHP 11.5M - PHP 12.5M", monthlyDp: "15% DP: PHP 35.4k - PHP 38.4k/mo" },
+      { layout: "2BR", floorArea: "67.00 sqm", status: "Available in reference snapshot", priceRange: "PHP 11.2M - PHP 14.1M", monthlyDp: "15% DP: PHP 34.5k - PHP 43.3k/mo" },
+      { layout: "2BR", floorArea: "67.50 sqm", status: "Few left", priceRange: "PHP 12.2M - PHP 12.7M", monthlyDp: "15% DP: PHP 37.5k - PHP 39.2k/mo" },
+      { layout: "2BR", floorArea: "69.00 sqm", status: "Limited", priceRange: "PHP 11.9M - PHP 13.7M", monthlyDp: "15% DP: PHP 36.5k - PHP 42.0k/mo" },
+      { layout: "2BR", floorArea: "69.50 sqm", status: "Limited", priceRange: "PHP 11.8M - PHP 13.5M", monthlyDp: "15% DP: PHP 36.1k - PHP 41.6k/mo" },
+      { layout: "2BR", floorArea: "77.50 sqm", status: "Few left", priceRange: "PHP 14.0M", monthlyDp: "15% DP: PHP 43.2k/mo" },
+      { layout: "2BR", floorArea: "78.00 sqm", status: "Few left", priceRange: "PHP 13.9M - PHP 14.1M", monthlyDp: "15% DP: PHP 42.8k - PHP 43.4k/mo" },
+      { layout: "2BR", floorArea: "82.00 sqm", status: "Few left", priceRange: "PHP 14.5M", monthlyDp: "15% DP: PHP 44.6k/mo" },
+      { layout: "2BR", floorArea: "87.00 sqm", status: "Available in reference snapshot", priceRange: "PHP 15.5M - PHP 16.2M", monthlyDp: "15% DP: PHP 47.9k - PHP 50.0k/mo" },
+      { layout: "2BR", floorArea: "91.00 sqm", status: "Few left", priceRange: "PHP 16.1M - PHP 16.2M", monthlyDp: "15% DP: PHP 49.8k - PHP 50.0k/mo" }
+    ] },
+    { title: "3-Bedroom Units", description: "Designed for larger families or buyers who want additional space, 3-bedroom units provide more expansive living areas, extra bedrooms, and enhanced flexibility for long-term family living.", layouts: ["3BR B - 76 sqm", "3BR F - 78 sqm", "3BR C - 79.5 sqm", "3BR A - 82.5 sqm", "3BR G - 83 sqm", "3BR D - 84.5 sqm", "3BR E - 84.5 sqm", "3BR H - 84.5 sqm"], rows: [
+      { layout: "3BR", floorArea: "76.00 sqm", status: "Few left", priceRange: "PHP 14.1M - PHP 14.1M", monthlyDp: "15% DP: PHP 43.5k - PHP 43.6k/mo" },
+      { layout: "3BR", floorArea: "78.00 sqm", status: "Few left", priceRange: "PHP 13.7M - PHP 14.7M", monthlyDp: "15% DP: PHP 42.3k - PHP 45.2k/mo" },
+      { layout: "3BR", floorArea: "82.50 sqm", status: "Few left", priceRange: "PHP 14.3M - PHP 15.4M", monthlyDp: "15% DP: PHP 44.1k - PHP 47.6k/mo" },
+      { layout: "3BR", floorArea: "84.50 sqm", status: "Available in reference snapshot", priceRange: "PHP 14.1M - PHP 16.8M", monthlyDp: "15% DP: PHP 43.6k - PHP 52.0k/mo" }
+    ] },
+    { title: "Tandem Units", description: "For buyers requiring more space or planning a combined home-and-office setup, tandem units provide a larger and more flexible environment. Availability, layout combination, and final deliverables must be confirmed with Luisa.", layouts: ["Tandem layout combinations for confirmation"], rows: [
+      { layout: "Tandem", floorArea: "For confirmation", status: "Ask for latest availability", priceRange: "Request latest computation", monthlyDp: "Request latest computation" }
+    ] }
+  ],
+  floorPlans: [
+    { title: "Diverse Living Spaces at Valeron Tower", text: "Valeron Tower offers an extensive selection of floor plans designed to accommodate different lifestyles and preferences, from compact studios to larger family layouts. Floor plan images and technical details must be confirmed with the latest official project materials." },
+    { title: "7th Floor", text: "Floor plan preview can be added once approved official materials are selected." },
+    { title: "8th Floor", text: "Floor plan preview can be added once approved official materials are selected." },
+    { title: "9th / 10th Floor", text: "Floor plan preview can be added once approved official materials are selected." },
+    { title: "11th / 14th / 18th / 20th Floor", text: "Floor plan preview can be added once approved official materials are selected." },
+    { title: "15th Floor", text: "Floor plan preview can be added once approved official materials are selected." },
+    { title: "16th / 17th Floor", text: "Floor plan preview can be added once approved official materials are selected." },
+    { title: "21st / 33rd Floor", text: "Floor plan preview can be added once approved official materials are selected." },
+    { title: "22nd / 23rd / 34th / 35th Floor", text: "Floor plan preview can be added once approved official materials are selected." },
+    { title: "24th / 26th / 30th / 32nd / 36th / 38th / 42nd Floor", text: "Floor plan preview can be added once approved official materials are selected." },
+    { title: "27th / 39th Floor", text: "Floor plan preview can be added once approved official materials are selected." },
+    { title: "28th / 29th / 40th / 41st Floor", text: "Floor plan preview can be added once approved official materials are selected." },
+    { title: "43rd / 44th / 48th / 50th / 54th / PH Floor", text: "Floor plan preview can be added once approved official materials are selected." },
+    { title: "45th Floor", text: "Floor plan preview can be added once approved official materials are selected." },
+    { title: "46th / 47th Floor", text: "Floor plan preview can be added once approved official materials are selected." },
+    { title: "51st Floor", text: "Floor plan preview can be added once approved official materials are selected." },
+    { title: "52nd / 53rd Floor", text: "Floor plan preview can be added once approved official materials are selected." },
+    { title: "East Building Floor Plans", text: "Ask Luisa for the latest official East Building layout sheets." },
+    { title: "West Building Floor Plans", text: "Ask Luisa for the latest official West Building layout sheets." }
+  ],
+  paymentTerms: {
+    title: "Computation and Payment Guide",
+    text: "Valeron Tower offers standard payment terms designed to help buyers spread the down payment until the RFO date. The reference sample below shows a 30% down payment, deferred monthly until July 2029, with the remaining balance through bank financing. Computations, rates, discounts, closing fees, bank terms, and availability must be confirmed with Luisa before deciding.",
+    importantNotes: ["No promos available for this property in the reference snapshot.", "The summary cards show 15% DP guide ranges, while the detailed payment sample shows a standard 30% DP term.", "Guide ranges and actual terms must be confirmed before any reservation decision."],
+    sampleComputation: [
+      { label: "Unit", value: "C - Valeron West 1203B" },
+      { label: "Type", value: "STUDIO" },
+      { label: "Size", value: "32.50 sqm" },
+      { label: "List Price", value: "PHP 6,990,000.00" },
+      { label: "RFO Date", value: "Jul 2029" },
+      { label: "Selected Downpayment", value: "30%" },
+      { label: "Months to Pay", value: "36 months" },
+      { label: "Financing", value: "30% DP, 70% Bank Financing" },
+      { label: "Special Discount", value: "0.0% / PHP 0.00" },
+      { label: "Regular Discount", value: "4.0% / PHP 279,600.00" },
+      { label: "Net", value: "PHP 6,710,400.00" },
+      { label: "Additional Discount", value: "0% / PHP 0.00" }
+    ],
+    contractBreakdown: [
+      { label: "Total Contract Price", value: "PHP 6,710,400.00" },
+      { label: "Closing Fee", value: "10.5% / PHP 704,592.00" },
+      { label: "Total with Closing Fee", value: "PHP 7,414,992.00" },
+      { label: "Downpayment", value: "30% / PHP 2,013,120.00" },
+      { label: "Less Reservation Fee", value: "PHP 30,000.00" },
+      { label: "Net Downpayment", value: "PHP 1,983,120.00" },
+      { label: "Monthly DP", value: "36 months / PHP 55,086.67/mo" },
+      { label: "Balance", value: "70% / PHP 4,697,280.00" },
+      { label: "Closing Fee", value: "PHP 704,592.00" },
+      { label: "Total Balance + Closing Fee", value: "PHP 5,401,872.00" }
+    ],
+    monthlyAmortization: [
+      { label: "10 years | 7.0%", value: "PHP 62,720.31/month" },
+      { label: "15 years | 7.0%", value: "PHP 48,553.55/month" },
+      { label: "20 years | 7.0%", value: "PHP 41,880.66/month" }
+    ],
+    promoReference: "Sample computation only. Prices, discounts, rates, closing fees, monthly amortization, promos, and availability may change. Request the latest computation from Luisa before deciding.",
+    promoCards: [{ title: "Promo Snapshot", items: ["No promos available for this property in the reference snapshot.", "Promo details and payment terms must be confirmed with Luisa before use."] }],
+    sampleAvailableComputations: [
+      { type: "1BR", size: "46.50 sqm", price: "PHP 10,868,000", rfo: "Jul 2029", note: "HomeReady: Not applicable" },
+      { type: "2BR", size: "63.00 sqm", price: "PHP 13,270,000", rfo: "Jul 2029", note: "HomeReady: Not applicable" },
+      { type: "2BR", size: "63.00 sqm", price: "PHP 13,057,000", rfo: "Jul 2029", note: "HomeReady: Not applicable" },
+      { type: "1BR", size: "46.50 sqm", price: "PHP 10,689,000", rfo: "Jul 2029", note: "HomeReady: Not applicable" },
+      { type: "2BR", size: "65.50 sqm", price: "PHP 13,327,000", rfo: "Jul 2029", note: "HomeReady: Not applicable" }
+    ]
+  },
+  unitHoldingPortal: {
+    title: "Valeron Tower Unit Holding Portal",
+    text: "Valeron Tower may offer a Unit Holding Portal that allows prospective buyers to temporarily hold preferred units before final reservation, subject to current availability and holding rules. Ask Luisa to confirm the latest portal process before proceeding.",
+    steps: ["Registration: Begin by registering through the current unit holding process.", "Holding Link: After registration, buyers may receive an email link that allows them to hold up to two units, subject to latest rules.", "Philippine-Based Clients: Reference holding period is 24 hours or 1 day.", "International Clients: Reference holding period is 72 hours or 3 days.", "Confirmation Email: After selecting and holding units, buyers may receive a confirmation email with instructions.", "Reservation Instructions: If the buyer decides to reserve, follow the official instructions provided through the current process."],
+    notes: ["Holding a unit does not require a financial commitment in the reference process.", "Held units may be released after the holding period expires if reservation is not confirmed.", "Holding rules may change and must be confirmed with Luisa."]
+  },
+  reservationRequirements: [
+    "Online Client Registration: Begin by registering online to access the unit holding and reservation portals.",
+    "Valid IDs: Submit copies of government-issued identification to confirm identity.",
+    "Philippine TIN Number: Prepare Tax Identification Number because it may be required for reservation processing.",
+    "Online Reservation Agreement Form: Complete and submit the digital agreement form detailing reservation terms and conditions.",
+    "Reservation Fee: PHP 30,000 for the residential unit.",
+    "Parking Reservation Fee: PHP 10,000 for parking, if applicable.",
+    "Payment Channels: Online payment gateway, debit/credit card, BPI Online Banking, Cash, GCash, and dated check may be available, subject to latest confirmation.",
+    "Proof of Billing Address: Prepare proof of billing matching preferred billing address.",
+    "Preferred Mode of Payment for Down Payment: Options may include PDCs or Auto Debit Arrangement using tie-in banks.",
+    "Tie-in Banks: Bank of Commerce, BDO, BPI, Metrobank, EastWest Bank, PNB, Security Bank, Sterling Bank, UnionBank, Robinsons Bank, and Chinabank.",
+    "International Clients: Bills Payment through tie-in banks and remittance through Robinsons Bank Virtual Account may be available, subject to latest confirmation."
+  ],
+  galleryLabels: ["Project Perspective", "Site Development Plan", "Ground Floor Development Plan", "Amenity Floor Development Plan", "Roof Deck Development Plan"],
+  newsMedia: [
+    { title: "Project presentation materials", label: "Request Valeron Tower presentation from Luisa", url: "" },
+    { title: "Virtual 360-degree tour", label: "Request the latest approved virtual tour link", url: "" }
+  ],
+  videoTourUrl: ""
+};
+
 const oneDeltaTerracesDetails = {
   contentLevel: "rich",
   assetStatus: "official-assets-needed",
@@ -802,7 +1050,13 @@ export const projects = baseProjects.map(([slug, name, location, city, status, t
     disclaimer: globalDisclaimer
   };
 
-  const project = slug === "kalea-heights" ? { ...base, ...kaleaHeightsDetails } : slug === "one-delta-terraces" ? { ...base, ...oneDeltaTerracesDetails } : base;
+  const project = slug === "kalea-heights"
+    ? { ...base, ...kaleaHeightsDetails }
+    : slug === "one-delta-terraces"
+      ? { ...base, ...oneDeltaTerracesDetails }
+      : slug === "valeron-tower"
+        ? { ...base, ...valeronTowerDetails }
+        : base;
   return withProjectFallbacks({
     ...project,
     nearbyProperties: baseProjects
