@@ -1,5 +1,6 @@
 import { DemoForm } from "../components/LeadForm";
 import { SectionHeader } from "../components/SectionHeader";
+import { Button } from "../components/Button";
 import { projects, unitTypes } from "../data/projects";
 import { locations } from "../data/locations";
 
@@ -54,7 +55,27 @@ export function Contact() {
 }
 
 function FormShell({ title, text, children }) {
-  return <section className="page-section"><div className="container narrow"><SectionHeader eyebrow="Buyer Assistance" title={title} text={text} />{children}</div></section>;
+  return (
+    <section className="page-section form-page">
+      <div className="container form-shell-grid">
+        <aside className="form-broker-panel">
+          <div className="form-broker-image">
+            <img src="/assets/img/luisa-corral.jpg" alt="Luisa Corral" />
+          </div>
+          <div className="form-broker-copy">
+            <span className="eyebrow">Broker Assistance</span>
+            <h2>Ask Luisa for updated details</h2>
+            <p>Request the latest computation, confirmed availability, promos, and viewing schedule before deciding.</p>
+            <Button to="/contact" variant="secondary">Message Luisa</Button>
+          </div>
+        </aside>
+        <div className="form-shell-content">
+          <SectionHeader align="left" eyebrow="Buyer Assistance" title={title} text={text} />
+          {children}
+        </div>
+      </div>
+    </section>
+  );
 }
 function f(name, label, type = "text") { return { name, label, type }; }
 function s(name, label, options) { return { name, label, options }; }

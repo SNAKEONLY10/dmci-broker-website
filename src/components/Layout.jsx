@@ -22,10 +22,12 @@ export function Layout({ children }) {
       <header className="site-header">
         <div className="container nav-wrap">
           <NavLink className="brand" to="/" onClick={() => setOpen(false)}>
-            <span className="brand-mark">MB</span>
+            <span className="brand-photo">
+              <img src="/assets/img/luisa-corral.jpg" alt="Luisa Corral" />
+            </span>
             <span className="brand-copy">
-              <strong>My DMCI Broker</strong>
-              <small>Luisa Corral | Licensed Real Estate Broker</small>
+              <strong>Luisa Corral</strong>
+              <small>DMCI Homes Buyer Assistance | Licensed Broker</small>
             </span>
           </NavLink>
           <nav className="desktop-nav" aria-label="Main navigation">
@@ -65,9 +67,14 @@ function Footer() {
     <footer className="site-footer">
       <div className="container footer-grid">
         <div>
-          <h3>{contact.brand}</h3>
+          <div className="footer-profile">
+            <img src="/assets/img/luisa-corral.jpg" alt="Luisa Corral" />
+            <div>
+              <h3>{contact.brokerName}</h3>
+              <p>{contact.role}<br />{contact.license}</p>
+            </div>
+          </div>
           <p>Luisa Corral's DMCI Homes buyer assistance platform for project browsing, computation requests, availability checks, viewing schedules, and reservation guidance.</p>
-          <p><strong>{contact.brokerName}</strong><br />{contact.role}<br />{contact.license}</p>
           <p className="footer-note">Buyer assistance website by Luisa Corral. Final project details are subject to official confirmation.</p>
         </div>
         <div>
