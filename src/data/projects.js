@@ -29,6 +29,27 @@ const baseProjects = [
   ["rhapsody-residences", "Rhapsody Residences", "Muntinlupa", "Muntinlupa", "RFO", "Ready", "Mid-rise Condo", "Mid-rise residential community", "Resort-inspired suburban", "Muntinlupa City", ["2BR", "3BR"], ["Family", "Own Use"], false]
 ];
 
+const directoryOrder = {
+  "kalea-heights": 1,
+  "one-delta-terraces": 2,
+  "valeron-tower": 3,
+  "solmera-coast": 4,
+  "mulberry-place-2": 5,
+  "fortis-residences": 6,
+  "anissa-heights": 7,
+  "the-calinea-tower": 8,
+  "sage-residences": 9,
+  "alea-residences": 10,
+  "bristle-ridge": 11,
+  "verdon-parc": 12,
+  "moncello-crest": 13,
+  "willow-park-homes": 14,
+  "maricielo-villas": 15,
+  "brio-tower": 16,
+  "torre-de-manila": 17,
+  "rhapsody-residences": 18
+};
+
 const genericWhyInvest = [
   "Location access for daily needs, work, school, and lifestyle destinations",
   "DMCI-style residential planning with open spaces and community amenities",
@@ -1730,6 +1751,7 @@ export const projects = baseProjects.map(([slug, name, location, city, status, t
     siteProgressImage: assetPath(slug, "site-progress.jpg"),
     videoTourUrl: "",
     mapUrl: "",
+    directoryOrder: directoryOrder[slug] || 999,
     featured,
     sourceUrl: "",
     lastVerified: "For confirmation",

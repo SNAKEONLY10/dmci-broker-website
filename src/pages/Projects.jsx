@@ -7,7 +7,7 @@ import { DisclaimerBanner } from "../components/DisclaimerBanner";
 import { Button } from "../components/Button";
 import { projects } from "../data/projects";
 
-const PROJECTS_PER_PAGE = 9;
+const PROJECTS_PER_PAGE = 6;
 
 export default function Projects() {
   const [params] = useSearchParams();
@@ -105,7 +105,13 @@ function matches(project, filters) {
 
 function sortProjects(items, sort) {
   const sorted = [...items];
-  if (sort === "featured") return sorted.sort((a, b) => Number(b.featured) - Number(a.featured));
+  if (sort === "featured") {
+    return sorted.sort((a, b) => {
+      const aOrder = a.directoryOrder ?? 999;
+      const bOrder = b.directoryOrder ?? 999;
+      return aOrder - bOrder;
+    });
+  }
   if (sort === "rfo") return sorted.sort((a, b) => Number(b.status === "RFO") - Number(a.status === "RFO"));
   if (sort === "preselling") return sorted.sort((a, b) => Number(b.status === "Preselling") - Number(a.status === "Preselling"));
   if (sort === "turnover") return sorted.sort((a, b) => String(b.turnoverYear).localeCompare(String(a.turnoverYear)));
