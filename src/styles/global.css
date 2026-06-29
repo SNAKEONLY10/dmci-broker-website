@@ -1696,3 +1696,710 @@ textarea {
     margin-inline: auto;
   }
 }
+
+/* Kalea Heights rich project detail polish */
+.project-detail-main {
+  background:
+    radial-gradient(circle at 8% 4%, rgba(214, 177, 83, 0.12), transparent 26%),
+    linear-gradient(180deg, #fffaf2 0%, #ffffff 44%, #f5f9fb 100%);
+}
+
+.project-detail-hero-rich {
+  background:
+    linear-gradient(120deg, rgba(7, 26, 45, 0.92), rgba(17, 58, 91, 0.78)),
+    linear-gradient(135deg, #071a2d 0%, #143858 52%, #fffaf2 52%, #ffffff 100%);
+}
+
+.project-detail-hero-rich .project-hero-copy {
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.hero-meta-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-meta-line > span {
+  border: 1px solid rgba(16, 51, 84, 0.12);
+  border-radius: 999px;
+  padding: 7px 10px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--navy);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.reference-warning {
+  display: grid;
+  gap: 6px;
+  padding: 16px 18px;
+  border: 1px solid rgba(214, 177, 83, 0.32);
+  border-radius: 18px;
+  background: linear-gradient(135deg, #fff8e8, #ffffff);
+  box-shadow: 0 14px 38px rgba(14, 39, 66, 0.06);
+  color: var(--navy);
+}
+
+.reference-warning strong {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.2rem;
+}
+
+.reference-warning span {
+  color: var(--muted);
+  font-weight: 750;
+}
+
+.rich-fact-grid,
+.pricing-card-grid,
+.grouped-list-grid,
+.view-card-grid,
+.floor-plan-grid,
+.payment-grid,
+.reservation-grid,
+.mini-stat-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.rich-fact-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.rich-fact-grid div,
+.mini-stat-grid div {
+  display: grid;
+  gap: 5px;
+  padding: 13px;
+  border: 1px solid rgba(16, 51, 84, 0.1);
+  border-radius: 14px;
+  background: linear-gradient(180deg, #ffffff, #f7fbfd);
+}
+
+.rich-fact-grid strong,
+.mini-stat-grid strong,
+.payment-card strong {
+  color: #a37519;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pricing-card-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 14px;
+}
+
+.pricing-card {
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 18px;
+  border: 1px solid rgba(214, 177, 83, 0.26);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 90% 12%, rgba(214, 177, 83, 0.2), transparent 30%),
+    linear-gradient(145deg, #ffffff, #fff8e8);
+  box-shadow: 0 16px 36px rgba(14, 39, 66, 0.06);
+}
+
+.pricing-card span {
+  width: fit-content;
+  border-radius: 999px;
+  padding: 7px 11px;
+  background: var(--navy);
+  color: var(--white);
+  font-weight: 900;
+}
+
+.pricing-card strong {
+  color: var(--navy);
+  font-size: clamp(1.04rem, 1.6vw, 1.28rem);
+  line-height: 1.15;
+}
+
+.pricing-card p,
+.pricing-card small {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 750;
+}
+
+.compact-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.address-card,
+.site-development-card,
+.video-tour-card,
+.unit-section-card,
+.payment-card,
+.unit-holding-card,
+.reservation-checklist,
+.floor-plan-card,
+.grouped-list-card,
+.view-card {
+  border: 1px solid rgba(16, 51, 84, 0.1);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 14px 34px rgba(14, 39, 66, 0.045);
+}
+
+.address-card {
+  display: grid;
+  gap: 4px;
+  margin: 16px 0;
+  padding: 16px;
+  background: linear-gradient(135deg, #f7fbfd, #fff8e8);
+}
+
+.address-card strong {
+  color: var(--navy);
+}
+
+.grouped-list-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 18px 0;
+}
+
+.grouped-list-grid.compact {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grouped-list-card {
+  padding: 16px;
+}
+
+.grouped-list-card h3,
+.view-card h3,
+.payment-card h3,
+.unit-section-heading h3,
+.floor-plan-card h3,
+.unit-holding-card h3,
+.reservation-checklist h3 {
+  margin: 0 0 10px;
+  color: var(--navy);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+}
+
+.grouped-list-card ul,
+.payment-card ul,
+.unit-holding-card ol,
+.reservation-checklist ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.grouped-list-card li,
+.payment-card li,
+.unit-holding-card li,
+.reservation-checklist li {
+  margin: 6px 0;
+}
+
+.compact-map {
+  min-height: 112px;
+  margin-bottom: 14px;
+}
+
+.site-development-card,
+.video-tour-card {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr);
+  gap: 18px;
+  align-items: center;
+  padding: 16px;
+}
+
+.site-development-card .image-placeholder,
+.site-development-card .image-cover,
+.site-development-card .image-picture,
+.video-tour-card .image-placeholder,
+.video-tour-card .image-cover,
+.video-tour-card .image-picture {
+  min-height: 240px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.mini-stat-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 14px;
+}
+
+.view-card-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 16px;
+}
+
+.view-card {
+  padding: 16px;
+  background: linear-gradient(180deg, #ffffff, #f4f9fd);
+}
+
+.view-card p,
+.payment-card p,
+.unit-section-heading p,
+.floor-plan-card p,
+.unit-holding-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.unit-section-card {
+  padding: clamp(14px, 2.5vw, 20px);
+  margin-top: 16px;
+}
+
+.unit-section-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: start;
+  margin-bottom: 14px;
+}
+
+.unit-layout-pills,
+.sample-computation-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.unit-layout-pills span,
+.sample-computation-list span {
+  border: 1px solid rgba(214, 177, 83, 0.24);
+  border-radius: 999px;
+  padding: 7px 10px;
+  background: #fff8e8;
+  color: var(--navy);
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+
+.unit-table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.unit-table {
+  width: 100%;
+  min-width: 820px;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+
+.unit-table th {
+  padding: 11px 12px;
+  background: var(--navy);
+  color: var(--white);
+  font-size: 0.78rem;
+  text-align: left;
+}
+
+.unit-table th:first-child {
+  border-radius: 12px 0 0 12px;
+}
+
+.unit-table th:last-child {
+  border-radius: 0 12px 12px 0;
+}
+
+.unit-table td {
+  padding: 12px;
+  border-block: 1px solid rgba(16, 51, 84, 0.1);
+  background: #ffffff;
+  color: var(--muted);
+  font-weight: 750;
+}
+
+.unit-table td:first-child {
+  border-left: 1px solid rgba(16, 51, 84, 0.1);
+  border-radius: 12px 0 0 12px;
+  color: var(--navy);
+  font-weight: 900;
+}
+
+.unit-table td:last-child {
+  border-right: 1px solid rgba(16, 51, 84, 0.1);
+  border-radius: 0 12px 12px 0;
+}
+
+.unit-table .btn {
+  min-height: 38px;
+  padding: 8px 12px;
+  font-size: 0.78rem;
+}
+
+.floor-plan-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.floor-plan-card {
+  padding: 14px;
+}
+
+.floor-plan-card .image-placeholder,
+.floor-plan-card .image-cover,
+.floor-plan-card .image-picture {
+  min-height: 150px;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.floor-plan-card .btn {
+  margin-top: 12px;
+}
+
+.payment-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 16px;
+}
+
+.payment-card {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding: 16px;
+}
+
+.payment-card div {
+  display: grid;
+  gap: 4px;
+  padding: 11px;
+  border-radius: 12px;
+  background: #f7fbfd;
+}
+
+.sample-computation-list {
+  margin-top: 16px;
+}
+
+.reservation-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.unit-holding-card,
+.reservation-checklist {
+  padding: 18px;
+}
+
+.video-tour-card {
+  background:
+    radial-gradient(circle at 90% 20%, rgba(214, 177, 83, 0.18), transparent 28%),
+    linear-gradient(135deg, #f8fbfd, #ffffff);
+}
+
+.video-tour-card strong {
+  display: block;
+  color: var(--navy);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.35rem;
+  margin-bottom: 8px;
+}
+
+.video-tour-card .btn {
+  margin-top: 12px;
+}
+
+.sticky-project-cta {
+  border: 1px solid rgba(214, 177, 83, 0.28);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(214, 177, 83, 0.22), transparent 30%),
+    linear-gradient(180deg, #ffffff, #fff9eb);
+}
+
+.sticky-project-cta .btn {
+  width: 100%;
+}
+
+.rich-gallery-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (min-width: 761px) and (max-width: 1120px) {
+  .rich-fact-grid,
+  .grouped-list-grid.compact,
+  .view-card-grid,
+  .floor-plan-grid,
+  .payment-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .project-detail-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sticky-project-cta {
+    position: static;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sticky-project-cta strong,
+  .sticky-project-cta p,
+  .sticky-project-cta .disclaimer-banner {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 900px) {
+  .unit-table {
+    min-width: 0;
+    border-spacing: 0 10px;
+  }
+
+  .unit-table thead {
+    display: none;
+  }
+
+  .unit-table,
+  .unit-table tbody,
+  .unit-table tr,
+  .unit-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .unit-table tr {
+    overflow: hidden;
+    border: 1px solid rgba(16, 51, 84, 0.1);
+    border-radius: 14px;
+    background: #ffffff;
+  }
+
+  .unit-table td {
+    display: grid;
+    grid-template-columns: 128px minmax(0, 1fr);
+    gap: 10px;
+    align-items: center;
+    border: 0;
+    border-bottom: 1px solid rgba(16, 51, 84, 0.07);
+    border-radius: 0;
+    padding: 10px 12px;
+    font-size: 0.84rem;
+  }
+
+  .unit-table td::before {
+    content: attr(data-label);
+    color: #a37519;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .unit-table td:first-child,
+  .unit-table td:last-child {
+    border-inline: 0;
+    border-radius: 0;
+  }
+
+  .unit-table td:last-child {
+    border-bottom: 0;
+  }
+
+  .unit-table td .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 760px) {
+  .project-detail-main {
+    padding-top: 26px;
+  }
+
+  .project-detail-hero-rich {
+    background: linear-gradient(180deg, #071a2d 0%, #143858 36%, #fffaf2 36%, #ffffff 100%);
+  }
+
+  .project-hero-copy h1 {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  .hero-meta-line {
+    gap: 6px;
+  }
+
+  .hero-meta-line > span {
+    font-size: 0.72rem;
+    padding: 6px 8px;
+  }
+
+  .rich-fact-grid,
+  .pricing-card-grid,
+  .grouped-list-grid,
+  .grouped-list-grid.compact,
+  .view-card-grid,
+  .floor-plan-grid,
+  .payment-grid,
+  .reservation-grid,
+  .mini-stat-grid,
+  .rich-gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  .reference-warning,
+  .detail-section {
+    border-radius: 16px;
+  }
+
+  .detail-section {
+    padding: 16px;
+  }
+
+  .detail-section h2 {
+    font-size: clamp(1.45rem, 7vw, 2rem);
+  }
+
+  .rich-fact-grid div,
+  .mini-stat-grid div,
+  .pricing-card,
+  .grouped-list-card,
+  .view-card,
+  .payment-card,
+  .unit-holding-card,
+  .reservation-checklist {
+    padding: 12px;
+  }
+
+  .pricing-card {
+    min-height: 144px;
+  }
+
+  .pricing-card strong {
+    font-size: 0.95rem;
+  }
+
+  .pricing-card p,
+  .pricing-card small,
+  .grouped-list-card li,
+  .view-card p,
+  .payment-card li,
+  .unit-holding-card li,
+  .reservation-checklist li {
+    font-size: 0.78rem;
+    line-height: 1.35;
+  }
+
+  .compact-cta-row {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .site-development-card,
+  .video-tour-card {
+    grid-template-columns: 1fr;
+    padding: 12px;
+  }
+
+  .site-development-card .image-placeholder,
+  .site-development-card .image-cover,
+  .site-development-card .image-picture,
+  .video-tour-card .image-placeholder,
+  .video-tour-card .image-cover,
+  .video-tour-card .image-picture {
+    min-height: 170px;
+  }
+
+  .unit-section-card {
+    padding: 12px;
+  }
+
+  .unit-section-heading {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .unit-layout-pills span,
+  .sample-computation-list span {
+    font-size: 0.72rem;
+    padding: 6px 8px;
+  }
+
+  .unit-table td {
+    grid-template-columns: 108px minmax(0, 1fr);
+    font-size: 0.82rem;
+  }
+
+  .payment-card {
+    grid-column: span 2;
+  }
+
+  .video-tour-card,
+  .unit-holding-card,
+  .reservation-checklist {
+    grid-column: span 2;
+  }
+
+  .project-toc .container {
+    gap: 7px;
+  }
+
+  .project-toc a {
+    font-size: 0.7rem;
+    padding: 7px 9px;
+  }
+}
+
+@media (max-width: 430px) {
+  .rich-fact-grid,
+  .pricing-card-grid,
+  .grouped-list-grid,
+  .grouped-list-grid.compact,
+  .view-card-grid,
+  .floor-plan-grid,
+  .rich-gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rich-fact-grid div,
+  .pricing-card,
+  .grouped-list-card,
+  .view-card,
+  .floor-plan-card {
+    padding: 10px;
+  }
+
+  .rich-fact-grid strong,
+  .mini-stat-grid strong,
+  .payment-card strong {
+    font-size: 0.62rem;
+  }
+
+  .rich-fact-grid span,
+  .mini-stat-grid span,
+  .grouped-list-card li {
+    font-size: 0.76rem;
+    line-height: 1.25;
+  }
+
+  .pricing-card span {
+    font-size: 0.72rem;
+  }
+
+  .pricing-card strong {
+    font-size: 0.82rem;
+    overflow-wrap: anywhere;
+  }
+
+  .floor-plan-card .image-placeholder,
+  .floor-plan-card .image-cover,
+  .floor-plan-card .image-picture,
+  .rich-gallery-grid .image-placeholder,
+  .rich-gallery-grid .image-cover,
+  .rich-gallery-grid .image-picture {
+    min-height: 118px;
+  }
+}

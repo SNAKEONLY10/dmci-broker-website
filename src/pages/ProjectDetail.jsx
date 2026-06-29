@@ -8,7 +8,7 @@ import { ProjectGrid } from "../components/ProjectGrid";
 import { SectionHeader } from "../components/SectionHeader";
 import { projects } from "../data/projects";
 
-const sectionLinks = [
+const defaultSectionLinks = [
   ["Overview", "overview"],
   ["Why Invest", "why-invest"],
   ["Location", "location"],
@@ -16,10 +16,24 @@ const sectionLinks = [
   ["Master Plan", "master-plan"],
   ["Theme", "theme"],
   ["Buildings", "buildings"],
-  ["Unit Inventory", "unit-inventory"],
+  ["Unit Preview", "unit-inventory"],
   ["Amenities", "amenities"],
-  ["News & Media", "news-media"],
-  ["Nearby Properties", "nearby-properties"],
+  ["Gallery", "gallery"],
+  ["Contact", "contact-project"]
+];
+
+const richSectionLinks = [
+  ["Facts", "facts"],
+  ["Pricing", "pricing"],
+  ["Overview", "overview"],
+  ["Location", "location"],
+  ["Site Plan", "site-development"],
+  ["Views", "views"],
+  ["Amenities", "amenities"],
+  ["Units", "unit-options"],
+  ["Floor Plans", "floor-plans"],
+  ["Payment", "payment"],
+  ["Reservation", "reservation"],
   ["Contact", "contact-project"]
 ];
 
@@ -37,50 +51,15 @@ export default function ProjectDetail() {
     );
   }
 
+  const isRichProject = project.contentLevel === "rich" && project.projectFacts?.length;
+  const sectionLinks = isRichProject ? richSectionLinks : defaultSectionLinks;
   const similar = projects
     .filter((item) => item.id !== project.id && (item.location === project.location || item.status === project.status || project.nearbyProperties.includes(item.slug)))
     .slice(0, 3);
 
   return (
     <>
-      <section className="project-detail-hero">
-        <div className="container project-hero-grid">
-          <div className="project-hero-media">
-            <ImagePlaceholder src={project.image} label={project.name} variant="hero" />
-            <div className="project-hero-thumbs">
-              {project.gallery.slice(0, 3).map((src, index) => (
-                <ImagePlaceholder key={src} src={src} label={`${project.name} gallery ${index + 1}`} compact variant="gallery" />
-              ))}
-            </div>
-          </div>
-          <article className="project-hero-copy">
-            <Badge>{project.status}</Badge>
-            <p className="mini">{project.location}</p>
-            <h1>{project.name}</h1>
-            <p className="project-tagline">{project.tagline}</p>
-            <p>{project.overview}</p>
-            <div className="price-panel">
-              <strong>{project.priceRangeLabel}</strong>
-              <span>{project.priceSourceNote}</span>
-              <span>Updated details available upon request. Ask Luisa for latest computation.</span>
-            </div>
-            <div className="project-facts">
-              <Fact label="Turnover" value={project.turnoverYear === "Ready" ? "Ready For Occupancy" : `${project.turnoverYear} turnover`} />
-              <Fact label="Location" value={project.city} />
-              <Fact label="Development" value={project.developmentType} />
-              <Fact label="Land Area" value={project.landArea} />
-              <Fact label="Theme" value={project.architecturalTheme} />
-              <Fact label="Unit Types" value={project.unitTypes.join(", ")} />
-            </div>
-            <div className="hero-actions">
-              <Button to="/request-computation">Request Latest Computation</Button>
-              <Button to="/availability" variant="secondary">Check Availability with Luisa</Button>
-              <Button to="/book-viewing" variant="ghost">Book a Site Viewing</Button>
-              <Button to="/contact" variant="ghost">Message Luisa</Button>
-            </div>
-          </article>
-        </div>
-      </section>
+      <ProjectHero project={project} isRichProject={isRichProject} />
 
       <nav className="project-toc" aria-label="Project sections">
         <div className="container">
@@ -88,127 +67,13 @@ export default function ProjectDetail() {
         </div>
       </nav>
 
-      <section className="section">
+      <section className="section project-detail-main">
         <div className="container project-detail-layout">
           <main className="detail-sections">
-            <DetailSection id="overview" eyebrow="Overview" title="Project Overview">
-              <p>{project.overview}</p>
-              <div className="spec-grid">
-                <Spec label="Development Type" value={project.developmentType} />
-                <Spec label="Land Area" value={project.landArea} />
-                <Spec label="Architectural Theme" value={project.architecturalTheme} />
-                <Spec label="Address" value={project.address} />
-                <Spec label="Unit Types" value={project.unitTypes.join(", ")} />
-                <Spec label="Status / Turnover" value={project.turnoverYear === "Ready" ? `Ready For Occupancy | ${project.status}` : `${project.turnoverYear} turnover | ${project.status}`} />
-              </div>
-            </DetailSection>
-
-            <DetailSection id="why-invest" eyebrow="Why Invest" title="Why Consider This Project">
-              <div className="premium-card-grid">
-                {project.whyInvest.map((item) => <article className="info-card" key={item}><p>{item}</p></article>)}
-              </div>
-            </DetailSection>
-
-            <DetailSection id="location" eyebrow="Location" title="About the Location">
-              <p>{project.aboutLocation}</p>
-              <ul className="detail-list">{project.nearbyLandmarks.map((item) => <li key={item}>{item}</li>)}</ul>
-              <div className="map-placeholder">Map preview, directions, and travel references can be added once approved project materials are available.</div>
-              <Button to="/book-viewing" variant="secondary">Book a Site Viewing</Button>
-            </DetailSection>
-
-            <DetailSection id="site-progress" eyebrow="Site Progress" title="Construction / Site Progress">
-              <div className="split-placeholder">
-                <ImagePlaceholder src={project.siteProgressImage} label={`${project.name} site progress`} compact variant="siteProgress" />
-                <div>
-                  <p>{project.siteProgressStatus}</p>
-                  <p className="safety-note">Site progress information should be confirmed through official DMCI channels or Luisa.</p>
-                </div>
-              </div>
-            </DetailSection>
-
-            <DetailSection id="master-plan" eyebrow="Master Plan" title="Master Plan">
-              <div className="split-placeholder">
-                <ImagePlaceholder src={project.masterPlanImage} label={`${project.name} master plan`} compact variant="masterPlan" />
-                <div>
-                  <p>{project.masterPlanNotes}</p>
-                  <Button to="/contact" variant="secondary">Request Project Presentation</Button>
-                </div>
-              </div>
-            </DetailSection>
-
-            <DetailSection id="theme" eyebrow="Theme" title={project.architecturalTheme}>
-              <div className="split-placeholder">
-                <ImagePlaceholder label={`${project.name} design inspiration`} compact variant="gallery" />
-                <p>{project.themeDescription}</p>
-              </div>
-            </DetailSection>
-
-            <DetailSection id="buildings" eyebrow="Buildings" title="Buildings and Features">
-              <div className="building-grid">
-                {project.buildings.map((building) => (
-                  <article className="info-card building-card" key={building.name}>
-                    <h3>{building.name}</h3>
-                    <p>{building.developmentType}</p>
-                    <div className="pill-row">{building.levels.map((level) => <span key={level}>{level}</span>)}</div>
-                    <h4>Features</h4>
-                    <ul>{building.features.map((feature) => <li key={feature}>{feature}</li>)}</ul>
-                  </article>
-                ))}
-              </div>
-            </DetailSection>
-
-            <DetailSection id="unit-inventory" eyebrow="Unit Inventory" title="Unit Inventory Preview">
-              <p className="reference-note">This is not live inventory. Treat this as a reference snapshot only and ask Luisa for latest availability before deciding.</p>
-              <div className="inventory-table rich">
-                <div className="inventory-head"><span>Unit Type</span><span>Floor Area</span><span>Indicative Range / Computation</span><span>Status</span><span>Action</span></div>
-                {project.unitInventoryPreview.map((item) => (
-                  <div className="inventory-row" key={item.type}>
-                    <span>{item.type}</span>
-                    <span>{item.floorArea}</span>
-                    <span>{item.indicativeRange || item.computation}</span>
-                    <span>{item.status || item.availability}</span>
-                    <Button to="/request-computation" variant="secondary">Request Computation</Button>
-                  </div>
-                ))}
-              </div>
-              <p className="safety-note">Reference only. Availability and prices change. Ask Luisa for latest computation.</p>
-            </DetailSection>
-
-            <DetailSection id="amenities" eyebrow="Amenities" title="Amenities and Lifestyle Features">
-              <h3>Featured Amenities</h3>
-              <div className="amenity-grid">{project.amenities.map((item) => <span key={item}>{item}</span>)}</div>
-              <h3>Other Amenities</h3>
-              <div className="amenity-grid compact">{project.otherAmenities.map((item) => <span key={item}>{item}</span>)}</div>
-            </DetailSection>
-
-            <DetailSection id="news-media" eyebrow="News & Media" title="Project Updates and Reference Links">
-              <div className="premium-card-grid">
-                {project.newsMedia.map((item) => <article className="info-card" key={item.title}><h3>{item.title}</h3><p>{item.label}</p></article>)}
-              </div>
-            </DetailSection>
-
-            <DetailSection eyebrow="Gallery" title="Project Gallery">
-              <div className="gallery-grid">{project.gallery.map((src, index) => <ImagePlaceholder key={src} src={src} label={`${project.name} gallery ${index + 1}`} compact variant="gallery" />)}</div>
-            </DetailSection>
-
-            <DetailSection eyebrow="Virtual Tour" title="Virtual Tour">
-              <div className="video-placeholder">
-                <strong>Virtual tour preview</strong>
-                <p>Request a virtual tour link or online consultation schedule from Luisa.</p>
-                <Button to="/contact" variant="secondary">Request Virtual Tour Link</Button>
-              </div>
-            </DetailSection>
+            {isRichProject ? <RichProjectSections project={project} /> : <StandardProjectSections project={project} />}
           </main>
 
-          <aside className="detail-cta-card">
-            <strong>Need the latest details?</strong>
-            <p>Prices, unit availability, promos, and payment terms can change. Ask Luisa for the latest computation and confirmed availability before deciding.</p>
-            <Button to="/request-computation">Request Latest Computation</Button>
-            <Button to="/availability" variant="secondary">Check Availability with Luisa</Button>
-            <Button to="/book-viewing" variant="secondary">Book a Site Viewing</Button>
-            <Button to="/contact" variant="ghost">Message Luisa</Button>
-            <DisclaimerBanner text="Updated price available upon request. Availability subject to confirmation." />
-          </aside>
+          <LatestDetailsCard project={project} />
         </div>
       </section>
 
@@ -223,8 +88,8 @@ export default function ProjectDetail() {
 
       <section className="final-cta" id="contact-project">
         <div className="container">
-          <h2>Interested in this project?</h2>
-          <p>Request updated details before deciding. No exact prices or availability are guaranteed on this website.</p>
+          <h2>Interested in {project.name}?</h2>
+          <p>Request updated computation, availability, and viewing assistance before deciding.</p>
           <div className="hero-actions center">
             <Button to="/request-computation">Request Latest Computation</Button>
             <Button to="/availability" variant="secondary">Check Availability with Luisa</Button>
@@ -235,6 +100,405 @@ export default function ProjectDetail() {
         </div>
       </section>
     </>
+  );
+}
+
+function ProjectHero({ project, isRichProject }) {
+  return (
+    <section className={`project-detail-hero ${isRichProject ? "project-detail-hero-rich" : ""}`}>
+      <div className="container project-hero-grid">
+        <div className="project-hero-media">
+          <ImagePlaceholder src={project.image} label={project.name} variant="hero" />
+          <div className="project-hero-thumbs">
+            {project.gallery.slice(0, 3).map((src, index) => (
+              <ImagePlaceholder key={`${src}-${index}`} src={src} label={`${project.name} gallery ${index + 1}`} compact variant="gallery" />
+            ))}
+          </div>
+        </div>
+        <article className="project-hero-copy">
+          <div className="hero-meta-line">
+            <Badge>{project.status}</Badge>
+            <span>{project.location}</span>
+            {project.targetRfo && <span>{project.targetRfo} target RFO</span>}
+          </div>
+          <p className="mini">{project.developmentType}</p>
+          <h1>{project.name}</h1>
+          <p className="project-tagline">{project.tagline}</p>
+          <p>{project.overview}</p>
+          <div className="price-panel reference-price-panel">
+            <strong>{project.priceRangeLabel}</strong>
+            <span>{project.priceSourceNote}</span>
+            <span>Subject to final confirmation. Ask Luisa for latest computation.</span>
+          </div>
+          <div className="project-facts">
+            <Fact label="Turnover" value={project.turnoverYear === "Ready" ? "Ready For Occupancy" : `${project.turnoverYear} turnover`} />
+            <Fact label="Location" value={project.city} />
+            <Fact label="Development" value={project.developmentType} />
+            <Fact label="Land Area" value={project.landArea} />
+            <Fact label="Theme" value={project.architecturalTheme} />
+            <Fact label="Unit Types" value={project.unitTypes.join(", ")} />
+          </div>
+          <div className="hero-actions">
+            <Button to="/request-computation">Request Latest Computation</Button>
+            <Button to="/availability" variant="secondary">Check Availability with Luisa</Button>
+            <Button to="/book-viewing" variant="ghost">Book a Site Viewing</Button>
+            <Button to="/contact" variant="ghost">Message Luisa</Button>
+          </div>
+        </article>
+      </div>
+    </section>
+  );
+}
+
+function RichProjectSections({ project }) {
+  return (
+    <>
+      <ReferenceNotice />
+
+      <DetailSection id="facts" eyebrow="Project Facts" title="Kalea Heights at a Glance">
+        <div className="rich-fact-grid">
+          {project.projectFacts.map((fact) => <Spec key={fact.label} label={fact.label} value={fact.value} />)}
+        </div>
+      </DetailSection>
+
+      <DetailSection id="pricing" eyebrow="Reference Snapshot" title="Indicative Price and Unit Summary">
+        <p className="reference-note">Official reference snapshot only. This is not live pricing or guaranteed availability.</p>
+        <div className="pricing-card-grid">
+          {project.summaryPricing.map((item) => (
+            <article className="pricing-card" key={item.type}>
+              <span>{item.type}</span>
+              <strong>{item.range}</strong>
+              <p>{item.floorArea}</p>
+              <small>{item.note}</small>
+            </article>
+          ))}
+        </div>
+        <div className="compact-cta-row">
+          <Button to="/request-computation">Request Latest Computation</Button>
+          <Button to="/availability" variant="secondary">Ask for Updated Units</Button>
+        </div>
+      </DetailSection>
+
+      <DetailSection id="overview" eyebrow="Overview" title="Project Overview">
+        {(project.introParagraphs || [project.overview]).map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+        <div className="premium-card-grid">
+          {project.whyInvest.map((item) => <article className="info-card" key={item}><p>{item}</p></article>)}
+        </div>
+      </DetailSection>
+
+      <DetailSection id="location" eyebrow="Location" title={project.locationDetails?.title || "Location"}>
+        <p>{project.locationDetails?.text || project.aboutLocation}</p>
+        <div className="address-card">
+          <strong>Exact Address</strong>
+          <span>{project.locationDetails?.exactAddress || project.address}</span>
+        </div>
+        <GroupedList groups={project.nearbyDestinations} />
+        <div className="map-placeholder compact-map">Map and travel references can be reviewed during Luisa's project presentation.</div>
+        <Button to="/book-viewing" variant="secondary">Book a Site Viewing</Button>
+      </DetailSection>
+
+      <DetailSection id="site-development" eyebrow="Site Development" title={project.siteDevelopment?.title || "Site Development Plan"}>
+        <div className="site-development-card">
+          <ImagePlaceholder src={project.masterPlanImage} label={`${project.name} site development`} compact variant="masterPlan" />
+          <div>
+            <p>{project.siteDevelopment?.text || project.masterPlanNotes}</p>
+            <div className="mini-stat-grid">
+              {(project.siteDevelopment?.keyStats || []).map((item) => <Spec key={item.label} label={item.label} value={item.value} />)}
+            </div>
+            <p className="safety-note">Site development, tower details, and technical drawings must be confirmed through official project materials.</p>
+          </div>
+        </div>
+      </DetailSection>
+
+      <DetailSection id="views" eyebrow="Views and Tour" title="360 View and Guided Presentation">
+        <div className="view-card-grid">
+          {project.viewHighlights.map((item) => (
+            <article className="view-card" key={item.title}>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+        <VideoTourBlock project={project} />
+      </DetailSection>
+
+      <DetailSection id="amenities" eyebrow="Amenities" title="Amenities and Lifestyle Spaces">
+        <GroupedList groups={project.amenityGroups} compact />
+      </DetailSection>
+
+      <DetailSection id="unit-options" eyebrow="Unit Types" title="Unit Options and Reference Ranges">
+        <p className="reference-note">Reference only. Unit cuts, floor areas, prices, promos, and availability can change.</p>
+        {project.unitSections.map((section) => <UnitSection section={section} key={section.title} />)}
+      </DetailSection>
+
+      <DetailSection id="floor-plans" eyebrow="Floor Plans" title="Floor Plan Preview">
+        <div className="floor-plan-grid">
+          {project.floorPlans.map((item) => (
+            <article className="floor-plan-card" key={item.title}>
+              <ImagePlaceholder label={item.title} compact variant="gallery" />
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+              <Button to="/contact" variant="secondary">Request Layout Sheet</Button>
+            </article>
+          ))}
+        </div>
+      </DetailSection>
+
+      <DetailSection id="payment" eyebrow="Payment Terms" title={project.paymentTerms.title}>
+        <p>{project.paymentTerms.text}</p>
+        <div className="payment-grid">
+          <article className="payment-card">
+            <h3>Sample Computation Guide</h3>
+            {project.paymentTerms.sampleComputation.map((item) => <Spec key={item.label} label={item.label} value={item.value} />)}
+          </article>
+          <article className="payment-card">
+            <h3>Monthly Reference</h3>
+            {project.paymentTerms.monthlyAmortization.map((item) => <Spec key={item.label} label={item.label} value={item.value} />)}
+          </article>
+          <article className="payment-card">
+            <h3>Important Notes</h3>
+            <ul>{project.paymentTerms.importantNotes.map((item) => <li key={item}>{item}</li>)}</ul>
+          </article>
+        </div>
+        <div className="sample-computation-list">
+          {project.paymentTerms.sampleAvailableComputations.map((item) => <span key={item}>{item}</span>)}
+        </div>
+        <p className="safety-note">{project.paymentTerms.promoReference}</p>
+      </DetailSection>
+
+      <DetailSection id="reservation" eyebrow="Reservation" title="Unit Holding and Reservation Requirements">
+        <div className="reservation-grid">
+          <article className="unit-holding-card">
+            <h3>{project.unitHoldingPortal.title}</h3>
+            <p>{project.unitHoldingPortal.text}</p>
+            <ol>{project.unitHoldingPortal.steps.map((step) => <li key={step}>{step}</li>)}</ol>
+          </article>
+          <article className="reservation-checklist">
+            <h3>Checklist to Prepare</h3>
+            <ul>{project.reservationRequirements.map((item) => <li key={item}>{item}</li>)}</ul>
+          </article>
+        </div>
+      </DetailSection>
+
+      <DetailSection id="gallery" eyebrow="Gallery" title="Project Gallery">
+        <Gallery project={project} />
+      </DetailSection>
+    </>
+  );
+}
+
+function StandardProjectSections({ project }) {
+  return (
+    <>
+      <DetailSection id="overview" eyebrow="Overview" title="Project Overview">
+        <p>{project.overview}</p>
+        <div className="spec-grid">
+          <Spec label="Development Type" value={project.developmentType} />
+          <Spec label="Land Area" value={project.landArea} />
+          <Spec label="Architectural Theme" value={project.architecturalTheme} />
+          <Spec label="Address" value={project.address} />
+          <Spec label="Unit Types" value={project.unitTypes.join(", ")} />
+          <Spec label="Status / Turnover" value={project.turnoverYear === "Ready" ? `Ready For Occupancy | ${project.status}` : `${project.turnoverYear} turnover | ${project.status}`} />
+        </div>
+      </DetailSection>
+
+      <DetailSection id="why-invest" eyebrow="Why Invest" title="Why Consider This Project">
+        <div className="premium-card-grid">
+          {project.whyInvest.map((item) => <article className="info-card" key={item}><p>{item}</p></article>)}
+        </div>
+      </DetailSection>
+
+      <DetailSection id="location" eyebrow="Location" title="About the Location">
+        <p>{project.aboutLocation}</p>
+        <ul className="detail-list">{project.nearbyLandmarks.map((item) => <li key={item}>{item}</li>)}</ul>
+        <div className="map-placeholder">Map preview, directions, and travel references can be added once approved project materials are available.</div>
+        <Button to="/book-viewing" variant="secondary">Book a Site Viewing</Button>
+      </DetailSection>
+
+      <DetailSection id="site-progress" eyebrow="Site Progress" title="Construction / Site Progress">
+        <div className="split-placeholder">
+          <ImagePlaceholder src={project.siteProgressImage} label={`${project.name} site progress`} compact variant="siteProgress" />
+          <div>
+            <p>{project.siteProgressStatus}</p>
+            <p className="safety-note">Site progress information should be confirmed through official DMCI channels or Luisa.</p>
+          </div>
+        </div>
+      </DetailSection>
+
+      <DetailSection id="master-plan" eyebrow="Master Plan" title="Master Plan">
+        <div className="split-placeholder">
+          <ImagePlaceholder src={project.masterPlanImage} label={`${project.name} master plan`} compact variant="masterPlan" />
+          <div>
+            <p>{project.masterPlanNotes}</p>
+            <Button to="/contact" variant="secondary">Request Project Presentation</Button>
+          </div>
+        </div>
+      </DetailSection>
+
+      <DetailSection id="theme" eyebrow="Theme" title={project.architecturalTheme}>
+        <div className="split-placeholder">
+          <ImagePlaceholder label={`${project.name} design inspiration`} compact variant="gallery" />
+          <p>{project.themeDescription}</p>
+        </div>
+      </DetailSection>
+
+      <DetailSection id="buildings" eyebrow="Buildings" title="Buildings and Features">
+        <div className="building-grid">
+          {project.buildings.map((building) => (
+            <article className="info-card building-card" key={building.name}>
+              <h3>{building.name}</h3>
+              <p>{building.developmentType}</p>
+              <div className="pill-row">{building.levels.map((level) => <span key={level}>{level}</span>)}</div>
+              <h4>Features</h4>
+              <ul>{building.features.map((feature) => <li key={feature}>{feature}</li>)}</ul>
+            </article>
+          ))}
+        </div>
+      </DetailSection>
+
+      <DetailSection id="unit-inventory" eyebrow="Unit Inventory" title="Unit Inventory Preview">
+        <p className="reference-note">This is not live inventory. Ask Luisa for latest availability before deciding.</p>
+        <InventoryPreview project={project} />
+      </DetailSection>
+
+      <DetailSection id="amenities" eyebrow="Amenities" title="Amenities and Lifestyle Features">
+        <h3>Featured Amenities</h3>
+        <div className="amenity-grid">{project.amenities.map((item) => <span key={item}>{item}</span>)}</div>
+        <h3>Other Amenities</h3>
+        <div className="amenity-grid compact">{project.otherAmenities.map((item) => <span key={item}>{item}</span>)}</div>
+      </DetailSection>
+
+      <DetailSection id="gallery" eyebrow="Gallery" title="Project Gallery">
+        <Gallery project={project} />
+      </DetailSection>
+
+      <DetailSection id="news-media" eyebrow="News & Media" title="Project Updates and Reference Links">
+        <div className="premium-card-grid">
+          {project.newsMedia.map((item) => <article className="info-card" key={item.title}><h3>{item.title}</h3><p>{item.label}</p></article>)}
+        </div>
+      </DetailSection>
+    </>
+  );
+}
+
+function LatestDetailsCard({ project }) {
+  return (
+    <aside className="detail-cta-card sticky-project-cta">
+      <strong>Need the latest details?</strong>
+      <p>Prices, unit availability, promos, and payment terms can change. Ask Luisa for the latest computation and confirmed availability before deciding.</p>
+      <Button to="/request-computation">Request Latest Computation</Button>
+      <Button to="/availability" variant="secondary">Check Availability with Luisa</Button>
+      <Button to="/book-viewing" variant="secondary">Book a Site Viewing</Button>
+      <Button to="/contact" variant="ghost">Message Luisa</Button>
+      <DisclaimerBanner text={project.priceSourceNote || "Updated details available upon request."} />
+    </aside>
+  );
+}
+
+function UnitSection({ section }) {
+  return (
+    <article className="unit-section-card">
+      <div className="unit-section-heading">
+        <div>
+          <h3>{section.title}</h3>
+          <p>{section.description}</p>
+        </div>
+        <div className="unit-layout-pills">{section.layouts.map((layout) => <span key={layout}>{layout}</span>)}</div>
+      </div>
+      <div className="unit-table-scroll">
+        <table className="unit-table">
+          <thead>
+            <tr>
+              <th>Layout</th>
+              <th>Floor Area</th>
+              <th>Reference Range</th>
+              <th>Status</th>
+              <th>Computation</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {section.rows.map((row) => (
+              <tr key={`${section.title}-${row.layout}`}>
+                <td data-label="Layout">{row.layout}</td>
+                <td data-label="Floor Area">{row.floorArea}</td>
+                <td data-label="Reference Range">{row.priceRange}</td>
+                <td data-label="Status">{row.status}</td>
+                <td data-label="Computation">{row.monthlyDp}</td>
+                <td data-label="Action"><Button to="/request-computation" variant="secondary">Request</Button></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </article>
+  );
+}
+
+function GroupedList({ groups = [], compact = false }) {
+  if (!groups.length) return null;
+  return (
+    <div className={`grouped-list-grid ${compact ? "compact" : ""}`}>
+      {groups.map((group) => (
+        <article className="grouped-list-card" key={group.group || group.title}>
+          <h3>{group.group || group.title}</h3>
+          <ul>{group.items.map((item) => <li key={item}>{item}</li>)}</ul>
+        </article>
+      ))}
+    </div>
+  );
+}
+
+function InventoryPreview({ project }) {
+  return (
+    <div className="inventory-table rich">
+      <div className="inventory-head"><span>Unit Type</span><span>Floor Area</span><span>Computation</span><span>Status</span><span>Action</span></div>
+      {project.unitInventoryPreview.map((item) => (
+        <div className="inventory-row" key={item.type}>
+          <span>{item.type}</span>
+          <span>{item.floorArea}</span>
+          <span>{item.indicativeRange || item.computation}</span>
+          <span>{item.status || item.availability}</span>
+          <Button to="/request-computation" variant="secondary">Request Computation</Button>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function Gallery({ project }) {
+  return (
+    <div className="gallery-grid rich-gallery-grid">
+      {project.gallery.map((src, index) => (
+        <ImagePlaceholder key={`${src}-${index}`} src={src} label={`${project.name} gallery ${index + 1}`} compact variant="gallery" />
+      ))}
+    </div>
+  );
+}
+
+function VideoTourBlock({ project }) {
+  return (
+    <div className="video-tour-card">
+      <ImagePlaceholder label={`${project.name} virtual tour`} compact variant="gallery" />
+      <div>
+        <strong>Virtual tour link available upon request</strong>
+        <p>Large videos are not loaded directly here so the website stays fast on mobile. Ask Luisa for the latest approved tour link or project presentation.</p>
+        {project.videoTourUrl ? (
+          <Button href={project.videoTourUrl} target="_blank" rel="noreferrer" variant="secondary">Open Virtual Tour</Button>
+        ) : (
+          <Button to="/contact" variant="secondary">Request Virtual Tour Link</Button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function ReferenceNotice() {
+  return (
+    <div className="reference-warning">
+      <strong>Reference snapshot only</strong>
+      <span>Prices, unit availability, promos, payment terms, unit details, and turnover schedules are subject to final confirmation. Request the latest computation from Luisa before making decisions.</span>
+    </div>
   );
 }
 
