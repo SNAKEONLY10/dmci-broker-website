@@ -22,12 +22,10 @@ export function Layout({ children }) {
       <header className="site-header">
         <div className="container nav-wrap">
           <NavLink className="brand" to="/" onClick={() => setOpen(false)}>
-            <span className="brand-photo">
-              <img src="/assets/img/luisa-corral.jpg" alt="Luisa Corral" />
-            </span>
+            <span className="brand-mark">LC</span>
             <span className="brand-copy">
               <strong>Luisa Corral</strong>
-              <small>DMCI Homes Buyer Assistance | Licensed Broker</small>
+              <small>DMCI Homes Sales Director</small>
             </span>
           </NavLink>
           <nav className="desktop-nav" aria-label="Main navigation">
