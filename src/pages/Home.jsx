@@ -150,10 +150,10 @@ export function AboutCompact() {
         </div>
         <div className="about-details">
           <span className="eyebrow">Why Work With Luisa</span>
-          <h2>Compact, personal guidance from inquiry to reservation</h2>
-          <p>Luisa Corral assists buyers in finding the right DMCI Homes property through updated computations, project recommendations, site viewing coordination, and reservation guidance.</p>
+          <h2>Guidance from inquiry to reservation</h2>
+          <p>Project matching, computations, availability checks, viewing, and reservation support.</p>
           <div className="credential-grid">
-            {["Licensed broker guidance", "Updated computation assistance", "Project matching by budget and purpose", "Site viewing coordination", "Reservation requirements guidance", "Support for OFW and local buyers"].map((item) => <span key={item}>{item}</span>)}
+            {["Licensed broker", "Latest computation", "Project matching", "Viewing support", "Reservation guide", "OFW/local buyers"].map((item) => <span key={item}>{item}</span>)}
           </div>
           <div className="hero-actions">
             <Button to="/contact">Talk to Luisa</Button>
