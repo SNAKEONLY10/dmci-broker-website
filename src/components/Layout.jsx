@@ -22,7 +22,9 @@ export function Layout({ children }) {
       <header className="site-header">
         <div className="container nav-wrap">
           <NavLink className="brand" to="/" onClick={() => setOpen(false)}>
-            <span className="brand-mark">LC</span>
+            <span className="brand-logo">
+              <img src="/assets/img/dmci-broker-mark.png" alt="Luisa Corral DMCI broker logo" />
+            </span>
             <span className="brand-copy">
               <strong>Luisa Corral</strong>
               <small>DMCI Homes Sales Director</small>
@@ -65,6 +67,7 @@ function Footer() {
     <footer className="site-footer">
       <div className="container footer-grid">
         <div>
+          <img className="footer-logo" src="/assets/img/dmci-broker-logo.png" alt="DMCI broker logo" />
           <div className="footer-profile">
             <img src="/assets/img/luisa-corral.jpg" alt="Luisa Corral" />
             <div>
