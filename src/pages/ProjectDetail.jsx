@@ -549,17 +549,14 @@ function Gallery({ project }) {
 
 function ZoomableProjectImage({ image, compact = false, onOpen }) {
   return (
-    <div className="zoomable-image">
+    <button
+      className="zoomable-image"
+      type="button"
+      aria-label={`Open ${image.label} preview`}
+      onClick={() => onOpen(image)}
+    >
       <ImagePlaceholder src={image.src} label={image.label} compact={compact} variant={image.variant} />
-      <button
-        className="image-zoom-trigger"
-        type="button"
-        aria-label={`Zoom ${image.label}`}
-        onClick={() => onOpen(image)}
-      >
-        <span aria-hidden="true">⌕</span>
-      </button>
-    </div>
+    </button>
   );
 }
 

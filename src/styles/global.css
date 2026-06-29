@@ -2196,6 +2196,12 @@ textarea {
   min-width: 0;
   overflow: hidden;
   border-radius: inherit;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: #071a2d;
+  cursor: zoom-in;
+  text-align: left;
 }
 
 .project-hero-media > .zoomable-image {
@@ -2222,36 +2228,22 @@ textarea {
   height: 100%;
 }
 
-.image-zoom-trigger {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 3;
-  width: 34px;
-  height: 34px;
-  display: grid;
-  place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.76);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.86);
-  color: var(--navy);
-  box-shadow: 0 10px 26px rgba(7, 26, 45, 0.2);
-  cursor: pointer;
-  transition: transform 0.16s ease, background 0.16s ease, box-shadow 0.16s ease;
+.zoomable-image > .image-cover,
+.zoomable-image > .image-picture > .image-cover {
+  object-fit: contain;
+  object-position: center;
+  background: #071a2d;
 }
 
-.image-zoom-trigger:hover {
-  transform: scale(1.06);
-  background: #ffffff;
-  box-shadow: 0 14px 30px rgba(7, 26, 45, 0.24);
+.zoomable-image:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
 }
 
-.image-zoom-trigger span {
-  display: block;
-  font-size: 1.15rem;
-  font-weight: 900;
-  line-height: 1;
-  transform: translateY(-1px);
+.zoomable-image:hover .image-cover,
+.zoomable-image:hover .image-picture,
+.zoomable-image:hover .image-placeholder {
+  transform: scale(1.015);
 }
 
 .image-lightbox {
@@ -2670,8 +2662,8 @@ textarea {
   .project-detail-hero-rich .project-hero-media > .image-picture,
   .project-detail-hero-rich .project-hero-media > .zoomable-image {
     grid-column: 1 / -1;
-    min-height: 190px;
-    max-height: 220px;
+    min-height: 220px;
+    aspect-ratio: 16 / 9;
     border-radius: 18px;
     box-shadow: 0 18px 42px rgba(7, 26, 45, 0.22);
   }
@@ -2685,26 +2677,13 @@ textarea {
   .project-detail-hero-rich .project-hero-thumbs .image-picture,
   .project-detail-hero-rich .project-hero-thumbs .zoomable-image {
     min-height: 112px;
-    max-height: 132px;
+    aspect-ratio: 16 / 9;
     border-radius: 16px;
     box-shadow: 0 12px 28px rgba(7, 26, 45, 0.16);
   }
 
   .project-detail-hero-rich .project-hero-thumbs > *:nth-child(n + 3) {
     display: none;
-  }
-
-  .project-detail-hero-rich .image-zoom-trigger,
-  .rich-gallery-grid .image-zoom-trigger {
-    width: 28px;
-    height: 28px;
-    top: 8px;
-    right: 8px;
-  }
-
-  .project-detail-hero-rich .image-zoom-trigger span,
-  .rich-gallery-grid .image-zoom-trigger span {
-    font-size: 0.95rem;
   }
 
   .project-detail-hero-rich .project-hero-copy {
@@ -2794,16 +2773,16 @@ textarea {
   .project-detail-hero-rich .project-hero-media > .image-cover,
   .project-detail-hero-rich .project-hero-media > .image-picture,
   .project-detail-hero-rich .project-hero-media > .zoomable-image {
-    min-height: 170px;
-    max-height: 195px;
+    min-height: 205px;
+    aspect-ratio: 16 / 9;
   }
 
   .project-detail-hero-rich .project-hero-thumbs .image-placeholder,
   .project-detail-hero-rich .project-hero-thumbs .image-cover,
   .project-detail-hero-rich .project-hero-thumbs .image-picture,
   .project-detail-hero-rich .project-hero-thumbs .zoomable-image {
-    min-height: 96px;
-    max-height: 112px;
+    min-height: 104px;
+    aspect-ratio: 16 / 9;
   }
 
   .image-lightbox {
