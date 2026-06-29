@@ -31,6 +31,7 @@ const richSectionLinks = [
   ["Site Plan", "site-development"],
   ["Views", "views"],
   ["Amenities", "amenities"],
+  ["Rental Pool", "rental-pool"],
   ["Units", "unit-options"],
   ["Floor Plans", "floor-plans"],
   ["Payment", "payment"],
@@ -55,7 +56,9 @@ export default function ProjectDetail() {
   }
 
   const isRichProject = project.contentLevel === "rich" && project.projectFacts?.length;
-  const sectionLinks = isRichProject ? richSectionLinks : defaultSectionLinks;
+  const sectionLinks = isRichProject
+    ? richSectionLinks.filter(([, id]) => id !== "rental-pool" || project.rentalPoolProgram)
+    : defaultSectionLinks;
   const similar = projects
     .filter((item) => item.id !== project.id && (item.location === project.location || item.status === project.status || project.nearbyProperties.includes(item.slug)))
     .slice(0, 3);
@@ -245,6 +248,22 @@ function RichProjectSections({ project }) {
         <GroupedList groups={project.amenityGroups} compact />
       </DetailSection>
 
+      {project.rentalPoolProgram && (
+        <DetailSection id="rental-pool" eyebrow="Rental Pool" title={project.rentalPoolProgram.title}>
+          <p>{project.rentalPoolProgram.intro}</p>
+          <div className="premium-card-grid">
+            {project.rentalPoolProgram.cards.map((card) => (
+              <article className="info-card" key={card.title}>
+                <h3>{card.title}</h3>
+                <ul>{card.items.map((item) => <li key={item}>{item}</li>)}</ul>
+              </article>
+            ))}
+          </div>
+          <p className="safety-note">{project.rentalPoolProgram.warning}</p>
+          <Button to="/contact" variant="secondary">Ask Luisa About Rental Pool Program</Button>
+        </DetailSection>
+      )}
+
       <DetailSection id="unit-options" eyebrow="Unit Types" title="Unit Options and Guide Ranges">
         <p className="reference-note">For guidance only. Unit cuts, floor areas, prices, promos, and availability can change.</p>
         {project.unitSections.map((section) => <UnitSection section={section} key={section.title} />)}
@@ -266,6 +285,12 @@ function RichProjectSections({ project }) {
       <DetailSection id="payment" eyebrow="Payment Terms" title={project.paymentTerms.title}>
         <p>{project.paymentTerms.text}</p>
         <div className="payment-grid">
+          {project.paymentTerms.rfoSchedule && (
+            <article className="payment-card payment-card-wide">
+              <h3>Building RFO Schedule</h3>
+              {project.paymentTerms.rfoSchedule.map((item, index) => <Spec key={`${item.label}-${index}`} label={item.label} value={item.value} />)}
+            </article>
+          )}
           <article className="payment-card">
             <h3>Computation Guide</h3>
             {project.paymentTerms.sampleComputation.map((item, index) => <Spec key={`${item.label}-${index}`} label={item.label} value={item.value} />)}
@@ -501,8 +526,8 @@ function SampleComputationList({ items = [] }) {
 
   return (
     <div className="sample-computation-card-grid">
-      {items.map((item) => (
-        <article className="sample-computation-card" key={`${item.type}-${item.size}-${item.price}`}>
+      {items.map((item, index) => (
+        <article className="sample-computation-card" key={`${item.type}-${item.size}-${item.price}-${index}`}>
           <strong>{item.type}</strong>
           <span>{item.size}</span>
           <b>{item.price}</b>

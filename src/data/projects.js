@@ -440,6 +440,240 @@ const kaleaHeightsDetails = {
   ]
 };
 
+const solmeraCoastDetails = {
+  contentLevel: "rich",
+  assetStatus: "official-assets-needed",
+  verificationStatus: "reference-only",
+  tagline: "Beach park condotel living and investment opportunity in San Juan, Batangas.",
+  city: "San Juan, Batangas",
+  location: "Batangas",
+  status: "Preselling",
+  propertyType: "Beach Park Condotel Complex",
+  developmentType: "Beach Park Condotel Complex",
+  landArea: "For confirmation",
+  architecturalTheme: "Asian Tropical",
+  address: "Brgy. Subukin and Calubcub II, San Juan, Batangas",
+  turnoverYear: "2027-2028",
+  targetRfo: "February 2027 to February 2028, depending on building",
+  unitTypes: ["Studio", "1BR", "2BR"],
+  priceRangeLabel: "PHP 6.6M - PHP 19.3M reference range",
+  priceSourceNote: "Reference snapshot only. Prices, promos, terms, unit availability, rental pool details, and turnover dates must be confirmed with Luisa before deciding.",
+  sourceUrl: "",
+  lastVerified: "Reference snapshot for confirmation",
+  overview:
+    "Solmera Coast by DMCI Homes is a beach park condotel complex in San Juan, Batangas, located in Brgy. Subukin and Calubcub II. It is positioned for buyers reviewing leisure use, beachfront lifestyle, and potential rental pool participation, subject to the latest official terms.",
+  introParagraphs: [
+    "Solmera Coast offers Studio, 1BR, and 2BR unit options with Asian Tropical architecture, beach and resort amenities, pool areas, lounges, restaurants, and leisure spaces.",
+    "The project has multiple mid-rise buildings with different turnover dates, including Matahari, Kartika, Bumi, Asri, and Nusa.",
+    "All pricing, availability, rental pool details, payment terms, promos, turnover schedules, and investment references are for buyer assistance only. Rental income, appreciation, occupancy, and investment returns are not guaranteed."
+  ],
+  projectFacts: [
+    { label: "Location", value: "Brgy. Subukin and Calubcub II, San Juan, Batangas" },
+    { label: "Developer", value: "DMCI Homes" },
+    { label: "Type of Development", value: "Beach Park Condotel Complex" },
+    { label: "Number of Buildings", value: "5 MRBs" },
+    { label: "Number of Floors", value: "7 storeys, including 6 residential floors and 1 basement level" },
+    { label: "Architectural Theme", value: "Asian Tropical" },
+    { label: "Unit Types", value: "Studio, 1BR, 2BR Units" },
+    { label: "Turnover Date", value: "Matahari Building February 2027; Kartika Building May 2027; Bumi August 2027; Asri November 2027; Nusa February 2028" }
+  ],
+  summaryPricing: [
+    { type: "Studio", floorArea: "31.00 - 49.50 sqm", range: "PHP 6.6M - PHP 10.9M", status: "Available in reference snapshot", monthlyDp: "15% DP: PHP 60.2k - PHP 206.2k/mo", note: "Ask Luisa for latest computation and availability." },
+    { type: "1BR", floorArea: "69.00 - 70.00 sqm", range: "PHP 15.3M - PHP 15.4M", status: "Limited in reference snapshot", monthlyDp: "15% DP: PHP 119.1k - PHP 226.3k/mo", note: "Ask Luisa for latest computation and availability." },
+    { type: "2BR", floorArea: "63.00 - 92.00 sqm", range: "PHP 12.2M - PHP 19.3M", status: "Available in reference snapshot", monthlyDp: "15% DP: PHP 112.5k - PHP 408.3k/mo", note: "Ask Luisa for latest computation and availability." }
+  ],
+  aboutLocation:
+    "Solmera Coast is located in San Juan, Batangas, a municipality known for beaches, marine life, and leisure tourism. Nearby attractions and travel references are guide information only and should be verified with current maps and official project materials.",
+  locationDetails: {
+    title: "Project Location - San Juan, Batangas",
+    text: "Solmera Coast is located in San Juan, Batangas, a municipality known for beaches, marine life, and leisure tourism. Its setting near resort destinations, aquatic activities, mangrove forests, mountains, and coastal attractions positions it for leisure use and investment review. Distances and travel references should be confirmed with current maps before site viewing or reservation.",
+    exactAddress: "Brgy. Subukin and Calubcub II, San Juan, Batangas"
+  },
+  nearbyDestinations: [
+    { group: "Tourism and Beach Lifestyle", items: ["Laiya beach area - For confirmation", "Beach resorts and aquatic activities - For confirmation", "Marine protected areas - For confirmation", "Mangrove forests and ecotourism areas - For confirmation", "Mountain and hiking destinations - For confirmation"] },
+    { group: "Historical / Local Interest", items: ["San Juan Nepomuceno Church - For confirmation", "San Juan town proper - For confirmation"] },
+    { group: "Nature and Leisure", items: ["Beachfront leisure areas - For confirmation", "Coastal attractions - For confirmation", "Outdoor activity areas - For confirmation"] }
+  ],
+  whyInvest: [
+    "Beach park condotel concept for leisure use and investment review",
+    "San Juan, Batangas coastal destination with resort-style positioning",
+    "Studio, 1BR, and 2BR options for different buyer goals",
+    "Rental pool participation may be available for selected buildings, subject to official terms",
+    "Broker-assisted computation, availability checking, viewing coordination, and reservation guidance through Luisa"
+  ],
+  highlights: [
+    "Beach Park Condotel Complex",
+    "5 mid-rise buildings",
+    "Asian Tropical architecture",
+    "Building RFO schedule from February 2027 to February 2028",
+    "Pool complex, welcome pavilion, convention center, beach, and resort-style leisure areas"
+  ],
+  themeDescription:
+    "Asian Tropical architecture supports a resort-oriented coastal setting. Final design, amenities, building details, and hospitality program terms must be confirmed through official project materials.",
+  siteDevelopment: {
+    title: "Site Development Plan",
+    text:
+      "Solmera Coast is designed as a beach park condotel complex with resort-style spaces set within a coastal environment. The development is planned with multiple mid-rise buildings, resort amenities, landscaped areas, pool complexes, dining areas, event spaces, and leisure zones. The site development is intended to blend relaxation, recreation, and investment-oriented hospitality use. Site development details, technical drawings, building placement, and final amenities must be confirmed with official project materials.",
+    keyStats: [
+      { label: "Development", value: "Beach Park Condotel Complex" },
+      { label: "Buildings", value: "5 MRBs" },
+      { label: "Floors", value: "7 storeys including 6 residential floors and 1 basement level" },
+      { label: "Theme", value: "Asian Tropical architecture" },
+      { label: "Pools", value: "Pool complex" },
+      { label: "Arrival", value: "Welcome Pavilion" },
+      { label: "Events", value: "Convention Center" },
+      { label: "Lifestyle", value: "Beach and resort-style leisure areas" }
+    ]
+  },
+  viewHighlights: [
+    { title: "360-degree virtual tour support", text: "Request an approved virtual tour link or online presentation schedule from Luisa when available." },
+    { title: "Beach park condotel setting", text: "Review the coastal lifestyle and hospitality positioning through approved project materials." },
+    { title: "San Juan, Batangas coastal destination", text: "A leisure-oriented location for buyers comparing beach use and investment review." },
+    { title: "Pool, lounge, and beach perspectives", text: "Pool complex, sky lounge, sky promenade, beach area, and resort-style spaces should be confirmed with official visuals." },
+    { title: "Leisure and investment positioning", text: "Investment/rental pool references are not guaranteed and must be verified before deciding." }
+  ],
+  videoTourTitle: "Explore Solmera Coast in 360 Degrees",
+  videoTourCopy: "Request a virtual tour link or online consultation schedule from Luisa when approved materials are available.",
+  videoTourNote: "Large videos are not loaded directly here so the website stays fast on mobile.",
+  amenities: ["Infinity Pool", "Kiddie Pool", "Lap Pool", "Leisure Pool", "Sky Deck Pool", "Pool Pavilion", "Sky Lounge", "Restaurants", "Gym", "Convention Center", "Welcome Pavilion", "Beach Area"],
+  amenityGroups: [
+    { title: "Pool Complex", items: ["Infinity Pool", "Kiddie Pool", "Lap Pool", "Leisure Pool", "Sky Deck Pool", "Pool Pavilion"] },
+    { title: "Lounges and Dining", items: ["Sky Lounge", "Game Area", "Restaurants", "Snack Bar", "Open Lounge", "Sky Promenade"] },
+    { title: "Fitness, Events, and Arrival", items: ["Gym", "Convention Center", "Welcome Pavilion", "Drop-Off Area"] },
+    { title: "Outdoor and Beach Lifestyle", items: ["Multi-Purpose Lawn", "Activity Lawn", "Beach Area", "Balcony View", "Landscaped resort areas"] },
+    { title: "Building and Project Perspectives", items: ["Building Facade", "Solmera Coast project perspective"] }
+  ],
+  otherAmenities: ["Amenities are based on the reference snapshot and must be confirmed with the latest official project materials."],
+  nearbyLandmarks: ["San Juan, Batangas", "Laiya beach area", "Beach resorts", "Marine protected areas", "Mangrove forests"],
+  siteProgressStatus: "Site progress information should be confirmed through official DMCI channels or Luisa.",
+  masterPlanNotes: "Site development, building placement, pool complex, amenity, and floor plan visuals can be added once approved Solmera Coast assets are available.",
+  buildings: [
+    { name: "Matahari Building", developmentType: "Condotel", levels: ["February 2027 target turnover"], features: ["Building details for confirmation"] },
+    { name: "Kartika Building", developmentType: "Condotel", levels: ["May 2027 target turnover"], features: ["Building details for confirmation"] },
+    { name: "Bumi Building", developmentType: "Condotel", levels: ["August 2027 target turnover"], features: ["Building details for confirmation"] },
+    { name: "Asri Building", developmentType: "Residential", levels: ["November 2027 target turnover"], features: ["Building details for confirmation"] },
+    { name: "Nusa Building", developmentType: "Condotel", levels: ["February 2028 target turnover"], features: ["Building details for confirmation"] }
+  ],
+  rentalPoolProgram: {
+    title: "Individual Rental Pool Program",
+    intro:
+      "Solmera Coast may offer an Individual Rental Pool Program for selected buildings, providing buyers an option to participate in a professionally managed hotel/rental operation. Program details, eligibility, projected income, occupancy, owner usage, lease terms, and restrictions must be confirmed with Luisa and official project documents before any investment decision.",
+    cards: [
+      { title: "Program Availability", items: ["Available for selected units in Matahari, Kartika, Bumi, and Nusa buildings according to the reference snapshot.", "Do not assume all units are eligible unless confirmed."] },
+      { title: "Revenue Share Reference", items: ["Owners may receive 30% of gross room revenue generated from the entire hotel operation, according to the reference snapshot.", "Revenue is based on a pooling system and not only the individual unit's occupancy."] },
+      { title: "Professional Management", items: ["Professional management is handled by DMCI PDI Hotels according to the reference snapshot.", "Independent short-term leasing by owners is not permitted in the reference snapshot."] },
+      { title: "Lease / Restrictions", items: ["Lease tenure is described as an initial 10-year period with automatic renewal option for another 10 years, subject to actual agreement terms.", "Owner usage, lease renewal, and restrictions must be reviewed through official documents."] },
+      { title: "Owner Perks", items: ["Owners may receive complimentary room nights each year, subject to program terms.", "Owners may use the property personally, gift stays, or review potential income opportunities, subject to official terms."] },
+      { title: "Projection Warning", items: ["The source mentions that at 35% occupancy, a studio unit may generate approximately PHP 16,440 monthly, with projections scaling up to 75% occupancy.", "This is a reference projection only, not guaranteed income."] }
+    ],
+    warning:
+      "Rental pool income, occupancy, revenue share, complimentary nights, lease renewal, and projected returns are not guaranteed. These must be confirmed through the latest official rental pool documents before deciding."
+  },
+  unitInventoryPreview: [
+    { type: "Studio", floorArea: "31.00 - 49.50 sqm", indicativeRange: "PHP 6.6M-PHP 10.9M reference range", status: "Ask for latest availability" },
+    { type: "1BR", floorArea: "69.00 - 70.00 sqm", indicativeRange: "PHP 15.3M-PHP 15.4M reference range", status: "Ask for latest availability" },
+    { type: "2BR", floorArea: "63.00 - 92.00 sqm", indicativeRange: "PHP 12.2M-PHP 19.3M reference range", status: "Ask for latest availability" }
+  ],
+  unitSections: [
+    { title: "Studio Units", description: "Studio units are designed for singles, couples, leisure users, and investors reviewing efficient beach park condotel options.", layouts: ["31.00 sqm", "31.50 sqm", "34.00 sqm", "34.50 sqm", "35.00 sqm", "42.00 sqm", "49.50 sqm"], rows: [
+      { layout: "STUDIO", floorArea: "31.00 sqm", status: "Available in reference snapshot", priceRange: "PHP 6.6M - PHP 7.1M", monthlyDp: "15% DP: PHP 60.2k - PHP 65.0k/mo" },
+      { layout: "STUDIO", floorArea: "31.50 sqm", status: "Few left", priceRange: "PHP 6.6M - PHP 7.1M", monthlyDp: "15% DP: PHP 60.4k - PHP 65.0k/mo" },
+      { layout: "STUDIO", floorArea: "34.00 sqm", status: "Limited", priceRange: "PHP 8.1M", monthlyDp: "15% DP: PHP 90.8k - PHP 118.1k/mo" },
+      { layout: "STUDIO", floorArea: "34.50 sqm", status: "Limited", priceRange: "PHP 8.1M", monthlyDp: "15% DP: PHP 62.6k - PHP 169.9k/mo" },
+      { layout: "STUDIO", floorArea: "35.00 sqm", status: "Available in reference snapshot", priceRange: "PHP 8.2M", monthlyDp: "15% DP: PHP 63.1k - PHP 171.2k/mo" },
+      { layout: "STUDIO", floorArea: "42.00 sqm", status: "Limited", priceRange: "PHP 9.8M", monthlyDp: "15% DP: PHP 76.0k - PHP 206.2k/mo" },
+      { layout: "STUDIO", floorArea: "49.50 sqm", status: "Few left", priceRange: "PHP 10.9M", monthlyDp: "15% DP: PHP 84.3k - PHP 160.2k/mo" }
+    ] },
+    { title: "1-Bedroom Units", description: "1BR units provide larger layouts with separate living and sleeping spaces for buyers who want more comfort during leisure stays or investment-oriented use.", layouts: ["69.00 sqm", "70.00 sqm"], rows: [
+      { layout: "1BR", floorArea: "69.00 sqm", status: "Few left", priceRange: "PHP 15.3M", monthlyDp: "15% DP: PHP 119.1k - PHP 226.3k/mo" },
+      { layout: "1BR", floorArea: "70.00 sqm", status: "Few left", priceRange: "PHP 15.4M", monthlyDp: "15% DP: PHP 120.0k - PHP 175.3k/mo" }
+    ] },
+    { title: "2-Bedroom Units", description: "2BR units are suited for families, groups, or buyers seeking larger resort-style accommodations with more living space and privacy.", layouts: ["63.00 sqm", "91.50 sqm", "92.00 sqm"], rows: [
+      { layout: "2BR", floorArea: "63.00 sqm", status: "Available in reference snapshot", priceRange: "PHP 12.2M - PHP 14.1M", monthlyDp: "15% DP: PHP 112.5k - PHP 129.9k/mo" },
+      { layout: "2BR", floorArea: "91.50 sqm", status: "Available in reference snapshot", priceRange: "PHP 19.3M", monthlyDp: "15% DP: PHP 150.4k - PHP 408.3k/mo" },
+      { layout: "2BR", floorArea: "92.00 sqm", status: "Limited", priceRange: "PHP 17.4M - PHP 19.2M", monthlyDp: "15% DP: PHP 161.3k - PHP 177.8k/mo" }
+    ] }
+  ],
+  floorPlans: [
+    { title: "Floor Plans", text: "Solmera Coast includes building-specific floor plans for its mid-rise beach park condotel buildings. Floor plan images, unit cuts, building assignment, rental pool eligibility, and technical details must be confirmed with the latest official project materials." },
+    { title: "Matahari Building Floor Plan", text: "Ask Luisa for the latest official layout sheet." },
+    { title: "Kartika Building Floor Plan", text: "Ask Luisa for the latest official layout sheet." },
+    { title: "Bumi Building Floor Plan", text: "Ask Luisa for the latest official layout sheet." },
+    { title: "Asri Building Floor Plan", text: "Ask Luisa for the latest official layout sheet." },
+    { title: "Nusa Building Floor Plan", text: "Ask Luisa for the latest official layout sheet." }
+  ],
+  paymentTerms: {
+    title: "Computation and Payment Guide",
+    text: "Solmera Coast offers standard and promotional payment options. The standard financing plan requires a minimum 20% down payment extended until the RFO date, with the remaining 80% balance through bank financing. The promotional reference term shows a 15% down payment until RFO with the remaining 85% through bank financing. Terms, promos, discounts, closing fees, monthly payments, bank financing, and availability must be confirmed with Luisa before deciding.",
+    rfoSchedule: [
+      { label: "Matahari", value: "February 2027 | Condotel" },
+      { label: "Kartika", value: "May 2027 | Condotel" },
+      { label: "Bumi", value: "August 2027 | Condotel" },
+      { label: "Asri", value: "November 2027 | Residential" },
+      { label: "Nusa", value: "February 2028 | Condotel" }
+    ],
+    importantNotes: ["Standard terms and promo terms may differ.", "Monthly DP ranges are guide values from the reference snapshot and may vary by building, unit, term, promo, and current availability.", "Request the latest computation before comparing units or preparing reservation."],
+    sampleComputation: [
+      { label: "Unit", value: "C-Asri 218" },
+      { label: "Type", value: "STUDIO" },
+      { label: "Size", value: "31.00 sqm" },
+      { label: "List Price", value: "PHP 6,621,000.00" },
+      { label: "RFO Date", value: "Nov 2027" },
+      { label: "Selected Downpayment", value: "15%" },
+      { label: "Months to Pay", value: "16 months" },
+      { label: "Financing", value: "15% DP, 85% Bank Financing" },
+      { label: "Special Discount", value: "0.0% / PHP 0.00" },
+      { label: "Regular Discount", value: "0.0% / PHP 0.00" },
+      { label: "Additional Discount", value: "0.0% / PHP 0.00" }
+    ],
+    contractBreakdown: [
+      { label: "Total Contract Price", value: "PHP 6,621,000.00" },
+      { label: "Closing Fee", value: "10.5% / PHP 695,205.00" },
+      { label: "Total with Closing Fee", value: "PHP 7,316,205.00" },
+      { label: "Downpayment", value: "15% / PHP 993,150.00" },
+      { label: "Less Reservation Fee", value: "PHP 30,000.00" },
+      { label: "Net Downpayment", value: "PHP 963,150.00" },
+      { label: "Monthly DP", value: "16 months / PHP 60,196.88/mo" },
+      { label: "Balance", value: "85% / PHP 5,627,850.00" },
+      { label: "Closing Fee", value: "PHP 695,205.00" },
+      { label: "Total Balance + Closing Fee", value: "PHP 6,323,055.00" }
+    ],
+    monthlyAmortization: [
+      { label: "10 years | 7.0%", value: "PHP 73,416.03/month" },
+      { label: "15 years | 7.0%", value: "PHP 56,833.41/month" },
+      { label: "20 years | 7.0%", value: "PHP 49,022.58/month" }
+    ],
+    promoReference: "Sample computation only. Prices, discounts, rates, closing fees, monthly amortization, promos, building RFO dates, and availability may change. Request the latest computation from Luisa before deciding.",
+    promoCards: [{ title: "15% DP Promo", items: ["Down Payment Promo: 15% DP", "Promo Ends: July 31, 2026", "Scope: Building Asri", "Promo details are reference only and must be confirmed with Luisa before use."] }],
+    sampleAvailableComputations: [
+      { type: "2BR", size: "91.50 sqm", price: "PHP 19,255,000", rfo: "Feb 2027", note: "HomeReady: Not applicable" },
+      { type: "STUDIO", size: "34.50 sqm", price: "PHP 8,130,000", rfo: "Feb 2027", note: "HomeReady: Not applicable" },
+      { type: "STUDIO", size: "35.00 sqm", price: "PHP 8,188,000", rfo: "Feb 2027", note: "HomeReady: Not applicable" },
+      { type: "STUDIO", size: "35.00 sqm", price: "PHP 8,188,000", rfo: "Feb 2027", note: "HomeReady: Not applicable" },
+      { type: "STUDIO", size: "42.00 sqm", price: "PHP 9,822,000", rfo: "Feb 2027", note: "HomeReady: Not applicable" }
+    ]
+  },
+  unitHoldingPortal: {
+    title: "Solmera Coast Unit Holding Portal",
+    text: "Solmera Coast may offer a Unit Holding Portal that allows prospective buyers to temporarily reserve or hold preferred units before making a final decision, subject to current availability and holding rules. Ask Luisa to confirm the latest portal process before proceeding.",
+    steps: ["Register through the current unit holding process if available.", "Select preferred building, unit type, size, and budget range.", "Ask Luisa to confirm current availability and holding rules.", "Request latest computation before proceeding.", "Proceed only through accepted reservation channels."]
+  },
+  reservationRequirements: [
+    "Online Client Registration Form: Complete the online client registration process if required.",
+    "Reservation Agreement Form: Submit the Reservation Agreement Form.",
+    "Valid ID: Submit a copy of a valid government-issued ID.",
+    "Reservation Fee: Pay the reservation fee through accepted channels, subject to latest confirmation.",
+    "Buyer Assistance: Ask Luisa to confirm the latest required documents, payment channels, and reservation process before proceeding.",
+    "Optional Notes: Additional requirements may apply depending on buyer profile, financing method, and official reservation rules."
+  ],
+  galleryLabels: ["Project Perspective", "Site Development Plan", "Pool Complex", "Sky Lounge / Sky Promenade", "Beach Area"],
+  newsMedia: [
+    { title: "Project presentation materials", label: "Request Solmera Coast presentation from Luisa", url: "" },
+    { title: "Rental pool program documents", label: "Ask Luisa for the latest official rental pool references", url: "" }
+  ],
+  videoTourUrl: ""
+};
+
 const valeronTowerDetails = {
   contentLevel: "rich",
   assetStatus: "official-assets-needed",
@@ -1056,7 +1290,9 @@ export const projects = baseProjects.map(([slug, name, location, city, status, t
       ? { ...base, ...oneDeltaTerracesDetails }
       : slug === "valeron-tower"
         ? { ...base, ...valeronTowerDetails }
-        : base;
+        : slug === "solmera-coast"
+          ? { ...base, ...solmeraCoastDetails }
+          : base;
   return withProjectFallbacks({
     ...project,
     nearbyProperties: baseProjects
