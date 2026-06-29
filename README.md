@@ -60,11 +60,35 @@ https://drive.google.com/drive/folders/19CWq_YMieSFTOx9dpPIsE-dN75yUxoPr
 
 This folder contains project/marketing folders such as `RFO Projects`, `KLH`, `ODT`, `MCC`, `ANH`, `SLC`, `MLP 2`, `Rent-to-own`, and more.
 
-Approved project assets can be added later using this structure:
+Approved project assets are imported through an optimized source-to-web workflow. Put selected raw images here first:
+
+```text
+public/assets/project-source/[project-slug]/hero.jpg
+public/assets/project-source/[project-slug]/thumbnail.jpg
+public/assets/project-source/[project-slug]/gallery-1.jpg
+public/assets/project-source/[project-slug]/gallery-2.jpg
+public/assets/project-source/[project-slug]/gallery-3.jpg
+public/assets/project-source/[project-slug]/master-plan.jpg
+public/assets/project-source/[project-slug]/site-progress.jpg
+```
+
+Then run:
+
+```bash
+npm run assets:optimize
+```
+
+The script outputs responsive, web-optimized JPG/WebP assets here:
 
 ```text
 public/assets/projects/[project-slug]/hero.jpg
+public/assets/projects/[project-slug]/hero-640.webp
+public/assets/projects/[project-slug]/hero-960.webp
+public/assets/projects/[project-slug]/hero-1440.webp
 public/assets/projects/[project-slug]/thumbnail.jpg
+public/assets/projects/[project-slug]/thumbnail-480.webp
+public/assets/projects/[project-slug]/thumbnail-768.webp
+public/assets/projects/[project-slug]/thumbnail-960.webp
 public/assets/projects/[project-slug]/gallery-1.jpg
 public/assets/projects/[project-slug]/gallery-2.jpg
 public/assets/projects/[project-slug]/gallery-3.jpg
@@ -73,12 +97,12 @@ public/assets/projects/[project-slug]/site-progress.jpg
 public/assets/projects/[project-slug]/brochure.pdf
 ```
 
-Images should be compressed and web-optimized before final use. Large videos should not be committed directly to the repository; use thumbnails with external links or hosted video.
+Raw files under `public/assets/project-source/` are ignored by git. Commit only the optimized files under `public/assets/projects/`. Large videos should not be committed directly to the repository; use thumbnails with external links or hosted video.
 
 Asset mapping rules:
 
 - Use only client-approved assets from Google Drive.
-- Compress images before committing.
+- Compress images before committing by running `npm run assets:optimize`.
 - Do not commit huge videos.
 - Use thumbnails and external links for large videos or 360 tours.
 - Rename assets consistently by project slug.

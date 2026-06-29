@@ -99,7 +99,9 @@ input:focus, select:focus, textarea:focus { border-color: var(--gold); box-shado
 .project-card:hover { transform: translateY(-4px); box-shadow: 0 22px 56px rgba(15,39,66,0.12); }
 .project-image { position: relative; height: 236px; background: var(--navy); }
 .project-image::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 48%, rgba(7,26,45,0.4)); pointer-events: none; }
-.image-cover, .image-placeholder { width: 100%; height: 100%; object-fit: cover; }
+.image-cover, .image-placeholder, .image-picture { width: 100%; height: 100%; object-fit: cover; }
+.image-picture { display: block; overflow: hidden; }
+.image-picture > img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .image-placeholder { display: grid; place-items: center; min-height: 220px; padding: 22px; background: linear-gradient(135deg, #edf3f6, #fff7e2); color: var(--navy); font-weight: 800; text-align: center; }
 .image-placeholder span { max-width: 220px; }
 .image-placeholder.compact { min-height: 150px; }
@@ -123,9 +125,9 @@ input:focus, select:focus, textarea:focus { border-color: var(--gold); box-shado
 .project-detail-hero { padding: 112px 0 52px; background: radial-gradient(circle at 84% 4%, rgba(201,162,74,0.22), transparent 27%), linear-gradient(180deg, var(--ivory), var(--white)); }
 .project-hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr); gap: clamp(24px, 4vw, 52px); align-items: center; }
 .project-hero-media { display: grid; gap: 12px; }
-.project-hero-media > .image-placeholder, .project-hero-media > .image-cover { min-height: 460px; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-strong); }
+.project-hero-media > .image-placeholder, .project-hero-media > .image-cover, .project-hero-media > .image-picture { min-height: 460px; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-strong); }
 .project-hero-thumbs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.project-hero-thumbs .image-placeholder, .project-hero-thumbs .image-cover { min-height: 112px; border-radius: 8px; overflow: hidden; }
+.project-hero-thumbs .image-placeholder, .project-hero-thumbs .image-cover, .project-hero-thumbs .image-picture { min-height: 112px; border-radius: 8px; overflow: hidden; }
 .project-hero-copy h1 { margin: 12px 0 14px; font-size: clamp(2.4rem, 5vw, 4.35rem); }
 .project-hero-copy > p { font-size: 1.02rem; color: #526172; }
 .project-tagline { color: var(--navy) !important; font-size: clamp(1.15rem, 2vw, 1.45rem) !important; font-weight: 800; }
@@ -143,7 +145,7 @@ input:focus, select:focus, textarea:focus { border-color: var(--gold); box-shado
 .spec-grid span { color: var(--muted); }
 .detail-list { margin: 10px 0 18px; padding-left: 20px; color: var(--muted); line-height: 1.7; }
 .split-placeholder { display: grid; grid-template-columns: minmax(190px, 0.65fr) minmax(0, 1fr); gap: 18px; align-items: center; }
-.split-placeholder .image-placeholder, .split-placeholder .image-cover { min-height: 190px; border-radius: 8px; overflow: hidden; }
+.split-placeholder .image-placeholder, .split-placeholder .image-cover, .split-placeholder .image-picture { min-height: 190px; border-radius: 8px; overflow: hidden; }
 .inventory-table { display: grid; gap: 8px; }
 .inventory-head, .inventory-row { display: grid; grid-template-columns: 0.8fr 1.3fr 1.2fr auto; gap: 10px; align-items: center; padding: 12px; border-radius: 8px; }
 .inventory-head { background: var(--navy); color: var(--white); font-weight: 900; font-size: 0.86rem; }
@@ -152,7 +154,7 @@ input:focus, select:focus, textarea:focus { border-color: var(--gold); box-shado
 .amenity-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .amenity-grid span { padding: 13px; border-radius: 8px; background: var(--blue); color: var(--navy); font-weight: 800; }
 .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.gallery-grid .image-placeholder, .gallery-grid .image-cover { min-height: 160px; border-radius: 8px; overflow: hidden; }
+.gallery-grid .image-placeholder, .gallery-grid .image-cover, .gallery-grid .image-picture { min-height: 160px; border-radius: 8px; overflow: hidden; }
 .detail-cta-card { position: sticky; top: 96px; display: grid; gap: 12px; padding: 22px; border: 1px solid rgba(229,231,235,0.92); border-radius: 10px; background: var(--white); box-shadow: var(--shadow); }
 .detail-cta-card strong { color: var(--navy); font-family: "Playfair Display", Georgia, serif; font-size: 1.55rem; line-height: 1.1; }
 .detail-cta-card .disclaimer-banner { margin-top: 4px; font-size: 0.82rem; }
@@ -295,8 +297,8 @@ textarea { resize: vertical; }
 .project-card:hover { transform: translateY(-7px); box-shadow: 0 30px 76px rgba(15,39,66,0.16); }
 .project-image { height: 258px; overflow: hidden; }
 .project-image::after { z-index: 1; background: linear-gradient(180deg, rgba(7,26,45,0.02) 30%, rgba(7,26,45,0.64)); }
-.project-card:hover .image-cover, .project-card:hover .image-placeholder { transform: scale(1.045); }
-.image-cover, .image-placeholder { transition: transform 0.48s ease; }
+.project-card:hover .image-cover, .project-card:hover .image-placeholder, .project-card:hover .image-picture { transform: scale(1.045); }
+.image-cover, .image-placeholder, .image-picture { transition: transform 0.48s ease; }
 .location-tag { position: absolute; z-index: 2; left: 14px; bottom: 14px; max-width: calc(100% - 28px); border-radius: 999px; padding: 8px 11px; background: rgba(255,255,255,0.88); color: var(--navy); font-size: 0.76rem; font-weight: 900; box-shadow: 0 10px 24px rgba(7,26,45,0.18); }
 .project-body { padding: 22px; }
 .project-body h3 a:hover { color: var(--gold-2); }
@@ -344,15 +346,15 @@ textarea { resize: vertical; }
 .listing-hero-card p { color: rgba(255,255,255,0.75); }
 
 .project-detail-hero { padding: 112px 0 62px; background: linear-gradient(135deg, #071a2d 0%, #143858 44%, #faf7f0 44%, #fffdf8 100%); }
-.project-hero-media > .image-placeholder, .project-hero-media > .image-cover { border-radius: 20px; border: 1px solid rgba(255,255,255,0.65); }
-.project-hero-thumbs .image-placeholder, .project-hero-thumbs .image-cover { border-radius: 14px; }
+.project-hero-media > .image-placeholder, .project-hero-media > .image-cover, .project-hero-media > .image-picture { border-radius: 20px; border: 1px solid rgba(255,255,255,0.65); }
+.project-hero-thumbs .image-placeholder, .project-hero-thumbs .image-cover, .project-hero-thumbs .image-picture { border-radius: 14px; }
 .project-hero-copy { padding: clamp(20px, 3vw, 30px); border: 1px solid rgba(201,162,74,0.18); border-radius: 20px; background: rgba(255,255,255,0.88); box-shadow: var(--shadow); backdrop-filter: blur(14px); }
 .price-panel { border-radius: 16px; background: linear-gradient(135deg, #fff8e8, #ffffff); }
 .project-facts span, .spec-grid div { border-radius: 14px; background: linear-gradient(180deg, #ffffff, #f7fbfd); }
 .detail-section { border-radius: 18px; background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,253,248,0.98)); }
 .detail-section:nth-child(even) { background: linear-gradient(180deg, #f8fbfd, #ffffff); }
 .detail-section h2 { max-width: 760px; }
-.split-placeholder .image-placeholder, .split-placeholder .image-cover, .gallery-grid .image-placeholder, .gallery-grid .image-cover { border-radius: 14px; }
+.split-placeholder .image-placeholder, .split-placeholder .image-cover, .split-placeholder .image-picture, .gallery-grid .image-placeholder, .gallery-grid .image-cover, .gallery-grid .image-picture { border-radius: 14px; }
 .inventory-head { border-radius: 14px; background: linear-gradient(135deg, var(--navy-2), #173a5e); }
 .inventory-row { border-radius: 14px; background: linear-gradient(180deg, #ffffff, #f6fafc); }
 .inventory-row span { min-width: 0; overflow-wrap: anywhere; }
@@ -435,7 +437,7 @@ textarea { resize: vertical; }
   .project-detail-layout { grid-template-columns: 1fr; }
   .detail-cta-card { position: static; }
   .project-hero-grid { grid-template-columns: 1fr; }
-  .project-hero-media > .image-placeholder, .project-hero-media > .image-cover { min-height: 390px; }
+  .project-hero-media > .image-placeholder, .project-hero-media > .image-cover, .project-hero-media > .image-picture { min-height: 390px; }
   .building-grid, .amenity-grid.compact { grid-template-columns: repeat(2, 1fr); }
   .showcase-card-grid, .page-map-grid, .showcase-timeline, .completion-plan-grid, .quick-link-grid, .demo-preview-grid { grid-template-columns: repeat(2, 1fr); }
   .asset-pipeline { grid-template-columns: repeat(3, 1fr); }
@@ -474,9 +476,9 @@ textarea { resize: vertical; }
   .project-toc { top: 66px; }
   .project-toc .container { width: 100%; padding-inline: 12px; }
   .project-detail-hero { padding: 96px 0 44px; }
-  .project-hero-media > .image-placeholder, .project-hero-media > .image-cover { min-height: 320px; }
+  .project-hero-media > .image-placeholder, .project-hero-media > .image-cover, .project-hero-media > .image-picture { min-height: 320px; }
   .project-hero-thumbs { grid-template-columns: repeat(3, 1fr); }
-  .project-hero-thumbs .image-placeholder, .project-hero-thumbs .image-cover { min-height: 86px; }
+  .project-hero-thumbs .image-placeholder, .project-hero-thumbs .image-cover, .project-hero-thumbs .image-picture { min-height: 86px; }
   .inventory-head { display: none !important; }
   .inventory-row { grid-template-columns: 1fr; gap: 7px; }
   .inventory-table.rich .inventory-row { grid-template-columns: 1fr; }
@@ -512,9 +514,9 @@ textarea { resize: vertical; }
   .hero-actions .btn { min-height: 44px; padding: 10px 14px; }
   .hero-copy > .hero-actions .btn:nth-child(3) { display: none; }
   .hero-visual { min-height: 330px; }
-  .project-hero-media > .image-placeholder, .project-hero-media > .image-cover { min-height: 280px; }
+  .project-hero-media > .image-placeholder, .project-hero-media > .image-cover, .project-hero-media > .image-picture { min-height: 280px; }
   .project-hero-thumbs { grid-template-columns: 1fr; }
-  .project-hero-thumbs .image-placeholder, .project-hero-thumbs .image-cover { min-height: 120px; }
+  .project-hero-thumbs .image-placeholder, .project-hero-thumbs .image-cover, .project-hero-thumbs .image-picture { min-height: 120px; }
   .premium-hero-card img { min-height: 330px; }
   .hero-visual-badge { top: 12px; left: 12px; }
   .portrait-panel img { min-height: 390px; }

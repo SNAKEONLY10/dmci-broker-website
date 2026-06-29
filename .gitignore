@@ -7,3 +7,5 @@ server*.log
 vite*.log
 
 .vercel
+public/assets/project-source/**
+!public/assets/project-source/.gitkeep

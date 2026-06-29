@@ -1,6 +1,6 @@
 # Google Drive Asset Inventory Notes
 
-Checked through the connected Google Drive connector.
+Checked through the confirmed shared Google Drive folder. Project assets should be selected from this folder, compressed, and renamed before being committed.
 
 ## Confirmed Marketing Materials Folder
 
@@ -31,11 +31,37 @@ The confirmed folder contains project/marketing folders and files including exam
 
 ## Recommended Mapping
 
-Final project assets must be selected, approved, compressed, and renamed before being committed. Map approved assets into:
+Final project assets must be selected, approved, compressed, and renamed before being committed.
+
+Use this source folder while preparing raw Drive downloads:
+
+```text
+public/assets/project-source/[project-slug]/hero.jpg
+public/assets/project-source/[project-slug]/thumbnail.jpg
+public/assets/project-source/[project-slug]/gallery-1.jpg
+public/assets/project-source/[project-slug]/gallery-2.jpg
+public/assets/project-source/[project-slug]/gallery-3.jpg
+public/assets/project-source/[project-slug]/master-plan.jpg
+public/assets/project-source/[project-slug]/site-progress.jpg
+```
+
+Then run:
+
+```bash
+npm run assets:optimize
+```
+
+The optimized output is mapped into:
 
 ```text
 public/assets/projects/[project-slug]/hero.jpg
+public/assets/projects/[project-slug]/hero-640.webp
+public/assets/projects/[project-slug]/hero-960.webp
+public/assets/projects/[project-slug]/hero-1440.webp
 public/assets/projects/[project-slug]/thumbnail.jpg
+public/assets/projects/[project-slug]/thumbnail-480.webp
+public/assets/projects/[project-slug]/thumbnail-768.webp
+public/assets/projects/[project-slug]/thumbnail-960.webp
 public/assets/projects/[project-slug]/gallery-1.jpg
 public/assets/projects/[project-slug]/gallery-2.jpg
 public/assets/projects/[project-slug]/gallery-3.jpg
@@ -43,3 +69,5 @@ public/assets/projects/[project-slug]/master-plan.jpg
 public/assets/projects/[project-slug]/site-progress.jpg
 public/assets/projects/[project-slug]/brochure.pdf
 ```
+
+Raw files in `public/assets/project-source/` stay ignored by git; commit only optimized website assets.
