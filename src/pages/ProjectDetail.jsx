@@ -229,7 +229,13 @@ function RichProjectSections({ project }) {
         </div>
         {project.locationDetails?.note && <p className="safety-note">{project.locationDetails.note}</p>}
         <GroupedList groups={project.nearbyDestinations} />
-        <div className="map-placeholder compact-map">Map and travel references can be reviewed during Luisa's project presentation.</div>
+        <div className="map-placeholder compact-map">
+          {project.locationMapImage ? (
+            <ImagePlaceholder src={project.locationMapImage} label={`${project.name} location map`} compact variant="masterPlan" />
+          ) : (
+            "Map and travel references can be reviewed during Luisa's project presentation."
+          )}
+        </div>
         <Button to="/book-viewing" variant="secondary">Book a Site Viewing</Button>
       </DetailSection>
 
