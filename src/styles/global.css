@@ -2095,6 +2095,193 @@ textarea {
   margin-top: 18px;
 }
 
+.project-logo-mark {
+  width: min(230px, 68vw);
+  max-height: 86px;
+  object-fit: contain;
+  object-position: left center;
+  margin-bottom: 14px;
+}
+
+.rich-table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 16px 0;
+}
+
+.rich-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: separate;
+  border-spacing: 0 9px;
+}
+
+.rich-table th {
+  padding: 12px 14px;
+  background: var(--navy);
+  color: var(--white);
+  font-size: 0.78rem;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.rich-table th:first-child {
+  border-radius: 14px 0 0 14px;
+}
+
+.rich-table th:last-child {
+  border-radius: 0 14px 14px 0;
+}
+
+.rich-table td {
+  padding: 14px;
+  border-block: 1px solid rgba(16, 51, 84, 0.1);
+  background: #ffffff;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.rich-table td:first-child {
+  border-left: 1px solid rgba(16, 51, 84, 0.1);
+  border-radius: 14px 0 0 14px;
+  color: var(--navy);
+}
+
+.rich-table td:last-child {
+  border-right: 1px solid rgba(16, 51, 84, 0.1);
+  border-radius: 0 14px 14px 0;
+}
+
+.oriana-media-card,
+.oriana-image-copy,
+.oriana-unit-copy {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.82fr) minmax(0, 1.18fr);
+  gap: 18px;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid rgba(16, 51, 84, 0.1);
+  border-radius: 18px;
+  background: linear-gradient(135deg, #ffffff, #f7fbfd);
+  box-shadow: 0 14px 34px rgba(14, 39, 66, 0.045);
+}
+
+.oriana-media-card .image-placeholder,
+.oriana-media-card .image-cover,
+.oriana-media-card .image-picture,
+.oriana-image-copy .image-placeholder,
+.oriana-image-copy .image-cover,
+.oriana-image-copy .image-picture,
+.oriana-unit-copy .image-placeholder,
+.oriana-unit-copy .image-cover,
+.oriana-unit-copy .image-picture {
+  min-height: 238px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.oriana-media-card .btn,
+.oriana-image-copy .btn {
+  margin-top: 14px;
+}
+
+.oriana-amenity-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 18px 0;
+}
+
+.oriana-amenity-gallery article {
+  overflow: hidden;
+  border: 1px solid rgba(16, 51, 84, 0.1);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 14px 34px rgba(14, 39, 66, 0.045);
+}
+
+.oriana-amenity-gallery .image-placeholder,
+.oriana-amenity-gallery .image-cover,
+.oriana-amenity-gallery .image-picture {
+  min-height: 170px;
+}
+
+.oriana-amenity-gallery strong {
+  display: block;
+  padding: 13px 14px;
+  color: var(--navy);
+  font-size: 0.9rem;
+}
+
+.oriana-label-cloud {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.oriana-label-cloud > strong,
+.oriana-subheading {
+  color: var(--navy);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.22rem;
+}
+
+.oriana-label-cloud > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.oriana-label-cloud span {
+  border: 1px solid rgba(214, 177, 83, 0.28);
+  border-radius: 999px;
+  padding: 8px 10px;
+  background: #fff8e8;
+  color: var(--navy);
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+
+.oriana-unit-detail {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+  padding: clamp(14px, 2.5vw, 20px);
+  border: 1px solid rgba(16, 51, 84, 0.1);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 14px 34px rgba(14, 39, 66, 0.045);
+}
+
+.oriana-unit-copy h3 {
+  margin: 0 0 10px;
+  color: var(--navy);
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+}
+
+.oriana-sample-banner {
+  width: fit-content;
+  margin: 16px 0 0;
+  border-radius: 999px;
+  padding: 9px 12px;
+  background: var(--navy);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.oriana-subheading {
+  margin: 22px 0 0;
+}
+
+.oriana-reservation-grid {
+  margin-top: 18px;
+}
+
 .address-card,
 .site-development-card,
 .video-tour-card,
@@ -2842,6 +3029,101 @@ textarea {
   .project-toc a {
     font-size: 0.7rem;
     padding: 7px 9px;
+  }
+
+  .project-logo-mark {
+    margin-bottom: 10px;
+  }
+
+  .oriana-media-card,
+  .oriana-image-copy,
+  .oriana-unit-copy {
+    grid-template-columns: 1fr;
+    padding: 12px;
+  }
+
+  .oriana-media-card .image-placeholder,
+  .oriana-media-card .image-cover,
+  .oriana-media-card .image-picture,
+  .oriana-image-copy .image-placeholder,
+  .oriana-image-copy .image-cover,
+  .oriana-image-copy .image-picture,
+  .oriana-unit-copy .image-placeholder,
+  .oriana-unit-copy .image-cover,
+  .oriana-unit-copy .image-picture {
+    min-height: 174px;
+  }
+
+  .oriana-amenity-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  .oriana-amenity-gallery .image-placeholder,
+  .oriana-amenity-gallery .image-cover,
+  .oriana-amenity-gallery .image-picture {
+    min-height: 118px;
+  }
+
+  .oriana-amenity-gallery strong {
+    padding: 10px;
+    font-size: 0.78rem;
+    line-height: 1.25;
+  }
+
+  .rich-table {
+    min-width: 0;
+    border-spacing: 0 10px;
+  }
+
+  .rich-table thead {
+    display: none;
+  }
+
+  .rich-table,
+  .rich-table tbody,
+  .rich-table tr,
+  .rich-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .rich-table tr {
+    overflow: hidden;
+    border: 1px solid rgba(16, 51, 84, 0.1);
+    border-radius: 14px;
+    background: #ffffff;
+  }
+
+  .rich-table td {
+    display: grid;
+    grid-template-columns: 108px minmax(0, 1fr);
+    gap: 10px;
+    align-items: center;
+    border: 0;
+    border-bottom: 1px solid rgba(16, 51, 84, 0.07);
+    border-radius: 0;
+    padding: 10px 12px;
+    font-size: 0.82rem;
+  }
+
+  .rich-table td::before {
+    content: attr(data-label);
+    color: #a37519;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .rich-table td:first-child,
+  .rich-table td:last-child {
+    border-inline: 0;
+    border-radius: 0;
+  }
+
+  .rich-table td:last-child {
+    border-bottom: 0;
   }
 }
 

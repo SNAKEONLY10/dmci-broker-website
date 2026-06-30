@@ -1,3 +1,5 @@
+import { theOrianaDetails } from "./theOrianaDetails.js";
+
 // Official/client asset convention:
 // public/assets/projects/[project-slug]/hero.jpg
 // public/assets/projects/[project-slug]/thumbnail.jpg
@@ -184,7 +186,8 @@ const baseProjects = [
       "PDCs / Post-Dated Checks or Auto Debit Arrangement",
       "International remittance/bills payment options subject to confirmation"
     ],
-    reservationNote: "Do not send payment without official confirmation and verified payment instructions from Luisa/DMCI."
+    reservationNote: "Do not send payment without official confirmation and verified payment instructions from Luisa/DMCI.",
+    ...theOrianaDetails
   },
   {
     slug: "one-delta-terraces",

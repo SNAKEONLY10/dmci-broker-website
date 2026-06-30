@@ -65,7 +65,7 @@ export default function ProjectDetail() {
 
   const isRichProject = project.contentLevel === "rich" && project.projectFacts?.length;
   const sectionLinks = isRichProject
-    ? richSectionLinks.filter(([, id]) => {
+    ? (project.sectionLinks || richSectionLinks).filter(([, id]) => {
       if (id === "rental-pool") return project.rentalPoolProgram;
       if (id === "fit-out") return project.fitOutOptions;
       return true;
@@ -139,6 +139,12 @@ function ProjectHero({ project, isRichProject }) {
     }))
   ];
   const [zoomImage, setZoomImage] = useState(null);
+  const heroActions = project.heroCtas || [
+    { label: "Request Latest Computation", to: projectInquiryPath("/request-computation", project, "Computation"), variant: "primary" },
+    { label: "Check Availability with Luisa", to: projectInquiryPath("/availability", project, "Availability"), variant: "secondary" },
+    { label: "Book a Site Viewing", to: projectInquiryPath("/book-viewing", project, "Site viewing"), variant: "ghost" },
+    { label: "Message Luisa", to: projectInquiryPath("/contact", project, "Other"), variant: "ghost" }
+  ];
 
   return (
     <section className={`project-detail-hero ${isRichProject ? "project-detail-hero-rich" : ""}`}>
@@ -152,13 +158,14 @@ function ProjectHero({ project, isRichProject }) {
           </div>
         </div>
         <article className="project-hero-copy">
+          {project.logoImage && <img className="project-logo-mark" src={project.logoImage} alt={`${project.name} logo`} loading="lazy" decoding="async" />}
           <div className="hero-meta-line">
             <Badge>{project.status}</Badge>
             <span>{project.location}</span>
             {project.targetRfo && <span>Target RFO: {project.targetRfo}</span>}
           </div>
-          <p className="mini">{project.developmentType}</p>
-          <h1>{project.name}</h1>
+          <p className="mini">{project.detailTitle || project.developmentType}</p>
+          <h1>{project.heroHeadline || project.name}</h1>
           <p className="project-tagline">{project.tagline}</p>
           <p>{project.overview}</p>
           <div className="price-panel reference-price-panel">
@@ -170,10 +177,9 @@ function ProjectHero({ project, isRichProject }) {
             {heroFacts.map((fact) => <Fact key={fact.label} label={fact.label} value={fact.value} />)}
           </div>
           <div className="hero-actions">
-            <Button to={projectInquiryPath("/request-computation", project, "Computation")}>Request Latest Computation</Button>
-            <Button to={projectInquiryPath("/availability", project, "Availability")} variant="secondary">Check Availability with Luisa</Button>
-            <Button to={projectInquiryPath("/book-viewing", project, "Site viewing")} variant="ghost">Book a Site Viewing</Button>
-            <Button to={projectInquiryPath("/contact", project, "Other")} variant="ghost">Message Luisa</Button>
+            {heroActions.map((action) => (
+              <Button key={action.label} to={action.to} href={action.href} variant={action.variant || "primary"}>{action.label}</Button>
+            ))}
           </div>
         </article>
       </div>
@@ -183,6 +189,10 @@ function ProjectHero({ project, isRichProject }) {
 }
 
 function RichProjectSections({ project }) {
+  if (project.richProjectType === "oriana") {
+    return <OrianaProjectSections project={project} />;
+  }
+
   return (
     <>
       <ReferenceNotice />
@@ -407,6 +417,208 @@ function RichProjectSections({ project }) {
   );
 }
 
+function OrianaProjectSections({ project }) {
+  return (
+    <>
+      <ReferenceNotice text={project.disclaimer} />
+
+      <DetailSection id="facts" eyebrow="Project Facts" title={`${project.detailTitle || project.name} at a Glance`}>
+        <div className="rich-fact-grid">
+          {project.projectFacts.map((fact) => <Spec key={fact.label} label={fact.label} value={fact.value} />)}
+        </div>
+      </DetailSection>
+
+      <DetailSection id="pricing" eyebrow="Availability" title={project.availabilitySummary.title}>
+        <p className="reference-note">{project.availabilitySummary.note}</p>
+        <AvailabilityTable columns={project.availabilitySummary.columns} rows={project.availabilitySummary.rows} />
+        <div className="compact-cta-row">
+          <Button to={projectInquiryPath("/availability", project, "Availability")}>Check Available Units & Computations</Button>
+          <Button to={projectInquiryPath("/request-computation", project, "Computation")} variant="secondary">Ask Luisa for Latest Computation</Button>
+          <Button to={projectInquiryPath("/contact", project, "Reservation")} variant="ghost">Reserve / Inquire Now</Button>
+        </div>
+      </DetailSection>
+
+      <DetailSection id="overview" eyebrow="Overview" title="Project Overview">
+        {(project.introParagraphs || [project.overview]).map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+        <div className="premium-card-grid">
+          {project.whyInvest.map((item) => <article className="info-card" key={item}><p>{item}</p></article>)}
+        </div>
+      </DetailSection>
+
+      <DetailSection id="audio-visual-presentation" eyebrow="AVP" title={project.audioVisualPresentation.title}>
+        <div className="oriana-media-card">
+          <ImagePlaceholder src={project.image} label={`${project.name} AVP preview`} compact variant="gallery" />
+          <div>
+            <p>{project.audioVisualPresentation.text}</p>
+            <Button href={project.audioVisualPresentation.url} target="_blank" rel="noreferrer" variant="secondary">{project.audioVisualPresentation.label}</Button>
+          </div>
+        </div>
+      </DetailSection>
+
+      <DetailSection id="location" eyebrow="Prime Location" title={project.locationDetails.title}>
+        <div className="oriana-image-copy">
+          <ImagePlaceholder src={project.locationDetails.image} label={project.locationDetails.imageLabel} compact variant="masterPlan" />
+          <div>
+            <p>{project.locationDetails.text}</p>
+            <div className="address-card">
+              <strong>Exact Address</strong>
+              <span>{project.locationDetails.exactAddress}</span>
+            </div>
+            <Button href={project.locationDetails.mapUrl} target="_blank" rel="noreferrer" variant="secondary">Open Map Reference</Button>
+          </div>
+        </div>
+      </DetailSection>
+
+      <DetailSection id="nearby-establishments" eyebrow="Nearby Establishments" title="Convenient Living: Nearby Establishments">
+        <p>{project.nearbyIntro}</p>
+        <GroupedList groups={project.nearbyEstablishments} />
+      </DetailSection>
+
+      <DetailSection id="site-development" eyebrow="Site Development Plan" title={project.siteDevelopment.title}>
+        <div className="site-development-card">
+          <ImagePlaceholder src={project.masterPlanImage} label={project.siteDevelopment.imageLabel} compact variant="masterPlan" />
+          <div>
+            <p>{project.siteDevelopment.text}</p>
+            <div className="mini-stat-grid">
+              {project.siteDevelopment.keyStats.map((item) => <Spec key={item.label} label={item.label} value={item.value} />)}
+            </div>
+          </div>
+        </div>
+      </DetailSection>
+
+      <DetailSection id="virtual-tour" eyebrow="360 Virtual Tour" title={project.virtualTour.title}>
+        <div className="video-tour-card">
+          <ImagePlaceholder src={project.gallery[1]} label={`${project.name} virtual tour preview`} compact variant="gallery" />
+          <div>
+            <p>{project.virtualTour.text}</p>
+            {project.virtualTour.url ? (
+              <Button href={project.virtualTour.url} target="_blank" rel="noreferrer" variant="secondary">{project.virtualTour.label}</Button>
+            ) : (
+              <p className="safety-note">Virtual tour available upon request.</p>
+            )}
+          </div>
+        </div>
+      </DetailSection>
+
+      <DetailSection id="amenities" eyebrow="Amenities" title="Amenities and Facilities: Enhancing Your Lifestyle at The Oriana">
+        <p>{project.amenityIntro}</p>
+        <GroupedList groups={project.amenityGroups} compact />
+        <div className="oriana-amenity-gallery">
+          {project.amenityGallery.map((image) => (
+            <article key={image.label}>
+              <ImagePlaceholder src={image.src} label={image.label} compact variant="gallery" />
+              <strong>{image.label}</strong>
+            </article>
+          ))}
+        </div>
+        <LabeledChips title="Amenity image references" items={project.amenityImageLabels} />
+      </DetailSection>
+
+      <DetailSection id="unit-options" eyebrow="Units and Availability" title="Units and Availability: Discover Your Ideal Home at The Oriana">
+        <p className="reference-note">{project.unitIntro}</p>
+        {project.unitTypeDetails.map((section) => <OrianaUnitSection section={section} key={section.title} />)}
+      </DetailSection>
+
+      <DetailSection id="floor-plans" eyebrow="Floorplans" title={project.floorPlansTitle}>
+        <p>{project.floorPlansDescription}</p>
+        <div className="floor-plan-grid">
+          {project.floorPlans.map((item) => (
+            <article className="floor-plan-card" key={item.title}>
+              <ImagePlaceholder src={item.src} label={item.title} compact variant="gallery" />
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+              <Button to={projectInquiryPath("/contact", project, "Floor plans")} variant="secondary">Request Layout Sheet</Button>
+            </article>
+          ))}
+        </div>
+      </DetailSection>
+
+      <DetailSection id="payment" eyebrow="Payment Terms" title={project.paymentTerms.title}>
+        <p>{project.paymentTerms.text}</p>
+        <p className="oriana-sample-banner">{project.paymentTerms.warning}</p>
+        <div className="payment-grid">
+          <article className="payment-card">
+            <h3>Sample Unit</h3>
+            {project.paymentTerms.sampleComputation.map((item, index) => <Spec key={`${item.label}-${index}`} label={item.label} value={item.value} />)}
+          </article>
+          <article className="payment-card payment-card-wide">
+            <h3>12% DP, 88% Bank Financing</h3>
+            {project.paymentTerms.contractBreakdown.map((item, index) => <Spec key={`${item.label}-${index}`} label={item.label} value={item.value} />)}
+          </article>
+          <article className="payment-card">
+            <h3>Downpayment for 36 months</h3>
+            {project.paymentTerms.downPaymentBreakdown.map((item, index) => <Spec key={`${item.label}-${index}`} label={item.label} value={item.value} />)}
+          </article>
+          <article className="payment-card">
+            <h3>Balance - Bank Financing</h3>
+            {project.paymentTerms.balanceBreakdown.map((item, index) => <Spec key={`${item.label}-${index}`} label={item.label} value={item.value} />)}
+          </article>
+          <article className="payment-card">
+            <h3>Monthly Amortization</h3>
+            {project.paymentTerms.monthlyAmortization.map((item, index) => <Spec key={`${item.label}-${index}`} label={item.label} value={item.value} />)}
+          </article>
+        </div>
+        <div className="promo-card-grid">
+          {project.paymentTerms.promoCards.map((promo) => (
+            <article className="promo-card" key={promo.title}>
+              <h3>{promo.title}</h3>
+              <ul>{promo.items.map((item) => <li key={item}>{item}</li>)}</ul>
+            </article>
+          ))}
+        </div>
+        <h3 className="oriana-subheading">Available sample units</h3>
+        <AvailabilityTable columns={project.paymentTerms.sampleAvailableUnits.columns} rows={project.paymentTerms.sampleAvailableUnits.rows} />
+        <p className="safety-note">{project.paymentTerms.promoReference}</p>
+        <div className="compact-cta-row">
+          <Button to={projectInquiryPath("/availability", project, "Current computations")}>Get Current Availability & Computations</Button>
+        </div>
+      </DetailSection>
+
+      <DetailSection id="unit-holding" eyebrow="Unit Holding" title={project.unitHoldingPortal.title}>
+        <div className="reservation-grid">
+          <article className="unit-holding-card">
+            <p>{project.unitHoldingPortal.text}</p>
+            <ol>{project.unitHoldingPortal.steps.map((step) => <li key={step}>{step}</li>)}</ol>
+            <Button to={project.unitHoldingPortal.ctaTo} variant="secondary">{project.unitHoldingPortal.ctaLabel}</Button>
+          </article>
+          <article className="unit-holding-card">
+            <h3>Holding windows</h3>
+            <ul>{project.unitHoldingPortal.notes.map((note) => <li key={note}>{note}</li>)}</ul>
+          </article>
+        </div>
+      </DetailSection>
+
+      <DetailSection id="reservation" eyebrow="Reservation" title={project.reservationTitle}>
+        <p>{project.reservationNote}</p>
+        <div className="reservation-grid oriana-reservation-grid">
+          {project.reservationRequirements.map((group) => (
+            <article className="reservation-checklist" key={group.title}>
+              <h3>{group.title}</h3>
+              <ul>{group.items.map((item) => <li key={item}>{item}</li>)}</ul>
+            </article>
+          ))}
+        </div>
+      </DetailSection>
+
+      <DetailSection id="gallery" eyebrow="Gallery" title={`${project.name} Gallery`}>
+        <Gallery project={project} />
+      </DetailSection>
+
+      <DetailSection id="news-media" eyebrow="Sources" title="Project Updates and Reference Links">
+        <div className="premium-card-grid">
+          {project.newsMedia.map((item) => (
+            <article className="info-card" key={item.title}>
+              <h3>{item.title}</h3>
+              <p>{item.label}</p>
+              {item.url && <Button href={item.url} target="_blank" rel="noreferrer" variant="secondary">Open Source</Button>}
+            </article>
+          ))}
+        </div>
+      </DetailSection>
+    </>
+  );
+}
+
 function StandardProjectSections({ project }) {
   return (
     <>
@@ -575,6 +787,66 @@ function UnitSection({ section }) {
   );
 }
 
+function OrianaUnitSection({ section }) {
+  const columns = [
+    { key: "type", label: "Type" },
+    { key: "status", label: "Status" },
+    { key: "price", label: "Price" },
+    { key: "dp", label: "12% DP" }
+  ];
+
+  return (
+    <article className="oriana-unit-detail">
+      <div className="oriana-unit-copy">
+        <div>
+          <h3>{section.title}</h3>
+          <p>{section.copy}</p>
+        </div>
+        <ImagePlaceholder src={section.image} label={section.imageLabel} compact variant="gallery" />
+      </div>
+      {section.rows.length > 0 && <AvailabilityTable columns={columns} rows={section.rows} />}
+      <LabeledChips title="Layout references" items={section.labels} />
+      <div className="unit-section-cta">
+        <Button to="/request-computation" variant="secondary">Request latest computation for this unit type</Button>
+      </div>
+    </article>
+  );
+}
+
+function AvailabilityTable({ columns = [], rows = [] }) {
+  if (!rows.length) return null;
+
+  return (
+    <div className="rich-table-wrap">
+      <table className="rich-table">
+        <thead>
+          <tr>{columns.map((column) => <th key={column.key}>{column.label}</th>)}</tr>
+        </thead>
+        <tbody>
+          {rows.map((row, index) => (
+            <tr key={`${row.type || row.unit || "row"}-${index}`}>
+              {columns.map((column) => (
+                <td key={column.key} data-label={column.label}>{row[column.key]}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function LabeledChips({ title, items = [] }) {
+  if (!items.length) return null;
+
+  return (
+    <div className="oriana-label-cloud">
+      <strong>{title}</strong>
+      <div>{items.map((item) => <span key={item}>{item}</span>)}</div>
+    </div>
+  );
+}
+
 function SampleComputationList({ items = [] }) {
   if (!items.length) return null;
   const hasObjects = typeof items[0] === "object";
@@ -715,11 +987,11 @@ function VideoTourBlock({ project }) {
   );
 }
 
-function ReferenceNotice() {
+function ReferenceNotice({ text } = {}) {
   return (
     <div className="reference-warning">
       <strong>Guide information only</strong>
-      <span>Prices, unit availability, promos, payment terms, unit details, and turnover schedules are subject to final confirmation. Request the latest computation from Luisa before making decisions.</span>
+      <span>{text || "Prices, unit availability, promos, payment terms, unit details, and turnover schedules are subject to final confirmation. Request the latest computation from Luisa before making decisions."}</span>
     </div>
   );
 }

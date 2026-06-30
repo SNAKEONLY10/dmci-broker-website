@@ -53,6 +53,27 @@ Asset convention checked:
 | 17 | Moncello Crest | `moncello-crest` | Present | Present | 3/3 present | Present | Present | Missing | `complete` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/moncello-crest) |
 | 18 | Solmera Coast | `solmera-coast` | Present | Present | 3/3 present | Present | Present | Missing | `complete` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/solmera-coast) |
 
+## Sync Notes
+
+- Local `main` was fast-forwarded to remote commit `098565d`, which already contained the rich The Oriana and One Delta Terraces update plus their core JPG assets.
+- The remote core JPG assets were kept in place. Non-conflicting local The Oriana support assets were restored only for floorplans and optimized WebP variants.
+- The Oriana customer-ready copy is wired through `src/data/theOrianaDetails.js`; One Delta Terraces rich copy remains in `src/data/projects.js`.
+- No duplicate active project entry was added. The active project count remains 18.
+
+### The Oriana Additional Local Support Assets
+
+- `floorplan-studio-a.jpg`
+- `floorplan-1br-a.jpg`
+- `floorplan-2br-a.jpg`
+- `floorplan-3br-a.jpg`
+- `floorplan-north-typical.jpg`
+- `hero-640.webp`, `hero-960.webp`, `hero-1440.webp`
+- `thumbnail-480.webp`, `thumbnail-768.webp`, `thumbnail-960.webp`
+- `gallery-1-480.webp`, `gallery-1-960.webp`, `gallery-1-1280.webp`
+- `gallery-2-480.webp`, `gallery-2-960.webp`, `gallery-2-1280.webp`
+- `gallery-3-480.webp`, `gallery-3-960.webp`, `gallery-3-1280.webp`
+- `master-plan-480.webp`, `master-plan-960.webp`, `master-plan-1280.webp`
+
 ## Non-Approved Asset Folders Still On Disk
 
 These folders are not active project data and should remain ignored unless the broker/client asks to repurpose or remove them:
