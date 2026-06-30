@@ -23,11 +23,11 @@ export function Layout({ children }) {
         <div className="container nav-wrap">
           <NavLink className="brand" to="/" onClick={() => setOpen(false)}>
             <span className="brand-logo">
-              <img src="/assets/img/dmci-broker-mark.png" alt="Luisa Corral DMCI broker logo" />
+              <img src="/assets/img/dmci-broker-mark.png" alt={`${contact.brokerName} DMCI broker logo`} />
             </span>
             <span className="brand-copy">
-              <strong>Luisa Corral</strong>
-              <small>DMCI Homes Sales Director</small>
+              <strong>{contact.brokerName}</strong>
+              <small>{contact.role}</small>
             </span>
           </NavLink>
           <nav className="desktop-nav" aria-label="Main navigation">
@@ -85,14 +85,15 @@ function Footer() {
         </div>
         <div className="footer-contact">
           <h4>Contact Luisa</h4>
-          <p>{contact.phone}</p>
-          <p>{contact.email}</p>
+          <p><strong>Mobile / Viber</strong><br />{contact.phone}</p>
+          <p><strong>Email</strong><br />{contact.email}</p>
+          <p><strong>Office</strong><br />{contact.office}</p>
+          <p><strong>PRC License</strong><br />{contact.prcLicense}</p>
           <Button to="/contact" variant="secondary">Message Luisa</Button>
         </div>
         <div className="footer-links">
           <h4>Reference Links</h4>
           <a href={contact.officialDmciWebsite} target="_blank" rel="noopener">DMCI Homes Website</a>
-          <a href={contact.officialDmciFacebook} target="_blank" rel="noopener">DMCI Homes Facebook</a>
           <NavLink to="/showcase">Client Showcase</NavLink>
         </div>
       </div>
@@ -104,8 +105,8 @@ function Footer() {
 function MobileStickyCTA() {
   return (
     <nav className="mobile-sticky-cta" aria-label="Quick actions">
-      <a href={`tel:${contact.phone.replace(/\s/g, "")}`}>Call</a>
-      <a href={contact.messenger}>Message</a>
+      <a href={contact.phoneHref}>Call</a>
+      <a href={contact.viber || contact.phoneHref}>Viber</a>
       <NavLink to="/request-computation">Computation</NavLink>
       <NavLink to="/book-viewing">Viewing</NavLink>
     </nav>

@@ -11,6 +11,7 @@ import { projects, unitTypes, purposes } from "../data/projects";
 import { locations } from "../data/locations";
 import { guideCards } from "../data/guides";
 import { promos } from "../data/promos";
+import { contact } from "../data/contact";
 
 const HOME_PROJECTS_PER_PAGE = 6;
 
@@ -23,7 +24,7 @@ const computationFields = [
   { name: "unitType", label: "Unit Type", options: unitTypes },
   { name: "budgetRange", label: "Budget Range", options: ["Still checking", "Entry level", "Mid range", "Premium range"] },
   { name: "purpose", label: "Purpose", options: purposes },
-  { name: "contactMethod", label: "Preferred Contact Method", options: ["Messenger", "Viber", "WhatsApp", "Call", "Email"] },
+  { name: "contactMethod", label: "Preferred Contact Method", options: ["Viber", "Call", "Email"] },
   { name: "message", label: "Message", type: "textarea", full: true }
 ];
 
@@ -44,7 +45,7 @@ export default function Home() {
       <section className="hero-section hero-landing">
         <div className="container hero-landing-inner">
           <div className="hero-copy hero-landing-copy">
-            <span className="eyebrow">Luisa Corral | DMCI Homes Sales Director</span>
+            <span className="eyebrow">{contact.brokerName} | {contact.role}</span>
             <h1>Find the right DMCI home with broker-guided assistance</h1>
             <p>Get a clearer path from project shortlist to computation, availability check, site viewing, and reservation guidance.</p>
             <div className="hero-proof">
@@ -96,7 +97,7 @@ export default function Home() {
         <div className="container narrow">
           <DemoForm
             title="Request Latest Computation"
-            subtitle="Luisa or her team can help confirm updated computation, payment terms, and availability."
+            subtitle="Luisa can help confirm updated computation, payment terms, and availability."
             fields={computationFields}
             storageKey="dmci_leads"
             submitLabel="Send Computation Request"
@@ -193,7 +194,7 @@ export function AboutCompact() {
     <section className="section about-compact">
       <div className="container about-card">
         <div className="portrait-panel">
-          <img src="/assets/img/luisa-corral.jpg" alt="Luisa Corral portrait" loading="lazy" />
+          <img src="/assets/img/luisa-corral.jpg" alt={`${contact.brokerName} portrait`} loading="lazy" />
         </div>
         <div className="about-details">
           <span className="eyebrow">Why Work With Luisa</span>
@@ -213,7 +214,7 @@ export function AboutCompact() {
 }
 
 function BuyerJourney() {
-  const steps = ["Visitor from Facebook or Instagram", "Browse projects", "Request latest computation", "Check availability", "Book viewing or talk to Luisa", "Reservation guidance"];
+  const steps = ["Social media visitor", "Browse projects", "Request latest computation", "Check availability", "Book viewing or talk to Luisa", "Reservation guidance"];
   return (
     <section className="section soft">
       <div className="container">

@@ -21,5 +21,5 @@ export const projectCompletionPlan = [
   { label: "Needs official photos", value: "Use approved Google Drive assets only" },
   { label: "Needs updated computation/pricing confirmation", value: "Request latest computation before publishing buyer-facing numbers" },
   { label: "Needs approved videos/360 tours", value: "Use thumbnails and external links for tours" },
-  { label: "Needs final contact links", value: "Messenger, Viber, WhatsApp, email, and phone" }
+  { label: "Needs final contact details", value: "Mobile/Viber, office number, email, and PRC license" }
 ];

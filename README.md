@@ -1,6 +1,6 @@
-# Luisa Corral DMCI Homes Broker Website
+# Maria Luisa Corral DMCI Homes Broker Website
 
-Premium buyer assistance website concept for Luisa Corral, Sales Director of DMCI Homes, Licensed Real Estate Broker, and entrepreneur.
+Premium buyer assistance website concept for Maria Luisa Corral, Sales Director of DMCI Homes and Real Estate Broker PRC License No. 0003253.
 
 This project is a personal broker website inspired by professional DMCI Homes-style property discovery flows. It is not an official DMCI corporate clone. The site focuses on project browsing, buyer education, computation requests, availability checks, site viewing booking, and direct broker contact.
 
@@ -44,7 +44,6 @@ npm run build
 ## Demo Limitations
 
 - Placeholder images only
-- Placeholder contact details
 - Sample project data only
 - No real-time availability
 - No backend or email notifications yet

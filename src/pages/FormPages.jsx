@@ -3,11 +3,13 @@ import { SectionHeader } from "../components/SectionHeader";
 import { Button } from "../components/Button";
 import { projects, unitTypes } from "../data/projects";
 import { locations } from "../data/locations";
+import { contact } from "../data/contact";
 import { useSearchParams } from "react-router-dom";
 
 const projectOptions = projects.map((project) => project.name);
 const locationOptions = locations.map((location) => location.name);
 const inquiryTypes = ["Computation", "Availability", "Site viewing", "Reservation requirements", "Promo", "Resale unit", "Other"];
+const contactMethodOptions = ["Viber", "Call", "Email"];
 
 export function Availability() {
   const initialValues = useInquiryDefaults();
@@ -26,7 +28,7 @@ export function Availability() {
       s("project", "Preferred Project", projectOptions), s("location", "Preferred Location", locationOptions), s("unitType", "Unit Type", unitTypes),
       f("preferredSize", "Preferred Floor/Size if any"), s("budgetRange", "Budget Range", ["Still checking", "Entry level", "Mid range", "Premium range"]),
       s("paymentOption", "Payment Option", ["Cash", "In-house", "Bank Financing", "Not sure"]), s("urgency", "Urgency", ["Just checking", "This week", "Ready to reserve"]),
-      s("contactMethod", "Preferred Contact Method", ["Messenger", "Viber", "WhatsApp", "Call", "Email"]), t()
+      s("contactMethod", "Preferred Contact Method", contactMethodOptions), t()
     ]} storageKey="dmci_availability_requests" submitLabel="Check Availability with Luisa" initialValues={initialValues} required={["fullName", "contactNumber", "email"]} />
   </FormShell>;
 }
@@ -44,7 +46,7 @@ export function RequestComputation() {
     }}
   >
     <DemoForm title="Computation Request Details" fields={[
-      f("fullName", "Full Name"), f("contactNumber", "Mobile Number", "tel"), f("email", "Email Address", "email"), f("messengerLink", "Facebook/Messenger Link"),
+      f("fullName", "Full Name"), f("contactNumber", "Mobile Number", "tel"), f("email", "Email Address", "email"),
       s("location", "Preferred Location", locationOptions), s("project", "Preferred Project", projectOptions), s("unitType", "Unit Type", unitTypes),
       s("budgetRange", "Budget Range", ["Still checking", "Entry level", "Mid range", "Premium range"]),
       s("paymentPreference", "Payment Preference", ["Cash", "In-house", "Bank Financing", "Not sure"]),
@@ -70,7 +72,7 @@ export function BookViewing() {
     <DemoForm title="Viewing Request Details" fields={[
       f("fullName", "Full Name"), f("contactNumber", "Contact Number", "tel"), f("email", "Email Address", "email"), s("project", "Preferred Project", projectOptions), s("location", "Preferred Location", locationOptions),
       s("viewingType", "Viewing Type", ["On-site model unit viewing", "Online consultation", "Phone call", "Zoom/Google Meet"]),
-      f("preferredDate", "Preferred Date", "date"), f("preferredTime", "Preferred Time", "time"), f("guests", "Number of Guests", "number"), s("contactMethod", "Preferred Contact Method", ["Messenger", "Viber", "WhatsApp", "Call", "Email"]), t("Notes or questions")
+      f("preferredDate", "Preferred Date", "date"), f("preferredTime", "Preferred Time", "time"), f("guests", "Number of Guests", "number"), s("contactMethod", "Preferred Contact Method", contactMethodOptions), t("Notes or questions")
     ]} storageKey="dmci_viewing_requests" submitLabel="Request Viewing Schedule" initialValues={initialValues} required={["fullName", "contactNumber", "email"]} />
   </FormShell>;
 }
@@ -92,7 +94,7 @@ export function Contact() {
       s("project", "Project Inquired", projectOptions),
       s("concernType", "Inquiry Type", inquiryTypes),
       s("buyerType", "Buyer Type", ["Local buyer", "OFW", "Investor", "Family use", "First-time buyer", "Still exploring"]),
-      s("contactMethod", "Preferred Contact Method", ["Messenger", "Viber", "WhatsApp", "Call", "Email"]),
+      s("contactMethod", "Preferred Contact Method", contactMethodOptions),
       t("Message / Buyer Requirement")
     ]} storageKey="dmci_contact_requests" submitLabel="Send Buyer Inquiry" initialValues={initialValues} required={["fullName", "contactNumber", "email", "concernType"]} />
   </FormShell>;
@@ -128,7 +130,7 @@ function FormShell({ title, text, panel, children }) {
       <div className="container form-shell-grid">
         <aside className="form-broker-panel">
           <div className="form-broker-image">
-            <img src="/assets/img/luisa-corral.jpg" alt="Luisa Corral" />
+            <img src="/assets/img/luisa-corral.jpg" alt="Maria Luisa Corral" />
           </div>
           <div className="form-broker-copy">
             <span className="eyebrow">{panelContent.eyebrow}</span>
@@ -139,6 +141,12 @@ function FormShell({ title, text, panel, children }) {
               <li>Latest computation and availability checking</li>
               <li>Viewing and reservation guidance</li>
             </ul>
+            <div className="official-contact-list" aria-label="Official contact details">
+              <span><strong>Mobile / Viber</strong>{contact.phone}</span>
+              <span><strong>Email</strong>{contact.email}</span>
+              <span><strong>Office</strong>{contact.office}</span>
+              <span><strong>PRC License</strong>{contact.prcLicense}</span>
+            </div>
             <Button to="/contact" variant="secondary">{panelContent.cta}</Button>
           </div>
         </aside>

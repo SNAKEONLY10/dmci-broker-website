@@ -1,11 +1,12 @@
 import { Button } from "../components/Button";
 import { DisclaimerBanner } from "../components/DisclaimerBanner";
 import { projectChecklist, projectCompletionPlan } from "../data/projectChecklist";
+import { contact } from "../data/contact";
 
 const audiences = ["Local buyers", "OFWs", "Investors", "Families", "First-time condo buyers", "Buyers comparing RFO and preselling projects"];
 
 const journey = [
-  "Facebook/Instagram visitor",
+  "Social media visitor",
   "Website homepage",
   "Search projects by location/unit/status",
   "View project detail",
@@ -86,7 +87,7 @@ const workingItems = [
 const demoOnlyItems = [
   "Placeholder images until approved Drive assets are selected",
   "Sample project content except rich Kalea reference data",
-  "Demo contact details until Luisa confirms final links",
+  "Forms do not send email automatically yet",
   "Forms save to browser localStorage only",
   "No live inventory or guaranteed price feed"
 ];
@@ -95,7 +96,6 @@ const driveFolders = ["RFO Projects", "KLH", "ODT", "MCC", "ANH", "SLC", "MLP 2"
 
 const limitations = [
   "Placeholder images only",
-  "Placeholder contact details",
   "Sample project data only",
   "No real-time availability yet",
   "No backend/email notifications yet",
@@ -115,11 +115,10 @@ const assetPaths = [
 
 const checklist = [
   "Professional profile photo",
-  "Official phone number",
+  "Official mobile/Viber number",
+  "Office number",
   "Email address",
-  "Facebook/Messenger link",
-  "Viber/WhatsApp number",
-  "Instagram link",
+  "PRC license number",
   "Preferred website/domain",
   "Preferred brand name/logo",
   "Priority DMCI projects",
@@ -127,7 +126,7 @@ const checklist = [
   "Approved project videos/virtual tours",
   "Current promos if any",
   "Real testimonials if available",
-  "Final disclaimer/contact details"
+  "Final disclaimer"
 ];
 
 const nextPhase = [
@@ -149,7 +148,7 @@ export default function Showcase() {
           <div>
             <span className="eyebrow">Client Presentation</span>
             <h1>DMCI Broker Website Showcase</h1>
-            <p>A premium DMCI Homes-style buyer assistance website concept for Luisa Corral, Sales Director and Licensed Real Estate Broker.</p>
+            <p>A premium DMCI Homes-style buyer assistance website concept for {contact.brokerName}, {contact.role} and {contact.license}.</p>
             <div className="hero-actions">
               <Button to="/">View Homepage</Button>
               <Button to="/projects" variant="secondary">Browse Projects</Button>
@@ -165,7 +164,7 @@ export default function Showcase() {
 
       <ShowcaseSection eyebrow="Concept" title="Website Concept">
         <div className="content-panel showcase-copy">
-          <p>This website is designed as a personal buyer assistance platform for DMCI Homes clients. It combines project browsing, location search, buyer education, computation requests, availability checks, site viewing booking, and direct broker contact with Luisa Corral.</p>
+          <p>This website is designed as a personal buyer assistance platform for DMCI Homes clients. It combines project browsing, location search, buyer education, computation requests, availability checks, site viewing booking, and direct broker contact with {contact.brokerName}.</p>
           <div className="showcase-points">
             <span>Inspired by DMCI Homes-style project discovery</span>
             <span>Personalized for Luisa as broker</span>

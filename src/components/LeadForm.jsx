@@ -11,7 +11,7 @@ const defaults = {
   unitType: "",
   budgetRange: "",
   purpose: "",
-  contactMethod: "Messenger",
+  contactMethod: "Viber",
   message: "",
   consent: false
 };
@@ -41,7 +41,7 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
 
     // TODO: Connect to backend email/CRM endpoint later.
     saveSubmission(storageKey, values);
-    setSuccess("Thank you. Your inquiry has been recorded for this preview. The next phase can connect this form to Luisa's email or CRM.");
+    setSuccess("Thank you. Your inquiry has been recorded for this preview. The next phase can connect this form to Luisa's official email.");
     setValues({ ...defaults, ...initialValues });
   }
 
@@ -58,7 +58,7 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
         ))}
         <label className="consent full">
           <input name="consent" type="checkbox" checked={values.consent} onChange={update} />
-          <span>I agree to be contacted by Luisa or her team regarding my inquiry.</span>
+          <span>I agree to be contacted by Luisa regarding my inquiry.</span>
         </label>
         {errors.consent && <small className="error full">{errors.consent}</small>}
       </div>
