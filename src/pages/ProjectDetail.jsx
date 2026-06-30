@@ -972,7 +972,7 @@ function ImageLightbox({ image, onClose }) {
 function VideoTourBlock({ project }) {
   return (
     <div className="video-tour-card">
-      <ImagePlaceholder label={`${project.name} virtual tour`} compact variant="gallery" />
+      <ImagePlaceholder src={project.videoTourImage} label={`${project.name} virtual tour`} compact variant="gallery" />
       <div>
         <strong>{project.videoTourTitle || "Virtual tour link available upon request"}</strong>
         <p>{project.videoTourCopy || "Large videos are not loaded directly here so the website stays fast on mobile. Ask Luisa for the latest approved tour link or project presentation."}</p>

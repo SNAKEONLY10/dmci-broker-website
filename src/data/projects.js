@@ -1,4 +1,5 @@
 import { theOrianaDetails } from "./theOrianaDetails.js";
+import { theErinHeightsDetails } from "./theErinHeightsDetails.js";
 
 // Official/client asset convention:
 // public/assets/projects/[project-slug]/hero.jpg
@@ -374,7 +375,8 @@ const baseProjects = [
     amenities: ["24-hour Security", "Shooting Court", "Children's Playground", "Convenience Store", "Entertainment Room", "Fitness Gym", "Game Room", "Gazebo/ Cabana", "Grill Pits", "Jogging/ Biking Path", "Kiddie Pool", "Landscaped Gardens"],
     buildingFeatures: ["24-hour Security", "Shared activity rooms", "Convenience Store", "Landscaped amenity areas", "Building and turnover details for confirmation"],
     nearbyLandmarks: ["Commonwealth Ave. corridor", "Tandang Sora Ave. access", "Matandang Balara, Quezon City", "CBD and transport access for buyer verification"],
-    sourceUrl: "https://www.dmcihomes.com/the-erin-heights"
+    sourceUrl: "https://www.dmcihomes.com/the-erin-heights",
+    ...theErinHeightsDetails
   },
   {
     slug: "cameron-residences",

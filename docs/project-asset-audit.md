@@ -36,7 +36,7 @@ Asset convention checked:
 |---:|---|---|---|---|---|---|---|---|---|---|---|
 | 1 | The Oriana | `the-oriana` | Present | Present | 3/3 present | Present | Present | Missing | `complete` | `full customer-ready detail added` | [DMCI Homes](https://www.dmcihomes.com/the-oriana) |
 | 2 | One Delta Terraces | `one-delta-terraces` | Present | Present | 3/3 present | Present | Present | Missing | `complete` | `full customer-ready detail added` | [DMCI Homes](https://www.dmcihomes.com/one-delta-terraces) |
-| 3 | The Erin Heights | `the-erin-heights` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/the-erin-heights) |
+| 3 | The Erin Heights | `the-erin-heights` | Present | Present | 3/3 present + extras | Present | Present | Missing | `complete` | `full customer-ready detail added` | [DMCI Homes](https://www.dmcihomes.com/the-erin-heights) |
 | 4 | Cameron Residences | `cameron-residences` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/cameron-residences) |
 | 5 | The Valeron Tower | `the-valeron-tower` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/the-valeron-tower) |
 | 6 | Allegra Garden Place | `allegra-garden-place` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/allegra-garden-place) |
