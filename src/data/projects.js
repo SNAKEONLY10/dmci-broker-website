@@ -2,6 +2,7 @@ import { theOrianaDetails } from "./theOrianaDetails.js";
 import { theErinHeightsDetails } from "./theErinHeightsDetails.js";
 import { oneDeltaTerracesDetails } from "./oneDeltaTerracesDetails.js";
 import { cameronResidencesDetails } from "./cameronResidencesDetails.js";
+import { valeronTowerDetails, allegraGardenPlaceDetails, prismaResidencesDetails } from "./pasigProjectDetails.js";
 
 // Official/client asset convention:
 // public/assets/projects/[project-slug]/hero.jpg
@@ -433,7 +434,8 @@ const baseProjects = [
     amenities: ["24-hour Security", "Basketball Court/Playcourt", "Children's Playground", "Convenience Store", "Entertainment Room", "Fitness Gym", "Function Hall", "Game Area", "Gazebo/ Cabana", "Grill Pits", "Jogging/ Biking Path", "Kiddie Pool"],
     buildingFeatures: ["24-hour Security", "Function Hall", "Convenience Store", "Shared recreation rooms", "Amenity and parking details for confirmation"],
     nearbyLandmarks: ["C-5 corridor", "Brgy. Ugong, Pasig City", "Ortigas and BGC access references for confirmation", "P.E. Antonio St. site approach"],
-    sourceUrl: "https://www.dmcihomes.com/the-valeron-tower"
+    sourceUrl: "https://www.dmcihomes.com/the-valeron-tower",
+    ...valeronTowerDetails
   },
   {
     slug: "allegra-garden-place",
@@ -459,7 +461,8 @@ const baseProjects = [
     amenities: ["24-hour Security", "Arrival Court", "Covered Multipurpose Court", "Children's Play Area", "Convenience Store", "Entertainment Room", "Fitness Gym", "Function Hall", "Game Area", "Gazebo/ Cabana", "Grill Pits", "Jogging Path"],
     buildingFeatures: ["24-hour Security", "Arrival Court", "Covered Multipurpose Court", "Function Hall", "Convenience Store", "Building and turnover details for confirmation"],
     nearbyLandmarks: ["Pasig Boulevard corridor", "Brgy. Bagong Ilog, Pasig City", "Nearby city access for confirmation", "Site viewing route for buyer verification"],
-    sourceUrl: "https://www.dmcihomes.com/allegra-garden-place"
+    sourceUrl: "https://www.dmcihomes.com/allegra-garden-place",
+    ...allegraGardenPlaceDetails
   },
   {
     slug: "prisma-residences",
@@ -485,7 +488,8 @@ const baseProjects = [
     amenities: ["Children's Playground", "24-hour Security", "Drop-Off Area", "Basketball Court/Playcourt", "Convenience Store", "Audio-Visual Room", "Fitness Gym", "Function Hall", "Game Room", "Gazebo/ Cabana", "Jogging/ Biking Path", "Kiddie Pool"],
     buildingFeatures: ["24-hour Security", "Drop-Off Area", "Audio-Visual Room", "Function Hall", "Convenience Store", "Building and parking details for confirmation"],
     nearbyLandmarks: ["Pasig Boulevard corridor", "Brgy. Bagong Ilog, Pasig City", "BGC and Ortigas access references for confirmation", "Nearby transport and daily services for buyer verification"],
-    sourceUrl: "https://www.dmcihomes.com/prisma-residences"
+    sourceUrl: "https://www.dmcihomes.com/prisma-residences",
+    ...prismaResidencesDetails
   },
   {
     slug: "sage-residences",

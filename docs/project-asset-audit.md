@@ -1,6 +1,6 @@
 # DMCI Project Asset and Content Audit
 
-Audit date: 2026-06-30
+Audit date: 2026-07-01
 
 Scope: only the 18 approved priority projects are active in `src/data/projects.js`. No random Google images were added. Missing visuals rely on the existing clean `ImagePlaceholder` fallback until broker/client/official assets are provided.
 
@@ -18,9 +18,9 @@ Asset convention checked:
 ## Summary
 
 - Active approved projects: 18
-- Complete core image sets: 5
+- Complete core image sets: 8
 - Partial asset sets: 0
-- Official assets needed: 13
+- Official assets needed: 10
 - Brochures currently present: 0
 - Content status: all 18 updated with reference-only broker copy and official DMCI Homes source URLs.
 
@@ -38,9 +38,9 @@ Asset convention checked:
 | 2 | One Delta Terraces | `one-delta-terraces` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + YouTube/Drive/360 media links | `complete` | `full customer-ready detail added, Drive extras optimized` | [DMCI Online](https://www.dmci-online.com/one-delta-terraces-dmci-quezon-city/) |
 | 3 | The Erin Heights | `the-erin-heights` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + YouTube/Drive media links | `complete` | `full customer-ready detail added, Drive extras optimized` | [DMCI Homes](https://www.dmcihomes.com/the-erin-heights) |
 | 4 | Cameron Residences | `cameron-residences` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + YouTube media link | `complete` | `full customer-ready detail added, official assets optimized` | [DMCI Online](https://www.dmci-online.com/cameron-residences-quezon-city/) |
-| 5 | The Valeron Tower | `the-valeron-tower` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/the-valeron-tower) |
-| 6 | Allegra Garden Place | `allegra-garden-place` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/allegra-garden-place) |
-| 7 | Prisma Residences | `prisma-residences` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/prisma-residences) |
+| 5 | The Valeron Tower | `the-valeron-tower` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + YouTube/Drive/360 media links | `complete` | `full customer-ready detail added, Drive/official assets optimized` | [DMCI Online](https://www.dmci-online.com/valeron-tower-dmci-pasig-city/) |
+| 6 | Allegra Garden Place | `allegra-garden-place` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + YouTube/Drive/360 media links | `complete` | `full customer-ready detail added, Drive/official assets optimized` | [DMCI Online](https://www.dmci-online.com/allegra-garden-place-pasig/) |
+| 7 | Prisma Residences | `prisma-residences` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + YouTube/Drive/360 media links | `complete` | `full customer-ready detail added, Drive/official assets optimized` | [DMCI Online](https://www.dmci-online.com/prisma-residences-dmci-pasig/) |
 | 8 | Sage Residences | `sage-residences` | Present | Present | 3/3 present | Present | Present | Missing | `complete` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/sage-residences) |
 | 9 | Kai Garden Residences | `kai-garden-residences` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/kai-garden-residences) |
 | 10 | Mulberry Place | `mulberry-place` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/mulberry-place) |
@@ -86,6 +86,13 @@ Asset convention checked:
 - DMCI Online floor plan, location, amenity, and site development images were added for full buyer reference.
 - Google Maps embed, directions button, and YouTube AVP are wired in `src/data/cameronResidencesDetails.js`.
 - No Cameron-specific 360-tour link was found in the available CAR Drive folder or official Cameron page during this update, so the page links only to the verified AVP and official virtual-tour guide.
+
+### Pasig Project Rich Page Update
+
+- VAL, AGP, and PMR Drive folders plus official DMCI Online pages were used for Valeron Tower, Allegra Garden Place, and Prisma Residences.
+- Official project images were compressed into local JPG/WebP variants under `public/assets/projects/the-valeron-tower`, `public/assets/projects/allegra-garden-place`, and `public/assets/projects/prisma-residences`.
+- Google Maps embeds, Get Directions buttons, YouTube AVPs, and verified 360-tour links are wired in `src/data/pasigProjectDetails.js`.
+- Pricing, promo, sample computation, unit mix, nearby establishment, amenity, floor plan, unit holding, and reservation copy are reference-only and require final confirmation before buyer presentation.
 
 ## Non-Approved Asset Folders Still On Disk
 
