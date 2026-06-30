@@ -35,9 +35,9 @@ Asset convention checked:
 | # | Project | Slug | Hero | Thumbnail | Gallery | Master Plan | Site Progress | Brochure | Asset Status | Content Status | Source URL |
 |---:|---|---|---|---|---|---|---|---|---|---|---|
 | 1 | The Oriana | `the-oriana` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + YouTube/Drive media links | `complete` | `full customer-ready detail added, Drive extras optimized` | [DMCI Homes](https://www.dmcihomes.com/the-oriana) |
-| 2 | One Delta Terraces | `one-delta-terraces` | Present | Present | 3/3 present | Present | Present | Missing | `complete` | `full customer-ready detail added` | [DMCI Homes](https://www.dmcihomes.com/one-delta-terraces) |
+| 2 | One Delta Terraces | `one-delta-terraces` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + YouTube/Drive/360 media links | `complete` | `full customer-ready detail added, Drive extras optimized` | [DMCI Online](https://www.dmci-online.com/one-delta-terraces-dmci-quezon-city/) |
 | 3 | The Erin Heights | `the-erin-heights` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + YouTube/Drive media links | `complete` | `full customer-ready detail added, Drive extras optimized` | [DMCI Homes](https://www.dmcihomes.com/the-erin-heights) |
-| 4 | Cameron Residences | `cameron-residences` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/cameron-residences) |
+| 4 | Cameron Residences | `cameron-residences` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + YouTube media link | `complete` | `full customer-ready detail added, official assets optimized` | [DMCI Online](https://www.dmci-online.com/cameron-residences-quezon-city/) |
 | 5 | The Valeron Tower | `the-valeron-tower` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/the-valeron-tower) |
 | 6 | Allegra Garden Place | `allegra-garden-place` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/allegra-garden-place) |
 | 7 | Prisma Residences | `prisma-residences` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/prisma-residences) |
@@ -57,7 +57,7 @@ Asset convention checked:
 
 - Local `main` was fast-forwarded to remote commit `098565d`, which already contained the rich The Oriana and One Delta Terraces update plus their core JPG assets.
 - The remote core JPG assets were kept in place. Non-conflicting local The Oriana support assets were restored only for floorplans and optimized WebP variants.
-- The Oriana customer-ready copy is wired through `src/data/theOrianaDetails.js`; One Delta Terraces rich copy remains in `src/data/projects.js`.
+- The Oriana customer-ready copy is wired through `src/data/theOrianaDetails.js`; One Delta Terraces and Cameron Residences are wired through dedicated rich detail files.
 - No duplicate active project entry was added. The active project count remains 18.
 
 ### The Oriana Additional Local Support Assets
@@ -73,6 +73,19 @@ Asset convention checked:
 - `gallery-2-480.webp`, `gallery-2-960.webp`, `gallery-2-1280.webp`
 - `gallery-3-480.webp`, `gallery-3-960.webp`, `gallery-3-1280.webp`
 - `master-plan-480.webp`, `master-plan-960.webp`, `master-plan-1280.webp`
+
+### One Delta Terraces Additional Local Support Assets
+
+- Official Drive perspective, interior, unit, and seller assets were compressed into local JPG/WebP files.
+- Official DMCI Online floor plan and site development images were added for the floor plan section.
+- Google Maps embed, directions button, YouTube AVP, Drive AVP backup, and 360-tour links are wired in `src/data/oneDeltaTerracesDetails.js`.
+
+### Cameron Residences Additional Local Support Assets
+
+- CAR Drive/official Cameron logo and DMCI Online Cameron images were compressed into local JPG/WebP files.
+- DMCI Online floor plan, location, amenity, and site development images were added for full buyer reference.
+- Google Maps embed, directions button, and YouTube AVP are wired in `src/data/cameronResidencesDetails.js`.
+- No Cameron-specific 360-tour link was found in the available CAR Drive folder or official Cameron page during this update, so the page links only to the verified AVP and official virtual-tour guide.
 
 ## Non-Approved Asset Folders Still On Disk
 

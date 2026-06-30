@@ -1,5 +1,7 @@
 import { theOrianaDetails } from "./theOrianaDetails.js";
 import { theErinHeightsDetails } from "./theErinHeightsDetails.js";
+import { oneDeltaTerracesDetails } from "./oneDeltaTerracesDetails.js";
+import { cameronResidencesDetails } from "./cameronResidencesDetails.js";
 
 // Official/client asset convention:
 // public/assets/projects/[project-slug]/hero.jpg
@@ -349,7 +351,8 @@ const baseProjects = [
       "Preferred Mode of Payment",
       "Post-dated checks / PDCs or auto-debit arrangement with partnered banks"
     ],
-    reservationNote: "Confirm computation, availability, payment method, and official requirements with Luisa before making any reservation decision."
+    reservationNote: "Confirm computation, availability, payment method, and official requirements with Luisa before making any reservation decision.",
+    ...oneDeltaTerracesDetails
   },
   {
     slug: "the-erin-heights",
@@ -402,7 +405,8 @@ const baseProjects = [
     amenities: ["24-hour Security", "Arrival Court", "Children's Playground", "Convenience Store", "Entertainment Room", "Fitness Gym", "Game Area", "Gazebo/ Cabana", "Kiddie Pool", "Landscaped Gardens", "Lap Pool", "Laundry Station"],
     buildingFeatures: ["24-hour Security", "Arrival Court", "Laundry Station", "Convenience Store", "Shared activity rooms", "Building and parking details for confirmation"],
     nearbyLandmarks: ["Roosevelt Ave. corridor", "Brgy. Mariblo, Quezon City", "Retail and neighborhood services for confirmation", "Site viewing route for buyer verification"],
-    sourceUrl: "https://www.dmcihomes.com/cameron-residences"
+    sourceUrl: "https://www.dmcihomes.com/cameron-residences",
+    ...cameronResidencesDetails
   },
   {
     slug: "the-valeron-tower",
