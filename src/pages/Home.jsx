@@ -12,6 +12,8 @@ import { locations } from "../data/locations";
 import { guideCards } from "../data/guides";
 import { promos } from "../data/promos";
 
+const HOME_PROJECTS_PER_PAGE = 6;
+
 const computationFields = [
   { name: "fullName", label: "Full Name" },
   { name: "contactNumber", label: "Contact Number", type: "tel" },
@@ -26,7 +28,17 @@ const computationFields = [
 ];
 
 export default function Home() {
-  const featured = projects.filter((project) => project.featured).slice(0, 6);
+  const [projectPage, setProjectPage] = useState(1);
+  const homepageProjects = useMemo(
+    () => [...projects].sort((a, b) => (a.directoryOrder ?? 999) - (b.directoryOrder ?? 999)),
+    []
+  );
+  const totalProjectPages = Math.ceil(homepageProjects.length / HOME_PROJECTS_PER_PAGE);
+  const safeProjectPage = Math.min(projectPage, totalProjectPages || 1);
+  const projectStart = (safeProjectPage - 1) * HOME_PROJECTS_PER_PAGE;
+  const projectEnd = Math.min(projectStart + HOME_PROJECTS_PER_PAGE, homepageProjects.length);
+  const visibleProjects = homepageProjects.slice(projectStart, projectEnd);
+
   return (
     <>
       <section className="hero-section hero-landing">
@@ -53,8 +65,15 @@ export default function Home() {
 
       <section className="section">
         <div className="container">
-          <SectionHeader eyebrow="Featured Projects" title="Browse Premium DMCI Homes Options" text="No fake prices here. Request latest computation and availability confirmation for any project." />
-          <ProjectGrid projects={featured} />
+          <SectionHeader eyebrow="Project Highlights" title="Browse DMCI Homes Options" text="Shortlist projects by location, turnover, and unit type. Ask Luisa for the latest computation and confirmed availability before deciding." />
+          <div className="home-project-toolbar">
+            <p className="pagination-summary">
+              Showing {projectStart + 1}-{projectEnd} of {homepageProjects.length} projects
+            </p>
+            <Link to="/projects">Open full project directory</Link>
+          </div>
+          <ProjectGrid projects={visibleProjects} />
+          <HomeProjectPagination currentPage={safeProjectPage} totalPages={totalProjectPages} onPageChange={setProjectPage} />
         </div>
       </section>
 
@@ -111,7 +130,7 @@ function QuickSearch() {
         <div>
           <span className="eyebrow">Find Your Property</span>
           <h2>Search Your DMCI Home</h2>
-          <p>Filter demo project data by location, unit type, status, purpose, and budget range.</p>
+          <p>Filter project options by location, unit type, status, purpose, and budget range.</p>
         </div>
         <div className="search-fields">
           <select name="location" value={filters.location} onChange={update}><option value="">Preferred Location</option>{locations.map((item) => <option key={item.name}>{item.name}</option>)}</select>
@@ -126,6 +145,34 @@ function QuickSearch() {
         </div>
       </div>
     </section>
+  );
+}
+
+function HomeProjectPagination({ currentPage, totalPages, onPageChange }) {
+  if (totalPages <= 1) return null;
+  const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
+
+  return (
+    <nav className="pagination home-pagination" aria-label="Homepage project pagination">
+      <button type="button" onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1}>
+        Previous
+      </button>
+      {pages.map((page) => (
+        <button
+          type="button"
+          key={page}
+          className={page === currentPage ? "active" : ""}
+          aria-current={page === currentPage ? "page" : undefined}
+          aria-label={`Show homepage projects page ${page}`}
+          onClick={() => onPageChange(page)}
+        >
+          {page}
+        </button>
+      ))}
+      <button type="button" onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === totalPages}>
+        Next
+      </button>
+    </nav>
   );
 }
 

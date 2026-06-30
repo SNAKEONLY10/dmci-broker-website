@@ -35,6 +35,7 @@ const richSectionLinks = [
   ["Units", "unit-options"],
   ["Floor Plans", "floor-plans"],
   ["Payment", "payment"],
+  ["Fit-out", "fit-out"],
   ["Unit Holding", "unit-holding"],
   ["Reservation", "reservation"],
   ["Gallery", "gallery"],
@@ -57,7 +58,11 @@ export default function ProjectDetail() {
 
   const isRichProject = project.contentLevel === "rich" && project.projectFacts?.length;
   const sectionLinks = isRichProject
-    ? richSectionLinks.filter(([, id]) => id !== "rental-pool" || project.rentalPoolProgram)
+    ? richSectionLinks.filter(([, id]) => {
+      if (id === "rental-pool") return project.rentalPoolProgram;
+      if (id === "fit-out") return project.fitOutOptions;
+      return true;
+    })
     : defaultSectionLinks;
   const similar = projects
     .filter((item) => item.id !== project.id && (item.location === project.location || item.status === project.status || project.nearbyProperties.includes(item.slug)))
@@ -187,7 +192,7 @@ function RichProjectSections({ project }) {
           {project.summaryPricing.map((item) => (
             <article className="pricing-card" key={item.type}>
               <span>{item.type}</span>
-              <strong>{item.range}</strong>
+              <strong>{item.range || item.price}</strong>
               <p>{item.floorArea || item.size}</p>
               {item.monthlyDp && <p>{item.monthlyDp}</p>}
               {item.status && <small>{item.status}</small>}
@@ -195,6 +200,7 @@ function RichProjectSections({ project }) {
             </article>
           ))}
         </div>
+        {project.summaryPricingNote && <p className="safety-note">{project.summaryPricingNote}</p>}
         <div className="compact-cta-row">
           <Button to="/request-computation">Request Latest Computation</Button>
           <Button to="/availability" variant="secondary">Ask for Updated Units</Button>
@@ -214,6 +220,7 @@ function RichProjectSections({ project }) {
           <strong>Exact Address</strong>
           <span>{project.locationDetails?.exactAddress || project.address}</span>
         </div>
+        {project.locationDetails?.note && <p className="safety-note">{project.locationDetails.note}</p>}
         <GroupedList groups={project.nearbyDestinations} />
         <div className="map-placeholder compact-map">Map and travel references can be reviewed during Luisa's project presentation.</div>
         <Button to="/book-viewing" variant="secondary">Book a Site Viewing</Button>
@@ -223,11 +230,11 @@ function RichProjectSections({ project }) {
         <div className="site-development-card">
           <ImagePlaceholder src={project.masterPlanImage} label={`${project.name} site development`} compact variant="masterPlan" />
           <div>
-            <p>{project.siteDevelopment?.text || project.masterPlanNotes}</p>
+            {(project.siteDevelopment?.paragraphs || [project.siteDevelopment?.text || project.masterPlanNotes]).map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             <div className="mini-stat-grid">
               {(project.siteDevelopment?.keyStats || []).map((item) => <Spec key={item.label} label={item.label} value={item.value} />)}
             </div>
-            <p className="safety-note">Site development, tower details, and technical drawings must be confirmed through official project materials.</p>
+            <p className="safety-note">Site development, tower details, and final project materials must be confirmed through Luisa or official project channels.</p>
           </div>
         </div>
       </DetailSection>
@@ -235,9 +242,9 @@ function RichProjectSections({ project }) {
       <DetailSection id="views" eyebrow="Views and Tour" title="360 View and Guided Presentation">
         <div className="view-card-grid">
           {project.viewHighlights.map((item) => (
-            <article className="view-card" key={item.title}>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
+            <article className="view-card" key={typeof item === "string" ? item : item.title}>
+              <h3>{typeof item === "string" ? item : item.title}</h3>
+              {typeof item === "string" ? <p>Ask Luisa to confirm current views, tour links, and approved presentation materials.</p> : <p>{item.text}</p>}
             </article>
           ))}
         </div>
@@ -246,6 +253,7 @@ function RichProjectSections({ project }) {
 
       <DetailSection id="amenities" eyebrow="Amenities" title="Amenities and Lifestyle Spaces">
         <GroupedList groups={project.amenityGroups} compact />
+        {project.amenityNote && <p className="safety-note">{project.amenityNote}</p>}
       </DetailSection>
 
       {project.rentalPoolProgram && (
@@ -265,11 +273,13 @@ function RichProjectSections({ project }) {
       )}
 
       <DetailSection id="unit-options" eyebrow="Unit Types" title="Unit Options and Guide Ranges">
-        <p className="reference-note">For guidance only. Unit cuts, floor areas, prices, promos, and availability can change.</p>
+        <p className="reference-note">{project.unitIntro || "For guidance only. Unit cuts, floor areas, prices, promos, and availability can change."}</p>
+        {project.unitQualityNote && <p className="safety-note">{project.unitQualityNote}</p>}
         {project.unitSections.map((section) => <UnitSection section={section} key={section.title} />)}
       </DetailSection>
 
-      <DetailSection id="floor-plans" eyebrow="Floor Plans" title="Floor Plans">
+      <DetailSection id="floor-plans" eyebrow="Floor Plans" title={project.floorPlansTitle || "Floor Plans"}>
+        {project.floorPlansDescription && <p className="reference-note">{project.floorPlansDescription}</p>}
         <div className="floor-plan-grid">
           {project.floorPlans.map((item) => (
             <article className="floor-plan-card" key={item.title}>
@@ -292,17 +302,29 @@ function RichProjectSections({ project }) {
             </article>
           )}
           <article className="payment-card">
-            <h3>Computation Guide</h3>
+            <h3>Sample Unit</h3>
             {project.paymentTerms.sampleComputation.map((item, index) => <Spec key={`${item.label}-${index}`} label={item.label} value={item.value} />)}
           </article>
           <article className="payment-card">
-            <h3>Monthly Payment Guide</h3>
+            <h3>Sample Monthly Amortization</h3>
             {project.paymentTerms.monthlyAmortization.map((item, index) => <Spec key={`${item.label}-${index}`} label={item.label} value={item.value} />)}
           </article>
           {project.paymentTerms.contractBreakdown && (
             <article className="payment-card payment-card-wide">
-              <h3>Contract Price and Financing</h3>
+              <h3>Contract Price</h3>
               {project.paymentTerms.contractBreakdown.map((item, index) => <Spec key={`${item.label}-${index}`} label={item.label} value={item.value} />)}
+            </article>
+          )}
+          {project.paymentTerms.downPaymentBreakdown && (
+            <article className="payment-card">
+              <h3>Down Payment</h3>
+              {project.paymentTerms.downPaymentBreakdown.map((item, index) => <Spec key={`${item.label}-${index}`} label={item.label} value={item.value} />)}
+            </article>
+          )}
+          {project.paymentTerms.balanceBreakdown && (
+            <article className="payment-card">
+              <h3>Balance / Financing</h3>
+              {project.paymentTerms.balanceBreakdown.map((item, index) => <Spec key={`${item.label}-${index}`} label={item.label} value={item.value} />)}
             </article>
           )}
           <article className="payment-card">
@@ -324,6 +346,17 @@ function RichProjectSections({ project }) {
         <p className="safety-note">{project.paymentTerms.promoReference}</p>
       </DetailSection>
 
+      {project.fitOutOptions && (
+        <DetailSection id="fit-out" eyebrow="Fit-out Options" title={project.fitOutOptions.title}>
+          <p>{project.fitOutOptions.copy}</p>
+          <div className="premium-card-grid">
+            {project.fitOutOptions.highlights.map((item) => <article className="info-card" key={item}><p>{item}</p></article>)}
+          </div>
+          <p className="safety-note">{project.fitOutOptions.warning}</p>
+          <Button to="/contact" variant="secondary">{project.fitOutOptions.cta || "Ask Luisa About Fit-out Options"}</Button>
+        </DetailSection>
+      )}
+
       <DetailSection id="unit-holding" eyebrow="Unit Holding" title={project.unitHoldingPortal.title}>
         <div className="reservation-grid">
           <article className="unit-holding-card">
@@ -344,7 +377,7 @@ function RichProjectSections({ project }) {
         <div className="reservation-grid">
           <article className="reservation-checklist">
             <h3>Checklist to Prepare</h3>
-            <ul>{project.reservationRequirements.map((item) => <li key={item}>{item}</li>)}</ul>
+            <ReservationChecklist items={project.reservationRequirements} />
             <Button to="/contact" variant="secondary">Ask for Reservation Guidance</Button>
           </article>
           <article className="unit-holding-card">
@@ -385,7 +418,7 @@ function StandardProjectSections({ project }) {
       <DetailSection id="location" eyebrow="Location" title="About the Location">
         <p>{project.aboutLocation}</p>
         <ul className="detail-list">{project.nearbyLandmarks.map((item) => <li key={item}>{item}</li>)}</ul>
-        <div className="map-placeholder">Map preview, directions, and travel references can be added once approved project materials are available.</div>
+        <div className="map-placeholder">Map, directions, and travel references can be reviewed with Luisa during project shortlisting.</div>
         <Button to="/book-viewing" variant="secondary">Book a Site Viewing</Button>
       </DetailSection>
 
@@ -536,6 +569,22 @@ function SampleComputationList({ items = [] }) {
         </article>
       ))}
     </div>
+  );
+}
+
+function ReservationChecklist({ items = [] }) {
+  return (
+    <ul>
+      {items.map((item) => {
+        if (typeof item === "string") return <li key={item}>{item}</li>;
+        return (
+          <li key={item.title}>
+            <strong>{item.title}</strong>
+            <ul>{item.items.map((entry) => <li key={entry}>{entry}</li>)}</ul>
+          </li>
+        );
+      })}
+    </ul>
   );
 }
 

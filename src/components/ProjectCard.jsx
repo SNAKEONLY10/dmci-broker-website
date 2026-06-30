@@ -4,6 +4,12 @@ import { Button } from "./Button";
 import { ImagePlaceholder } from "./ImagePlaceholder";
 
 export function ProjectCard({ project }) {
+  const priceLabel = project.priceRangeLabel || "Request latest computation";
+  const hasPriceGuide = /PHP|₱/.test(priceLabel);
+  const buyerNote = hasPriceGuide
+    ? "Guide range only. Ask Luisa for the latest computation."
+    : "Updated computation available upon request.";
+
   return (
     <article className="project-card">
       <div className="project-image">
@@ -25,9 +31,9 @@ export function ProjectCard({ project }) {
         <ul>
           {project.highlights.slice(0, 2).map((item) => <li key={item}>{item}</li>)}
         </ul>
-        <p className="content-hint">Updated details available upon request.</p>
-        <p className="price-note">{project.priceRangeLabel}</p>
-        <small>{project.priceSourceNote}</small>
+        <p className="content-hint">Latest details available through Luisa.</p>
+        <p className="price-note">{priceLabel}</p>
+        <small>{buyerNote}</small>
         <small>Availability subject to confirmation.</small>
         <div className="card-actions">
           <Button to={`/projects/${project.slug}`} variant="secondary">View Details</Button>
