@@ -26,7 +26,7 @@ export const promos = [
 ];
 
 export const resaleUnits = [
-  ["Mulberry Place 2", "Paranaque", "2BR", "For verification", "Possible re-opened units may appear from time to time."],
-  ["Brio Tower", "Makati", "1BR", "For verification", "Availability and terms must be checked before discussion."],
-  ["Torre de Manila", "Manila", "Studio", "For verification", "Request current details from Luisa before making plans."]
+  ["Mulberry Place", "Taguig", "2BR", "For verification", "Possible re-opened units may appear from time to time."],
+  ["The Atherton", "Para\u00f1aque", "2BR", "For verification", "Availability and terms must be checked before discussion."],
+  ["The Valeron Tower", "Pasig", "1BR", "For verification", "Request current details from Luisa before making plans."]
 ].map(([project, location, unitType, status, notes], id) => ({ id, project, location, unitType, status, notes }));

@@ -1,22 +1,22 @@
 const optimizedProjectSlugs = new Set([
-  "alea-residences",
-  "anissa-heights",
-  "brio-tower",
-  "bristle-ridge",
-  "fortis-residences",
-  "kalea-heights",
-  "maricielo-villas",
-  "moncello-crest",
-  "mulberry-place-2",
+  "the-oriana",
   "one-delta-terraces",
-  "rhapsody-residences",
+  "the-erin-heights",
+  "cameron-residences",
+  "the-valeron-tower",
+  "allegra-garden-place",
+  "prisma-residences",
   "sage-residences",
-  "solmera-coast",
-  "the-calinea-tower",
-  "torre-de-manila",
-  "valeron-tower",
-  "verdon-parc",
-  "willow-park-homes"
+  "kai-garden-residences",
+  "mulberry-place",
+  "alder-residences",
+  "the-aston-place",
+  "the-camden-place",
+  "the-atherton",
+  "calathea-place",
+  "sonora-garden-residences",
+  "moncello-crest",
+  "solmera-coast"
 ]);
 
 const widthMap = {

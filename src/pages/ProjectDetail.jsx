@@ -43,6 +43,12 @@ const richSectionLinks = [
   ["Contact", "contact-project"]
 ];
 
+function formatTurnoverLabel(value) {
+  if (value === "Ready") return "Ready For Occupancy";
+  if (/20\d{2}/.test(String(value))) return `${value} turnover`;
+  return value || "Turnover for confirmation";
+}
+
 export default function ProjectDetail() {
   const { slug } = useParams();
   const project = projects.find((item) => item.slug === slug);
@@ -117,7 +123,7 @@ export default function ProjectDetail() {
 
 function ProjectHero({ project, isRichProject }) {
   const heroFacts = [
-    { label: "Turnover", value: project.turnoverYear === "Ready" ? "Ready For Occupancy" : `${project.turnoverYear} turnover` },
+    { label: "Turnover", value: formatTurnoverLabel(project.turnoverYear) },
     { label: "Location", value: project.city },
     { label: "Development", value: project.developmentType },
     { label: "Land Area", value: project.landArea },
@@ -406,7 +412,7 @@ function StandardProjectSections({ project }) {
           <Spec label="Architectural Theme" value={project.architecturalTheme} />
           <Spec label="Address" value={project.address} />
           <Spec label="Unit Types" value={project.unitTypes.join(", ")} />
-          <Spec label="Status / Turnover" value={project.turnoverYear === "Ready" ? `Ready For Occupancy | ${project.status}` : `${project.turnoverYear} turnover | ${project.status}`} />
+          <Spec label="Status / Turnover" value={`${formatTurnoverLabel(project.turnoverYear)} | ${project.status}`} />
         </div>
       </DetailSection>
 
@@ -482,7 +488,13 @@ function StandardProjectSections({ project }) {
 
       <DetailSection id="news-media" eyebrow="News & Media" title="Project Updates and Reference Links">
         <div className="premium-card-grid">
-          {project.newsMedia.map((item) => <article className="info-card" key={item.title}><h3>{item.title}</h3><p>{item.label}</p></article>)}
+          {project.newsMedia.map((item) => (
+            <article className="info-card" key={item.title}>
+              <h3>{item.title}</h3>
+              <p>{item.label}</p>
+              {item.url && <Button href={item.url} target="_blank" rel="noreferrer" variant="secondary">Open Source</Button>}
+            </article>
+          ))}
         </div>
       </DetailSection>
     </>

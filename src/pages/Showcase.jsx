@@ -37,7 +37,7 @@ const features = [
 const pages = [
   ["Home", "/", "Premium first impression with buyer actions and broker contact."],
   ["Projects", "/projects", "Searchable project directory with safe availability and computation CTAs."],
-  ["Project Detail", "/projects/kalea-heights", "Full showcase page for each project with overview, units, amenities, and inquiry flow."],
+  ["Project Detail", "/projects/one-delta-terraces", "Full showcase page for each project with overview, units, amenities, and inquiry flow."],
   ["Locations", "/locations", "Browse project options by city or area."],
   ["Availability", "/availability", "Form for asking Luisa to confirm current unit availability."],
   ["Request Computation", "/request-computation", "Lead form for latest computation and payment term requests."],
@@ -54,7 +54,7 @@ const pages = [
 const demoLinks = [
   ["Homepage", "/"],
   ["Projects", "/projects"],
-  ["Kalea Heights sample", "/projects/kalea-heights"],
+  ["One Delta Terraces sample", "/projects/one-delta-terraces"],
   ["Request Computation", "/request-computation"],
   ["Check Availability", "/availability"],
   ["Book Viewing", "/book-viewing"]
@@ -62,7 +62,7 @@ const demoLinks = [
 
 const demoPreviews = [
   ["Homepage", "/", "Premium broker landing page with search, featured projects, Luisa contact card, and buyer CTAs."],
-  ["Kalea Heights Project Page", "/projects/kalea-heights", "Rich sample property showcase with overview, facts, unit preview, amenities, and inquiry flow."],
+  ["One Delta Terraces Project Page", "/projects/one-delta-terraces", "Rich sample property showcase with overview, facts, unit preview, amenities, and inquiry flow."],
   ["Request Computation Flow", "/request-computation", "Frontend lead form for buyers asking for updated computation and payment terms."]
 ];
 
@@ -78,7 +78,7 @@ const workingItems = [
   "Responsive broker-branded homepage",
   "Searchable project directory",
   "Shared project detail template for every project",
-  "Rich Kalea Heights reference sample",
+  "Rich One Delta Terraces reference sample",
   "Frontend lead forms with validation",
   "Mobile sticky CTA",
   "Vercel SPA routing configuration"
@@ -86,13 +86,13 @@ const workingItems = [
 
 const demoOnlyItems = [
   "Placeholder images until approved Drive assets are selected",
-  "Sample project content except rich Kalea reference data",
+  "Sample project content except rich priority reference data",
   "Forms do not send email automatically yet",
   "Forms save to browser localStorage only",
   "No live inventory or guaranteed price feed"
 ];
 
-const driveFolders = ["RFO Projects", "KLH", "ODT", "MCC", "ANH", "SLC", "MLP 2", "Rent-to-own", "Other project/code folders"];
+const driveFolders = ["Priority project folders", "ODT", "VLT", "MCC", "SLC", "MLP", "Other approved project/code folders"];
 
 const limitations = [
   "Placeholder images only",
@@ -249,7 +249,7 @@ export default function Showcase() {
 
       <ShowcaseSection eyebrow="Project System" title="Project Content Completion Plan">
         <div className="content-panel showcase-copy">
-          <p>The website is designed so projects can be completed in batches. Kalea Heights can be used as the rich sample. Other projects use the same professional template while official details and Google Drive assets are collected.</p>
+          <p>The website is designed so priority projects can be completed in batches. One Delta Terraces can be used as the rich sample. Other approved projects use the same professional template while official details and Google Drive assets are collected.</p>
           <div className="completion-plan-grid">
             {projectCompletionPlan.map((item) => (
               <article className="info-card" key={item.label}>

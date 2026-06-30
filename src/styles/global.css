@@ -1951,7 +1951,7 @@ textarea {
   }
 }
 
-/* Kalea Heights rich project detail polish */
+/* Rich project detail polish */
 .project-detail-main {
   background:
     radial-gradient(circle at 8% 4%, rgba(214, 177, 83, 0.12), transparent 26%),
@@ -2901,7 +2901,7 @@ textarea {
   }
 }
 
-/* Mobile Kalea hero gallery: one featured image, two compact previews, then clean copy. */
+/* Mobile project hero gallery: one featured image, two compact previews, then clean copy. */
 @media (max-width: 760px) {
   .project-detail-hero-rich {
     padding: 84px 0 28px;

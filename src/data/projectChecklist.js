@@ -16,8 +16,8 @@ export const projectChecklist = [
 ];
 
 export const projectCompletionPlan = [
-  { label: "Rich sample project", value: "Kalea Heights" },
-  { label: "Next priority projects", value: "Selected by Luisa" },
+  { label: "Rich sample project", value: "One Delta Terraces" },
+  { label: "Priority projects", value: "Limited to Luisa's approved list" },
   { label: "Needs official photos", value: "Use approved Google Drive assets only" },
   { label: "Needs updated computation/pricing confirmation", value: "Request latest computation before publishing buyer-facing numbers" },
   { label: "Needs approved videos/360 tours", value: "Use thumbnails and external links for tours" },

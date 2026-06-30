@@ -4,6 +4,13 @@ import { Button } from "./Button";
 import { ImagePlaceholder } from "./ImagePlaceholder";
 import { buyerSafePriceNote, formatPriceGuide } from "../utils/displayText";
 
+function formatTurnoverLabel(value) {
+  if (value === "Ready") return "RFO";
+  if (/20\d{2}/.test(String(value))) return `${value} turnover`;
+  if (String(value).toLowerCase() === "for confirmation") return "Turnover for confirmation";
+  return value || "Turnover for confirmation";
+}
+
 export function ProjectCard({ project }) {
   const priceLabel = formatPriceGuide(project.priceRangeLabel);
   const hasPriceGuide = /PHP|\d/.test(priceLabel) && !/request latest/i.test(priceLabel);
@@ -23,7 +30,7 @@ export function ProjectCard({ project }) {
         <h3><Link to={`/projects/${project.slug}`}>{project.name}</Link></h3>
         <p className="card-tagline">{project.tagline}</p>
         <div className="project-meta">
-          <span>{project.turnoverYear === "Ready" ? "RFO" : `${project.turnoverYear} turnover`}</span>
+          <span>{formatTurnoverLabel(project.turnoverYear)}</span>
           <span>{project.propertyType} | {project.developmentType}</span>
         </div>
         <div className="pill-row">

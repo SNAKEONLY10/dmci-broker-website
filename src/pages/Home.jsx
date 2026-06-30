@@ -7,7 +7,7 @@ import { ProjectGrid } from "../components/ProjectGrid";
 import { SectionHeader } from "../components/SectionHeader";
 import { GuideCard, PromoCard, VideoTourCard } from "../components/Cards";
 import { DisclaimerBanner } from "../components/DisclaimerBanner";
-import { projects, unitTypes, purposes } from "../data/projects";
+import { projects, unitTypes, purposes, statuses } from "../data/projects";
 import { locations } from "../data/locations";
 import { guideCards } from "../data/guides";
 import { promos } from "../data/promos";
@@ -135,7 +135,7 @@ function QuickSearch() {
         </div>
         <div className="search-fields">
           <select name="location" value={filters.location} onChange={update}><option value="">Preferred Location</option>{locations.map((item) => <option key={item.name}>{item.name}</option>)}</select>
-          <select name="status" value={filters.status} onChange={update}><option value="">Status</option><option>RFO</option><option>Preselling</option><option>Coming Soon</option></select>
+          <select name="status" value={filters.status} onChange={update}><option value="">Status</option>{statuses.map((item) => <option key={item}>{item}</option>)}</select>
           <select name="unitType" value={filters.unitType} onChange={update}><option value="">Unit Type</option>{unitTypes.map((item) => <option key={item}>{item}</option>)}</select>
           <select name="purpose" value={filters.purpose} onChange={update}><option value="">Purpose</option>{purposes.map((item) => <option key={item}>{item}</option>)}</select>
           <select name="budget" value={filters.budget} onChange={update}><option value="">Budget Range</option><option>Still checking</option><option>Entry level</option><option>Mid range</option><option>Premium range</option></select>

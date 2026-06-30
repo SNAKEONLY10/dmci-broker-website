@@ -1,17 +1,14 @@
 export const locations = [
-  "Baguio / Benguet",
-  "Batangas",
-  "Cavite",
-  "Cebu",
-  "Makati",
-  "Mandaluyong",
-  "Manila",
-  "Paranaque",
-  "Pasay",
-  "Pasig",
   "Quezon City",
+  "Pasig",
+  "Mandaluyong",
   "Taguig",
-  "Other Locations"
+  "Pasay",
+  "Manila",
+  "Para\u00f1aque",
+  "Las Pi\u00f1as",
+  "Baguio City / Benguet",
+  "San Juan Batangas"
 ].map((name, index) => ({
   id: index + 1,
   name,
