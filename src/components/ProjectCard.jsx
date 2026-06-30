@@ -2,12 +2,13 @@ import { Link } from "react-router-dom";
 import { Badge } from "./Badge";
 import { Button } from "./Button";
 import { ImagePlaceholder } from "./ImagePlaceholder";
+import { buyerSafePriceNote, formatPriceGuide } from "../utils/displayText";
 
 export function ProjectCard({ project }) {
-  const priceLabel = project.priceRangeLabel || "Request latest computation";
-  const hasPriceGuide = /PHP|₱/.test(priceLabel);
+  const priceLabel = formatPriceGuide(project.priceRangeLabel);
+  const hasPriceGuide = /PHP|\d/.test(priceLabel) && !/request latest/i.test(priceLabel);
   const buyerNote = hasPriceGuide
-    ? "Guide range only. Ask Luisa for the latest computation."
+    ? buyerSafePriceNote(project.priceSourceNote)
     : "Updated computation available upon request.";
 
   return (

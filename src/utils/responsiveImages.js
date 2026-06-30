@@ -1,10 +1,22 @@
 const optimizedProjectSlugs = new Set([
+  "alea-residences",
+  "anissa-heights",
+  "brio-tower",
+  "bristle-ridge",
   "fortis-residences",
   "kalea-heights",
+  "maricielo-villas",
+  "moncello-crest",
   "mulberry-place-2",
   "one-delta-terraces",
+  "rhapsody-residences",
+  "sage-residences",
   "solmera-coast",
-  "valeron-tower"
+  "the-calinea-tower",
+  "torre-de-manila",
+  "valeron-tower",
+  "verdon-parc",
+  "willow-park-homes"
 ]);
 
 const widthMap = {

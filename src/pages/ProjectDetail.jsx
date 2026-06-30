@@ -8,6 +8,7 @@ import { ImagePlaceholder } from "../components/ImagePlaceholder";
 import { ProjectGrid } from "../components/ProjectGrid";
 import { SectionHeader } from "../components/SectionHeader";
 import { projects } from "../data/projects";
+import { buyerSafePriceNote, formatInlineGuide, formatPriceGuide } from "../utils/displayText";
 
 const defaultSectionLinks = [
   ["Overview", "overview"],
@@ -155,8 +156,8 @@ function ProjectHero({ project, isRichProject }) {
           <p className="project-tagline">{project.tagline}</p>
           <p>{project.overview}</p>
           <div className="price-panel reference-price-panel">
-            <strong>{project.priceRangeLabel}</strong>
-            <span>{project.priceSourceNote}</span>
+            <strong>{formatPriceGuide(project.priceRangeLabel)}</strong>
+            <span>{buyerSafePriceNote(project.priceSourceNote)}</span>
             <span>Subject to final confirmation. Ask Luisa for latest computation.</span>
           </div>
           <div className="project-facts">
@@ -497,7 +498,7 @@ function LatestDetailsCard({ project }) {
       <Button to="/availability" variant="secondary">Check Availability with Luisa</Button>
       <Button to="/book-viewing" variant="secondary">Book a Site Viewing</Button>
       <Button to="/contact" variant="ghost">Message Luisa</Button>
-      <DisclaimerBanner text={project.priceSourceNote || "Updated details available upon request."} />
+      <DisclaimerBanner text={buyerSafePriceNote(project.priceSourceNote)} />
     </aside>
   );
 }
@@ -529,7 +530,7 @@ function UnitSection({ section }) {
               <tr key={`${section.title}-${row.layout}-${row.floorArea}-${index}`}>
                 <td data-label="Layout">{row.layout}</td>
                 <td data-label="Floor Area">{row.floorArea}</td>
-                <td data-label="Guide Range">{row.priceRange}</td>
+                <td data-label="Guide Range">{formatInlineGuide(row.priceRange)}</td>
                 <td data-label="Status">{row.status}</td>
                 <td data-label="Computation">{row.monthlyDp}</td>
                 <td data-label="Action"><Button to="/request-computation" variant="secondary">Request Computation</Button></td>
@@ -610,7 +611,7 @@ function InventoryPreview({ project }) {
         <div className="inventory-row" key={item.type}>
           <span>{item.type}</span>
           <span>{item.floorArea}</span>
-          <span>{item.indicativeRange || item.computation}</span>
+          <span>{formatInlineGuide(item.indicativeRange || item.computation)}</span>
           <span>{item.status || item.availability}</span>
           <Button to="/request-computation" variant="secondary">Request Computation</Button>
         </div>
