@@ -3,12 +3,14 @@ import { SectionHeader } from "../components/SectionHeader";
 import { Button } from "../components/Button";
 import { projects, unitTypes } from "../data/projects";
 import { locations } from "../data/locations";
+import { useSearchParams } from "react-router-dom";
 
 const projectOptions = projects.map((project) => project.name);
 const locationOptions = locations.map((location) => location.name);
 const inquiryTypes = ["Computation", "Availability", "Site viewing", "Reservation requirements", "Promo", "Resale unit", "Other"];
 
 export function Availability() {
+  const initialValues = useInquiryDefaults();
   return <FormShell
     title="Check Current Availability"
     text="Share the project and unit type you are considering. Luisa can help verify current availability, promos, and payment terms before you shortlist."
@@ -25,11 +27,12 @@ export function Availability() {
       f("preferredSize", "Preferred Floor/Size if any"), s("budgetRange", "Budget Range", ["Still checking", "Entry level", "Mid range", "Premium range"]),
       s("paymentOption", "Payment Option", ["Cash", "In-house", "Bank Financing", "Not sure"]), s("urgency", "Urgency", ["Just checking", "This week", "Ready to reserve"]),
       s("contactMethod", "Preferred Contact Method", ["Messenger", "Viber", "WhatsApp", "Call", "Email"]), t()
-    ]} storageKey="dmci_availability_requests" submitLabel="Check Availability with Luisa" required={["fullName", "contactNumber", "email"]} />
+    ]} storageKey="dmci_availability_requests" submitLabel="Check Availability with Luisa" initialValues={initialValues} required={["fullName", "contactNumber", "email"]} />
   </FormShell>;
 }
 
 export function RequestComputation() {
+  const initialValues = useInquiryDefaults();
   return <FormShell
     title="Request Latest Computation"
     text="Tell Luisa your preferred project, unit type, payment preference, and timeline so she can prepare the right computation reference."
@@ -48,11 +51,12 @@ export function RequestComputation() {
       s("buyerType", "Buyer Type", ["Local", "OFW", "Investor", "First-time buyer", "Family use"]),
       s("inquiryType", "Inquiry Type", inquiryTypes),
       s("timeline", "Timeline", ["Immediately", "1-3 months", "3-6 months", "Still exploring"]), t()
-    ]} storageKey="dmci_computation_requests" submitLabel="Send Computation Request" required={["fullName", "contactNumber", "email"]} />
+    ]} storageKey="dmci_computation_requests" submitLabel="Send Computation Request" initialValues={initialValues} required={["fullName", "contactNumber", "email"]} />
   </FormShell>;
 }
 
 export function BookViewing() {
+  const initialValues = useInquiryDefaults();
   return <FormShell
     title="Book a Site Viewing"
     text="Choose your preferred viewing setup and schedule. Luisa can help coordinate based on project access and available slots."
@@ -67,11 +71,12 @@ export function BookViewing() {
       f("fullName", "Full Name"), f("contactNumber", "Contact Number", "tel"), f("email", "Email Address", "email"), s("project", "Preferred Project", projectOptions), s("location", "Preferred Location", locationOptions),
       s("viewingType", "Viewing Type", ["On-site model unit viewing", "Online consultation", "Phone call", "Zoom/Google Meet"]),
       f("preferredDate", "Preferred Date", "date"), f("preferredTime", "Preferred Time", "time"), f("guests", "Number of Guests", "number"), s("contactMethod", "Preferred Contact Method", ["Messenger", "Viber", "WhatsApp", "Call", "Email"]), t("Notes or questions")
-    ]} storageKey="dmci_viewing_requests" submitLabel="Request Viewing Schedule" required={["fullName", "contactNumber", "email"]} />
+    ]} storageKey="dmci_viewing_requests" submitLabel="Request Viewing Schedule" initialValues={initialValues} required={["fullName", "contactNumber", "email"]} />
   </FormShell>;
 }
 
 export function Contact() {
+  const initialValues = useInquiryDefaults();
   return <FormShell
     title="Talk to Luisa"
     text="Send your question or buyer requirement. This helps Luisa recommend the right project, unit type, computation, or next step."
@@ -89,8 +94,25 @@ export function Contact() {
       s("buyerType", "Buyer Type", ["Local buyer", "OFW", "Investor", "Family use", "First-time buyer", "Still exploring"]),
       s("contactMethod", "Preferred Contact Method", ["Messenger", "Viber", "WhatsApp", "Call", "Email"]),
       t("Message / Buyer Requirement")
-    ]} storageKey="dmci_contact_requests" submitLabel="Send Buyer Inquiry" required={["fullName", "contactNumber", "email", "concernType"]} />
+    ]} storageKey="dmci_contact_requests" submitLabel="Send Buyer Inquiry" initialValues={initialValues} required={["fullName", "contactNumber", "email", "concernType"]} />
   </FormShell>;
+}
+
+function useInquiryDefaults() {
+  const [searchParams] = useSearchParams();
+  const projectParam = searchParams.get("project") || "";
+  const inquiryType = searchParams.get("inquiryType") || "";
+  const matchedProject = projects.find((project) => (
+    project.name.toLowerCase() === projectParam.toLowerCase() ||
+    project.slug.toLowerCase() === projectParam.toLowerCase()
+  ));
+
+  return {
+    project: matchedProject?.name || projectParam,
+    location: matchedProject?.location || "",
+    inquiryType,
+    concernType: inquiryType
+  };
 }
 
 function FormShell({ title, text, panel, children }) {

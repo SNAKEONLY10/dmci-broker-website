@@ -835,6 +835,135 @@ textarea { resize: vertical; }
   }
 }
 
+/* Project detail inquiry rail: compact, non-blocking, and project-aware. */
+.project-detail-layout {
+  grid-template-columns: minmax(0, 1fr) minmax(248px, 280px);
+  gap: clamp(18px, 2vw, 26px);
+}
+
+.detail-section,
+.rich-fact-grid div,
+.mini-stat-grid div {
+  min-width: 0;
+}
+
+.rich-fact-grid span,
+.mini-stat-grid span,
+.payment-card span,
+.pricing-card strong {
+  overflow-wrap: anywhere;
+}
+
+.sticky-project-cta {
+  top: 132px;
+  gap: 10px;
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 18px 48px rgba(15, 39, 66, 0.12);
+}
+
+.sticky-project-cta .mini {
+  margin: 0;
+  color: #a37519;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+}
+
+.sticky-project-cta strong {
+  font-family: inherit;
+  font-size: 1.02rem;
+  line-height: 1.25;
+}
+
+.sticky-project-cta p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.sticky-project-actions,
+.sticky-project-secondary {
+  display: grid;
+  gap: 8px;
+}
+
+.sticky-project-secondary {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.sticky-project-cta .btn {
+  min-height: 40px;
+  padding: 9px 12px;
+  font-size: 0.78rem;
+  line-height: 1.15;
+}
+
+.sticky-project-secondary .btn {
+  min-height: 36px;
+  padding-inline: 8px;
+  font-size: 0.72rem;
+}
+
+.sticky-project-cta .disclaimer-banner {
+  margin-top: 0;
+  padding: 10px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  line-height: 1.28;
+  box-shadow: none;
+}
+
+@media (max-width: 1280px) {
+  .project-detail-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sticky-project-cta {
+    position: static;
+    order: -1;
+    grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+    align-items: center;
+  }
+
+  .sticky-project-cta .mini,
+  .sticky-project-cta strong,
+  .sticky-project-cta p,
+  .sticky-project-cta .disclaimer-banner {
+    grid-column: 1;
+  }
+
+  .sticky-project-actions,
+  .sticky-project-secondary {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 760px) {
+  .sticky-project-cta {
+    grid-template-columns: 1fr;
+    padding: 14px;
+  }
+
+  .sticky-project-cta .mini,
+  .sticky-project-cta strong,
+  .sticky-project-cta p,
+  .sticky-project-cta .disclaimer-banner,
+  .sticky-project-actions,
+  .sticky-project-secondary {
+    grid-column: 1;
+  }
+
+  .sticky-project-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .sticky-project-secondary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 430px) {
   .hero-landing {
     padding: 92px 0 46px;

@@ -103,10 +103,10 @@ export default function ProjectDetail() {
           <h2>Interested in {project.name}?</h2>
           <p>Request updated computation, availability, and viewing assistance before deciding.</p>
           <div className="hero-actions center">
-            <Button to="/request-computation">Request Latest Computation</Button>
-            <Button to="/availability" variant="secondary">Check Availability with Luisa</Button>
-            <Button to="/book-viewing" variant="ghost">Book Site Viewing</Button>
-            <Button to="/contact" variant="ghost">Message Luisa</Button>
+            <Button to={projectInquiryPath("/request-computation", project, "Computation")}>Request Latest Computation</Button>
+            <Button to={projectInquiryPath("/availability", project, "Availability")} variant="secondary">Check Availability with Luisa</Button>
+            <Button to={projectInquiryPath("/book-viewing", project, "Site viewing")} variant="ghost">Book Site Viewing</Button>
+            <Button to={projectInquiryPath("/contact", project, "Other")} variant="ghost">Message Luisa</Button>
           </div>
           <DisclaimerBanner text={project.disclaimer} />
         </div>
@@ -164,10 +164,10 @@ function ProjectHero({ project, isRichProject }) {
             {heroFacts.map((fact) => <Fact key={fact.label} label={fact.label} value={fact.value} />)}
           </div>
           <div className="hero-actions">
-            <Button to="/request-computation">Request Latest Computation</Button>
-            <Button to="/availability" variant="secondary">Check Availability with Luisa</Button>
-            <Button to="/book-viewing" variant="ghost">Book a Site Viewing</Button>
-            <Button to="/contact" variant="ghost">Message Luisa</Button>
+            <Button to={projectInquiryPath("/request-computation", project, "Computation")}>Request Latest Computation</Button>
+            <Button to={projectInquiryPath("/availability", project, "Availability")} variant="secondary">Check Availability with Luisa</Button>
+            <Button to={projectInquiryPath("/book-viewing", project, "Site viewing")} variant="ghost">Book a Site Viewing</Button>
+            <Button to={projectInquiryPath("/contact", project, "Other")} variant="ghost">Message Luisa</Button>
           </div>
         </article>
       </div>
@@ -492,15 +492,26 @@ function StandardProjectSections({ project }) {
 function LatestDetailsCard({ project }) {
   return (
     <aside className="detail-cta-card sticky-project-cta">
-      <strong>Need the latest details?</strong>
-      <p>Prices, unit availability, promos, and payment terms can change. Ask Luisa for the latest computation and confirmed availability before deciding.</p>
-      <Button to="/request-computation">Request Latest Computation</Button>
-      <Button to="/availability" variant="secondary">Check Availability with Luisa</Button>
-      <Button to="/book-viewing" variant="secondary">Book a Site Viewing</Button>
-      <Button to="/contact" variant="ghost">Message Luisa</Button>
+      <span className="mini">Project Inquiry</span>
+      <strong>Ask Luisa about {project.name}</strong>
+      <p>Get the latest computation, available units, payment terms, and viewing schedule for this project.</p>
+      <div className="sticky-project-actions">
+        <Button to={projectInquiryPath("/request-computation", project, "Computation")}>Request Computation</Button>
+        <Button to={projectInquiryPath("/availability", project, "Availability")} variant="secondary">Check Availability</Button>
+      </div>
+      <div className="sticky-project-secondary">
+        <Button to={projectInquiryPath("/book-viewing", project, "Site viewing")} variant="ghost">Book Viewing</Button>
+        <Button to={projectInquiryPath("/contact", project, "Other")} variant="ghost">Message Luisa</Button>
+      </div>
       <DisclaimerBanner text={buyerSafePriceNote(project.priceSourceNote)} />
     </aside>
   );
+}
+
+function projectInquiryPath(path, project, inquiryType) {
+  const params = new URLSearchParams({ project: project.name });
+  if (inquiryType) params.set("inquiryType", inquiryType);
+  return `${path}?${params.toString()}`;
 }
 
 function UnitSection({ section }) {
