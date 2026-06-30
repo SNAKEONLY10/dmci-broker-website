@@ -20,14 +20,30 @@ export const theOrianaDetails = {
     orianaAsset("gallery-2.jpg"),
     orianaAsset("gallery-3.jpg"),
     orianaAsset("master-plan.jpg"),
-    orianaAsset("site-progress.jpg")
+    orianaAsset("site-progress.jpg"),
+    orianaAsset("lounge.jpg"),
+    orianaAsset("snack-bar.jpg"),
+    orianaAsset("leisure-pool-2025.jpg"),
+    orianaAsset("game-area.jpg"),
+    orianaAsset("garden-view.jpg"),
+    orianaAsset("sky-bridge.jpg"),
+    orianaAsset("community-tour-poster.png"),
+    orianaAsset("aerial-location.png")
   ],
   galleryLabels: [
     "The Oriana DMCI Drop Off",
     "The Oriana DMCI Lap Pool",
     "Amenity Core",
     "The Oriana Site Development Plan",
-    "The Oriana Site Progress"
+    "The Oriana Site Progress",
+    "The Oriana Lounge",
+    "The Oriana Snack Bar",
+    "The Oriana Leisure Pool",
+    "The Oriana Game Area",
+    "The Oriana Garden View",
+    "The Oriana Sky Bridge",
+    "The Oriana Community Tour Preview",
+    "The Oriana Aerial Location"
   ],
   masterPlanImage: orianaAsset("master-plan.jpg"),
   siteProgressImage: orianaAsset("site-progress.jpg"),
@@ -111,16 +127,27 @@ export const theOrianaDetails = {
     title: "Audio Visual Presentation",
     text: "Watch the project AVP for a guided visual introduction to The Oriana. Use this as a presentation aid only; final details should still be confirmed with Luisa/DMCI Homes.",
     url: "https://www.youtube.com/watch?v=IF99Kg2xu1I",
-    label: "Open The Oriana AVP"
+    embedUrl: "https://www.youtube.com/embed/IF99Kg2xu1I",
+    label: "Open The Oriana AVP",
+    links: [
+      { label: "Watch on YouTube", url: "https://www.youtube.com/watch?v=IF99Kg2xu1I", variant: "secondary" },
+      { label: "Drive AVP Backup", url: "https://drive.google.com/file/d/1MRzWddRZdWK9z1zENevxVtDQUyuaboVk/view", variant: "ghost" },
+      { label: "TOD AVP Part 1", url: "https://drive.google.com/file/d/13yqG73S9dtdDp2U2KymJ27OyOKDCDclA/view", variant: "ghost" },
+      { label: "TOD AVP Part 2", url: "https://drive.google.com/file/d/16_8Hd_G4BZTLaqRAPz6jeNvcQOGMXuU1/view", variant: "ghost" }
+    ]
   },
   locationDetails: {
     title: "Prime Location: The Oriana in Quezon City",
     text:
       "The Oriana by DMCI is ideally situated on Aurora Boulevard, Quezon City, surrounded by vibrant neighborhoods such as Katipunan Avenue, Anonas, and Araneta City. This prime location offers easy access to key areas in Metro Manila via the LRT-2 Katipunan Station and the upcoming Anonas Station of the Metro Manila Subway, enhancing connectivity and convenience for residents.",
     exactAddress: "Aurora Boulevard, Quezon City",
-    image: orianaAsset("location-map.jpg"),
+    image: orianaAsset("aerial-location.png"),
     imageLabel: "The Oriana DMCI Location",
-    mapUrl: "https://www.google.com/maps/search/?api=1&query=The%20Oriana%20Aurora%20Boulevard%20Quezon%20City"
+    mapTitle: "The Oriana on Google Maps",
+    mapText: "Use the map to zoom, check nearby roads and transit points, and open live directions before scheduling a site visit.",
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=The%20Oriana%20DMCI%20Aurora%20Boulevard%20Quezon%20City",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=The%20Oriana%20DMCI%20Aurora%20Boulevard%20Quezon%20City",
+    mapEmbedUrl: "https://www.google.com/maps?q=The%20Oriana%20DMCI%20Aurora%20Boulevard%20Quezon%20City&output=embed"
   },
   nearbyIntro:
     "Situated in Project 4, Quezon City, The Oriana offers unmatched proximity to essential establishments like Araneta Center and Eastwood, Libis. Additionally, residents have easy access to Gateway Mall, Hi-top Supermart, and more, enhancing convenience and connectivity.",
@@ -147,8 +174,13 @@ export const theOrianaDetails = {
     title: "360 Virtual Tour: Experience The Oriana Virtually",
     text:
       "Step inside The Oriana with our interactive 360 Virtual Tour, exploring the property from every angle at home. Additionally, this immersive experience showcases our sophisticated spaces and comprehensive amenities, offering a detailed view of our luxurious development.",
+    image: orianaAsset("community-tour-poster.png"),
     url: "https://www.dmci-online.com/virtual-community-tour/?option=ORI",
-    label: "VIRTUAL TOUR"
+    label: "VIRTUAL TOUR",
+    links: [
+      { label: "Open 360 Virtual Tour", url: "https://www.dmci-online.com/virtual-community-tour/?option=ORI", variant: "secondary" },
+      { label: "Watch AVP on YouTube", url: "https://www.youtube.com/watch?v=IF99Kg2xu1I", variant: "ghost" }
+    ]
   },
   amenityIntro: "The Oriana offers a range of amenities and facilities that enhance the lifestyle of its residents.",
   amenityGroups: [
@@ -159,7 +191,13 @@ export const theOrianaDetails = {
   amenityGallery: [
     { label: "The Oriana DMCI Drop Off", src: orianaAsset("gallery-1.jpg") },
     { label: "The Oriana DMCI Lap Pool", src: orianaAsset("gallery-2.jpg") },
-    { label: "Amenity Core", src: orianaAsset("gallery-3.jpg") }
+    { label: "Amenity Core", src: orianaAsset("gallery-3.jpg") },
+    { label: "The Oriana Lounge", src: orianaAsset("lounge.jpg") },
+    { label: "The Oriana Snack Bar", src: orianaAsset("snack-bar.jpg") },
+    { label: "The Oriana Leisure Pool", src: orianaAsset("leisure-pool-2025.jpg") },
+    { label: "The Oriana Game Area", src: orianaAsset("game-area.jpg") },
+    { label: "The Oriana Garden View", src: orianaAsset("garden-view.jpg") },
+    { label: "The Oriana Sky Bridge", src: orianaAsset("sky-bridge.jpg") }
   ],
   amenityImageLabels: [
     "The Oriana DMCI Drop Off",
@@ -241,11 +279,11 @@ export const theOrianaDetails = {
     "The floor plans at The Oriana are designed to maximize space and comfort. The units range from studio to 3-bedroom configurations, catering to different family sizes and lifestyle preferences. Each floor plan emphasizes natural light and ventilation, ensuring a pleasant living experience.",
   floorPlans: [
     { title: "ATRIUM FLOOR", text: "Atrium-level planning reference for buyer review.", src: orianaAsset("floorplan-north-typical.jpg") },
-    { title: "1ST LEVEL ABOVE ATRIUM", text: "Floor level reference available for presentation review." },
-    { title: "2ND LEVEL ABOVE ATRIUM", text: "Floor level reference available for presentation review." },
-    { title: "3RD-5TH LEVELS ABOVE ATRIUM", text: "Floor level reference available for presentation review." },
+    { title: "1ST LEVEL ABOVE ATRIUM", text: "North Tower 2F availability-plan reference from the Drive materials.", src: orianaAsset("floorplan-1st-level.jpg") },
+    { title: "2ND LEVEL ABOVE ATRIUM", text: "North Tower 3F availability-plan reference from the Drive materials.", src: orianaAsset("floorplan-2nd-level.jpg") },
+    { title: "3RD-5TH LEVELS ABOVE ATRIUM", text: "North Tower typical availability-plan reference from the Drive materials.", src: orianaAsset("floorplan-3rd-5th-levels.jpg") },
     { title: "North Building Floor Plans", text: "North Tower floor plan references are available in the official presentation set.", src: orianaAsset("floorplan-north-typical.jpg") },
-    { title: "South Building Floor Plans", text: "South Tower floor plan references are available in the official presentation set." }
+    { title: "South Building Floor Plans", text: "South Tower preview reference from the Drive materials. Request the official layout sheet before buyer presentation.", src: orianaAsset("floorplan-south-tower.png") }
   ],
   paymentTerms: {
     title: "Payment Terms: Flexible Options at The Oriana",

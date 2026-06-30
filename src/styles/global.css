@@ -2171,6 +2171,7 @@ textarea {
 .oriana-media-card .image-placeholder,
 .oriana-media-card .image-cover,
 .oriana-media-card .image-picture,
+.oriana-media-card .media-embed-frame,
 .oriana-image-copy .image-placeholder,
 .oriana-image-copy .image-cover,
 .oriana-image-copy .image-picture,
@@ -2180,6 +2181,32 @@ textarea {
   min-height: 238px;
   border-radius: 16px;
   overflow: hidden;
+}
+
+.media-embed-frame {
+  position: relative;
+  width: 100%;
+  min-height: 238px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #071a2d;
+}
+
+.media-embed-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.media-link-row {
+  margin-top: 14px;
+}
+
+.media-link-row .btn {
+  margin-top: 0;
 }
 
 .oriana-media-card .btn,
@@ -2426,7 +2453,8 @@ textarea {
 .site-development-card .image-picture,
 .video-tour-card .image-placeholder,
 .video-tour-card .image-cover,
-.video-tour-card .image-picture {
+.video-tour-card .image-picture,
+.video-tour-card .media-embed-frame {
   min-height: 240px;
   border-radius: 16px;
   overflow: hidden;
@@ -3018,7 +3046,8 @@ textarea {
   .site-development-card .image-picture,
   .video-tour-card .image-placeholder,
   .video-tour-card .image-cover,
-  .video-tour-card .image-picture {
+  .video-tour-card .image-picture,
+  .video-tour-card .media-embed-frame {
     min-height: 170px;
   }
 
@@ -3109,6 +3138,7 @@ textarea {
   .oriana-media-card .image-placeholder,
   .oriana-media-card .image-cover,
   .oriana-media-card .image-picture,
+  .oriana-media-card .media-embed-frame,
   .oriana-image-copy .image-placeholder,
   .oriana-image-copy .image-cover,
   .oriana-image-copy .image-picture,

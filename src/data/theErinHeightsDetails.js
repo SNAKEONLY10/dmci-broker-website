@@ -128,10 +128,17 @@ export const theErinHeightsDetails = {
   ],
   videoTourTitle: "Audio Visual Presentation and Virtual Community Tour",
   videoTourCopy:
-    "AVP and virtual tour links are available by request. Large media is not auto-loaded so the website stays fast on mobile.",
+    "Watch the lightweight YouTube AVP preview, then use the Drive backup links only when the full approved MP4 presentation is needed.",
   videoTourImage: erinAsset("tour-poster.jpg"),
-  videoTourUrl: "https://drive.google.com/file/d/1y8bWiYgWHBtEp3xzRFM2XJ4ysvTSxx9k/view",
-  videoTourNote: "Ask Luisa for the latest approved AVP or virtual tour link.",
+  videoTourUrl: "https://www.youtube.com/watch?v=D3ffIj6QMV8",
+  videoTourEmbedUrl: "https://www.youtube.com/embed/D3ffIj6QMV8",
+  videoTourLinks: [
+    { label: "Watch AVP on YouTube", url: "https://www.youtube.com/watch?v=D3ffIj6QMV8", variant: "secondary" },
+    { label: "Drive TOD AVP Backup", url: "https://drive.google.com/file/d/1y8bWiYgWHBtEp3xzRFM2XJ4ysvTSxx9k/view", variant: "ghost" },
+    { label: "Drive Project AVP", url: "https://drive.google.com/file/d/1ARveq6JormcUZGQRLLd6oZAup-O_1XmX/view", variant: "ghost" },
+    { label: "Water Recycling Video", url: "https://drive.google.com/file/d/14cs7m6M9RjVWuGOgTgdQR_9SaVFGKZos/view", variant: "ghost" }
+  ],
+  videoTourNote: "Large Drive videos are linked instead of auto-loaded so the page stays fast on mobile.",
   amenityGroups: [
     { group: "Recreational Facilities", items: ["Snack Bar", "Game Area", "Fitness Gym", "Entertainment Room", "Shooting Court", "Feature Garden", "Leisure Pool", "Sky Lounge", "Sky Deck Pool", "Children's Play Area"] },
     { group: "Convenience Facilities", items: ["Co-working Space", "Convenience Store", "Card Operated Laundry", "Water Refilling Station"] },

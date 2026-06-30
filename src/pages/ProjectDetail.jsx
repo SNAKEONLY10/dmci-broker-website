@@ -440,10 +440,17 @@ function OrianaProjectSections({ project }) {
 
       <DetailSection id="audio-visual-presentation" eyebrow="AVP" title={project.audioVisualPresentation.title}>
         <div className="oriana-media-card">
-          <ImagePlaceholder src={project.image} label={`${project.name} AVP preview`} compact variant="gallery" />
+          {project.audioVisualPresentation.embedUrl ? (
+            <MediaEmbed title={`${project.name} AVP`} src={project.audioVisualPresentation.embedUrl} />
+          ) : (
+            <ImagePlaceholder src={project.image} label={`${project.name} AVP preview`} compact variant="gallery" />
+          )}
           <div>
             <p>{project.audioVisualPresentation.text}</p>
-            <Button href={project.audioVisualPresentation.url} target="_blank" rel="noreferrer" variant="secondary">{project.audioVisualPresentation.label}</Button>
+            <MediaLinks
+              links={project.audioVisualPresentation.links}
+              fallback={{ label: project.audioVisualPresentation.label, url: project.audioVisualPresentation.url, variant: "secondary" }}
+            />
           </div>
         </div>
       </DetailSection>
@@ -457,9 +464,9 @@ function OrianaProjectSections({ project }) {
               <strong>Exact Address</strong>
               <span>{project.locationDetails.exactAddress}</span>
             </div>
-            <Button href={project.locationDetails.mapUrl} target="_blank" rel="noreferrer" variant="secondary">Open Map Reference</Button>
           </div>
         </div>
+        <LocationMap project={project} />
       </DetailSection>
 
       <DetailSection id="nearby-establishments" eyebrow="Nearby Establishments" title="Convenient Living: Nearby Establishments">
@@ -481,11 +488,14 @@ function OrianaProjectSections({ project }) {
 
       <DetailSection id="virtual-tour" eyebrow="360 Virtual Tour" title={project.virtualTour.title}>
         <div className="video-tour-card">
-          <ImagePlaceholder src={project.gallery[1]} label={`${project.name} virtual tour preview`} compact variant="gallery" />
+          <ImagePlaceholder src={project.virtualTour.image || project.gallery[1]} label={`${project.name} virtual tour preview`} compact variant="gallery" />
           <div>
             <p>{project.virtualTour.text}</p>
             {project.virtualTour.url ? (
-              <Button href={project.virtualTour.url} target="_blank" rel="noreferrer" variant="secondary">{project.virtualTour.label}</Button>
+              <MediaLinks
+                links={project.virtualTour.links}
+                fallback={{ label: project.virtualTour.label, url: project.virtualTour.url, variant: "secondary" }}
+              />
             ) : (
               <p className="safety-note">Virtual tour available upon request.</p>
             )}
@@ -965,17 +975,53 @@ function ImageLightbox({ image, onClose }) {
 function VideoTourBlock({ project }) {
   return (
     <div className="video-tour-card">
-      <ImagePlaceholder src={project.videoTourImage} label={`${project.name} virtual tour`} compact variant="gallery" />
+      {project.videoTourEmbedUrl ? (
+        <MediaEmbed title={`${project.name} video presentation`} src={project.videoTourEmbedUrl} />
+      ) : (
+        <ImagePlaceholder src={project.videoTourImage} label={`${project.name} virtual tour`} compact variant="gallery" />
+      )}
       <div>
         <strong>{project.videoTourTitle || "Virtual tour link available upon request"}</strong>
         <p>{project.videoTourCopy || "Large videos are not loaded directly here so the website stays fast on mobile. Ask Luisa for the latest approved tour link or project presentation."}</p>
         {project.videoTourNote && <p className="safety-note">{project.videoTourNote}</p>}
         {project.videoTourUrl ? (
-          <Button href={project.videoTourUrl} target="_blank" rel="noreferrer" variant="secondary">Open Virtual Tour</Button>
+          <MediaLinks
+            links={project.videoTourLinks}
+            fallback={{ label: "Open Virtual Tour", url: project.videoTourUrl, variant: "secondary" }}
+          />
         ) : (
           <Button to="/contact" variant="secondary">Request Virtual Tour Link</Button>
         )}
       </div>
+    </div>
+  );
+}
+
+function MediaEmbed({ title, src }) {
+  return (
+    <div className="media-embed-frame">
+      <iframe
+        title={title}
+        src={src}
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+      />
+    </div>
+  );
+}
+
+function MediaLinks({ links, fallback }) {
+  const items = links?.length ? links : (fallback?.url ? [fallback] : []);
+  if (!items.length) return null;
+
+  return (
+    <div className="compact-cta-row media-link-row">
+      {items.map((item) => (
+        <Button key={`${item.label}-${item.url}`} href={item.url} target="_blank" rel="noreferrer" variant={item.variant || "secondary"}>
+          {item.label}
+        </Button>
+      ))}
     </div>
   );
 }
