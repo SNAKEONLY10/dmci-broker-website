@@ -239,14 +239,7 @@ function RichProjectSections({ project }) {
         </div>
         {project.locationDetails?.note && <p className="safety-note">{project.locationDetails.note}</p>}
         <GroupedList groups={project.nearbyDestinations} />
-        <div className="map-placeholder compact-map">
-          {project.locationMapImage ? (
-            <ImagePlaceholder src={project.locationMapImage} label={`${project.name} location map`} compact variant="masterPlan" />
-          ) : (
-            "Map and travel references can be reviewed during Luisa's project presentation."
-          )}
-        </div>
-        <Button to="/book-viewing" variant="secondary">Book a Site Viewing</Button>
+        <LocationMap project={project} />
       </DetailSection>
 
       <DetailSection id="site-development" eyebrow="Site Development" title={project.siteDevelopment?.title || "Site Development Plan"}>
@@ -306,7 +299,7 @@ function RichProjectSections({ project }) {
         <div className="floor-plan-grid">
           {project.floorPlans.map((item) => (
             <article className="floor-plan-card" key={item.title}>
-              <ImagePlaceholder label={item.title} compact variant="gallery" />
+              <ImagePlaceholder src={item.src} label={item.title} compact variant="gallery" />
               <h3>{item.title}</h3>
               <p>{item.text}</p>
               <Button to="/contact" variant="secondary">Request Layout Sheet</Button>
@@ -982,6 +975,44 @@ function VideoTourBlock({ project }) {
         ) : (
           <Button to="/contact" variant="secondary">Request Virtual Tour Link</Button>
         )}
+      </div>
+    </div>
+  );
+}
+
+function LocationMap({ project }) {
+  const location = project.locationDetails || {};
+  const mapLabel = `${project.name} map`;
+
+  return (
+    <div className="location-map-card">
+      <div className="location-map-frame">
+        {location.mapEmbedUrl ? (
+          <iframe
+            title={mapLabel}
+            src={location.mapEmbedUrl}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+        ) : project.locationMapImage ? (
+          <ImagePlaceholder src={project.locationMapImage} label={mapLabel} compact variant="masterPlan" />
+        ) : (
+          <div className="map-placeholder compact-map">Map and travel references can be reviewed during Luisa's project presentation.</div>
+        )}
+      </div>
+      <div className="location-map-copy">
+        <strong>{location.mapTitle || "Map and Directions"}</strong>
+        <p>{location.mapText || "Open Google Maps for live traffic, route options, and turn-by-turn directions to the project location."}</p>
+        <div className="compact-cta-row map-actions">
+          {location.directionsUrl && (
+            <Button href={location.directionsUrl} target="_blank" rel="noreferrer">Get Directions</Button>
+          )}
+          {location.mapUrl && (
+            <Button href={location.mapUrl} target="_blank" rel="noreferrer" variant="secondary">Open in Google Maps</Button>
+          )}
+          <Button to={projectInquiryPath("/book-viewing", project, "Site viewing")} variant="ghost">Book a Site Viewing</Button>
+        </div>
       </div>
     </div>
   );

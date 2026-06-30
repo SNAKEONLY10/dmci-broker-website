@@ -93,9 +93,14 @@ export const theErinHeightsDetails = {
   locationDetails: {
     title: "Prime Location of The Erin Heights",
     text:
-      "The Erin Heights is ideally located at Commonwealth Ave. corner Tandang Sora Ave. in Quezon City. This prime location offers easy access to major roads, educational institutions, medical facilities, shopping centers, and business hubs.",
+      "The Erin Heights is located at Commonwealth Avenue corner Tandang Sora Avenue in Quezon City, a practical address for buyers who want access to major roads, MRT-7 Tandang Sora Station, universities, hospitals, shopping centers, and business hubs.",
     exactAddress: "Commonwealth Ave. corner Tandang Sora Ave., Quezon City",
-    note: "Distances and travel times are reference points and should be confirmed through current maps and official project materials."
+    note: "Distances and travel times are reference points and should be confirmed through current maps and official project materials.",
+    mapTitle: "The Erin Heights on Google Maps",
+    mapText: "Use the map to zoom, inspect nearby roads, and open live directions before scheduling a site viewing.",
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=The%20Erin%20Heights%20Commonwealth%20Avenue%20corner%20Tandang%20Sora%20Avenue%20Quezon%20City",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=The%20Erin%20Heights%20Commonwealth%20Avenue%20corner%20Tandang%20Sora%20Avenue%20Quezon%20City",
+    mapEmbedUrl: "https://www.google.com/maps?q=The%20Erin%20Heights%20Commonwealth%20Avenue%20corner%20Tandang%20Sora%20Avenue%20Quezon%20City&output=embed"
   },
   nearbyDestinations: [
     { group: "Educational Institutions", items: ["UP Diliman - 5 mins", "New Era University - 6 mins", "Holy Family School of Quezon City - 7 mins", "Miriam College - 7 mins", "Ateneo de Manila University - 10 mins"] },
