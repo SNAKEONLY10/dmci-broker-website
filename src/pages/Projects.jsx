@@ -34,25 +34,25 @@ export default function Projects() {
       <div className="container">
         <div className="project-listing-hero">
           <SectionHeader as="h1" align="left" eyebrow="Project Directory" title="Browse DMCI Homes Projects with Broker Guidance" text="Search sample project listings by location, turnover, unit type, and buyer purpose. Request updated computation and availability confirmation before making any decision." />
-          <div className="listing-hero-card">
+          <div className="listing-hero-card" data-reveal="text-group">
             <strong>Need help choosing?</strong>
             <p>Ask Luisa for project recommendations based on budget, purpose, location, and preferred turnover.</p>
             <Button to="/contact" variant="secondary">Ask Luisa</Button>
           </div>
         </div>
         <ProjectFilters projects={projects} filters={filters} setFilters={setFilters} sort={sort} setSort={setSort} />
-        <div className="results-bar">
+        <div className="results-bar" data-reveal="text-group">
           <strong>{filtered.length} matching approved projects</strong>
           <span>Updated price available upon request. Availability subject to confirmation.</span>
         </div>
         {filtered.length > 0 && (
-          <p className="pagination-summary" aria-live="polite">
+          <p className="pagination-summary" aria-live="polite" data-reveal="text">
             Page {safePage} of {totalPages} &middot; Showing projects {startIndex + 1} to {endIndex} of {filtered.length} approved projects
           </p>
         )}
         <ProjectGrid key={`projects-${safePage}-${projectPageSize}-${filtered.length}-${sort}`} projects={paginatedProjects} />
         <Pagination currentPage={safePage} totalPages={totalPages} onPageChange={setCurrentPage} />
-        <div className="cta-strip">
+        <div className="cta-strip" data-reveal="text-group">
           <div>
             <strong>Need help choosing?</strong>
             <p>Ask Luisa for project recommendations before shortlisting.</p>

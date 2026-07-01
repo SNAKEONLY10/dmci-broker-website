@@ -10,7 +10,7 @@ export function ProjectFilters({ projects, filters, setFilters, sort, setSort })
   }
 
   return (
-    <div className="filters-panel">
+    <div className="filters-panel" data-reveal="text-group">
       <input name="search" value={filters.search || ""} onChange={update} placeholder="Search by project or location" aria-label="Search projects" />
       <select name="location" value={filters.location || ""} onChange={update} aria-label="Filter by location">
         <option value="">All Locations</option>

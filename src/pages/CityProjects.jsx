@@ -33,7 +33,7 @@ export default function CityProjects() {
             title={city.h1}
             text={`Compare ${cityProjects.length} featured DMCI project${cityProjects.length === 1 ? "" : "s"} in ${city.name}. Request latest computation, availability, and viewing guidance before deciding.`}
           />
-          <div className="listing-hero-card">
+          <div className="listing-hero-card" data-reveal="text-group">
             <strong>Latest details required</strong>
             <p>Prices, promos, unit cuts, payment terms, and availability can change. Ask Luisa to verify the current details for this location.</p>
             <Button to={`/request-computation?location=${encodeURIComponent(city.name)}`} variant="secondary">Request Computation</Button>
@@ -41,17 +41,17 @@ export default function CityProjects() {
         </div>
 
         <div className="city-summary-grid">
-          <article className="info-card">
+          <article className="info-card" data-reveal="card">
             <span className="mini">Featured Projects</span>
             <strong>{cityProjects.length || "To be confirmed"}</strong>
             <p>{cityProjects.length ? cityProjects.map((project) => project.name).join(", ") : "Request current location options from Luisa."}</p>
           </article>
-          <article className="info-card">
+          <article className="info-card" data-reveal="card">
             <span className="mini">Unit Types</span>
             <strong>{unitTypes.length ? unitTypes.join(", ") : "Request latest details"}</strong>
             <p>Final unit availability, sizes, and prices must be verified before buyer presentation.</p>
           </article>
-          <article className="info-card">
+          <article className="info-card" data-reveal="card">
             <span className="mini">Status</span>
             <strong>{statuses.length ? statuses.join(", ") : "To be confirmed"}</strong>
             <p>Turnover and construction status are reference-only until confirmed through current project materials.</p>
@@ -61,14 +61,14 @@ export default function CityProjects() {
         {cityProjects.length ? (
           <ProjectGrid projects={cityProjects} />
         ) : (
-          <div className="content-panel">
+          <div className="content-panel" data-reveal="text-group">
             <h2>Project list to be confirmed</h2>
             <p>Luisa can help check current DMCI options in {city.name} and recommend nearby alternatives.</p>
             <Button to="/contact">Ask Luisa</Button>
           </div>
         )}
 
-        <div className="cta-strip">
+        <div className="cta-strip" data-reveal="text-group">
           <div>
             <strong>Shortlisting in {city.name}?</strong>
             <p>Send your budget, preferred unit type, and timeline so Luisa can recommend the next step.</p>

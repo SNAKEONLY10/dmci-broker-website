@@ -48,7 +48,7 @@ export default function Home() {
     <>
       <section className="hero-section hero-landing">
         <div className="container hero-landing-inner">
-          <div className="hero-copy hero-landing-copy">
+          <div className="hero-copy hero-landing-copy" data-reveal="hero-text">
             <span className="eyebrow">{contact.brokerName} | {contact.role}</span>
             <h1>Find the right DMCI home with broker-guided assistance</h1>
             <p>Get a clearer path from project shortlist to computation, availability check, site viewing, and reservation guidance.</p>
@@ -72,7 +72,7 @@ export default function Home() {
       <section className="section">
         <div className="container">
           <SectionHeader eyebrow="Project Highlights" title="Browse DMCI Homes Options" text="Shortlist projects by location, turnover, and unit type. Ask Luisa for the latest computation and confirmed availability before deciding." />
-          <div className="home-project-toolbar">
+          <div className="home-project-toolbar" data-reveal="text-group">
             <p className="pagination-summary" aria-live="polite">
               Page {safeProjectPage} of {totalProjectPages} &middot; Showing projects {projectStart + 1} to {projectEnd} of {homepageProjects.length} approved projects
             </p>
@@ -130,7 +130,7 @@ function BrokerTrustStrip() {
   return (
     <section className="section compact-section broker-trust-strip" aria-labelledby="broker-trust-heading">
       <div className="container">
-        <div className="content-panel trust-panel">
+        <div className="content-panel trust-panel" data-reveal="text-group">
           <div>
             <span className="eyebrow">Broker Trust</span>
             <h2 id="broker-trust-heading">Licensed buyer assistance for DMCI inquiries</h2>
@@ -166,7 +166,7 @@ function QuickSearch() {
 
   return (
     <section className="quick-search">
-      <div className="container search-panel">
+      <div className="container search-panel" data-reveal="text-group">
         <div>
           <span className="eyebrow">Find Your Property</span>
           <h2>Search Your DMCI Home</h2>
@@ -227,7 +227,7 @@ function StatusChips() {
     <section className="section">
       <div className="container">
         <SectionHeader eyebrow="Status / Turnover" title="Browse by Timeline" />
-        <div className="status-chips">{chips.map((chip) => <Link key={chip} to="/projects">{chip}</Link>)}</div>
+        <div className="status-chips" data-reveal="text-group">{chips.map((chip) => <Link key={chip} to="/projects">{chip}</Link>)}</div>
       </div>
     </section>
   );
@@ -240,7 +240,7 @@ export function AboutCompact() {
         <div className="portrait-panel">
           <img src="/assets/img/luisa-corral.jpg" alt={`${contact.brokerName} portrait`} loading="lazy" />
         </div>
-        <div className="about-details">
+        <div className="about-details" data-reveal="text-group">
           <span className="eyebrow">Why Work With Luisa</span>
           <h2>Guidance from inquiry to reservation</h2>
           <p>Project matching, computations, availability checks, viewing, and reservation support.</p>
@@ -263,7 +263,7 @@ function BuyerJourney() {
     <section className="section soft">
       <div className="container">
         <SectionHeader eyebrow="Buyer Journey" title="Simple Steps with Guidance" />
-        <div className="timeline">{steps.map((step, index) => <div key={step}><strong>{index + 1}</strong><p>{step}</p></div>)}</div>
+        <div className="timeline" data-reveal="text-group">{steps.map((step, index) => <div key={step}><strong>{index + 1}</strong><p>{step}</p></div>)}</div>
       </div>
     </section>
   );
@@ -291,11 +291,11 @@ function HomeFAQ() {
 
   return (
     <section className="section">
-      <div className="container">
+      <div className="container" data-reveal="text-group">
         <SectionHeader eyebrow="FAQ" title="Buyer Questions Before You Decide" text="Quick checks for safer inquiry, computation, viewing, and reservation preparation." />
         <div className="card-grid">
           {faqs.map((faq) => (
-            <article className="info-card" key={faq.question}>
+            <article className="info-card" key={faq.question} data-reveal="card">
               <h3>{faq.question}</h3>
               <p>{faq.answer}</p>
             </article>
@@ -345,9 +345,9 @@ function PreviewSections() {
         <div className="container">
           <SectionHeader eyebrow="Buyer Assistance" title="What You Can Ask Luisa" text="Use this site as a safe inquiry starting point before making any reservation decision." />
           <div className="card-grid">
-            <article className="info-card"><h3>Computation Review</h3><p>Ask for updated sample computation, payment terms, and promo confirmation.</p></article>
-            <article className="info-card"><h3>Availability Check</h3><p>Request current unit availability and turnover details before shortlisting.</p></article>
-            <article className="info-card"><h3>Viewing Coordination</h3><p>Schedule an on-site viewing or online consultation with broker guidance.</p></article>
+            <article className="info-card" data-reveal="card"><h3>Computation Review</h3><p>Ask for updated sample computation, payment terms, and promo confirmation.</p></article>
+            <article className="info-card" data-reveal="card"><h3>Availability Check</h3><p>Request current unit availability and turnover details before shortlisting.</p></article>
+            <article className="info-card" data-reveal="card"><h3>Viewing Coordination</h3><p>Schedule an on-site viewing or online consultation with broker guidance.</p></article>
           </div>
         </div>
       </section>
@@ -358,7 +358,7 @@ function PreviewSections() {
 function FinalCTA() {
   return (
     <section className="final-cta">
-      <div className="container">
+      <div className="container" data-reveal="text-group">
         <h2>Ready to find the right DMCI property?</h2>
         <p>Start with a safe inquiry and request updated details before deciding.</p>
         <div className="hero-actions center">

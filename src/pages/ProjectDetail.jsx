@@ -105,7 +105,7 @@ export default function ProjectDetail() {
       )}
 
       <section className="final-cta" id="contact-project">
-        <div className="container">
+        <div className="container" data-reveal="text-group">
           <h2>Interested in {project.name}?</h2>
           <p>Request updated computation, availability, and viewing assistance before deciding.</p>
           <div className="hero-actions center">
@@ -157,7 +157,7 @@ function ProjectHero({ project, isRichProject }) {
             ))}
           </div>
         </div>
-        <article className="project-hero-copy">
+        <article className="project-hero-copy" data-reveal="hero-text">
           {project.logoImage && <img className="project-logo-mark" src={project.logoImage} alt={`${project.name} logo`} loading="lazy" decoding="async" />}
           <div className="hero-meta-line">
             <Badge>{project.status}</Badge>
@@ -724,7 +724,7 @@ function StandardProjectSections({ project }) {
 
 function LatestDetailsCard({ project }) {
   return (
-    <aside className="detail-cta-card sticky-project-cta">
+    <aside className="detail-cta-card sticky-project-cta" data-reveal="card">
       <span className="mini">Project Inquiry</span>
       <strong>Ask Luisa about {project.name}</strong>
       <p>Get the latest computation, available units, payment terms, and viewing schedule for this project.</p>

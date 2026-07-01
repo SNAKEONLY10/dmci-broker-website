@@ -55,6 +55,10 @@ p { margin: 0; color: var(--muted); line-height: 1.7; }
 .mobile-menu a { padding: 13px 8px; font-weight: 800; }
 
 .btn { display: inline-flex; min-height: 46px; align-items: center; justify-content: center; border: 1px solid transparent; border-radius: 999px; padding: 12px 18px; font-weight: 800; cursor: pointer; transition: transform 0.16s ease, background 0.16s ease, color 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease; }
+.btn-label { position: relative; z-index: 1; display: inline-flex; align-items: center; min-width: 0; transition: transform 0.18s ease; }
+.btn-label::after { content: ""; position: absolute; top: 50%; right: -10px; width: 5px; height: 5px; border-top: 2px solid currentColor; border-right: 2px solid currentColor; opacity: 0; transform: translate(-3px, -50%) rotate(45deg); transition: opacity 0.18s ease, transform 0.18s ease; }
+.btn:hover .btn-label { transform: translateX(-2px); }
+.btn:hover .btn-label::after { opacity: 0.72; transform: translate(2px, -50%) rotate(45deg); }
 .btn:hover { transform: translateY(-1px); }
 .btn:active { transform: translateY(0) scale(0.99); }
 .btn:focus-visible { outline: 3px solid rgba(201,162,74,0.48); outline-offset: 3px; }
@@ -335,7 +339,7 @@ textarea { resize: vertical; }
 .desktop-cta .btn { min-height: 40px; padding: 9px 15px; font-size: 0.82rem; }
 
 .btn { position: relative; overflow: hidden; }
-.btn::after { content: ""; position: absolute; inset: 0; background: linear-gradient(120deg, transparent, rgba(255,255,255,0.28), transparent); transform: translateX(-120%); transition: transform 0.42s ease; }
+.btn::after { content: ""; position: absolute; inset: 0; z-index: 0; background: linear-gradient(120deg, transparent, rgba(255,255,255,0.28), transparent); transform: translateX(-120%); transition: transform 0.42s ease; }
 .btn:hover::after { transform: translateX(120%); }
 .btn:hover { box-shadow: 0 14px 28px rgba(15,39,66,0.12); }
 
@@ -522,6 +526,128 @@ textarea { resize: vertical; }
   transform: translateX(58%);
 }
 
+.reveal-enabled [data-reveal="text"] {
+  transform: translate3d(0, 10px, 0);
+}
+
+.reveal-enabled [data-reveal="text-group"] {
+  transform: translate3d(0, 14px, 0);
+}
+
+.reveal-enabled [data-reveal="hero-text"] {
+  transform: translate3d(0, 18px, 0);
+}
+
+.reveal-enabled [data-reveal="text"].is-visible,
+.reveal-enabled [data-reveal="text-group"].is-visible,
+.reveal-enabled [data-reveal="hero-text"].is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.reveal-enabled :is([data-reveal="hero-text"], [data-reveal="text-group"]).is-visible > * {
+  animation: textFadeUp 0.58s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.reveal-enabled [data-reveal="hero-text"].is-visible > :is(h1, h2) {
+  animation-duration: 0.66s;
+}
+
+.reveal-enabled :is([data-reveal="hero-text"], [data-reveal="text-group"]).is-visible > *:nth-child(2) { animation-delay: 55ms; }
+.reveal-enabled :is([data-reveal="hero-text"], [data-reveal="text-group"]).is-visible > *:nth-child(3) { animation-delay: 105ms; }
+.reveal-enabled :is([data-reveal="hero-text"], [data-reveal="text-group"]).is-visible > *:nth-child(4) { animation-delay: 150ms; }
+.reveal-enabled :is([data-reveal="hero-text"], [data-reveal="text-group"]).is-visible > *:nth-child(n + 5) { animation-delay: 180ms; }
+
+.reveal-enabled .section-header.is-visible > :is(.eyebrow, .mini, h1, h2, p) {
+  animation: textFadeUp 0.56s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.reveal-enabled .section-header.is-visible > :is(h1, h2) {
+  animation-delay: 55ms;
+}
+
+.reveal-enabled .section-header.is-visible > p {
+  animation-delay: 105ms;
+}
+
+.section-header h1,
+.section-header h2,
+.detail-section h2 {
+  position: relative;
+}
+
+.section-header h1::after,
+.section-header h2::after,
+.detail-section h2::after {
+  content: "";
+  display: block;
+  width: 52px;
+  height: 2px;
+  margin: 14px auto 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--gold), rgba(201,162,74,0.2));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.58s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.section-header.align-left h1::after,
+.section-header.align-left h2::after,
+.detail-section h2::after {
+  margin-left: 0;
+}
+
+.section-header.is-visible h1::after,
+.section-header.is-visible h2::after,
+.detail-section.is-visible h2::after {
+  transform: scaleX(1);
+}
+
+.reveal-enabled [data-reveal="card"].is-visible :is(
+  .project-body > .mini,
+  .project-body h3,
+  .project-body .card-tagline,
+  .project-meta,
+  .project-body .pill-row,
+  .project-body ul,
+  .content-hint,
+  .price-note,
+  .project-body small,
+  .card-actions,
+  .location-card > span,
+  .location-card > h3,
+  .location-card > p,
+  .location-card > strong,
+  .info-card > .mini,
+  .info-card > h3,
+  .info-card > p,
+  .info-card > small,
+  .tour-card > h3,
+  .tour-card > p,
+  .testimonial-card > p,
+  .testimonial-card > strong,
+  .testimonial-card > small,
+  .detail-cta-card > .mini,
+  .detail-cta-card > strong,
+  .detail-cta-card > p,
+  .sticky-project-actions,
+  .sticky-project-secondary
+) {
+  animation: textFadeUp 0.48s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.reveal-enabled [data-reveal="card"].is-visible :is(.project-body h3, .location-card > h3, .info-card > h3, .tour-card > h3, .detail-cta-card > strong) { animation-delay: 45ms; }
+.reveal-enabled [data-reveal="card"].is-visible :is(.project-body .card-tagline, .location-card > p, .info-card > p, .tour-card > p, .detail-cta-card > p) { animation-delay: 85ms; }
+.reveal-enabled [data-reveal="card"].is-visible :is(.project-meta, .project-body .pill-row, .card-actions, .sticky-project-actions, .sticky-project-secondary) { animation-delay: 125ms; }
+
+.reveal-enabled .detail-section.is-visible > :is(.eyebrow, .mini, h2, p, .reference-note, .safety-note, .detail-list, .compact-cta-row, .oriana-sample-banner, .oriana-subheading) {
+  animation: textFadeUp 0.54s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.reveal-enabled .detail-section.is-visible > h2 { animation-delay: 45ms; }
+.reveal-enabled .detail-section.is-visible > :is(p, .reference-note, .safety-note, .detail-list) { animation-delay: 90ms; }
+.reveal-enabled .detail-section.is-visible > :is(.compact-cta-row, .oriana-sample-banner, .oriana-subheading) { animation-delay: 135ms; }
+
 .reveal-enabled .detail-section.is-visible :is(
   .rich-fact-grid > div,
   .mini-stat-grid > div,
@@ -658,6 +784,11 @@ textarea { resize: vertical; }
 @keyframes pageGridSettle {
   from { opacity: 0.96; transform: translateY(4px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes textFadeUp {
+  from { opacity: 0; transform: translate3d(0, 9px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
 @keyframes detailCardRise {
