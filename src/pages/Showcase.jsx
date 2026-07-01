@@ -87,8 +87,8 @@ const workingItems = [
 const demoOnlyItems = [
   "Placeholder images until approved Drive assets are selected",
   "Sample project content except rich priority reference data",
-  "Forms do not send email automatically yet",
-  "Forms save to browser localStorage only",
+  "Lead delivery requires production email or webhook environment variables",
+  "Forms use local preview storage only when delivery is not configured",
   "No live inventory or guaranteed price feed"
 ];
 
@@ -98,8 +98,8 @@ const limitations = [
   "Placeholder images only",
   "Sample project data only",
   "No real-time availability yet",
-  "No backend/email notifications yet",
-  "Forms currently save demo submissions to browser localStorage only",
+  "Email or CRM delivery depends on configured backend environment variables",
+  "Forms fall back to local preview storage when delivery is not configured",
   "Final pricing/availability must be confirmed by Luisa or official DMCI channels"
 ];
 

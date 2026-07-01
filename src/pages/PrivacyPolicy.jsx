@@ -21,7 +21,7 @@ export default function PrivacyPolicy() {
           <p>Details are used to assist with project recommendations, latest computation requests, availability checks, site viewing coordination, reservation preparation, and follow-up through your preferred contact method.</p>
 
           <h2>Current Form Readiness</h2>
-          <p>The website currently records form submissions in local browser storage for preview and validation. A production email, CRM, or database endpoint should be connected before treating online submissions as final operational leads.</p>
+          <p>Inquiry forms are designed to submit through a secure backend endpoint when production email or CRM credentials are configured. If delivery is not configured yet, the form clearly uses local browser storage for preview testing only and does not claim that the inquiry was sent.</p>
 
           <h2>Sharing and Confirmation</h2>
           <p>Inquiry details should only be used for buyer assistance by {contact.displayName} or authorized sales channels needed to confirm project details. Project prices, promos, terms, and availability remain subject to official confirmation.</p>

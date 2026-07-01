@@ -29,7 +29,7 @@ export function Availability() {
       f("preferredSize", "Preferred Floor/Size if any"), s("budgetRange", "Budget Range", ["Still checking", "Entry level", "Mid range", "Premium range"]),
       s("paymentOption", "Payment Option", ["Cash", "In-house", "Bank Financing", "Not sure"]), s("urgency", "Urgency", ["Just checking", "This week", "Ready to reserve"]),
       s("contactMethod", "Preferred Contact Method", contactMethodOptions), t()
-    ]} storageKey="dmci_availability_requests" submitLabel="Check Availability with Luisa" initialValues={initialValues} required={["fullName", "contactNumber", "email"]} />
+    ]} storageKey="dmci_availability_requests" submitLabel="Check Availability with Luisa" initialValues={initialValues} required={["fullName", "contactMethod"]} inquiryType="availability" />
   </FormShell>;
 }
 
@@ -52,8 +52,9 @@ export function RequestComputation() {
       s("paymentPreference", "Payment Preference", ["Cash", "In-house", "Bank Financing", "Not sure"]),
       s("buyerType", "Buyer Type", ["Local", "OFW", "Investor", "First-time buyer", "Family use"]),
       s("inquiryType", "Inquiry Type", inquiryTypes),
-      s("timeline", "Timeline", ["Immediately", "1-3 months", "3-6 months", "Still exploring"]), t()
-    ]} storageKey="dmci_computation_requests" submitLabel="Send Computation Request" initialValues={initialValues} required={["fullName", "contactNumber", "email"]} />
+      s("timeline", "Timeline", ["Immediately", "1-3 months", "3-6 months", "Still exploring"]),
+      s("contactMethod", "Preferred Contact Method", contactMethodOptions), t()
+    ]} storageKey="dmci_computation_requests" submitLabel="Send Computation Request" initialValues={initialValues} required={["fullName", "contactMethod"]} inquiryType="computation" />
   </FormShell>;
 }
 
@@ -73,7 +74,7 @@ export function BookViewing() {
       f("fullName", "Full Name"), f("contactNumber", "Contact Number", "tel"), f("email", "Email Address", "email"), s("project", "Preferred Project", projectOptions), s("location", "Preferred Location", locationOptions),
       s("viewingType", "Viewing Type", ["On-site model unit viewing", "Online consultation", "Phone call", "Zoom/Google Meet"]),
       f("preferredDate", "Preferred Date", "date"), f("preferredTime", "Preferred Time", "time"), f("guests", "Number of Guests", "number"), s("contactMethod", "Preferred Contact Method", contactMethodOptions), t("Notes or questions")
-    ]} storageKey="dmci_viewing_requests" submitLabel="Request Viewing Schedule" initialValues={initialValues} required={["fullName", "contactNumber", "email"]} />
+    ]} storageKey="dmci_viewing_requests" submitLabel="Request Viewing Schedule" initialValues={initialValues} required={["fullName", "contactMethod"]} inquiryType="viewing" />
   </FormShell>;
 }
 
@@ -96,13 +97,14 @@ export function Contact() {
       s("buyerType", "Buyer Type", ["Local buyer", "OFW", "Investor", "Family use", "First-time buyer", "Still exploring"]),
       s("contactMethod", "Preferred Contact Method", contactMethodOptions),
       t("Message / Buyer Requirement")
-    ]} storageKey="dmci_contact_requests" submitLabel="Send Buyer Inquiry" initialValues={initialValues} required={["fullName", "contactNumber", "email", "concernType"]} />
+    ]} storageKey="dmci_contact_requests" submitLabel="Send Buyer Inquiry" initialValues={initialValues} required={["fullName", "concernType", "contactMethod"]} inquiryType="general contact" />
   </FormShell>;
 }
 
 function useInquiryDefaults() {
   const [searchParams] = useSearchParams();
   const projectParam = searchParams.get("project") || "";
+  const locationParam = searchParams.get("location") || "";
   const inquiryType = searchParams.get("inquiryType") || "";
   const matchedProject = projects.find((project) => (
     project.name.toLowerCase() === projectParam.toLowerCase() ||
@@ -111,7 +113,7 @@ function useInquiryDefaults() {
 
   return {
     project: matchedProject?.name || projectParam,
-    location: matchedProject?.location || "",
+    location: matchedProject?.location || locationParam,
     inquiryType,
     concernType: inquiryType
   };

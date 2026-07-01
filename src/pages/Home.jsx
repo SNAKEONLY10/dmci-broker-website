@@ -107,7 +107,8 @@ export default function Home() {
             fields={computationFields}
             storageKey="dmci_leads"
             submitLabel="Send Computation Request"
-            required={["fullName", "contactNumber", "email", "location", "project", "unitType", "budgetRange", "purpose", "contactMethod", "message"]}
+            required={["fullName", "location", "project", "unitType", "budgetRange", "purpose", "contactMethod", "message"]}
+            inquiryType="computation"
           />
         </div>
       </section>
