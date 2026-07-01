@@ -9,6 +9,7 @@ const optimizedProjectSlugs = new Set([
   "sage-residences",
   "kai-garden-residences",
   "mulberry-place",
+  "mulberry-place-2",
   "alder-residences",
   "the-aston-place",
   "the-camden-place",
