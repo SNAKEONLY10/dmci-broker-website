@@ -5,6 +5,7 @@ import { cameronResidencesDetails } from "./cameronResidencesDetails.js";
 import { valeronTowerDetails, allegraGardenPlaceDetails, prismaResidencesDetails } from "./pasigProjectDetails.js";
 import { sageResidencesDetails, kaiGardenResidencesDetails } from "./mandaluyongProjectDetails.js";
 import { theAstonPlaceDetails, theCamdenPlaceDetails, sonoraGardenResidencesDetails } from "./metroProjectDetails.js";
+import { theAthertonDetails, calatheaPlaceDetails, moncelloCrestDetails, solmeraCoastDetails } from "./regionalProjectDetails.js";
 
 // Official/client asset convention:
 // public/assets/projects/[project-slug]/hero.jpg
@@ -1037,7 +1038,8 @@ const baseProjects = [
     amenities: ["Multi-Purpose Court", "Entrance Gate", "Lap Pool", "Leisure Pool", "Open Lawn/Picnic Grove", "Play Area", "Perimeter Fence", "24-hour Security", "Badminton Court", "Convenience Store", "Entertainment Room", "Fitness Gym"],
     buildingFeatures: ["24-hour Security", "Entrance Gate", "Perimeter Fence", "Multi-Purpose Court", "Convenience Store", "Building and parking details for confirmation"],
     nearbyLandmarks: ["Dr. A. Santos Ave.", "Para\u00f1aque City", "Southern Metro Manila access for confirmation", "Nearby services and viewing route for buyer verification"],
-    sourceUrl: "https://www.dmcihomes.com/the-atherton"
+    sourceUrl: "https://www.dmcihomes.com/the-atherton",
+    ...theAthertonDetails
   },
   {
     slug: "calathea-place",
@@ -1063,7 +1065,8 @@ const baseProjects = [
     amenities: ["24-hour Security", "Multi-Purpose Court", "Play Area", "Convenience Store", "Fitness Gym", "Game Room", "Gazebo/ Cabana", "Kiddie Pool", "Landscaped Gardens", "Lap Pool", "Lounge Pool", "Lounge Area"],
     buildingFeatures: ["24-hour Security", "Multi-Purpose Court", "Convenience Store", "Landscaped Gardens", "Shared recreation rooms", "Building and parking details for confirmation"],
     nearbyLandmarks: ["Dr. A. Santos Ave.", "Para\u00f1aque City", "Nearby services and transport for confirmation", "Site viewing route for buyer verification"],
-    sourceUrl: "https://www.dmcihomes.com/calathea-place"
+    sourceUrl: "https://www.dmcihomes.com/calathea-place",
+    ...calatheaPlaceDetails
   },
   {
     slug: "sonora-garden-residences",
@@ -1116,7 +1119,8 @@ const baseProjects = [
     amenities: ["24-hour Security", "Arrival Court", "Basketball Court/Playcourt", "Business Center", "Children's Play Area", "Children's Recreation Space / Daycare", "Entertainment Room", "Fire Pit", "Fitness Gym", "Game Room", "Gazebo/ Cabana", "Jacuzzi"],
     buildingFeatures: ["24-hour Security", "Arrival Court", "Business Center", "Children's Recreation Space / Daycare", "Fire Pit", "Building and turnover details for confirmation"],
     nearbyLandmarks: ["Sitio Bato", "Brgy. Poblacion, Tuba, Benguet", "Baguio/Benguet access for confirmation", "Mountain leisure setting for buyer verification"],
-    sourceUrl: "https://www.dmcihomes.com/moncello-crest"
+    sourceUrl: "https://www.dmcihomes.com/moncello-crest",
+    ...moncelloCrestDetails
   },
   {
     slug: "solmera-coast",
@@ -1142,7 +1146,8 @@ const baseProjects = [
     amenities: ["Sky Lounge", "Snack Bar", "Sky Deck", "Beach Dining Area", "Roof Deck Pool", "Lap Pool", "Infinity Pool", "Kiddie Pool", "Pool Pavilion", "Lounge Area", "Main Entrance Gate", "Pool Deck"],
     buildingFeatures: ["Main Entrance Gate", "Sky Lounge", "Sky Deck", "Beach Dining Area", "Pool Pavilion", "Building and turnover details for confirmation"],
     nearbyLandmarks: ["Brgy. Calubcub II", "Brgy. Subukin", "San Juan, Batangas", "Coastal leisure access for buyer verification"],
-    sourceUrl: "https://www.dmcihomes.com/solmera-coast"
+    sourceUrl: "https://www.dmcihomes.com/solmera-coast",
+    ...solmeraCoastDetails
   }
 ];
 

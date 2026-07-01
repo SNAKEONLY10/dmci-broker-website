@@ -2,7 +2,7 @@
 
 Audit date: 2026-07-01
 
-Scope: only the 18 approved priority projects are active in `src/data/projects.js`. No random Google images were added. Missing visuals rely on the existing clean `ImagePlaceholder` fallback until broker/client/official assets are provided.
+Scope: only the 18 approved priority projects are active in `src/data/projects.js`. No random Google images were added. All active priority projects now have official/client/DMCI Online image coverage for the customer-facing project pages.
 
 Asset convention checked:
 
@@ -18,17 +18,17 @@ Asset convention checked:
 ## Summary
 
 - Active approved projects: 18
-- Complete core image sets: 16
+- Complete core image sets: 18
 - Partial asset sets: 0
-- Official assets needed: 2
+- Official assets needed: 0
 - Brochures currently present: 0
-- Content status: 14 projects now have rich customer-ready reference pages; the remaining approved listings keep reference-only broker copy and official DMCI Homes source URLs.
+- Content status: 18 projects now have rich customer-ready reference pages with official/source media, maps, and buyer-safe computation references.
 - The Oriana content status: full customer-ready detail added, no missing unit rows after QA.
 - One Delta Terraces content status: full customer-ready detail added, no missing unit rows after QA.
 - Mulberry Place 2 content status: full customer-ready detail added from supplied Phase 2 reference, with complete unit rows and payment details.
 - Alder Residences content status: full customer-ready detail added from supplied reference, with available 2BR rows, sold-out 3BR/4BR waitlist details, and payment details.
 - Map status: Google Maps iframes enabled on rich project detail pages when an official/source map embed is available; static location map fallback remains available.
-- Video status: YouTube embeds enabled for rich pages with approved/source AVP iframe references; Mulberry Place 2 and Alder Residences include source YouTube AVP embeds plus external 360 virtual tour links.
+- Video status: YouTube embeds enabled for rich pages with approved/source AVP iframe references; Moncello Crest and Solmera Coast include official YouTube AVP embeds plus external virtual community tour links.
 
 `assetStatus` rules used:
 
@@ -53,11 +53,11 @@ Asset convention checked:
 | 11 | Alder Residences | `alder-residences` | Present | Present | 3/3 present + floorplans | Present | Present | Embedded Google map + YouTube/360 media links | `complete` | `full customer-ready detail added; 2BR rows complete; 3BR/4BR waitlist details; Google Maps iframe; YouTube AVP embed; virtual tour links` | [DMCI Online](https://www.dmci-online.com/alder-residences-dmci-taguig/) |
 | 12 | The Aston Place | `the-aston-place` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + approved visual media note | `complete` | `full customer-ready detail added, official assets optimized` | [DMCI Online](https://www.dmci-online.com/aston-place-dmci-pasay/) |
 | 13 | The Camden Place | `the-camden-place` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + YouTube media link | `complete` | `full customer-ready detail added, official assets optimized` | [DMCI Online](https://www.dmci-online.com/the-camden-place-manila/) |
-| 14 | The Atherton | `the-atherton` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/the-atherton) |
-| 15 | Calathea Place | `calathea-place` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/calathea-place) |
+| 14 | The Atherton | `the-atherton` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + official 360 guide/source links | `complete` | `full customer-ready detail added, official assets optimized` | [DMCI Online](https://www.dmci-online.com/atherton-dmci-sucat-paranaque/) |
+| 15 | Calathea Place | `calathea-place` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + virtual tour link | `complete` | `full customer-ready detail added, official assets optimized` | [DMCI Online](https://www.dmci-online.com/calathea-place-paranaque-city/) |
 | 16 | Sonora Garden Residences | `sonora-garden-residences` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + YouTube/virtual tour media links | `complete` | `full customer-ready detail added, official assets optimized` | [DMCI Online](https://www.dmci-online.com/sonora-garden-residences/) |
-| 17 | Moncello Crest | `moncello-crest` | Present | Present | 3/3 present | Present | Present | Missing | `complete` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/moncello-crest) |
-| 18 | Solmera Coast | `solmera-coast` | Present | Present | 3/3 present | Present | Present | Missing | `complete` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/solmera-coast) |
+| 17 | Moncello Crest | `moncello-crest` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + YouTube/virtual tour media links | `complete` | `full customer-ready detail added, official assets optimized` | [DMCI Online](https://www.dmci-online.com/moncello-crest-tuba-benguet-baguio/) |
+| 18 | Solmera Coast | `solmera-coast` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + YouTube/virtual tour media links | `complete` | `full customer-ready detail added, official assets optimized` | [DMCI Online](https://www.dmci-online.com/solmera-coast-dmci-batangas-city/) |
 
 ## Sync Notes
 
@@ -115,6 +115,14 @@ Asset convention checked:
 - The Camden Place has an embedded Google map and verified YouTube AVP from the official page.
 - The Aston Place has an embedded Google map and complete official visual references; no verified official YouTube AVP was found on the official page during this update, so the page requests the approved AVP/link from Luisa instead of embedding a third-party walkthrough.
 - Sonora Garden Residences has an embedded Google map, verified YouTube AVP, and official virtual community tour link.
+
+### Atherton, Calathea, Moncello, and Solmera Rich Page Update
+
+- DMCI Online official pages were used for The Atherton, Calathea Place, Moncello Crest, and Solmera Coast.
+- Official project images were compressed into local JPG/PNG plus complete WebP responsive variants under `public/assets/projects/the-atherton`, `public/assets/projects/calathea-place`, `public/assets/projects/moncello-crest`, and `public/assets/projects/solmera-coast`.
+- The Atherton and Calathea Place now include rich buyer copy, official maps, official location/site/floor-plan visuals, payment samples, unit holding/reservation references, and source/virtual links where exposed by DMCI Online.
+- Moncello Crest and Solmera Coast now include rich buyer copy, official Google Maps embeds, official YouTube AVP embeds, official virtual community tour links, rental pool program sections, amenity galleries, floor-plan cards, and payment samples.
+- Local browser QA passed on phone and desktop for all four pages and their related listing filters: no placeholders, no broken images, no failed local project asset requests, no horizontal overflow, maps present on detail pages, and YouTube embeds present for Moncello/Solmera.
 
 ## Non-Approved Asset Folders Still On Disk
 
