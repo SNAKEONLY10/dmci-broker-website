@@ -23,12 +23,25 @@ Build check:
 npm run build
 ```
 
+Route/SEO validation:
+
+```bash
+npm run qa:routes
+```
+
+Route inventory:
+
+```bash
+npm run inventory:routes
+```
+
 ## Available Routes
 
 - `/` - Homepage
 - `/projects` - Project directory
 - `/projects/:slug` - Project detail showcase page
 - `/locations` - Browse by location
+- `/locations/:locationSlug` - Crawlable city/location project page
 - `/availability` - Check availability form
 - `/request-computation` - Request latest computation form
 - `/book-viewing` - Book a site viewing form
@@ -39,12 +52,16 @@ npm run build
 - `/resale-units` - Resale unit inquiries
 - `/about` - About Luisa
 - `/contact` - Contact page
+- `/privacy-policy` - Privacy policy and lead data handling notes
+- `/disclaimer` - Buyer safety disclaimer
 - `/showcase` - Client presentation/showcase page
+
+The production build generates static HTML fallbacks for public routes, `sitemap.xml`, and `robots.txt` after Vite builds.
 
 ## Demo Limitations
 
-- Placeholder images only
-- Sample project data only
+- Approved project images are used where available; missing official visuals should remain graceful request states until assets are confirmed
+- Project data is buyer guidance only and must be confirmed before presentation or reservation
 - No real-time availability
 - No backend or email notifications yet
 - Forms save demo submissions to browser `localStorage` only

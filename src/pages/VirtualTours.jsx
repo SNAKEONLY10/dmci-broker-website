@@ -1,17 +1,25 @@
 import { useState } from "react";
 import { VideoTourCard } from "../components/Cards";
 import { SectionHeader } from "../components/SectionHeader";
+import { projects } from "../data/projects";
 
-const tours = ["Studio Unit Tour", "1BR Model Unit", "2BR Model Unit", "3BR Model Unit", "Amenities Tour"].map((title) => ({ title, unitType: title.split(" ")[0] }));
+const tours = projects
+  .filter((project) => project.videoTourUrl || project.videoTourEmbedUrl)
+  .map((project) => ({
+    title: `${project.name} AVP / Virtual Tour`,
+    unitType: project.location,
+    image: project.thumbnail || project.image,
+    to: `/projects/${project.slug}#views`
+  }));
 
 export default function VirtualTours() {
   const [filter, setFilter] = useState("");
-  const filtered = tours.filter((tour) => !filter || tour.title.includes(filter));
+  const filtered = tours.filter((tour) => !filter || tour.title.toLowerCase().includes(filter.toLowerCase()) || tour.unitType.toLowerCase().includes(filter.toLowerCase()));
   return (
     <section className="page-section">
       <div className="container">
-        <SectionHeader align="left" eyebrow="Virtual Tours" title="Tour Library" text="Tour thumbnails are lightweight for now. Approved video or 360 links can be connected after Luisa confirms the official assets." />
-        <div className="status-chips">{["", "Studio", "1BR", "2BR", "3BR", "Amenities"].map((item) => <button key={item || "all"} onClick={() => setFilter(item)}>{item || "All"}</button>)}</div>
+        <SectionHeader as="h1" align="left" eyebrow="Virtual Tours" title="Tour Library" text="Open project pages with approved AVP or virtual tour references. Ask Luisa to confirm the latest official links before sharing with buyers." />
+        <div className="status-chips">{["", "Quezon City", "Pasig", "Mandaluyong", "Taguig", "Paranaque", "Batangas"].map((item) => <button key={item || "all"} onClick={() => setFilter(item)}>{item || "All"}</button>)}</div>
         <div className="card-grid">{filtered.map((tour) => <VideoTourCard key={tour.title} {...tour} />)}</div>
       </div>
     </section>

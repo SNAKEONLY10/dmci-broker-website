@@ -8,7 +8,7 @@ export default function ReservationRequirements() {
   return (
     <section className="page-section soft">
       <div className="container">
-        <SectionHeader align="left" eyebrow="Reservation Requirements" title="Prepare Safely Before Paying" text="Use this as a planning checklist, then confirm final requirements." />
+        <SectionHeader as="h1" align="left" eyebrow="Reservation Requirements" title="Prepare Safely Before Paying" text="Use this as a planning checklist, then confirm final requirements." />
         <div className="steps-grid">{steps.map((step, index) => <article key={step}><strong>{index + 1}</strong><p>{step}</p></article>)}</div>
         <div className="warning-box">Do not send payment without official confirmation and verified payment instructions.</div>
         <div className="checklist-grid">{checklist.map((item) => <span key={item}>{item}</span>)}</div>

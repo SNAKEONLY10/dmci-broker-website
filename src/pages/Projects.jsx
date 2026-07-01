@@ -29,7 +29,7 @@ export default function Projects() {
     <section className="page-section projects-page">
       <div className="container">
         <div className="project-listing-hero">
-          <SectionHeader align="left" eyebrow="Project Directory" title="Browse DMCI Homes Projects with Broker Guidance" text="Search sample project listings by location, turnover, unit type, and buyer purpose. Request updated computation and availability confirmation before making any decision." />
+          <SectionHeader as="h1" align="left" eyebrow="Project Directory" title="Browse DMCI Homes Projects with Broker Guidance" text="Search sample project listings by location, turnover, unit type, and buyer purpose. Request updated computation and availability confirmation before making any decision." />
           <div className="listing-hero-card">
             <strong>Need help choosing?</strong>
             <p>Ask Luisa for project recommendations based on budget, purpose, location, and preferred turnover.</p>

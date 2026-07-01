@@ -7,7 +7,7 @@ export default function Promos() {
   return (
     <section className="page-section soft">
       <div className="container">
-        <SectionHeader align="left" eyebrow="Promos & Updates" title="Ask for Current Promo Details" text="Promo details are subject to confirmation and may change without prior notice." />
+        <SectionHeader as="h1" align="left" eyebrow="Promos & Updates" title="Ask for Current Promo Details" text="Promo details are subject to confirmation and may change without prior notice." />
         <div className="card-grid">{promos.map((promo) => <PromoCard key={promo.id} promo={promo} />)}</div>
         <DisclaimerBanner text="Promo details are subject to confirmation and may change without prior notice." />
       </div>

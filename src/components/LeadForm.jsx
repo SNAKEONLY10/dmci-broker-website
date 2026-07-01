@@ -58,8 +58,9 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
         ))}
         <label className="consent full">
           <input name="consent" type="checkbox" checked={values.consent} onChange={update} />
-          <span>I agree to be contacted by Luisa regarding my inquiry.</span>
+          <span>I agree to be contacted by Luisa regarding my inquiry and understand that project details are subject to confirmation.</span>
         </label>
+        <p className="form-note full">Form submissions are currently stored locally for preview validation until a production email, CRM, or database endpoint is connected. See the <a href="/privacy-policy">Privacy Policy</a>.</p>
         {errors.consent && <small className="error full">{errors.consent}</small>}
       </div>
       {success && <div className="success-message">{success}</div>}

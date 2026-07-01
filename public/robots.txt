@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://dmci-broker-website.vercel.app/sitemap.xml

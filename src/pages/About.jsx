@@ -9,7 +9,7 @@ export default function About() {
     <>
       <section className="page-section">
         <div className="container">
-          <SectionHeader align="left" eyebrow="About Luisa" title={contact.brokerName} text={`${contact.role} | ${contact.license}`} />
+          <SectionHeader as="h1" align="left" eyebrow="About Luisa" title={contact.brokerName} text={`${contact.role} | ${contact.license}`} />
         </div>
       </section>
       <AboutCompact />

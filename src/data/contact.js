@@ -5,6 +5,8 @@ export const contact = {
   emailHref: "mailto:mrcorral@dmcihomes.com",
   office: "0288887777 Local 5860",
   officeHref: "tel:0288887777",
+  officeAddress: "To be confirmed",
+  businessHours: "To be confirmed",
   viber: "viber://chat?number=%2B639988658902",
   officialDmciWebsite: "https://www.dmcihomes.com/",
   brand: "My DMCI Broker",
@@ -14,5 +16,5 @@ export const contact = {
   prcLicense: "0003253",
   license: "Real Estate Broker PRC License No. 0003253",
   disclaimer:
-    "Prices, availability, promos, payment terms, unit details, and turnover schedules are subject to change and final confirmation. This website is maintained for buyer assistance and inquiry purposes."
+    "This website is operated by an independent broker/agent for inquiry assistance. Project details, availability, pricing, promos, and terms are subject to confirmation with the developer and authorized sales channels."
 };

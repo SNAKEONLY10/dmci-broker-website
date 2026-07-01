@@ -151,7 +151,7 @@ function FormShell({ title, text, panel, children }) {
           </div>
         </aside>
         <div className="form-shell-content">
-          <SectionHeader align="left" eyebrow="Buyer Assistance" title={title} text={text} />
+          <SectionHeader as="h1" align="left" eyebrow="Buyer Assistance" title={title} text={text} />
           {children}
         </div>
       </div>

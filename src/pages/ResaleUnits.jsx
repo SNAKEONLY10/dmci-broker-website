@@ -7,7 +7,7 @@ export default function ResaleUnits() {
   return (
     <section className="page-section">
       <div className="container">
-        <SectionHeader align="left" eyebrow="Resale Units" title="Resale and Re-opened Unit Inquiries" text="Availability must be verified before discussion." />
+        <SectionHeader as="h1" align="left" eyebrow="Resale Units" title="Resale and Re-opened Unit Inquiries" text="Availability must be verified before discussion." />
         <div className="card-grid">
           {resaleUnits.map((unit) => (
             <article className="info-card" key={unit.id}>

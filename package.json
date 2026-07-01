@@ -6,8 +6,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/generate-seo-pages.mjs",
     "assets:optimize": "node scripts/optimize-project-images.mjs",
+    "inventory:routes": "node scripts/write-route-inventory.mjs",
+    "qa:routes": "node scripts/validate-seo-routes.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

@@ -63,6 +63,7 @@ export default function Home() {
       </section>
 
       <QuickSearch />
+      <BrokerTrustStrip />
 
       <section className="section">
         <div className="container">
@@ -92,6 +93,7 @@ export default function Home() {
       <StatusChips />
       <AboutCompact />
       <BuyerJourney />
+      <HomeFAQ />
 
       <section className="section">
         <div className="container narrow">
@@ -109,6 +111,38 @@ export default function Home() {
       <PreviewSections />
       <FinalCTA />
     </>
+  );
+}
+
+function BrokerTrustStrip() {
+  const trustItems = [
+    { label: "Broker", value: contact.brokerName },
+    { label: "Role", value: contact.role },
+    { label: "PRC License", value: contact.prcLicense },
+    { label: "Office", value: contact.office }
+  ];
+
+  return (
+    <section className="section compact-section broker-trust-strip" aria-labelledby="broker-trust-heading">
+      <div className="container">
+        <div className="content-panel trust-panel">
+          <div>
+            <span className="eyebrow">Broker Trust</span>
+            <h2 id="broker-trust-heading">Licensed buyer assistance for DMCI inquiries</h2>
+            <p>Use this website to shortlist projects, request current details, and coordinate next steps with Luisa. Final prices, promos, availability, and terms must still be confirmed.</p>
+          </div>
+          <div className="trust-fact-grid">
+            {trustItems.map((item) => (
+              <span key={item.label}><strong>{item.label}</strong>{item.value}</span>
+            ))}
+          </div>
+          <div className="hero-actions">
+            <Button to="/about" variant="secondary">About Luisa</Button>
+            <Button to="/disclaimer" variant="ghost">Read Disclaimer</Button>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -225,13 +259,64 @@ function BuyerJourney() {
   );
 }
 
+function HomeFAQ() {
+  const faqs = [
+    {
+      question: "Are the prices and promos final?",
+      answer: "No. Prices, promos, terms, and availability can change. Ask Luisa for the latest confirmed computation before making a decision."
+    },
+    {
+      question: "Can I reserve from this website?",
+      answer: "This site is for inquiry assistance and preparation. Reservation should proceed only after confirmed availability, official computation, and verified payment instructions."
+    },
+    {
+      question: "Can Luisa help compare projects by city?",
+      answer: "Yes. Share your location, budget, unit type, timeline, and buyer purpose so Luisa can recommend projects to compare."
+    },
+    {
+      question: "Are online form submissions live leads already?",
+      answer: "The current forms are validated for preview and local storage. A production email, CRM, or database endpoint should be connected before relying on online submissions operationally."
+    }
+  ];
+
+  return (
+    <section className="section">
+      <div className="container">
+        <SectionHeader eyebrow="FAQ" title="Buyer Questions Before You Decide" text="Quick checks for safer inquiry, computation, viewing, and reservation preparation." />
+        <div className="card-grid">
+          {faqs.map((faq) => (
+            <article className="info-card" key={faq.question}>
+              <h3>{faq.question}</h3>
+              <p>{faq.answer}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function PreviewSections() {
+  const tourProjects = projects
+    .filter((project) => (project.videoTourUrl || project.videoTourEmbedUrl) && (project.thumbnail || project.image))
+    .slice(0, 5);
+
   return (
     <>
       <section className="section">
         <div className="container">
           <SectionHeader eyebrow="Virtual Tours" title="Preview Model Units and Amenities" />
-          <div className="card-grid five">{["Studio Unit Tour", "1BR Model Unit", "2BR Model Unit", "3BR Model Unit", "Amenities Tour"].map((title) => <VideoTourCard key={title} title={title} unitType="Thumbnail only" />)}</div>
+          <div className="card-grid five">
+            {tourProjects.map((project) => (
+              <VideoTourCard
+                key={project.slug}
+                title={`${project.name} AVP / Virtual Tour`}
+                unitType={project.location}
+                image={project.thumbnail || project.image}
+                to={`/projects/${project.slug}#views`}
+              />
+            ))}
+          </div>
         </div>
       </section>
       <section className="section soft">

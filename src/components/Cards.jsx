@@ -33,14 +33,21 @@ export function TestimonialCard({ quote, person }) {
   );
 }
 
-export function VideoTourCard({ title, unitType }) {
+export function VideoTourCard({ title, unitType, image, to = "/virtual-tours" }) {
   return (
     <article className="tour-card">
-      <ImagePlaceholder label={title} compact variant="gallery" />
+      {image ? (
+        <ImagePlaceholder src={image} label={title} compact variant="gallery" />
+      ) : (
+        <div className="tour-request-banner">
+          <span>Approved media link</span>
+          <small>Request current AVP or virtual tour</small>
+        </div>
+      )}
       <h3>{title}</h3>
       <p>{unitType}</p>
       <div className="card-actions">
-        <Button to="/contact" variant="secondary">Request Tour Link</Button>
+        <Button to={to} variant="secondary">View Media Details</Button>
         <Button to="/book-viewing" variant="ghost">Book Viewing</Button>
       </div>
     </article>

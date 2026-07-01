@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { contact } from "../data/contact";
+import { cityPages } from "../data/seo";
 import { Button } from "./Button";
 import { DisclaimerBanner } from "./DisclaimerBanner";
+import { SeoManager } from "./SeoManager";
 
 const navItems = [
   ["Home", "/"],
@@ -19,6 +21,7 @@ export function Layout({ children }) {
   const [open, setOpen] = useState(false);
   return (
     <>
+      <SeoManager />
       <header className="site-header">
         <div className="container nav-wrap">
           <NavLink className="brand" to="/" onClick={() => setOpen(false)}>
@@ -75,6 +78,7 @@ function Footer() {
             </div>
           </div>
           <p>Personal buyer assistance for DMCI Homes inquiries, computations, availability checks, site viewings, and reservation guidance.</p>
+          <p className="footer-note">Buyer assistance site. Final project details must be confirmed with authorized sales channels.</p>
         </div>
         <div className="footer-links">
           <h4>Buyer Tools</h4>
@@ -88,12 +92,21 @@ function Footer() {
           <p><strong>Mobile / Viber</strong><br />{contact.phone}</p>
           <p><strong>Email</strong><br />{contact.email}</p>
           <p><strong>Office</strong><br />{contact.office}</p>
+          <p><strong>Business Hours</strong><br />{contact.businessHours}</p>
           <p><strong>PRC License</strong><br />{contact.prcLicense}</p>
           <Button to="/contact" variant="secondary">Message Luisa</Button>
         </div>
         <div className="footer-links">
-          <h4>Reference Links</h4>
-          <a href={contact.officialDmciWebsite} target="_blank" rel="noopener">DMCI Homes Website</a>
+          <h4>Locations</h4>
+          {cityPages.slice(0, 6).map((city) => (
+            <NavLink key={city.path} to={city.path}>{city.name}</NavLink>
+          ))}
+        </div>
+        <div className="footer-links">
+          <h4>Trust & Legal</h4>
+          <a href={contact.officialDmciWebsite} target="_blank" rel="noopener noreferrer">DMCI Homes Website</a>
+          <NavLink to="/privacy-policy">Privacy Policy</NavLink>
+          <NavLink to="/disclaimer">Disclaimer</NavLink>
           <NavLink to="/showcase">Client Showcase</NavLink>
         </div>
       </div>

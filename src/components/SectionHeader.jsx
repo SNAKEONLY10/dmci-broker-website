@@ -1,8 +1,8 @@
-export function SectionHeader({ eyebrow, title, text, align = "center" }) {
+export function SectionHeader({ eyebrow, title, text, align = "center", as: Heading = "h2" }) {
   return (
     <div className={`section-header align-${align}`}>
       {eyebrow && <span className="eyebrow">{eyebrow}</span>}
-      <h2>{title}</h2>
+      <Heading>{title}</Heading>
       {text && <p>{text}</p>}
     </div>
   );
