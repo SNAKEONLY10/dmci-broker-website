@@ -6,24 +6,28 @@ import { SectionHeader } from "../components/SectionHeader";
 import { DisclaimerBanner } from "../components/DisclaimerBanner";
 import { Button } from "../components/Button";
 import { projects } from "../data/projects";
-
-const PROJECTS_PER_PAGE = 6;
+import { useResponsiveProjectPageSize } from "../hooks/useResponsiveProjectPageSize";
 
 export default function Projects() {
   const [params] = useSearchParams();
   const [filters, setFilters] = useState({ location: params.get("location") || "" });
   const [sort, setSort] = useState("featured");
   const [currentPage, setCurrentPage] = useState(1);
+  const projectPageSize = useResponsiveProjectPageSize();
   const filtered = useMemo(() => sortProjects(projects.filter((project) => matches(project, filters)), sort), [filters, sort]);
-  const totalPages = Math.ceil(filtered.length / PROJECTS_PER_PAGE);
+  const totalPages = Math.ceil(filtered.length / projectPageSize);
   const safePage = Math.min(currentPage, totalPages || 1);
-  const startIndex = (safePage - 1) * PROJECTS_PER_PAGE;
-  const endIndex = Math.min(startIndex + PROJECTS_PER_PAGE, filtered.length);
+  const startIndex = (safePage - 1) * projectPageSize;
+  const endIndex = Math.min(startIndex + projectPageSize, filtered.length);
   const paginatedProjects = filtered.slice(startIndex, endIndex);
 
   useEffect(() => {
     setCurrentPage(1);
   }, [filters, sort]);
+
+  useEffect(() => {
+    setCurrentPage((page) => Math.min(page, totalPages || 1));
+  }, [totalPages]);
 
   return (
     <section className="page-section projects-page">
@@ -38,12 +42,12 @@ export default function Projects() {
         </div>
         <ProjectFilters projects={projects} filters={filters} setFilters={setFilters} sort={sort} setSort={setSort} />
         <div className="results-bar">
-          <strong>{filtered.length} matching projects</strong>
+          <strong>{filtered.length} matching approved projects</strong>
           <span>Updated price available upon request. Availability subject to confirmation.</span>
         </div>
         {filtered.length > 0 && (
           <p className="pagination-summary">
-            Showing {startIndex + 1}-{endIndex} of {filtered.length} projects
+            Page {safePage} of {totalPages} &middot; Showing projects {startIndex + 1} to {endIndex} of {filtered.length} approved projects
           </p>
         )}
         <ProjectGrid projects={paginatedProjects} />

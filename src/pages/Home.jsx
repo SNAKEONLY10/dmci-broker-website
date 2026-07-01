@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Button } from "../components/Button";
 import { DemoForm } from "../components/LeadForm";
 import { LocationCard } from "../components/LocationCard";
@@ -12,8 +12,7 @@ import { locations } from "../data/locations";
 import { guideCards } from "../data/guides";
 import { promos } from "../data/promos";
 import { contact } from "../data/contact";
-
-const HOME_PROJECTS_PER_PAGE = 6;
+import { useResponsiveProjectPageSize } from "../hooks/useResponsiveProjectPageSize";
 
 const computationFields = [
   { name: "fullName", label: "Full Name" },
@@ -30,15 +29,20 @@ const computationFields = [
 
 export default function Home() {
   const [projectPage, setProjectPage] = useState(1);
+  const projectPageSize = useResponsiveProjectPageSize();
   const homepageProjects = useMemo(
     () => [...projects].sort((a, b) => (a.directoryOrder ?? 999) - (b.directoryOrder ?? 999)),
     []
   );
-  const totalProjectPages = Math.ceil(homepageProjects.length / HOME_PROJECTS_PER_PAGE);
+  const totalProjectPages = Math.ceil(homepageProjects.length / projectPageSize);
   const safeProjectPage = Math.min(projectPage, totalProjectPages || 1);
-  const projectStart = (safeProjectPage - 1) * HOME_PROJECTS_PER_PAGE;
-  const projectEnd = Math.min(projectStart + HOME_PROJECTS_PER_PAGE, homepageProjects.length);
+  const projectStart = (safeProjectPage - 1) * projectPageSize;
+  const projectEnd = Math.min(projectStart + projectPageSize, homepageProjects.length);
   const visibleProjects = homepageProjects.slice(projectStart, projectEnd);
+
+  useEffect(() => {
+    setProjectPage((page) => Math.min(page, totalProjectPages || 1));
+  }, [totalProjectPages]);
 
   return (
     <>
@@ -70,7 +74,7 @@ export default function Home() {
           <SectionHeader eyebrow="Project Highlights" title="Browse DMCI Homes Options" text="Shortlist projects by location, turnover, and unit type. Ask Luisa for the latest computation and confirmed availability before deciding." />
           <div className="home-project-toolbar">
             <p className="pagination-summary">
-              Showing {projectStart + 1}-{projectEnd} of {homepageProjects.length} projects
+              Page {safeProjectPage} of {totalProjectPages} &middot; Showing projects {projectStart + 1} to {projectEnd} of {homepageProjects.length} approved projects
             </p>
             <Link to="/projects">Open full project directory</Link>
           </div>

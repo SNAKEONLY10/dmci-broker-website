@@ -1,6 +1,7 @@
 import { access, readFile } from "node:fs/promises";
 import path from "node:path";
 import { publicStaticRoutes, resolveSeo } from "../src/data/seo.js";
+import { projects } from "../src/data/projects.js";
 
 const distDir = path.resolve("dist");
 const routes = dedupeRoutes(publicStaticRoutes());
@@ -8,6 +9,7 @@ const failures = [];
 
 await assertFile(path.join(distDir, "sitemap.xml"), "Missing dist/sitemap.xml");
 await assertFile(path.join(distDir, "robots.txt"), "Missing dist/robots.txt");
+assert(projects.length === 18, `Project directory should contain exactly 18 approved projects; found ${projects.length}`);
 
 for (const route of routes) {
   const file = route.path === "/"
