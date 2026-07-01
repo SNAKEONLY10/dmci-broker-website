@@ -3,7 +3,7 @@ import { ImagePlaceholder } from "./ImagePlaceholder";
 
 export function GuideCard({ title, summary }) {
   return (
-    <article className="info-card">
+    <article className="info-card" data-reveal="card">
       <h3>{title}</h3>
       <p>{summary}</p>
       <Button to="/buyers-guide" variant="ghost">Read Guide</Button>
@@ -13,7 +13,7 @@ export function GuideCard({ title, summary }) {
 
 export function PromoCard({ promo }) {
   return (
-    <article className="info-card">
+    <article className="info-card" data-reveal="card">
       <span className="mini">{promo.type}</span>
       <h3>{promo.title}</h3>
       <p>{promo.summary}</p>
@@ -25,7 +25,7 @@ export function PromoCard({ promo }) {
 
 export function TestimonialCard({ quote, person }) {
   return (
-    <article className="testimonial-card">
+    <article className="testimonial-card" data-reveal="card">
       <p>"{quote}"</p>
       <strong>{person}</strong>
       <small>Real client feedback can be added after approval.</small>
@@ -35,7 +35,7 @@ export function TestimonialCard({ quote, person }) {
 
 export function VideoTourCard({ title, unitType, image, to = "/virtual-tours" }) {
   return (
-    <article className="tour-card">
+    <article className="tour-card" data-reveal="card">
       {image ? (
         <ImagePlaceholder src={image} label={title} compact variant="gallery" />
       ) : (

@@ -73,12 +73,12 @@ export default function Home() {
         <div className="container">
           <SectionHeader eyebrow="Project Highlights" title="Browse DMCI Homes Options" text="Shortlist projects by location, turnover, and unit type. Ask Luisa for the latest computation and confirmed availability before deciding." />
           <div className="home-project-toolbar">
-            <p className="pagination-summary">
+            <p className="pagination-summary" aria-live="polite">
               Page {safeProjectPage} of {totalProjectPages} &middot; Showing projects {projectStart + 1} to {projectEnd} of {homepageProjects.length} approved projects
             </p>
             <Link to="/projects">Open full project directory</Link>
           </div>
-          <ProjectGrid projects={visibleProjects} />
+          <ProjectGrid key={`home-projects-${safeProjectPage}-${projectPageSize}`} projects={visibleProjects} />
           <HomeProjectPagination currentPage={safeProjectPage} totalPages={totalProjectPages} onPageChange={setProjectPage} />
         </div>
       </section>

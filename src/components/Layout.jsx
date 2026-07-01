@@ -5,6 +5,7 @@ import { cityPages } from "../data/seo";
 import { Button } from "./Button";
 import { DisclaimerBanner } from "./DisclaimerBanner";
 import { SeoManager } from "./SeoManager";
+import { useScrollReveal } from "../hooks/useScrollReveal";
 
 const navItems = [
   ["Home", "/"],
@@ -19,6 +20,8 @@ const navItems = [
 
 export function Layout({ children }) {
   const [open, setOpen] = useState(false);
+  useScrollReveal();
+
   return (
     <>
       <SeoManager />

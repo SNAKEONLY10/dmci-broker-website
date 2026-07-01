@@ -3,6 +3,7 @@ import { getResponsiveImage } from "../utils/responsiveImages";
 
 export function ImagePlaceholder({ label = "Property preview", src, compact = false, variant = "card" }) {
   const [failed, setFailed] = useState(false);
+  const revealProps = variant === "hero" ? {} : { "data-reveal": "image" };
 
   useEffect(() => {
     setFailed(false);
@@ -17,15 +18,16 @@ export function ImagePlaceholder({ label = "Property preview", src, compact = fa
         alt={label}
         loading={variant === "hero" ? "eager" : "lazy"}
         decoding="async"
-        fetchpriority={variant === "hero" ? "high" : undefined}
+        fetchPriority={variant === "hero" ? "high" : undefined}
         onLoad={() => setFailed(false)}
         onError={() => setFailed(true)}
+        {...(!responsive ? revealProps : {})}
       />
     );
 
     if (responsive) {
       return (
-        <picture className={`image-picture image-picture-${variant}`}>
+        <picture className={`image-picture image-picture-${variant}`} {...revealProps}>
           <source type="image/webp" srcSet={responsive.srcSet} sizes={responsive.sizes} />
           {img}
         </picture>
@@ -35,7 +37,7 @@ export function ImagePlaceholder({ label = "Property preview", src, compact = fa
     return img;
   }
   return (
-    <div className={`image-placeholder image-placeholder-${variant} ${compact ? "compact" : ""}`} aria-label={label}>
+    <div className={`image-placeholder image-placeholder-${variant} ${compact ? "compact" : ""}`} aria-label={label} {...revealProps}>
       <div className="placeholder-skyline" aria-hidden="true">
         <i />
         <i />

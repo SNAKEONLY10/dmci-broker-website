@@ -949,6 +949,7 @@ function ZoomableProjectImage({ image, compact = false, onOpen }) {
     <button
       className="zoomable-image"
       type="button"
+      data-reveal="image"
       aria-label={`Open ${image.label} preview`}
       onClick={() => onOpen(image)}
     >
@@ -974,7 +975,7 @@ function ImageLightbox({ image, onClose }) {
 
 function VideoTourBlock({ project }) {
   return (
-    <div className="video-tour-card">
+    <div className="video-tour-card" data-reveal="section">
       {project.videoTourEmbedUrl ? (
         <MediaEmbed title={`${project.name} video presentation`} src={project.videoTourEmbedUrl} />
       ) : (
@@ -1031,7 +1032,7 @@ function LocationMap({ project }) {
   const mapLabel = `${project.name} map`;
 
   return (
-    <div className="location-map-card">
+    <div className="location-map-card" data-reveal="section">
       <div className="location-map-frame">
         {location.mapEmbedUrl ? (
           <iframe
@@ -1066,7 +1067,7 @@ function LocationMap({ project }) {
 
 function ReferenceNotice({ text } = {}) {
   return (
-    <div className="reference-warning">
+    <div className="reference-warning" data-reveal="section">
       <strong>Guide information only</strong>
       <span>{text || "Prices, unit availability, promos, payment terms, unit details, and turnover schedules are subject to final confirmation. Request the latest computation from Luisa before making decisions."}</span>
     </div>
@@ -1075,7 +1076,7 @@ function ReferenceNotice({ text } = {}) {
 
 function DetailSection({ id, eyebrow, title, children }) {
   return (
-    <section className="detail-section" id={id}>
+    <section className="detail-section" id={id} data-reveal="section">
       <span className="eyebrow">{eyebrow}</span>
       <h2>{title}</h2>
       {children}

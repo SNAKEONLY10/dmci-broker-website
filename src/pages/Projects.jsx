@@ -46,11 +46,11 @@ export default function Projects() {
           <span>Updated price available upon request. Availability subject to confirmation.</span>
         </div>
         {filtered.length > 0 && (
-          <p className="pagination-summary">
+          <p className="pagination-summary" aria-live="polite">
             Page {safePage} of {totalPages} &middot; Showing projects {startIndex + 1} to {endIndex} of {filtered.length} approved projects
           </p>
         )}
-        <ProjectGrid projects={paginatedProjects} />
+        <ProjectGrid key={`projects-${safePage}-${projectPageSize}-${filtered.length}-${sort}`} projects={paginatedProjects} />
         <Pagination currentPage={safePage} totalPages={totalPages} onPageChange={setCurrentPage} />
         <div className="cta-strip">
           <div>

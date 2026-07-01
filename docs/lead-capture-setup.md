@@ -208,6 +208,30 @@ If a provider is configured but delivery fails, the form does not show a fake su
 - There is no admin dashboard yet.
 - Spam protection is a basic honeypot only; add CAPTCHA or rate limiting later if spam starts.
 
+## Final Launch Domain and Sender Plan
+
+For final launch, use a custom website domain owned by the site owner, for example:
+
+```text
+luisacorralproperties.com
+```
+
+After the domain is verified in Resend, use a sender on that verified domain:
+
+```text
+LEAD_EMAIL_FROM=DMCI Broker Leads <leads@luisacorralproperties.com>
+```
+
+Production lead delivery should send to Luisa:
+
+```text
+LEAD_EMAIL_TO=mrcorral@dmcihomes.com
+LEAD_EMAIL_REPLY_TO=mrcorral@dmcihomes.com
+LEAD_EMAIL_SUBJECT_PREFIX=[DMCI Broker Lead]
+```
+
+Do not use `mrcorral@dmcihomes.com` as `LEAD_EMAIL_FROM` unless `dmcihomes.com` is verified in Resend and legally/technically allowed. The broker email should normally be the recipient and fallback reply-to, while the sender should be a verified domain controlled by the site owner.
+
 ## Troubleshooting Resend
 
 - `403` or domain errors: verify the sender domain in Resend and confirm `LEAD_EMAIL_FROM` uses that verified domain.

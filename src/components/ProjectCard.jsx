@@ -11,15 +11,17 @@ function formatTurnoverLabel(value) {
   return value || "Turnover for confirmation";
 }
 
-export function ProjectCard({ project }) {
+export function ProjectCard({ project, index = 0 }) {
   const priceLabel = formatPriceGuide(project.priceRangeLabel);
   const hasPriceGuide = /PHP|\d/.test(priceLabel) && !/request latest/i.test(priceLabel);
   const buyerNote = hasPriceGuide
     ? buyerSafePriceNote(project.priceSourceNote)
     : "Updated computation available upon request.";
+  const revealDelay = `${Math.min(index, 5) * 70}ms`;
+  const projectQuery = encodeURIComponent(project.name);
 
   return (
-    <article className="project-card">
+    <article className="project-card" data-reveal="card" style={{ "--reveal-delay": revealDelay }}>
       <div className="project-image">
         <ImagePlaceholder src={project.thumbnail || project.image} label={project.name} variant="card" />
         <Badge>{project.status}</Badge>
@@ -45,8 +47,8 @@ export function ProjectCard({ project }) {
         <small>Availability subject to confirmation.</small>
         <div className="card-actions">
           <Button to={`/projects/${project.slug}`} variant="secondary">View Details</Button>
-          <Button to="/request-computation">Request Computation</Button>
-          <Button to="/availability" variant="ghost">Check Availability</Button>
+          <Button to={`/request-computation?project=${projectQuery}&inquiryType=Computation`}>Request Computation</Button>
+          <Button to={`/availability?project=${projectQuery}&inquiryType=Availability`} variant="ghost">Check Availability</Button>
         </div>
       </div>
     </article>

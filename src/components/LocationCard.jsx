@@ -3,7 +3,7 @@ import { cityPath } from "../data/seo";
 
 export function LocationCard({ location, count = 0 }) {
   return (
-    <Link className="location-card" to={cityPath(location.name)}>
+    <Link className="location-card" to={cityPath(location.name)} data-reveal="card">
       <span>{count} featured projects</span>
       <h3>{location.name}</h3>
       <p>{location.description}</p>
