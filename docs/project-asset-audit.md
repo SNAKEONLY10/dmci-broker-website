@@ -18,17 +18,17 @@ Asset convention checked:
 ## Summary
 
 - Active approved projects: 18
-- Complete core image sets: 10
+- Complete core image sets: 13
 - Partial asset sets: 0
-- Official assets needed: 8
+- Official assets needed: 5
 - Brochures currently present: 0
 - Content status: all 18 updated with reference-only broker copy and official DMCI Homes source URLs.
 - The Oriana content status: full customer-ready detail added, no missing unit rows after QA.
 - One Delta Terraces content status: full customer-ready detail added, no missing unit rows after QA.
 - Mulberry Place 2 content status: full customer-ready detail added from supplied Phase 2 reference, with complete unit rows and payment details.
 - Alder Residences content status: full customer-ready detail added from supplied reference, with available 2BR rows, sold-out 3BR/4BR waitlist details, and payment details.
-- Map status: Leaflet/OpenStreetMap enabled only on rich project detail pages with approximate pins and static location map fallback.
-- Video status: lazy click-to-load YouTube embed enabled for The Oriana AVP; One Delta Terraces shows AVP and virtual tour request CTAs because no approved public link is configured; Mulberry Place 2 and Alder Residences use external virtual-tour/request CTAs only.
+- Map status: Google Maps iframes enabled on rich project detail pages when an official/source map embed is available; static location map fallback remains available.
+- Video status: YouTube embeds enabled for rich pages with approved/source AVP iframe references; Mulberry Place 2 and Alder Residences include source YouTube AVP embeds plus external 360 virtual tour links.
 
 `assetStatus` rules used:
 
@@ -49,8 +49,8 @@ Asset convention checked:
 | 7 | Prisma Residences | `prisma-residences` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + YouTube/Drive/360 media links | `complete` | `full customer-ready detail added, Drive/official assets optimized` | [DMCI Online](https://www.dmci-online.com/prisma-residences-dmci-pasig/) |
 | 8 | Sage Residences | `sage-residences` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + YouTube/Drive/360 media links | `complete` | `full customer-ready detail added, Drive/official assets optimized` | [DMCI Online](https://www.dmci-online.com/sage-residences-mandaluyong/) |
 | 9 | Kai Garden Residences | `kai-garden-residences` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + YouTube media link | `complete` | `full customer-ready detail added, Drive/official assets optimized` | [DMCI Online](https://www.dmci-online.com/kai-garden-residences-mandaluyong/) |
-| 10 | Mulberry Place 2 | `mulberry-place` | Present via `mulberry-place-2` | Present via `mulberry-place-2` | 3/3 present via `mulberry-place-2` | Present via `mulberry-place-2` | Present via `mulberry-place-2` | Missing | `complete` | `full customer-ready detail added; no missing unit rows; Leaflet approximate map; AVP/virtual tour request CTA` | [DMCI Online](https://www.dmci-online.com/mulberry-place-dmci-taguig/) |
-| 11 | Alder Residences | `alder-residences` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `full customer-ready detail added; 2BR rows complete; 3BR/4BR waitlist details; Leaflet approximate map; AVP/virtual tour request CTA` | [DMCI Online](https://www.dmci-online.com/alder-residences-dmci-taguig/) |
+| 10 | Mulberry Place 2 | `mulberry-place` | Present via `mulberry-place-2` | Present via `mulberry-place-2` | 3/3 present via `mulberry-place-2` + floorplans | Present via `mulberry-place-2` | Present via `mulberry-place-2` | Embedded Google map + YouTube/360 media links | `complete` | `full customer-ready detail added; no missing unit rows; Google Maps iframe; YouTube AVP embed; virtual tour links` | [DMCI Online](https://www.dmci-online.com/mulberry-place-dmci-taguig/) |
+| 11 | Alder Residences | `alder-residences` | Present | Present | 3/3 present + floorplans | Present | Present | Embedded Google map + YouTube/360 media links | `complete` | `full customer-ready detail added; 2BR rows complete; 3BR/4BR waitlist details; Google Maps iframe; YouTube AVP embed; virtual tour links` | [DMCI Online](https://www.dmci-online.com/alder-residences-dmci-taguig/) |
 | 12 | The Aston Place | `the-aston-place` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/the-aston-place) |
 | 13 | The Camden Place | `the-camden-place` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/the-camden-place) |
 | 14 | The Atherton | `the-atherton` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/the-atherton) |

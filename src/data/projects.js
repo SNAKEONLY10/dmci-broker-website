@@ -652,7 +652,12 @@ const baseProjects = [
       title: "Strategic Location of Mulberry Place Phase 2",
       text: "Mulberry Place Phase 2 is nestled in Acacia Estates, Taguig City, strategically between Town Center and Mahogany Place 2, with access to business districts such as Bonifacio Global City and McKinley Hill.",
       exactAddress: "Acacia Estates, Taguig City",
-      note: "Travel times, distances, and map pins are approximate and subject to verification."
+      note: "Travel times, distances, and map pins are approximate and subject to verification.",
+      mapTitle: "Mulberry Place 2 Location Map",
+      mapText: "Use the embedded Google Map for a location reference only. Confirm routes, travel times, and viewing instructions with Luisa before visiting.",
+      mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3862.3337495493397!2d121.06340507450646!3d14.522892285954283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c8ba65934bf1%3A0xdbdfb95e72840811!2sMulberry%20Place!5e0!3m2!1sen!2sph!4v1711778455334!5m2!1sen!2sph",
+      mapUrl: "https://www.google.com/maps/search/?api=1&query=Mulberry%20Place%20Acacia%20Estates%20Taguig",
+      directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=Mulberry%20Place%20Acacia%20Estates%20Taguig"
     },
     nearbyDestinations: [
       { group: "Business & Commercial Hubs", items: ["McKinley Hill - 4 km / 15 mins", "Bonifacio Global City access for confirmation"] },
@@ -677,10 +682,14 @@ const baseProjects = [
       { title: "360 Virtual Tour", text: "Use as an external reference only; large tour media is not auto-loaded on this page." }
     ],
     videoTourTitle: "AVP and Virtual Tour",
-    videoTourCopy: "Large AVP/360 media is not auto-loaded. Ask Luisa for the approved current AVP link; the Acacia Estates virtual tour can be opened externally for reference.",
-    videoTourUrl: "https://www.dmci-online.com/virtual-community-tour/?option=Acacia",
-    videoTourNote: "AVP available upon request. Virtual tour link is external and subject to confirmation.",
-    videoRequestCtas: ["AVP available upon request", "Virtual tour available upon request"],
+    videoTourCopy: "Official AVP and virtual tour references are loaded lazily so the page stays fast. Use external tour links only as buyer references and confirm current approved materials with Luisa.",
+    videoTourEmbedUrl: "https://www.youtube.com/embed/voLKgWQalo4?rel=0",
+    videoTourUrl: "https://www.dmci-online.com/virtual-community-tour/?option=MLP",
+    videoTourLinks: [
+      { label: "Open Mulberry 360 Virtual Tour", url: "https://www.dmci-online.com/virtual-community-tour/?option=MLP", variant: "secondary" },
+      { label: "Open Acacia Estates Tour", url: "https://www.dmci-online.com/virtual-community-tour/?option=Acacia", variant: "ghost" }
+    ],
+    videoTourNote: "AVP and virtual tour links are subject to final confirmation.",
     amenityGroups: [
       { group: "Outdoor Amenities", items: ["Lap Pool", "Kiddie Pool", "Play Area", "Picnic Area", "Sky Promenade", "Sky Patio", "Jogging Path", "Landscaped Garden", "Sky Lounge"] },
       { group: "Indoor / Shared Spaces", items: ["Fitness Center", "Function Room", "Communal Areas", "Barbecue Areas"] },
@@ -715,19 +724,19 @@ const baseProjects = [
     floorPlansTitle: "Floor Plans at Mulberry Place Phase 2",
     floorPlansDescription: "Request official layout sheets and building floor plans before buyer presentation.",
     floorPlans: [
-      { title: "2 Bedroom F", text: "Mulberry Place 2 two-bedroom layout F." },
-      { title: "2 Bedroom A", text: "Mulberry Place 2 two-bedroom layout A." },
-      { title: "2 Bedroom E", text: "Mulberry Place 2 two-bedroom layout E." },
-      { title: "2 Bedroom C", text: "Mulberry Place 2 two-bedroom layout C." },
-      { title: "3 Bedroom C", text: "Mulberry Place 2 three-bedroom layout C." },
-      { title: "3 Bedroom B", text: "Mulberry Place 2 three-bedroom layout B." },
-      { title: "3 Bedroom D", text: "Mulberry Place 2 three-bedroom layout D." },
-      { title: "4 Bedroom A", text: "Mulberry Place 2 four-bedroom layout A." },
-      { title: "4 Bedroom C", text: "Mulberry Place 2 four-bedroom layout C." },
-      { title: "Paisley Building Floor Plan", text: "Paisley building floor plan reference." },
-      { title: "Shantung Building Floor Plan", text: "Shantung building floor plan reference." },
-      { title: "Taffeta Building Floor Plan", text: "Taffeta building floor plan reference." },
-      { title: "Zephyr Building Floor Plan", text: "Zephyr building floor plan reference." }
+      { title: "2 Bedroom F", text: "Mulberry Place 2 two-bedroom layout F.", src: "/assets/projects/mulberry-place-2/floorplan-2br-f.jpg" },
+      { title: "2 Bedroom A", text: "Mulberry Place 2 two-bedroom layout A.", src: "/assets/projects/mulberry-place-2/floorplan-2br-a.jpg" },
+      { title: "2 Bedroom E", text: "Mulberry Place 2 two-bedroom layout E.", src: "/assets/projects/mulberry-place-2/floorplan-2br-e.jpg" },
+      { title: "2 Bedroom C", text: "Mulberry Place 2 two-bedroom layout C.", src: "/assets/projects/mulberry-place-2/floorplan-2br-c.jpg" },
+      { title: "3 Bedroom C", text: "Mulberry Place 2 three-bedroom layout C.", src: "/assets/projects/mulberry-place-2/floorplan-3br-c-shantung.jpg" },
+      { title: "3 Bedroom B", text: "Mulberry Place 2 three-bedroom layout B.", src: "/assets/projects/mulberry-place-2/floorplan-3br-b.jpg" },
+      { title: "3 Bedroom D", text: "Mulberry Place 2 three-bedroom layout D.", src: "/assets/projects/mulberry-place-2/floorplan-3br-d.jpg" },
+      { title: "4 Bedroom A", text: "Mulberry Place 2 four-bedroom layout A.", src: "/assets/projects/mulberry-place-2/floorplan-4br-a.jpg" },
+      { title: "4 Bedroom C", text: "Mulberry Place 2 four-bedroom layout C.", src: "/assets/projects/mulberry-place-2/floorplan-4br-c-shantung.jpg" },
+      { title: "Paisley Building Floor Plan", text: "Paisley building floor plan reference.", src: "/assets/projects/mulberry-place-2/floorplan-paisley-6th.jpg" },
+      { title: "Shantung Building Floor Plan", text: "Shantung building floor plan reference.", src: "/assets/projects/mulberry-place-2/floorplan-shantung-7th.jpg" },
+      { title: "Taffeta Building Floor Plan", text: "Taffeta building floor plan reference.", src: "/assets/projects/mulberry-place-2/floorplan-taffeta.jpg" },
+      { title: "Zephyr Building Floor Plan", text: "Zephyr building floor plan reference.", src: "/assets/projects/mulberry-place-2/floorplan-zephyr.jpg" }
     ],
     paymentTerms: {
       title: "Payment Term Options and Sample Computation",
@@ -784,7 +793,7 @@ const baseProjects = [
     landArea: "28,607 sqm.",
     address: "Banyan Road, Acacia Estates, Taguig City",
     unitTypes: ["2BR", "3BR", "4BR"],
-    assetStatus: "official-assets-needed",
+    assetStatus: "complete",
     contentLevel: "rich",
     contentStatus: "full customer-ready detail added",
     targetRfo: "Andea June 2024; Manzuria September 2024; Oregon March 2025; Sylvan December 2025",
@@ -803,9 +812,11 @@ const baseProjects = [
     buildingFeatures: ["4 Buildings", "18 Storeys", "1,515 Units", "1,217 Parking Slots", "Card-operated laundry", "Convenience Store", "Water Station", "Guarded gate and entrance", "24-hour roving personnel", "Taxi call-in service"],
     nearbyLandmarks: ["SM Savemore (500 m / 3 mins)", "Grace Mall (1.5 km / 5 mins)", "Vista Mall (3.3 km / 8 mins)", "SM Aura (3.8 km / 8 mins)", "Venice Grand Canal Mall (4.1 km / 10 mins)", "Market! Market! (4.6 km / 11 mins)", "International School Manila (6.1 km / 12 mins)"],
     sourceUrl: "https://www.dmci-online.com/alder-residences-dmci-taguig/",
+    locationMapImage: "/assets/projects/alder-residences/location-map.jpg",
     mapCoordinates: [14.5199, 121.0627],
     mapZoom: 15,
     mapPinNote: "Map pin is approximate and for reference only.",
+    galleryLabels: ["Alder Residences Amenity View", "Alder Residences Basketball Court", "Alder Residences Lap Pool", "Alder Residences Leisure Pool", "Alder Residences Site Development Plan"],
     projectFacts: [
       { label: "Location", value: "Banyan Road, Acacia Estates, Taguig City" },
       { label: "Lot Area", value: "28,607 sqm" },
@@ -830,7 +841,12 @@ const baseProjects = [
       title: "Prime Location of Alder Residences",
       text: "Alder Residences is situated at Banyan Road, Acacia Estates, Taguig City, with access to C5 Road and proximity to commercial hubs such as SM Aura, Bonifacio High Street, and Market! Market!.",
       exactAddress: "Banyan Road, Acacia Estates, Taguig City",
-      note: "Travel times, distances, and map pins are approximate and subject to verification."
+      note: "Travel times, distances, and map pins are approximate and subject to verification.",
+      mapTitle: "Alder Residences Location Map",
+      mapText: "Use the embedded Google Map for a location reference only. Confirm routes, travel times, and viewing instructions with Luisa before visiting.",
+      mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3862.3689859329224!2d121.06664211372616!3d14.520874289853218!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c98ff5291a17%3A0xb27a801f407ea74f!2sAlder%20Residences!5e0!3m2!1sen!2sph!4v1598622371430!5m2!1sen!2sph",
+      mapUrl: "https://www.google.com/maps/search/?api=1&query=Alder%20Residences%20Banyan%20Road%20Acacia%20Estates%20Taguig",
+      directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=Alder%20Residences%20Banyan%20Road%20Acacia%20Estates%20Taguig"
     },
     nearbyDestinations: [
       { group: "Retail & Daily Needs", items: ["SM Savemore - 500 m / 3 mins", "Grace Mall - 1.5 km / 5 mins", "Vista Mall - 3.3 km / 8 mins"] },
@@ -853,10 +869,14 @@ const baseProjects = [
       { title: "360 Virtual Tour of Alder Residences", text: "Use as an external reference only; large tour media is not auto-loaded on this page." }
     ],
     videoTourTitle: "AVP and 360 Virtual Tour",
-    videoTourCopy: "Large AVP/360 media is not auto-loaded. Ask Luisa for the approved current AVP link; the Acacia Estates virtual tour can be opened externally for reference.",
-    videoTourUrl: "https://www.dmci-online.com/virtual-community-tour/?option=Acacia",
-    videoTourNote: "AVP available upon request. Virtual tour link is external and subject to confirmation.",
-    videoRequestCtas: ["AVP available upon request", "Virtual tour available upon request"],
+    videoTourCopy: "Official AVP and virtual tour references are loaded lazily so the page stays fast. Use external tour links only as buyer references and confirm current approved materials with Luisa.",
+    videoTourEmbedUrl: "https://www.youtube.com/embed/DDIe8FhqZdU?rel=0",
+    videoTourUrl: "https://www.dmci-online.com/virtual-community-tour/?option=ALD",
+    videoTourLinks: [
+      { label: "Open Alder 360 Virtual Tour", url: "https://www.dmci-online.com/virtual-community-tour/?option=ALD", variant: "secondary" },
+      { label: "Open Acacia Estates Tour", url: "https://www.dmci-online.com/virtual-community-tour/?option=Acacia", variant: "ghost" }
+    ],
+    videoTourNote: "AVP and virtual tour links are subject to final confirmation.",
     amenityGroups: [
       { group: "Indoor Amenities", items: ["Open Lounge (Ground Floor)", "Co-working Space", "Game Room", "Fitness Gym", "Entertainment Room", "Snack Bar"] },
       { group: "Outdoor Amenities", items: ["Sky Lounge", "Lap Pool", "Kiddie Pool", "Leisure Pool", "Jogging Path", "Children's Play Area", "Sky Promenade", "Linear Park", "Picnic Area"] },
@@ -881,20 +901,20 @@ const baseProjects = [
     floorPlansTitle: "Floor Plans at Alder Residences",
     floorPlansDescription: "Request official layout sheets and building floor plans before buyer presentation.",
     floorPlans: [
-      { title: "2BR A", text: "Alder Residences two-bedroom layout A." },
-      { title: "2BR B", text: "Alder Residences two-bedroom layout B." },
-      { title: "2BR C", text: "Alder Residences two-bedroom layout C." },
-      { title: "2BR D", text: "Alder Residences two-bedroom layout D." },
-      { title: "2BR E", text: "Alder Residences two-bedroom layout E." },
-      { title: "3BR A", text: "Alder Residences three-bedroom layout A, subject to reopening/waitlist." },
-      { title: "3BR B", text: "Alder Residences three-bedroom layout B, subject to reopening/waitlist." },
-      { title: "3BR C", text: "Alder Residences three-bedroom layout C, subject to reopening/waitlist." },
-      { title: "3BR D", text: "Alder Residences three-bedroom layout D, subject to reopening/waitlist." },
-      { title: "4BR A", text: "Alder Residences four-bedroom layout A, subject to reopening/waitlist." },
-      { title: "Andea Building Floor Plans", text: "Andea building floor plan reference." },
-      { title: "Manzuria Building Floor Plans", text: "Manzuria building floor plan reference." },
-      { title: "Oregon Building Floor Plans", text: "Oregon building floor plan reference." },
-      { title: "Sylvan Building Floor Plans", text: "Sylvan building floor plan reference." }
+      { title: "2BR A", text: "Alder Residences two-bedroom layout A.", src: "/assets/projects/alder-residences/floorplan-2br-a.jpg" },
+      { title: "2BR B", text: "Alder Residences two-bedroom layout B.", src: "/assets/projects/alder-residences/floorplan-2br-b.jpg" },
+      { title: "2BR C", text: "Alder Residences two-bedroom layout C.", src: "/assets/projects/alder-residences/floorplan-2br-c.jpg" },
+      { title: "2BR D", text: "Alder Residences two-bedroom layout D.", src: "/assets/projects/alder-residences/floorplan-2br-d.jpg" },
+      { title: "2BR E", text: "Alder Residences two-bedroom layout E.", src: "/assets/projects/alder-residences/floorplan-2br-e.jpg" },
+      { title: "3BR A", text: "Alder Residences three-bedroom layout A, subject to reopening/waitlist.", src: "/assets/projects/alder-residences/floorplan-3br-a.jpg" },
+      { title: "3BR B", text: "Alder Residences three-bedroom layout B, subject to reopening/waitlist.", src: "/assets/projects/alder-residences/floorplan-3br-b.jpg" },
+      { title: "3BR C", text: "Alder Residences three-bedroom layout C, subject to reopening/waitlist.", src: "/assets/projects/alder-residences/floorplan-3br-c.jpg" },
+      { title: "3BR D", text: "Alder Residences three-bedroom layout D, subject to reopening/waitlist.", src: "/assets/projects/alder-residences/floorplan-3br-d.jpg" },
+      { title: "4BR A", text: "Alder Residences four-bedroom layout A, subject to reopening/waitlist.", src: "/assets/projects/alder-residences/floorplan-4br-a.jpg" },
+      { title: "Andea Building Floor Plans", text: "Andea building floor plan reference.", src: "/assets/projects/alder-residences/floorplan-2nd.jpg" },
+      { title: "Manzuria Building Floor Plans", text: "Manzuria building floor plan reference.", src: "/assets/projects/alder-residences/floorplan-5th-7th.jpg" },
+      { title: "Oregon Building Floor Plans", text: "Oregon building floor plan reference.", src: "/assets/projects/alder-residences/floorplan-14th.jpg" },
+      { title: "Sylvan Building Floor Plans", text: "Sylvan building floor plan reference.", src: "/assets/projects/alder-residences/floorplan-17th.jpg" }
     ],
     paymentTerms: {
       title: "Payment Terms at Alder Residences",
