@@ -91,16 +91,22 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
 }
 
 function matches(project, filters) {
-  const search = String(filters.search || "").toLowerCase();
+  const search = normalizeFilterValue(filters.search);
+  const projectLocation = normalizeFilterValue(project.location);
+  const locationFilter = normalizeFilterValue(filters.location);
   return (
-    (!search || `${project.name} ${project.location}`.toLowerCase().includes(search)) &&
-    (!filters.location || project.location === filters.location) &&
+    (!search || normalizeFilterValue(`${project.name} ${project.location}`).includes(search)) &&
+    (!locationFilter || projectLocation === locationFilter) &&
     (!filters.status || project.status === filters.status) &&
     (!filters.turnoverYear || project.turnoverYear === filters.turnoverYear) &&
     (!filters.unitType || project.unitTypes.includes(filters.unitType)) &&
     (!filters.propertyType || project.propertyType === filters.propertyType) &&
     (!filters.purpose || project.purposeTags.includes(filters.purpose))
   );
+}
+
+function normalizeFilterValue(value) {
+  return String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 }
 
 function sortProjects(items, sort) {

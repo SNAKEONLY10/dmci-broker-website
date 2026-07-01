@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getResponsiveImage } from "../utils/responsiveImages";
 
 export function ImagePlaceholder({ label = "Property preview", src, compact = false, variant = "card" }) {
   const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    setFailed(false);
+  }, [src]);
+
   if (src && !failed) {
     const responsive = getResponsiveImage(src, variant);
     const img = (
@@ -13,6 +18,7 @@ export function ImagePlaceholder({ label = "Property preview", src, compact = fa
         loading={variant === "hero" ? "eager" : "lazy"}
         decoding="async"
         fetchpriority={variant === "hero" ? "high" : undefined}
+        onLoad={() => setFailed(false)}
         onError={() => setFailed(true)}
       />
     );
