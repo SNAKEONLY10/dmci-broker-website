@@ -18,11 +18,11 @@ Asset convention checked:
 ## Summary
 
 - Active approved projects: 18
-- Complete core image sets: 13
+- Complete core image sets: 16
 - Partial asset sets: 0
-- Official assets needed: 5
+- Official assets needed: 2
 - Brochures currently present: 0
-- Content status: all 18 updated with reference-only broker copy and official DMCI Homes source URLs.
+- Content status: 14 projects now have rich customer-ready reference pages; the remaining approved listings keep reference-only broker copy and official DMCI Homes source URLs.
 - The Oriana content status: full customer-ready detail added, no missing unit rows after QA.
 - One Delta Terraces content status: full customer-ready detail added, no missing unit rows after QA.
 - Mulberry Place 2 content status: full customer-ready detail added from supplied Phase 2 reference, with complete unit rows and payment details.
@@ -51,11 +51,11 @@ Asset convention checked:
 | 9 | Kai Garden Residences | `kai-garden-residences` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + YouTube media link | `complete` | `full customer-ready detail added, Drive/official assets optimized` | [DMCI Online](https://www.dmci-online.com/kai-garden-residences-mandaluyong/) |
 | 10 | Mulberry Place 2 | `mulberry-place` | Present via `mulberry-place-2` | Present via `mulberry-place-2` | 3/3 present via `mulberry-place-2` + floorplans | Present via `mulberry-place-2` | Present via `mulberry-place-2` | Embedded Google map + YouTube/360 media links | `complete` | `full customer-ready detail added; no missing unit rows; Google Maps iframe; YouTube AVP embed; virtual tour links` | [DMCI Online](https://www.dmci-online.com/mulberry-place-dmci-taguig/) |
 | 11 | Alder Residences | `alder-residences` | Present | Present | 3/3 present + floorplans | Present | Present | Embedded Google map + YouTube/360 media links | `complete` | `full customer-ready detail added; 2BR rows complete; 3BR/4BR waitlist details; Google Maps iframe; YouTube AVP embed; virtual tour links` | [DMCI Online](https://www.dmci-online.com/alder-residences-dmci-taguig/) |
-| 12 | The Aston Place | `the-aston-place` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/the-aston-place) |
-| 13 | The Camden Place | `the-camden-place` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/the-camden-place) |
+| 12 | The Aston Place | `the-aston-place` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + approved visual media note | `complete` | `full customer-ready detail added, official assets optimized` | [DMCI Online](https://www.dmci-online.com/aston-place-dmci-pasay/) |
+| 13 | The Camden Place | `the-camden-place` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + YouTube media link | `complete` | `full customer-ready detail added, official assets optimized` | [DMCI Online](https://www.dmci-online.com/the-camden-place-manila/) |
 | 14 | The Atherton | `the-atherton` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/the-atherton) |
 | 15 | Calathea Place | `calathea-place` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/calathea-place) |
-| 16 | Sonora Garden Residences | `sonora-garden-residences` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/sonora-garden-residences) |
+| 16 | Sonora Garden Residences | `sonora-garden-residences` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + YouTube/virtual tour media links | `complete` | `full customer-ready detail added, official assets optimized` | [DMCI Online](https://www.dmci-online.com/sonora-garden-residences/) |
 | 17 | Moncello Crest | `moncello-crest` | Present | Present | 3/3 present | Present | Present | Missing | `complete` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/moncello-crest) |
 | 18 | Solmera Coast | `solmera-coast` | Present | Present | 3/3 present | Present | Present | Missing | `complete` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/solmera-coast) |
 
@@ -107,6 +107,14 @@ Asset convention checked:
 - Kai Drive supplied logo assets; official DMCI Online imagery supplied the complete hero, gallery, site development, site progress, floor plan, turnover finish, YouTube AVP, and Google Maps references.
 - Official project images were compressed into local JPG/PNG plus WebP variants under `public/assets/projects/sage-residences` and `public/assets/projects/kai-garden-residences`.
 - No verified Kai-specific 360-tour link was found in the available KGR Drive folder or official Kai page during this update, so Kai links only to the verified AVP and map.
+
+### Manila, Pasay, and Las Pinas Rich Page Update
+
+- DMCI Online official pages were used for The Camden Place, The Aston Place, and Sonora Garden Residences after Drive searches did not return matching project asset folders.
+- Official project images were compressed into local JPG/PNG plus WebP variants under `public/assets/projects/the-camden-place`, `public/assets/projects/the-aston-place`, and `public/assets/projects/sonora-garden-residences`.
+- The Camden Place has an embedded Google map and verified YouTube AVP from the official page.
+- The Aston Place has an embedded Google map and complete official visual references; no verified official YouTube AVP was found on the official page during this update, so the page requests the approved AVP/link from Luisa instead of embedding a third-party walkthrough.
+- Sonora Garden Residences has an embedded Google map, verified YouTube AVP, and official virtual community tour link.
 
 ## Non-Approved Asset Folders Still On Disk
 

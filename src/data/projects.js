@@ -4,6 +4,7 @@ import { oneDeltaTerracesDetails } from "./oneDeltaTerracesDetails.js";
 import { cameronResidencesDetails } from "./cameronResidencesDetails.js";
 import { valeronTowerDetails, allegraGardenPlaceDetails, prismaResidencesDetails } from "./pasigProjectDetails.js";
 import { sageResidencesDetails, kaiGardenResidencesDetails } from "./mandaluyongProjectDetails.js";
+import { theAstonPlaceDetails, theCamdenPlaceDetails, sonoraGardenResidencesDetails } from "./metroProjectDetails.js";
 
 // Official/client asset convention:
 // public/assets/projects/[project-slug]/hero.jpg
@@ -981,7 +982,8 @@ const baseProjects = [
     amenities: ["24-hour Security", "Convenience Store", "Fitness Gym", "Game Area", "Gazebo/ Cabana", "Kiddie Pool", "Lap Pool", "Laundry Station", "Lounge Pool", "Lounge Area", "Main Entrance Gate", "Perimeter Fence"],
     buildingFeatures: ["24-hour Security", "Main Entrance Gate", "Perimeter Fence", "Laundry Station", "Convenience Store", "Building and parking details for confirmation"],
     nearbyLandmarks: ["Dominga St.", "Pasay City", "Nearby city services and transport for confirmation", "Site viewing route for buyer verification"],
-    sourceUrl: "https://www.dmcihomes.com/the-aston-place"
+    sourceUrl: "https://www.dmcihomes.com/the-aston-place",
+    ...theAstonPlaceDetails
   },
   {
     slug: "the-camden-place",
@@ -1008,7 +1010,8 @@ const baseProjects = [
     amenities: ["Reception Lobby", "Lounge Area", "Snack Bar", "Elevator Lobby", "Sky Deck Pool", "Sky Promenade", "Sky Lounge", "24-hour Security", "Alfresco", "All-Day Dining Restaurant", "Amenity Core", "Arrival Court"],
     buildingFeatures: ["Reception Lobby", "Elevator Lobby", "Sky Promenade", "Sky Lounge", "24-hour Security", "Arrival Court"],
     nearbyLandmarks: ["Dominga St.", "Malate, Manila", "Nearby city services and institutions for confirmation", "Site viewing route for buyer verification"],
-    sourceUrl: "https://www.dmcihomes.com/the-camden-place"
+    sourceUrl: "https://www.dmcihomes.com/the-camden-place",
+    ...theCamdenPlaceDetails
   },
   {
     slug: "the-atherton",
@@ -1086,7 +1089,8 @@ const baseProjects = [
     amenities: ["24-hour Security", "Basketball Court/Playcourt", "Children's Play Area", "Convenience Store", "Entertainment Room", "Fitness Gym", "Function Hall", "Game Area", "Gazebo/ Cabana", "Grill Pits", "Jogging/ Biking Path", "Kiddie Pool"],
     buildingFeatures: ["24-hour Security", "Function Hall", "Convenience Store", "Shared recreation rooms", "Building and parking details for confirmation"],
     nearbyLandmarks: ["Alabang-Zapote Road", "Talon Tres, Las Pinas", "Southern Metro Manila access for confirmation", "Nearby daily services for buyer verification"],
-    sourceUrl: "https://www.dmcihomes.com/sonora-garden-residences"
+    sourceUrl: "https://www.dmcihomes.com/sonora-garden-residences",
+    ...sonoraGardenResidencesDetails
   },
   {
     slug: "moncello-crest",
