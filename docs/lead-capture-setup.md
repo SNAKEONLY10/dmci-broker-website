@@ -175,6 +175,8 @@ Expected delivery failure when Resend rejects the request:
 }
 ```
 
+This response intentionally uses HTTP 200 with `ok:false` so the frontend can show an honest delivery error without creating a noisy browser failed-resource console entry. Vercel Function logs still record the provider failure for debugging.
+
 ## Vercel Testing
 
 After setting env vars:

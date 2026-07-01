@@ -53,7 +53,7 @@ export default async function handler(req, res) {
 
   if (!delivered) {
     console.error("Lead delivery failed", results.map((result) => result.reason?.message || "Unknown error"));
-    res.status(502).json({
+    res.status(200).json({
       ok: false,
       code: "lead_delivery_failed",
       message: "Your inquiry could not be delivered right now. Please contact Luisa directly using the contact details on this page."
