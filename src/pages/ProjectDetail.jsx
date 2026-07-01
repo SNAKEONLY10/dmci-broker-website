@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Badge } from "../components/Badge";
 import { Button } from "../components/Button";
@@ -959,14 +959,33 @@ function ZoomableProjectImage({ image, compact = false, onOpen }) {
 }
 
 function ImageLightbox({ image, onClose }) {
+  useEffect(() => {
+    if (!image) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") onClose();
+    };
+    const previousOverflow = document.body.style.overflow;
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [image, onClose]);
+
   if (!image) return null;
+
+  const lightboxVariant = image.variant || "gallery";
 
   return (
     <div className="image-lightbox" role="dialog" aria-modal="true" aria-label={image.label}>
       <button className="image-lightbox-backdrop" type="button" aria-label="Close image preview" onClick={onClose} />
       <div className="image-lightbox-panel">
         <button className="image-lightbox-close" type="button" aria-label="Close zoomed image" onClick={onClose}>X</button>
-        <ImagePlaceholder src={image.src} label={image.label} variant="hero" />
+        <ImagePlaceholder src={image.src} label={image.label} variant={lightboxVariant} />
         <p>{image.label}</p>
       </div>
     </div>
@@ -1005,7 +1024,7 @@ function MediaEmbed({ title, src }) {
         title={title}
         src={src}
         loading="lazy"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
       />
     </div>

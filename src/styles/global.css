@@ -423,7 +423,10 @@ textarea { resize: vertical; }
 .project-hero-copy { padding: clamp(20px, 3vw, 30px); border: 1px solid rgba(201,162,74,0.18); border-radius: 20px; background: rgba(255,255,255,0.88); box-shadow: var(--shadow); backdrop-filter: blur(14px); }
 .price-panel { border-radius: 16px; background: linear-gradient(135deg, #fff8e8, #ffffff); }
 .project-facts span, .spec-grid div { border-radius: 14px; background: linear-gradient(180deg, #ffffff, #f7fbfd); }
-.detail-section { border-radius: 18px; background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,253,248,0.98)); }
+.detail-section { position: relative; overflow: hidden; border-radius: 18px; background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,253,248,0.98)); transition: border-color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease; }
+.detail-section::before { content: ""; position: absolute; inset: 0 auto auto 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--gold), rgba(201,162,74,0.18), transparent); transform: scaleX(0); transform-origin: left; transition: transform 0.72s cubic-bezier(0.22, 1, 0.36, 1); }
+.detail-section.is-visible::before { transform: scaleX(1); }
+.detail-section > * { position: relative; z-index: 1; }
 .detail-section:nth-child(even) { background: linear-gradient(180deg, #f8fbfd, #ffffff); }
 .detail-section h2 { max-width: 760px; }
 .split-placeholder .image-placeholder, .split-placeholder .image-cover, .split-placeholder .image-picture, .gallery-grid .image-placeholder, .gallery-grid .image-cover, .gallery-grid .image-picture { border-radius: 14px; }
@@ -506,7 +509,7 @@ textarea { resize: vertical; }
 }
 
 .reveal-enabled [data-reveal="section"] {
-  transform: translate3d(0, 16px, 0);
+  transform: translate3d(0, 22px, 0) scale(0.992);
 }
 
 .reveal-enabled [data-reveal].is-visible {
@@ -518,6 +521,35 @@ textarea { resize: vertical; }
 .reveal-enabled [data-reveal="card"].is-visible .project-image::before {
   transform: translateX(58%);
 }
+
+.reveal-enabled .detail-section.is-visible :is(
+  .rich-fact-grid > div,
+  .mini-stat-grid > div,
+  .pricing-card,
+  .info-card,
+  .grouped-list-card,
+  .view-card,
+  .floor-plan-card,
+  .payment-card,
+  .promo-card,
+  .sample-computation-card,
+  .unit-section-card,
+  .oriana-unit-detail,
+  .unit-holding-card,
+  .reservation-checklist,
+  .address-card,
+  .location-map-card,
+  .site-development-card,
+  .video-tour-card,
+  .rich-table-wrap
+) {
+  animation: detailCardRise 0.54s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.reveal-enabled .detail-section.is-visible :is(.pricing-card, .info-card, .grouped-list-card, .view-card, .floor-plan-card, .payment-card, .promo-card, .sample-computation-card, .unit-section-card, .oriana-unit-detail, .unit-holding-card, .reservation-checklist):nth-child(2) { animation-delay: 45ms; }
+.reveal-enabled .detail-section.is-visible :is(.pricing-card, .info-card, .grouped-list-card, .view-card, .floor-plan-card, .payment-card, .promo-card, .sample-computation-card, .unit-section-card, .oriana-unit-detail, .unit-holding-card, .reservation-checklist):nth-child(3) { animation-delay: 90ms; }
+.reveal-enabled .detail-section.is-visible :is(.pricing-card, .info-card, .grouped-list-card, .view-card, .floor-plan-card, .payment-card, .promo-card, .sample-computation-card, .unit-section-card, .oriana-unit-detail, .unit-holding-card, .reservation-checklist):nth-child(4) { animation-delay: 135ms; }
+.reveal-enabled .detail-section.is-visible :is(.pricing-card, .info-card, .grouped-list-card, .view-card, .floor-plan-card, .payment-card, .promo-card, .sample-computation-card, .unit-section-card, .oriana-unit-detail, .unit-holding-card, .reservation-checklist):nth-child(n + 5) { animation-delay: 165ms; }
 
 .project-grid {
   animation: pageGridSettle 0.22s ease both;
@@ -566,7 +598,22 @@ textarea { resize: vertical; }
   .project-card:hover,
   .info-card:hover,
   .location-card:hover,
-  .tour-card:hover {
+  .tour-card:hover,
+  .pricing-card:hover,
+  .address-card:hover,
+  .site-development-card:hover,
+  .video-tour-card:hover,
+  .unit-section-card:hover,
+  .payment-card:hover,
+  .unit-holding-card:hover,
+  .reservation-checklist:hover,
+  .floor-plan-card:hover,
+  .grouped-list-card:hover,
+  .view-card:hover,
+  .promo-card:hover,
+  .sample-computation-card:hover,
+  .oriana-unit-detail:hover,
+  .zoomable-image:hover {
     transform: none;
   }
 
@@ -611,6 +658,21 @@ textarea { resize: vertical; }
 @keyframes pageGridSettle {
   from { opacity: 0.96; transform: translateY(4px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes detailCardRise {
+  from { opacity: 0; transform: translate3d(0, 10px, 0) scale(0.992); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes lightboxFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes lightboxPanelIn {
+  from { opacity: 0; transform: translateY(12px) scale(0.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2453,6 +2515,51 @@ textarea {
   box-shadow: 0 14px 34px rgba(14, 39, 66, 0.045);
 }
 
+.pricing-card,
+.address-card,
+.site-development-card,
+.video-tour-card,
+.unit-section-card,
+.payment-card,
+.unit-holding-card,
+.reservation-checklist,
+.floor-plan-card,
+.grouped-list-card,
+.view-card,
+.promo-card,
+.sample-computation-card,
+.oriana-unit-detail {
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .detail-section:hover {
+    border-color: rgba(201,162,74,0.24);
+    box-shadow: 0 18px 52px rgba(15,39,66,0.08);
+  }
+
+  :is(
+    .pricing-card,
+    .address-card,
+    .site-development-card,
+    .video-tour-card,
+    .unit-section-card,
+    .payment-card,
+    .unit-holding-card,
+    .reservation-checklist,
+    .floor-plan-card,
+    .grouped-list-card,
+    .view-card,
+    .promo-card,
+    .sample-computation-card,
+    .oriana-unit-detail
+  ):hover {
+    transform: translateY(-3px);
+    border-color: rgba(201,162,74,0.28);
+    box-shadow: 0 22px 54px rgba(15,39,66,0.1);
+  }
+}
+
 .address-card {
   display: grid;
   gap: 4px;
@@ -2863,6 +2970,7 @@ textarea {
   background: #071a2d;
   cursor: zoom-in;
   text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .project-hero-media > .zoomable-image {
@@ -2907,6 +3015,13 @@ textarea {
   transform: scale(1.015);
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .zoomable-image:hover {
+    border-color: rgba(201,162,74,0.42);
+    box-shadow: 0 24px 60px rgba(7,26,45,0.18);
+  }
+}
+
 .image-lightbox {
   position: fixed;
   inset: 0;
@@ -2914,6 +3029,7 @@ textarea {
   display: grid;
   place-items: center;
   padding: clamp(12px, 3vw, 28px);
+  animation: lightboxFadeIn 0.18s ease both;
 }
 
 .image-lightbox-backdrop {
@@ -2939,24 +3055,33 @@ textarea {
   border-radius: 0;
   background: transparent;
   box-shadow: none;
+  animation: lightboxPanelIn 0.24s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .image-lightbox-panel .image-placeholder,
 .image-lightbox-panel .image-cover,
 .image-lightbox-panel .image-picture {
   width: 100%;
+  height: min(84vh, 780px);
   max-height: min(84vh, 780px);
   min-height: 0;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: auto;
   border-radius: 18px;
   overflow: hidden;
   object-fit: contain;
+  background: #071a2d;
   box-shadow: 0 28px 86px rgba(0, 0, 0, 0.38);
 }
 
 .image-lightbox-panel .image-cover {
-  background: transparent;
   object-fit: contain;
+}
+
+.image-lightbox-panel .image-picture > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #071a2d;
 }
 
 .image-lightbox-panel p {
@@ -3818,8 +3943,9 @@ textarea {
   .image-lightbox-panel .image-placeholder,
   .image-lightbox-panel .image-cover,
   .image-lightbox-panel .image-picture {
+    height: min(78vh, 680px);
     max-height: 78vh;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: auto;
     border-radius: 16px;
   }
 

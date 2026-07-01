@@ -47,7 +47,7 @@ export function getResponsiveImage(src, variant = "card") {
   const [, slug, fileName] = match;
   if (!optimizedProjectSlugs.has(slug)) return null;
 
-  const normalizedVariant = variant === "card" ? "thumbnail" : variant;
+  const normalizedVariant = normalizeResponsiveVariant(fileName, variant);
   const widths = widthMap[normalizedVariant] || widthMap.gallery;
   const sizes = sizesMap[variant] || sizesMap[normalizedVariant] || sizesMap.gallery;
 
@@ -55,4 +55,15 @@ export function getResponsiveImage(src, variant = "card") {
     srcSet: widths.map((width) => `/assets/projects/${slug}/${fileName}-${width}.webp ${width}w`).join(", "),
     sizes
   };
+}
+
+function normalizeResponsiveVariant(fileName, variant) {
+  if (variant === "card") return "thumbnail";
+
+  const normalizedFileName = fileName.toLowerCase();
+  if (variant === "hero" && normalizedFileName !== "hero") {
+    return normalizedFileName === "thumbnail" ? "thumbnail" : "gallery";
+  }
+
+  return variant;
 }
