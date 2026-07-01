@@ -36,7 +36,7 @@ export default function CityProjects() {
           <div className="listing-hero-card">
             <strong>Latest details required</strong>
             <p>Prices, promos, unit cuts, payment terms, and availability can change. Ask Luisa to verify the current details for this location.</p>
-            <Button to="/request-computation" variant="secondary">Request Computation</Button>
+            <Button to={`/request-computation?location=${encodeURIComponent(city.name)}`} variant="secondary">Request Computation</Button>
           </div>
         </div>
 

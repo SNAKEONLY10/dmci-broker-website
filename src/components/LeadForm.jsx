@@ -19,6 +19,7 @@ const defaults = {
 
 const previewMessage = "Preview mode: your inquiry was saved locally for testing. Email/CRM delivery is not connected yet.";
 const deliveredMessage = "Your inquiry has been submitted. Luisa or her team will contact you after details are confirmed.";
+const sendErrorMessage = "We could not send your inquiry right now. Please try again or contact Luisa directly.";
 const messageLimit = 1500;
 
 export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, initialValues = {}, required = [], inquiryType = "general" }) {
@@ -71,7 +72,7 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
         return;
       }
 
-      if (data?.previewOnly || data?.code === "lead_delivery_not_configured" || (!data && (response.status === 404 || contentType.includes("text/html")))) {
+      if (data?.previewOnly || data?.code === "delivery_not_configured" || data?.code === "lead_delivery_not_configured" || (!data && (response.status === 404 || contentType.includes("text/html")))) {
         saveSubmission(storageKey, payload);
         setNotice({ type: "success", text: previewMessage });
         setValues({ ...defaults, ...initialValues });
@@ -81,7 +82,7 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
       if (data?.errors) {
         setErrors(data.errors);
       }
-      setNotice({ type: "error", text: data?.message || "Your inquiry was not delivered. Please contact Luisa directly using the contact details on this page." });
+      setNotice({ type: "error", text: data?.message || sendErrorMessage });
     } catch {
       saveSubmission(storageKey, payload);
       setNotice({ type: "success", text: previewMessage });
@@ -113,8 +114,9 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
         <p className="form-note full">Submissions are sent through a secure backend endpoint when email/CRM credentials are configured. If delivery is not configured, the form clearly falls back to local preview storage only. See the <a href="/privacy-policy">Privacy Policy</a>.</p>
         {errors.consent && <small className="error full">{errors.consent}</small>}
       </div>
-      {notice && <div className={`${notice.type}-message`} role="status">{notice.text}</div>}
-      <Button type="submit" className="form-submit" disabled={status === "submitting"}>
+      <p className="form-trust-note">Luisa reviews inquiry details before sharing computations or availability. No reservation decision should be made until project details are confirmed.</p>
+      {notice && <div className={`${notice.type}-message`} role={notice.type === "error" ? "alert" : "status"}>{notice.text}</div>}
+      <Button type="submit" className="form-submit" disabled={status === "submitting"} aria-live="polite" aria-label={status === "submitting" ? "Sending inquiry" : undefined}>
         {status === "submitting" ? "Sending..." : submitLabel}
       </Button>
     </form>
@@ -193,7 +195,7 @@ function Field({ field, value, onChange, error, required }) {
     name: field.name,
     value,
     onChange,
-    placeholder: field.placeholder || "",
+    placeholder: field.placeholder || placeholderFor(field),
     required,
     "aria-invalid": Boolean(error),
     "aria-describedby": error ? errorId : undefined
@@ -214,4 +216,17 @@ function Field({ field, value, onChange, error, required }) {
       {error && <small id={errorId} className="error">{error}</small>}
     </div>
   );
+}
+
+function placeholderFor(field) {
+  const placeholders = {
+    fullName: "Juan Dela Cruz",
+    contactNumber: "0998 865 8902",
+    email: "buyer@example.com",
+    message: "Share your preferred unit, timing, budget range, or questions.",
+    preferredDate: "Select preferred date",
+    preferredTime: "Select preferred time",
+    guests: "Number of guests"
+  };
+  return placeholders[field.name] || "";
 }

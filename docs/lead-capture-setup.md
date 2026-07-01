@@ -9,11 +9,13 @@ The production-ready path is email delivery first, with an optional webhook for 
 - Email: Resend API from the backend function.
 - Google Sheets or CRM: secure webhook from the backend function.
 - Both can be enabled at the same time.
-- If no delivery provider is configured, the endpoint returns `ok:false`, `lead_delivery_not_configured`, and `previewOnly:true`; the UI falls back to local preview storage only.
+- If no delivery provider is configured, the endpoint returns `ok:false`, `delivery_not_configured`, and `previewOnly:true`; the UI falls back to local preview storage only.
 
 ## Required Environment Variables
 
 Set these in Vercel Project Settings -> Environment Variables.
+
+Never commit API keys or secrets to GitHub, docs, screenshots, code comments, or route inventories. Environment variables that are not prefixed with `VITE_` stay server-side for `/api/leads`; frontend code must never receive the Resend API key.
 
 ### Email Delivery
 
@@ -29,10 +31,19 @@ Optional:
 
 ```text
 LEAD_EMAIL_REPLY_TO=mrcorral@dmcihomes.com
-LEAD_EMAIL_SUBJECT_PREFIX=DMCI Broker Lead
+LEAD_EMAIL_SUBJECT_PREFIX=[DMCI Broker Lead]
 ```
 
-`LEAD_EMAIL_FROM` must use a sender domain verified in Resend.
+`LEAD_EMAIL_FROM` must use a sender domain verified in Resend. Do not use `mrcorral@dmcihomes.com` as the sender unless `dmcihomes.com` is verified in Resend and legally/technically allowed. Use `mrcorral@dmcihomes.com` as `LEAD_EMAIL_TO` and as fallback reply-to.
+
+Safe sender examples after domain verification:
+
+```text
+LEAD_EMAIL_FROM=DMCI Broker Leads <leads@luisacorralproperties.com>
+LEAD_EMAIL_FROM=DMCI Broker Leads <inquiries@luisacorralproperties.com>
+```
+
+If no verified sender domain exists yet, leave email delivery unconfigured. The website will show the preview/local fallback message and will not claim the lead was sent.
 
 ### Webhook Delivery
 
@@ -74,6 +85,35 @@ The frontend posts this normalized lead payload:
 
 The backend generates the final `referenceId` and server `submittedAt`.
 
+## Add Env Vars in Vercel Dashboard
+
+1. Open the Vercel project.
+2. Go to Settings -> Environment Variables.
+3. Add each variable under Production. Add Preview/Development too only if you need test deployments or `vercel dev` to use the same delivery path.
+4. Redeploy after changing env vars.
+5. Submit a test lead and check both the inbox and Vercel Function logs.
+
+## Add Env Vars with Vercel CLI
+
+Use the CLI only with a rotated key that has not been pasted into chat or committed anywhere.
+
+```bash
+vercel env add RESEND_API_KEY production --sensitive
+vercel env add LEAD_EMAIL_FROM production
+vercel env add LEAD_EMAIL_TO production
+vercel env add LEAD_EMAIL_REPLY_TO production
+vercel env add LEAD_EMAIL_SUBJECT_PREFIX production
+```
+
+For local testing with Vercel Functions:
+
+```bash
+vercel env pull .env.local --yes
+vercel dev
+```
+
+Do not commit `.env.local`.
+
 ## Validation
 
 Both the frontend and backend validate:
@@ -108,7 +148,7 @@ Expected without env vars:
 ```json
 {
   "ok": false,
-  "code": "lead_delivery_not_configured",
+  "code": "delivery_not_configured",
   "previewOnly": true
 }
 ```
@@ -122,6 +162,16 @@ Expected with valid email or webhook env vars:
   "ok": true,
   "referenceId": "...",
   "deliveredTo": ["email"]
+}
+```
+
+Expected delivery failure when Resend rejects the request:
+
+```json
+{
+  "ok": false,
+  "code": "lead_delivery_failed",
+  "message": "Your inquiry could not be delivered right now. Please contact Luisa directly using the contact details on this page."
 }
 ```
 
@@ -144,7 +194,9 @@ Preview mode: your inquiry was saved locally for testing. Email/CRM delivery is 
 
 ## Fallback Behavior
 
-If `/api/leads` is missing, unavailable, or reports `lead_delivery_not_configured`, the form saves to localStorage and shows a preview-only message.
+If `/api/leads` is missing, unavailable, or reports `delivery_not_configured`, the form saves to localStorage and shows a preview-only message.
+
+The current frontend recognizes both `delivery_not_configured` and the older `lead_delivery_not_configured` code for compatibility.
 
 If a provider is configured but delivery fails, the form does not show a fake success. It shows an error and tells the buyer to contact Luisa directly.
 
@@ -155,3 +207,20 @@ If a provider is configured but delivery fails, the form does not show a fake su
 - Google Sheets delivery requires a secure webhook or Apps Script endpoint owned by the broker/client.
 - There is no admin dashboard yet.
 - Spam protection is a basic honeypot only; add CAPTCHA or rate limiting later if spam starts.
+
+## Troubleshooting Resend
+
+- `403` or domain errors: verify the sender domain in Resend and confirm `LEAD_EMAIL_FROM` uses that verified domain.
+- No email arrived: check spam, Resend dashboard logs, and Vercel Function logs for `/api/leads`.
+- Reply-to looks wrong: confirm the buyer supplied an email; otherwise the endpoint falls back to `LEAD_EMAIL_REPLY_TO`.
+- Production still shows preview mode: confirm `RESEND_API_KEY`, `LEAD_EMAIL_FROM`, and `LEAD_EMAIL_TO` exist in the Production environment and redeploy.
+- Resend API key was pasted into chat or exposed: revoke it in Resend, generate a new key, update Vercel env vars, and redeploy.
+
+## Rotate API Keys
+
+1. Create a new Resend API key.
+2. Add the new key to Vercel as `RESEND_API_KEY`.
+3. Redeploy and submit a test lead.
+4. Confirm the test email arrives.
+5. Revoke the old key in Resend.
+6. Never paste the new key into chat, docs, screenshots, or GitHub.

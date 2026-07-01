@@ -16,14 +16,14 @@ import { useResponsiveProjectPageSize } from "../hooks/useResponsiveProjectPageS
 
 const computationFields = [
   { name: "fullName", label: "Full Name" },
-  { name: "contactNumber", label: "Contact Number", type: "tel" },
-  { name: "email", label: "Email", type: "email" },
-  { name: "location", label: "Preferred Location", options: locations.map((item) => item.name) },
-  { name: "project", label: "Preferred Project", options: projects.map((item) => item.name) },
+  { name: "contactNumber", label: "Mobile / Viber", type: "tel" },
+  { name: "email", label: "Email Address", type: "email" },
+  { name: "location", label: "City / Location", options: locations.map((item) => item.name) },
+  { name: "project", label: "Interested Project", options: projects.map((item) => item.name) },
   { name: "unitType", label: "Unit Type", options: unitTypes },
   { name: "budgetRange", label: "Budget Range", options: ["Still checking", "Entry level", "Mid range", "Premium range"] },
   { name: "purpose", label: "Purpose", options: purposes },
-  { name: "contactMethod", label: "Preferred Contact Method", options: ["Viber", "Call", "Email"] },
+  { name: "contactMethod", label: "Preferred Contact Method", options: ["Call", "Viber", "Email", "SMS"] },
   { name: "message", label: "Message", type: "textarea", full: true }
 ];
 
@@ -108,7 +108,7 @@ export default function Home() {
             storageKey="dmci_leads"
             submitLabel="Send Computation Request"
             required={["fullName", "location", "project", "unitType", "budgetRange", "purpose", "contactMethod", "message"]}
-            inquiryType="computation"
+            inquiryType="Request Computation"
           />
         </div>
       </section>
@@ -173,11 +173,16 @@ function QuickSearch() {
           <p>Filter project options by location, unit type, status, purpose, and budget range.</p>
         </div>
         <div className="search-fields">
-          <select name="location" value={filters.location} onChange={update}><option value="">Preferred Location</option>{locations.map((item) => <option key={item.name}>{item.name}</option>)}</select>
-          <select name="status" value={filters.status} onChange={update}><option value="">Status</option>{statuses.map((item) => <option key={item}>{item}</option>)}</select>
-          <select name="unitType" value={filters.unitType} onChange={update}><option value="">Unit Type</option>{unitTypes.map((item) => <option key={item}>{item}</option>)}</select>
-          <select name="purpose" value={filters.purpose} onChange={update}><option value="">Purpose</option>{purposes.map((item) => <option key={item}>{item}</option>)}</select>
-          <select name="budget" value={filters.budget} onChange={update}><option value="">Budget Range</option><option>Still checking</option><option>Entry level</option><option>Mid range</option><option>Premium range</option></select>
+          <label className="sr-only" htmlFor="quick-location">Preferred Location</label>
+          <select id="quick-location" name="location" value={filters.location} onChange={update}><option value="">Preferred Location</option>{locations.map((item) => <option key={item.name}>{item.name}</option>)}</select>
+          <label className="sr-only" htmlFor="quick-status">Project Status</label>
+          <select id="quick-status" name="status" value={filters.status} onChange={update}><option value="">Status</option>{statuses.map((item) => <option key={item}>{item}</option>)}</select>
+          <label className="sr-only" htmlFor="quick-unit-type">Unit Type</label>
+          <select id="quick-unit-type" name="unitType" value={filters.unitType} onChange={update}><option value="">Unit Type</option>{unitTypes.map((item) => <option key={item}>{item}</option>)}</select>
+          <label className="sr-only" htmlFor="quick-purpose">Buyer Purpose</label>
+          <select id="quick-purpose" name="purpose" value={filters.purpose} onChange={update}><option value="">Purpose</option>{purposes.map((item) => <option key={item}>{item}</option>)}</select>
+          <label className="sr-only" htmlFor="quick-budget">Budget Range</label>
+          <select id="quick-budget" name="budget" value={filters.budget} onChange={update}><option value="">Budget Range</option><option>Still checking</option><option>Entry level</option><option>Mid range</option><option>Premium range</option></select>
         </div>
         <div className="search-result-row">
           <Button to="/projects">Find Matching Projects ({matches.length})</Button>

@@ -219,8 +219,8 @@ function RichProjectSections({ project }) {
         </div>
         {project.summaryPricingNote && <p className="safety-note">{project.summaryPricingNote}</p>}
         <div className="compact-cta-row">
-          <Button to="/request-computation">Request Latest Computation</Button>
-          <Button to="/availability" variant="secondary">Ask for Updated Units</Button>
+          <Button to={projectInquiryPath("/request-computation", project, "Computation")}>Request Latest Computation</Button>
+          <Button to={projectInquiryPath("/availability", project, "Availability")} variant="secondary">Ask for Updated Units</Button>
         </div>
       </DetailSection>
 
@@ -291,7 +291,7 @@ function RichProjectSections({ project }) {
       <DetailSection id="unit-options" eyebrow="Unit Types" title="Unit Options and Guide Ranges">
         <p className="reference-note">{project.unitIntro || "For guidance only. Unit cuts, floor areas, prices, promos, and availability can change."}</p>
         {project.unitQualityNote && <p className="safety-note">{project.unitQualityNote}</p>}
-        {project.unitSections.map((section) => <UnitSection section={section} key={section.title} />)}
+        {project.unitSections.map((section) => <UnitSection section={section} project={project} key={section.title} />)}
       </DetailSection>
 
       <DetailSection id="floor-plans" eyebrow="Floor Plans" title={project.floorPlansTitle || "Floor Plans"}>
@@ -519,7 +519,7 @@ function OrianaProjectSections({ project }) {
 
       <DetailSection id="unit-options" eyebrow="Units and Availability" title="Units and Availability: Discover Your Ideal Home at The Oriana">
         <p className="reference-note">{project.unitIntro}</p>
-        {project.unitTypeDetails.map((section) => <OrianaUnitSection section={section} key={section.title} />)}
+        {project.unitTypeDetails.map((section) => <OrianaUnitSection section={section} project={project} key={section.title} />)}
       </DetailSection>
 
       <DetailSection id="floor-plans" eyebrow="Floorplans" title={project.floorPlansTitle}>
@@ -747,7 +747,7 @@ function projectInquiryPath(path, project, inquiryType) {
   return `${path}?${params.toString()}`;
 }
 
-function UnitSection({ section }) {
+function UnitSection({ section, project }) {
   return (
     <article className="unit-section-card">
       <div className="unit-section-heading">
@@ -777,20 +777,20 @@ function UnitSection({ section }) {
                 <td data-label="Guide Range">{formatInlineGuide(row.priceRange)}</td>
                 <td data-label="Status">{row.status}</td>
                 <td data-label="Computation">{row.monthlyDp}</td>
-                <td data-label="Action"><Button to="/request-computation" variant="secondary">Request Computation</Button></td>
+                <td data-label="Action"><Button to={projectInquiryPath("/request-computation", project, "Computation")} variant="secondary">Request Computation</Button></td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
       <div className="unit-section-cta">
-        <Button to="/request-computation" variant="secondary">Request latest computation for this unit type</Button>
+        <Button to={projectInquiryPath("/request-computation", project, "Computation")} variant="secondary">Request latest computation for this unit type</Button>
       </div>
     </article>
   );
 }
 
-function OrianaUnitSection({ section }) {
+function OrianaUnitSection({ section, project }) {
   const columns = [
     { key: "type", label: "Type" },
     { key: "status", label: "Status" },
@@ -810,7 +810,7 @@ function OrianaUnitSection({ section }) {
       {section.rows.length > 0 && <AvailabilityTable columns={columns} rows={section.rows} />}
       <LabeledChips title="Layout references" items={section.labels} />
       <div className="unit-section-cta">
-        <Button to="/request-computation" variant="secondary">Request latest computation for this unit type</Button>
+        <Button to={projectInquiryPath("/request-computation", project, "Computation")} variant="secondary">Request latest computation for this unit type</Button>
       </div>
     </article>
   );
@@ -917,7 +917,7 @@ function InventoryPreview({ project }) {
           <span>{item.floorArea}</span>
           <span>{formatInlineGuide(item.indicativeRange || item.computation)}</span>
           <span>{item.status || item.availability}</span>
-          <Button to="/request-computation" variant="secondary">Request Computation</Button>
+          <Button to={projectInquiryPath("/request-computation", project, "Computation")} variant="secondary">Request Computation</Button>
         </div>
       ))}
     </div>

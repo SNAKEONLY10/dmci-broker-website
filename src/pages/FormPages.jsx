@@ -8,8 +8,8 @@ import { useSearchParams } from "react-router-dom";
 
 const projectOptions = projects.map((project) => project.name);
 const locationOptions = locations.map((location) => location.name);
-const inquiryTypes = ["Computation", "Availability", "Site viewing", "Reservation requirements", "Promo", "Resale unit", "Other"];
-const contactMethodOptions = ["Viber", "Call", "Email"];
+const inquiryTypes = ["Request Computation", "Check Availability", "Book Site Viewing", "General Inquiry"];
+const contactMethodOptions = ["Call", "Viber", "Email", "SMS"];
 
 export function Availability() {
   const initialValues = useInquiryDefaults();
@@ -24,12 +24,12 @@ export function Availability() {
     }}
   >
     <DemoForm title="Check Availability with Luisa" fields={[
-      f("fullName", "Full Name"), f("contactNumber", "Contact Number", "tel"), f("email", "Email", "email"),
-      s("project", "Preferred Project", projectOptions), s("location", "Preferred Location", locationOptions), s("unitType", "Unit Type", unitTypes),
+      f("fullName", "Full Name"), f("contactNumber", "Mobile / Viber", "tel"), f("email", "Email Address", "email"),
+      s("project", "Interested Project", projectOptions), s("location", "City / Location", locationOptions), s("unitType", "Unit Type", unitTypes),
       f("preferredSize", "Preferred Floor/Size if any"), s("budgetRange", "Budget Range", ["Still checking", "Entry level", "Mid range", "Premium range"]),
       s("paymentOption", "Payment Option", ["Cash", "In-house", "Bank Financing", "Not sure"]), s("urgency", "Urgency", ["Just checking", "This week", "Ready to reserve"]),
       s("contactMethod", "Preferred Contact Method", contactMethodOptions), t()
-    ]} storageKey="dmci_availability_requests" submitLabel="Check Availability with Luisa" initialValues={initialValues} required={["fullName", "contactMethod"]} inquiryType="availability" />
+    ]} storageKey="dmci_availability_requests" submitLabel="Check Availability with Luisa" initialValues={initialValues} required={["fullName", "contactMethod"]} inquiryType="Check Availability" />
   </FormShell>;
 }
 
@@ -46,15 +46,15 @@ export function RequestComputation() {
     }}
   >
     <DemoForm title="Computation Request Details" fields={[
-      f("fullName", "Full Name"), f("contactNumber", "Mobile Number", "tel"), f("email", "Email Address", "email"),
-      s("location", "Preferred Location", locationOptions), s("project", "Preferred Project", projectOptions), s("unitType", "Unit Type", unitTypes),
+      f("fullName", "Full Name"), f("contactNumber", "Mobile / Viber", "tel"), f("email", "Email Address", "email"),
+      s("location", "City / Location", locationOptions), s("project", "Interested Project", projectOptions), s("unitType", "Unit Type", unitTypes),
       s("budgetRange", "Budget Range", ["Still checking", "Entry level", "Mid range", "Premium range"]),
       s("paymentPreference", "Payment Preference", ["Cash", "In-house", "Bank Financing", "Not sure"]),
       s("buyerType", "Buyer Type", ["Local", "OFW", "Investor", "First-time buyer", "Family use"]),
       s("inquiryType", "Inquiry Type", inquiryTypes),
       s("timeline", "Timeline", ["Immediately", "1-3 months", "3-6 months", "Still exploring"]),
       s("contactMethod", "Preferred Contact Method", contactMethodOptions), t()
-    ]} storageKey="dmci_computation_requests" submitLabel="Send Computation Request" initialValues={initialValues} required={["fullName", "contactMethod"]} inquiryType="computation" />
+    ]} storageKey="dmci_computation_requests" submitLabel="Send Computation Request" initialValues={initialValues} required={["fullName", "contactMethod"]} inquiryType="Request Computation" />
   </FormShell>;
 }
 
@@ -71,10 +71,10 @@ export function BookViewing() {
     }}
   >
     <DemoForm title="Viewing Request Details" fields={[
-      f("fullName", "Full Name"), f("contactNumber", "Contact Number", "tel"), f("email", "Email Address", "email"), s("project", "Preferred Project", projectOptions), s("location", "Preferred Location", locationOptions),
+      f("fullName", "Full Name"), f("contactNumber", "Mobile / Viber", "tel"), f("email", "Email Address", "email"), s("project", "Interested Project", projectOptions), s("location", "City / Location", locationOptions),
       s("viewingType", "Viewing Type", ["On-site model unit viewing", "Online consultation", "Phone call", "Zoom/Google Meet"]),
       f("preferredDate", "Preferred Date", "date"), f("preferredTime", "Preferred Time", "time"), f("guests", "Number of Guests", "number"), s("contactMethod", "Preferred Contact Method", contactMethodOptions), t("Notes or questions")
-    ]} storageKey="dmci_viewing_requests" submitLabel="Request Viewing Schedule" initialValues={initialValues} required={["fullName", "contactMethod"]} inquiryType="viewing" />
+    ]} storageKey="dmci_viewing_requests" submitLabel="Request Viewing Schedule" initialValues={initialValues} required={["fullName", "contactMethod"]} inquiryType="Book Site Viewing" />
   </FormShell>;
 }
 
@@ -91,13 +91,13 @@ export function Contact() {
     }}
   >
     <DemoForm title="Buyer Inquiry Details" fields={[
-      f("fullName", "Full Name"), f("contactNumber", "Mobile Number", "tel"), f("email", "Email Address", "email"),
-      s("project", "Project Inquired", projectOptions),
+      f("fullName", "Full Name"), f("contactNumber", "Mobile / Viber", "tel"), f("email", "Email Address", "email"),
+      s("project", "Interested Project", projectOptions),
       s("concernType", "Inquiry Type", inquiryTypes),
       s("buyerType", "Buyer Type", ["Local buyer", "OFW", "Investor", "Family use", "First-time buyer", "Still exploring"]),
       s("contactMethod", "Preferred Contact Method", contactMethodOptions),
       t("Message / Buyer Requirement")
-    ]} storageKey="dmci_contact_requests" submitLabel="Send Buyer Inquiry" initialValues={initialValues} required={["fullName", "concernType", "contactMethod"]} inquiryType="general contact" />
+    ]} storageKey="dmci_contact_requests" submitLabel="Send Buyer Inquiry" initialValues={initialValues} required={["fullName", "concernType", "contactMethod"]} inquiryType="General Inquiry" />
   </FormShell>;
 }
 
@@ -105,7 +105,7 @@ function useInquiryDefaults() {
   const [searchParams] = useSearchParams();
   const projectParam = searchParams.get("project") || "";
   const locationParam = searchParams.get("location") || "";
-  const inquiryType = searchParams.get("inquiryType") || "";
+  const inquiryType = normalizeInquiryType(searchParams.get("inquiryType") || "");
   const matchedProject = projects.find((project) => (
     project.name.toLowerCase() === projectParam.toLowerCase() ||
     project.slug.toLowerCase() === projectParam.toLowerCase()
@@ -163,3 +163,16 @@ function FormShell({ title, text, panel, children }) {
 function f(name, label, type = "text") { return { name, label, type }; }
 function s(name, label, options) { return { name, label, options }; }
 function t(label = "Message") { return { name: "message", label, type: "textarea", full: true }; }
+
+function normalizeInquiryType(value) {
+  const normalized = value.trim().toLowerCase();
+  const map = {
+    computation: "Request Computation",
+    availability: "Check Availability",
+    "site viewing": "Book Site Viewing",
+    viewing: "Book Site Viewing",
+    reservation: "General Inquiry",
+    other: "General Inquiry"
+  };
+  return map[normalized] || value;
+}
