@@ -1,4 +1,46 @@
 {
+  "redirects": [
+    {
+      "source": "/privacy",
+      "destination": "/privacy-policy",
+      "permanent": true
+    },
+    {
+      "source": "/locations/pasig",
+      "destination": "/locations/pasig-city",
+      "permanent": true
+    },
+    {
+      "source": "/locations/mandaluyong",
+      "destination": "/locations/mandaluyong-city",
+      "permanent": true
+    },
+    {
+      "source": "/locations/taguig",
+      "destination": "/locations/taguig-city",
+      "permanent": true
+    },
+    {
+      "source": "/locations/pasay",
+      "destination": "/locations/pasay-city",
+      "permanent": true
+    },
+    {
+      "source": "/locations/paranaque",
+      "destination": "/locations/paranaque-city",
+      "permanent": true
+    },
+    {
+      "source": "/locations/las-pinas",
+      "destination": "/locations/las-pinas-city",
+      "permanent": true
+    },
+    {
+      "source": "/locations/baguio-city-benguet",
+      "destination": "/locations/baguio-city",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/((?!assets/).*)",

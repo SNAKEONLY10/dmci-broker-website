@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout.jsx";
 import Home from "./pages/Home.jsx";
 import Projects from "./pages/Projects.jsx";
@@ -39,6 +39,7 @@ export default function App() {
         <Route path="/resale-units" element={<ResaleUnits />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy" element={<Navigate to="/privacy-policy" replace />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/disclaimer" element={<Disclaimer />} />
         <Route path="/showcase" element={<Showcase />} />

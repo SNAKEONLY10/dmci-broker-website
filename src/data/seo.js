@@ -20,16 +20,47 @@ export function slugifyLocation(name) {
     .toLowerCase();
 }
 
+const preferredLocationSlugs = {
+  "Quezon City": "quezon-city",
+  Pasig: "pasig-city",
+  Mandaluyong: "mandaluyong-city",
+  Taguig: "taguig-city",
+  Pasay: "pasay-city",
+  Manila: "manila",
+  "Para\u00f1aque": "paranaque-city",
+  "Las Pi\u00f1as": "las-pinas-city",
+  "Baguio City / Benguet": "baguio-city",
+  "San Juan Batangas": "san-juan-batangas"
+};
+
+export const redirectRoutes = [
+  { path: "/privacy", destination: "/privacy-policy", reason: "Canonical privacy URL" },
+  { path: "/locations/pasig", destination: "/locations/pasig-city", reason: "Preferred city slug" },
+  { path: "/locations/mandaluyong", destination: "/locations/mandaluyong-city", reason: "Preferred city slug" },
+  { path: "/locations/taguig", destination: "/locations/taguig-city", reason: "Preferred city slug" },
+  { path: "/locations/pasay", destination: "/locations/pasay-city", reason: "Preferred city slug" },
+  { path: "/locations/paranaque", destination: "/locations/paranaque-city", reason: "Preferred city slug" },
+  { path: "/locations/las-pinas", destination: "/locations/las-pinas-city", reason: "Preferred city slug" },
+  { path: "/locations/baguio-city-benguet", destination: "/locations/baguio-city", reason: "Preferred city slug" }
+];
+
+export function citySlugForLocation(locationName) {
+  return preferredLocationSlugs[locationName] || slugifyLocation(locationName);
+}
+
 export function cityPath(locationName) {
-  return `/locations/${slugifyLocation(locationName)}`;
+  return `/locations/${citySlugForLocation(locationName)}`;
 }
 
 export const cityPages = locations.map((location) => {
   const cityProjects = projects.filter((project) => project.location === location.name);
   const projectNames = cityProjects.map((project) => project.name).join(", ");
+  const slug = citySlugForLocation(location.name);
+  const legacySlug = slugifyLocation(location.name);
   return {
     path: cityPath(location.name),
-    slug: slugifyLocation(location.name),
+    slug,
+    aliasSlugs: legacySlug !== slug ? [legacySlug] : [],
     name: location.name,
     h1: `DMCI Projects in ${location.name}`,
     title: `DMCI Projects in ${location.name} | ${projectNames || "Condo Project Guide"} | Luisa Corral`,
@@ -39,6 +70,10 @@ export const cityPages = locations.map((location) => {
     projects: cityProjects
   };
 });
+
+export function findCityPageBySlug(slug) {
+  return cityPages.find((city) => city.slug === slug || city.aliasSlugs.includes(slug));
+}
 
 const pageMeta = {
   "/": {
@@ -200,8 +235,11 @@ export function resolveSeo(pathname = "/", search = "") {
     }
   }
 
-  const city = cityPages.find((item) => item.path === normalizedPath);
-  if (city) return finalizeMeta(city);
+  const cityMatch = normalizedPath.match(/^\/locations\/([^/]+)$/);
+  if (cityMatch) {
+    const city = findCityPageBySlug(cityMatch[1]);
+    if (city) return finalizeMeta({ ...city, canonicalPath: city.path });
+  }
 
   return finalizeMeta({ path: normalizedPath, ...(pageMeta[normalizedPath] || pageMeta["/"]) });
 }

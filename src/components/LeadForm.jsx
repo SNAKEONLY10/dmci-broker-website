@@ -41,7 +41,7 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
 
     // TODO: Connect to backend email/CRM endpoint later.
     saveSubmission(storageKey, values);
-    setSuccess("Thank you. Your inquiry has been recorded for this preview. The next phase can connect this form to Luisa's official email.");
+    setSuccess("Preview mode: this inquiry is saved locally in this browser for testing. Email/CRM delivery to Luisa is not connected yet.");
     setValues({ ...defaults, ...initialValues });
   }
 

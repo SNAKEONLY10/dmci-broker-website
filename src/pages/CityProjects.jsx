@@ -3,15 +3,19 @@ import { Button } from "../components/Button";
 import { DisclaimerBanner } from "../components/DisclaimerBanner";
 import { ProjectGrid } from "../components/ProjectGrid";
 import { SectionHeader } from "../components/SectionHeader";
-import { cityPages } from "../data/seo";
+import { findCityPageBySlug } from "../data/seo";
 import { projects } from "../data/projects";
 
 export default function CityProjects() {
   const { locationSlug } = useParams();
-  const city = cityPages.find((item) => item.slug === locationSlug);
+  const city = findCityPageBySlug(locationSlug);
 
   if (!city) {
     return <Navigate to="/locations" replace />;
+  }
+
+  if (locationSlug !== city.slug) {
+    return <Navigate to={city.path} replace />;
   }
 
   const cityProjects = projects.filter((project) => project.location === city.name);
