@@ -18,9 +18,9 @@ Asset convention checked:
 ## Summary
 
 - Active approved projects: 18
-- Complete core image sets: 8
+- Complete core image sets: 9
 - Partial asset sets: 0
-- Official assets needed: 10
+- Official assets needed: 9
 - Brochures currently present: 0
 - Content status: all 18 updated with reference-only broker copy and official DMCI Homes source URLs.
 
@@ -41,8 +41,8 @@ Asset convention checked:
 | 5 | The Valeron Tower | `the-valeron-tower` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + YouTube/Drive/360 media links | `complete` | `full customer-ready detail added, Drive/official assets optimized` | [DMCI Online](https://www.dmci-online.com/valeron-tower-dmci-pasig-city/) |
 | 6 | Allegra Garden Place | `allegra-garden-place` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + YouTube/Drive/360 media links | `complete` | `full customer-ready detail added, Drive/official assets optimized` | [DMCI Online](https://www.dmci-online.com/allegra-garden-place-pasig/) |
 | 7 | Prisma Residences | `prisma-residences` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + YouTube/Drive/360 media links | `complete` | `full customer-ready detail added, Drive/official assets optimized` | [DMCI Online](https://www.dmci-online.com/prisma-residences-dmci-pasig/) |
-| 8 | Sage Residences | `sage-residences` | Present | Present | 3/3 present | Present | Present | Missing | `complete` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/sage-residences) |
-| 9 | Kai Garden Residences | `kai-garden-residences` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/kai-garden-residences) |
+| 8 | Sage Residences | `sage-residences` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + YouTube/Drive/360 media links | `complete` | `full customer-ready detail added, Drive/official assets optimized` | [DMCI Online](https://www.dmci-online.com/sage-residences-mandaluyong/) |
+| 9 | Kai Garden Residences | `kai-garden-residences` | Present | Present | 3/3 present + extras | Present | Present | Embedded Google map + YouTube media link | `complete` | `full customer-ready detail added, Drive/official assets optimized` | [DMCI Online](https://www.dmci-online.com/kai-garden-residences-mandaluyong/) |
 | 10 | Mulberry Place | `mulberry-place` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/mulberry-place) |
 | 11 | Alder Residences | `alder-residences` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/alder-residences) |
 | 12 | The Aston Place | `the-aston-place` | Missing | Missing | 0/3 present | Missing | Missing | Missing | `official-assets-needed` | `official-reference-copy` | [DMCI Homes](https://www.dmcihomes.com/the-aston-place) |
@@ -93,6 +93,14 @@ Asset convention checked:
 - Official project images were compressed into local JPG/WebP variants under `public/assets/projects/the-valeron-tower`, `public/assets/projects/allegra-garden-place`, and `public/assets/projects/prisma-residences`.
 - Google Maps embeds, Get Directions buttons, YouTube AVPs, and verified 360-tour links are wired in `src/data/pasigProjectDetails.js`.
 - Pricing, promo, sample computation, unit mix, nearby establishment, amenity, floor plan, unit holding, and reservation copy are reference-only and require final confirmation before buyer presentation.
+
+### Mandaluyong Project Rich Page Update
+
+- SGR and KGR Drive folders plus official DMCI Online pages were used for Sage Residences and Kai Garden Residences.
+- Sage Drive 360-tour documentation was verified and wired with the official YouTube AVP and Google Maps embed.
+- Kai Drive supplied logo assets; official DMCI Online imagery supplied the complete hero, gallery, site development, site progress, floor plan, turnover finish, YouTube AVP, and Google Maps references.
+- Official project images were compressed into local JPG/PNG plus WebP variants under `public/assets/projects/sage-residences` and `public/assets/projects/kai-garden-residences`.
+- No verified Kai-specific 360-tour link was found in the available KGR Drive folder or official Kai page during this update, so Kai links only to the verified AVP and map.
 
 ## Non-Approved Asset Folders Still On Disk
 

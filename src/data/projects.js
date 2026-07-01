@@ -3,6 +3,7 @@ import { theErinHeightsDetails } from "./theErinHeightsDetails.js";
 import { oneDeltaTerracesDetails } from "./oneDeltaTerracesDetails.js";
 import { cameronResidencesDetails } from "./cameronResidencesDetails.js";
 import { valeronTowerDetails, allegraGardenPlaceDetails, prismaResidencesDetails } from "./pasigProjectDetails.js";
+import { sageResidencesDetails, kaiGardenResidencesDetails } from "./mandaluyongProjectDetails.js";
 
 // Official/client asset convention:
 // public/assets/projects/[project-slug]/hero.jpg
@@ -515,7 +516,8 @@ const baseProjects = [
     amenities: ["Main Entrance Gate", "Leisure Pool", "Kiddie Pool", "Play Area", "Drop-Off Area", "Reception Lobby", "Fire Alarm & Automatic Sprinkler System", "Fire Cabinets", "Fire Exit", "Garbage Rooms", "Landscaped Atriums", "Sky Patio (Lumiventt Technology)"],
     buildingFeatures: ["Reception Lobby", "Main Entrance Gate", "Drop-Off Area", "Fire Alarm & Automatic Sprinkler System", "Fire Cabinets", "Fire Exit", "Garbage Rooms", "Sky Patio (Lumiventt Technology)"],
     nearbyLandmarks: ["Domingo M. Guevara St.", "Sinag St.", "Mauway, Mandaluyong City", "Central Metro Manila access for buyer verification"],
-    sourceUrl: "https://www.dmcihomes.com/sage-residences"
+    sourceUrl: "https://www.dmcihomes.com/sage-residences",
+    ...sageResidencesDetails
   },
   {
     slug: "kai-garden-residences",
@@ -541,7 +543,8 @@ const baseProjects = [
     amenities: ["24-hour Security", "Arrival Court", "Multi-Purpose Court", "Children's Playground", "Fitness Gym", "Function Hall", "Game Room", "Gazebo/ Cabana", "Grill Pits", "Jogging/ Biking Path", "Kiddie Pool", "Koi Pond"],
     buildingFeatures: ["24-hour Security", "Arrival Court", "Multi-Purpose Court", "Function Hall", "Koi Pond amenity area", "Building and parking details for confirmation"],
     nearbyLandmarks: ["M. Vicente St.", "Mandaluyong City", "Metro Manila access references for confirmation", "Site viewing route for buyer verification"],
-    sourceUrl: "https://www.dmcihomes.com/kai-garden-residences"
+    sourceUrl: "https://www.dmcihomes.com/kai-garden-residences",
+    ...kaiGardenResidencesDetails
   },
   {
     slug: "mulberry-place",
