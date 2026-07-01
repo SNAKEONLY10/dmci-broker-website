@@ -72,7 +72,7 @@ export default function ProjectDetail() {
     })
     : defaultSectionLinks;
   const similar = projects
-    .filter((item) => item.id !== project.id && (item.location === project.location || item.status === project.status || project.nearbyProperties.includes(item.slug)))
+    .filter((item) => item.id !== project.id && item.assetStatus === "complete" && (item.location === project.location || item.status === project.status || project.nearbyProperties.includes(item.slug)))
     .slice(0, 3);
 
   return (
