@@ -161,7 +161,7 @@ const pageMeta = {
     cta: "/contact"
   },
   "/contact": {
-    h1: "Talk to Luisa",
+    h1: "Request a Private Buyer Consultation",
     title: "Contact Luisa Corral | DMCI Homes Broker Inquiry",
     description:
       "Contact Luisa Corral for DMCI project recommendations, latest computation requests, availability checks, viewing coordination, and reservation guidance.",

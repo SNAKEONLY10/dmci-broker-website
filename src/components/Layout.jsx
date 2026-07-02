@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { contact } from "../data/contact";
 import { cityPages } from "../data/seo";
 import { Button } from "./Button";
@@ -18,9 +18,13 @@ const navItems = [
   ["Contact", "/contact"]
 ];
 
+const formRoutePaths = new Set(["/availability", "/request-computation", "/book-viewing", "/contact"]);
+
 export function Layout({ children }) {
   const [open, setOpen] = useState(false);
+  const { pathname } = useLocation();
   useScrollReveal();
+  const hideQuickActions = open || formRoutePaths.has(pathname);
 
   return (
     <>
@@ -42,7 +46,7 @@ export function Layout({ children }) {
             ))}
           </nav>
           <Button to="/request-computation" className="desktop-cta">Request Computation</Button>
-          <button className="menu-toggle" type="button" onClick={() => setOpen(!open)} aria-expanded={open} aria-label="Open menu">
+          <button className="menu-toggle" type="button" onClick={() => setOpen(!open)} aria-expanded={open} aria-label={open ? "Close menu" : "Open menu"}>
             <span />
             <span />
             <span />
@@ -52,7 +56,7 @@ export function Layout({ children }) {
       </header>
       <main>{children}</main>
       <Footer />
-      <MobileStickyCTA />
+      <MobileStickyCTA hidden={hideQuickActions} />
     </>
   );
 }
@@ -118,9 +122,9 @@ function Footer() {
   );
 }
 
-function MobileStickyCTA() {
+function MobileStickyCTA({ hidden = false }) {
   return (
-    <nav className="mobile-sticky-cta" aria-label="Quick actions">
+    <nav className={`mobile-sticky-cta${hidden ? " is-hidden" : ""}`} aria-label="Quick actions" aria-hidden={hidden}>
       <a href={contact.phoneHref}>Call</a>
       <a href={contact.viber || contact.phoneHref}>Viber</a>
       <NavLink to="/request-computation">Computation</NavLink>

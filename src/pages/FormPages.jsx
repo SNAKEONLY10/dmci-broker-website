@@ -81,13 +81,13 @@ export function BookViewing() {
 export function Contact() {
   const initialValues = useInquiryDefaults();
   return <FormShell
-    title="Talk to Luisa"
-    text="Send your question or buyer requirement. This helps Luisa recommend the right project, unit type, computation, or next step."
+    title="Request a Private Buyer Consultation"
+    text="Share your preferred location, budget, timeline, and contact details so Luisa can prepare suitable DMCI Homes options and next steps."
     panel={{
       eyebrow: "Contact Luisa",
-      title: "Tell Luisa what you need",
-      text: "Share your preferred project, budget range, timeline, and best contact method so Luisa can recommend the right next step.",
-      cta: "Message Luisa"
+      title: "Share Your Property Requirements",
+      text: "Receive broker-guided assistance for project shortlisting, updated computations, availability confirmation, viewing coordination, and reservation preparation.",
+      cta: "Start Consultation"
     }}
   >
     <DemoForm title="Buyer Inquiry Details" fields={[
@@ -97,7 +97,7 @@ export function Contact() {
       s("buyerType", "Buyer Type", ["Local buyer", "OFW", "Investor", "Family use", "First-time buyer", "Still exploring"]),
       s("contactMethod", "Preferred Contact Method", contactMethodOptions),
       t("Message / Buyer Requirement")
-    ]} storageKey="dmci_contact_requests" submitLabel="Send Buyer Inquiry" initialValues={initialValues} required={["fullName", "concernType", "contactMethod"]} inquiryType="General Inquiry" />
+    ]} storageKey="dmci_contact_requests" submitLabel="Submit Consultation Request" initialValues={initialValues} required={["fullName", "concernType", "contactMethod"]} inquiryType="General Inquiry" />
   </FormShell>;
 }
 
@@ -139,9 +139,9 @@ function FormShell({ title, text, panel, children }) {
             <h2>{panelContent.title}</h2>
             <p>{panelContent.text}</p>
             <ul className="form-benefits">
-              <li>Project recommendations based on your buyer profile</li>
-              <li>Latest computation and availability checking</li>
-              <li>Viewing and reservation guidance</li>
+              <li>Curated DMCI Homes recommendations</li>
+              <li>Updated availability and payment computations</li>
+              <li>Guided viewing, reservation, and documentation support</li>
             </ul>
             <div className="official-contact-list" aria-label="Official contact details">
               <span><strong>Mobile / Viber</strong>{contact.phone}</span>

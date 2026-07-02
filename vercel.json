@@ -6,6 +6,16 @@
       "permanent": true
     },
     {
+      "source": "/contact`",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/contact%60",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
       "source": "/locations/pasig",
       "destination": "/locations/pasig-city",
       "permanent": true

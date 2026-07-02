@@ -16,5 +16,5 @@ export const contact = {
   prcLicense: "0003253",
   license: "Real Estate Broker PRC License No. 0003253",
   disclaimer:
-    "This website is operated by an independent broker/agent for inquiry assistance. Project details, availability, pricing, promos, and terms are subject to confirmation with the developer and authorized sales channels."
+    "Buyer assistance is provided through an independent broker/agent. Final project details, availability, pricing, promos, and terms are confirmed through the developer and authorized sales channels."
 };

@@ -111,10 +111,10 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
           <input name="consent" type="checkbox" checked={values.consent} onChange={update} />
           <span>I agree to be contacted regarding my DMCI inquiry. Project details, pricing, promos, and availability are subject to confirmation.</span>
         </label>
-        <p className="form-note full">Submissions are sent through a secure backend endpoint when email/CRM credentials are configured. If delivery is not configured, the form clearly falls back to local preview storage only. See the <a href="/privacy-policy">Privacy Policy</a>.</p>
+        <p className="form-note full">Your inquiry details are used for DMCI Homes buyer assistance and contact follow-up. See the <a href="/privacy-policy">Privacy Policy</a>.</p>
         {errors.consent && <small className="error full">{errors.consent}</small>}
       </div>
-      <p className="form-trust-note">Luisa reviews inquiry details before sharing computations or availability. No reservation decision should be made until project details are confirmed.</p>
+      <p className="form-trust-note">Luisa reviews each inquiry before sharing project references, computations, or viewing guidance. Final pricing, promos, and availability are confirmed through authorized sales channels.</p>
       {notice && <div className={`${notice.type}-message`} role={notice.type === "error" ? "alert" : "status"}>{notice.text}</div>}
       <Button type="submit" className="form-submit" disabled={status === "submitting"} aria-live="polite" aria-label={status === "submitting" ? "Sending inquiry" : undefined}>
         {status === "submitting" ? "Sending..." : submitLabel}

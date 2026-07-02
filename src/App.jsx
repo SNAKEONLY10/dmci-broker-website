@@ -42,6 +42,8 @@ export default function App() {
           <Route path="/resale-units" element={<ResaleUnits />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/contact`" element={<Navigate to="/contact" replace />} />
+          <Route path="/contact%60" element={<Navigate to="/contact" replace />} />
           <Route path="/privacy" element={<Navigate to="/privacy-policy" replace />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
