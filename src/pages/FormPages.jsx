@@ -1,6 +1,7 @@
 import { DemoForm } from "../components/LeadForm";
 import { SectionHeader } from "../components/SectionHeader";
 import { Button } from "../components/Button";
+import { ImagePlaceholder } from "../components/ImagePlaceholder";
 import { projects, unitTypes } from "../data/projects";
 import { locations } from "../data/locations";
 import { contact } from "../data/contact";
@@ -178,7 +179,7 @@ function FormShell({ title, text, panel, children, selectedProject }) {
       <div className="container form-shell-grid">
         <aside className="form-broker-panel">
           <div className={`form-broker-image ${selectedProject ? "has-project-preview" : ""}`}>
-            <img key={media.src} src={media.src} alt={media.alt} />
+            <ImagePlaceholder key={media.src} src={media.src} label={media.alt} compact variant={selectedProject ? "hero" : "card"} />
             <div className="form-media-caption" aria-live="polite">
               <span>{media.eyebrow}</span>
               <strong>{media.title}</strong>

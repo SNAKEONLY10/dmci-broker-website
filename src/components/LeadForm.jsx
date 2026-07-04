@@ -1,6 +1,7 @@
 import { Fragment, useMemo, useState } from "react";
 import { saveSubmission, validateRequired } from "../utils/storage";
 import { Button } from "./Button";
+import { ImagePlaceholder } from "./ImagePlaceholder";
 
 const defaults = {
   fullName: "",
@@ -19,8 +20,6 @@ const defaults = {
 
 const previewMessage = "Preview mode: your inquiry was saved locally for testing. Email/CRM delivery is not connected yet.";
 const deliveredMessage = "Your inquiry has been submitted. Luisa or her team will contact you after details are confirmed.";
-const computationTestDeliveredMessage = "Thank you. Your computation request was sent for testing. Howard will receive the email notification.";
-const computationTestFailedMessage = "Your request was saved in this browser, but the test email could not be sent. Please check email settings.";
 const sendErrorMessage = "We could not send your inquiry right now. Please try again or contact Luisa directly.";
 const messageLimit = 1500;
 
@@ -130,12 +129,12 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
       const contentType = response.headers.get("content-type") || "";
 
       if (response.ok && data?.ok) {
-        setNotice({ type: "success", text: isComputationRequest ? computationTestDeliveredMessage : deliveredMessage });
+        setNotice({ type: "success", text: deliveredMessage });
         commitValues({ ...defaults, ...initialValues });
         return;
       }
 
-      if (!isComputationRequest && (data?.previewOnly || data?.code === "delivery_not_configured" || data?.code === "lead_delivery_not_configured" || (!data && (response.status === 404 || contentType.includes("text/html"))))) {
+      if (data?.previewOnly || data?.code === "delivery_not_configured" || data?.code === "lead_delivery_not_configured" || (canUseLocalPreview() && !data && (response.status === 404 || contentType.includes("text/html")))) {
         setNotice({ type: "success", text: previewMessage });
         commitValues({ ...defaults, ...initialValues });
         return;
@@ -146,15 +145,17 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
         setNotice({ type: "error", text: data?.message || data?.error || "Please review the highlighted fields before sending." });
         return;
       }
-      setNotice({ type: "error", text: isComputationRequest ? computationTestFailedMessage : (data?.message || data?.error || sendErrorMessage) });
+      setNotice({ type: "error", text: data?.message || data?.error || sendErrorMessage });
     } catch (error) {
       if (import.meta.env.DEV) {
         console.error("Lead form submission failed", error);
       }
-      setNotice({ type: isComputationRequest ? "error" : "success", text: isComputationRequest ? computationTestFailedMessage : previewMessage });
-      if (!isComputationRequest) {
+      if (canUseLocalPreview()) {
+        setNotice({ type: "success", text: previewMessage });
         commitValues({ ...defaults, ...initialValues });
+        return;
       }
+      setNotice({ type: "error", text: sendErrorMessage });
     } finally {
       setStatus("idle");
     }
@@ -453,9 +454,10 @@ function blockInvalidNumberKeys(event) {
 }
 
 function SelectedProjectPreview({ project, mismatch }) {
+  const imageSrc = project.thumbnail || project.image;
   return (
     <div className={`selected-project-preview ${mismatch ? "mismatch" : ""} full`} aria-live="polite">
-      <img src={project.image} alt={`${project.name} project preview`} loading="lazy" />
+      <ImagePlaceholder src={imageSrc} label={`${project.name} project preview`} compact variant="thumbnail" />
       <div>
         <span>{mismatch ? "Review selection" : "Selected project"}</span>
         <strong>{project.name}</strong>
@@ -493,4 +495,10 @@ function placeholderFor(field) {
     guests: "Number of guests"
   };
   return placeholders[field.name] || "";
+}
+
+function canUseLocalPreview() {
+  if (import.meta.env.DEV) return true;
+  if (typeof window === "undefined") return false;
+  return ["localhost", "127.0.0.1", "::1"].includes(window.location.hostname);
 }
