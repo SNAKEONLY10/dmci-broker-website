@@ -486,7 +486,7 @@ function placeholderFor(field) {
   const placeholders = {
     fullName: "Juan Dela Cruz",
     contactNumber: "0998 865 8902",
-    email: "buyer@example.com",
+    email: "buyer@email.com",
     message: "Share your preferred unit, timing, budget range, or questions.",
     preferredDate: "Select preferred date",
     preferredTime: "Select preferred time",

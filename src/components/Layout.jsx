@@ -125,10 +125,10 @@ function Footer() {
 function MobileStickyCTA({ hidden = false }) {
   return (
     <nav className={`mobile-sticky-cta${hidden ? " is-hidden" : ""}`} aria-label="Quick actions" aria-hidden={hidden}>
-      <a href={contact.phoneHref}>Call</a>
-      <a href={contact.viber || contact.phoneHref}>Viber</a>
-      <NavLink to="/request-computation">Computation</NavLink>
-      <NavLink to="/book-viewing">Viewing</NavLink>
+      <a href={contact.phoneHref} aria-label={`Call ${contact.displayName}`}>Call</a>
+      <NavLink to="/contact" aria-label={`Message ${contact.displayName}`}>Message</NavLink>
+      <NavLink to="/request-computation" aria-label="Request latest computation">Compute</NavLink>
+      <NavLink to="/book-viewing" aria-label="Book a site viewing">Viewing</NavLink>
     </nav>
   );
 }
