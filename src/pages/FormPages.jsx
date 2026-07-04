@@ -54,7 +54,7 @@ export function RequestComputation() {
       s("inquiryType", "Inquiry Type", inquiryTypes),
       s("timeline", "Timeline", ["Immediately", "1-3 months", "3-6 months", "Still exploring"]),
       s("contactMethod", "Preferred Contact Method", contactMethodOptions), t()
-    ]} storageKey="dmci_computation_requests" submitLabel="Send Computation Request" initialValues={initialValues} required={["fullName", "contactMethod"]} inquiryType="Request Computation" />
+    ]} storageKey="dmci_computation_requests" submitLabel="Send Computation Request" initialValues={initialValues} required={["fullName", "contactNumber", "email", "contactMethod"]} inquiryType="Request Computation" />
   </FormShell>;
 }
 

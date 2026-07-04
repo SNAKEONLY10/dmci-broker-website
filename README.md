@@ -63,9 +63,49 @@ The production build generates static HTML fallbacks for public routes, `sitemap
 - Approved project images are used where available; missing official visuals should remain graceful request states until assets are confirmed
 - Project data is buyer guidance only and must be confirmed before presentation or reservation
 - No real-time availability
-- No backend or email notifications yet
-- Forms save demo submissions to browser `localStorage` only
+- The Request Latest Computation form can send a test email notification when server-side email env vars are configured
+- Forms still save demo submissions to browser `localStorage` for testing and fallback behavior
 - Final pricing, availability, promos, payment terms, unit details, and turnover schedules must be confirmed by Luisa or official DMCI channels
+
+## Email Notification Test Setup
+
+The `/request-computation` form posts to the secure Vercel serverless function at `/api/request-computation`. The Resend API key must stay server-side only.
+
+Required Vercel environment variable:
+
+```text
+RESEND_API_KEY=your_resend_api_key
+```
+
+Optional sender environment variable:
+
+```text
+EMAIL_FROM=DMCI Broker Website <verified-sender@yourdomain.com>
+```
+
+If `EMAIL_FROM` is not set, the API uses this testing sender:
+
+```text
+DMCI Broker Website <onboarding@resend.dev>
+```
+
+Current test recipient:
+
+```text
+howardxxcelestial69@gmail.com
+```
+
+Setup steps:
+
+1. Add `RESEND_API_KEY` in Vercel Project Settings -> Environment Variables.
+2. Optionally add `EMAIL_FROM` using a sender verified in Resend.
+3. Deploy the site.
+4. Open `/request-computation`.
+5. Submit a test request.
+6. Check Howard's Gmail inbox and spam folder for the test email.
+7. After approval, change the API recipient to Luisa's official email.
+
+Never expose `RESEND_API_KEY` in frontend code, public docs, screenshots, route inventory, comments, or browser bundles.
 
 ## Asset Structure Plan
 

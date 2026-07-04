@@ -19,6 +19,8 @@ const defaults = {
 
 const previewMessage = "Preview mode: your inquiry was saved locally for testing. Email/CRM delivery is not connected yet.";
 const deliveredMessage = "Your inquiry has been submitted. Luisa or her team will contact you after details are confirmed.";
+const computationTestDeliveredMessage = "Thank you. Your computation request was sent for testing. Howard will receive the email notification.";
+const computationTestFailedMessage = "Your request was saved in this browser, but the test email could not be sent. Please check email settings.";
 const sendErrorMessage = "We could not send your inquiry right now. Please try again or contact Luisa directly.";
 const messageLimit = 1500;
 
@@ -54,11 +56,14 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
     }
 
     const payload = buildLeadPayload(values, inquiryType, allFields);
+    const isComputationRequest = inquiryType === "Request Computation" || payload.inquiryType === "Request Computation";
+    const endpoint = isComputationRequest ? "/api/request-computation" : "/api/leads";
     setStatus("submitting");
     setNotice(null);
+    saveSubmission(storageKey, payload);
 
     try {
-      const response = await fetch("/api/leads", {
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
@@ -67,13 +72,12 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
       const contentType = response.headers.get("content-type") || "";
 
       if (response.ok && data?.ok) {
-        setNotice({ type: "success", text: deliveredMessage });
+        setNotice({ type: "success", text: isComputationRequest ? computationTestDeliveredMessage : deliveredMessage });
         setValues({ ...defaults, ...initialValues });
         return;
       }
 
-      if (data?.previewOnly || data?.code === "delivery_not_configured" || data?.code === "lead_delivery_not_configured" || (!data && (response.status === 404 || contentType.includes("text/html")))) {
-        saveSubmission(storageKey, payload);
+      if (!isComputationRequest && (data?.previewOnly || data?.code === "delivery_not_configured" || data?.code === "lead_delivery_not_configured" || (!data && (response.status === 404 || contentType.includes("text/html"))))) {
         setNotice({ type: "success", text: previewMessage });
         setValues({ ...defaults, ...initialValues });
         return;
@@ -81,12 +85,18 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
 
       if (data?.errors) {
         setErrors(data.errors);
+        setNotice({ type: "error", text: data?.message || data?.error || "Please review the highlighted fields before sending." });
+        return;
       }
-      setNotice({ type: "error", text: data?.message || sendErrorMessage });
-    } catch {
-      saveSubmission(storageKey, payload);
-      setNotice({ type: "success", text: previewMessage });
-      setValues({ ...defaults, ...initialValues });
+      setNotice({ type: "error", text: isComputationRequest ? computationTestFailedMessage : (data?.message || data?.error || sendErrorMessage) });
+    } catch (error) {
+      if (import.meta.env.DEV) {
+        console.error("Lead form submission failed", error);
+      }
+      setNotice({ type: isComputationRequest ? "error" : "success", text: isComputationRequest ? computationTestFailedMessage : previewMessage });
+      if (!isComputationRequest) {
+        setValues({ ...defaults, ...initialValues });
+      }
     } finally {
       setStatus("idle");
     }
@@ -156,23 +166,40 @@ function validateForm(values, required) {
 function buildLeadPayload(values, inquiryType, fieldNames) {
   const sourceUrl = typeof window === "undefined" ? "" : window.location.href;
   const sourcePage = typeof window === "undefined" ? "" : `${window.location.pathname}${window.location.search}`;
+  const submittedAt = new Date().toISOString();
   const rawFields = fieldNames.reduce((fields, name) => {
     fields[name] = values[name] ?? "";
     return fields;
   }, {});
 
   return {
+    fullName: values.fullName,
+    contactNumber: values.contactNumber,
+    mobileNumber: values.mobileNumber || values.contactNumber,
     name: values.fullName,
     phone: values.contactNumber,
     email: values.email,
+    contactMethod: values.contactMethod,
     preferredContactMethod: values.contactMethod,
+    project: values.project,
+    preferredProject: values.preferredProject || values.project,
     projectInterestedIn: values.project,
+    location: values.location,
+    preferredLocation: values.preferredLocation || values.location,
     cityLocation: values.location,
     inquiryType: values.inquiryType || values.concernType || inquiryType,
+    unitType: values.unitType,
+    budgetRange: values.budgetRange,
+    paymentPreference: values.paymentPreference || values.paymentOption,
+    buyerType: values.buyerType,
+    timeline: values.timeline,
+    purpose: values.purpose,
+    messengerLink: values.messengerLink,
     message: values.message,
     sourcePage,
     sourceUrl,
-    submittedAt: new Date().toISOString(),
+    submittedAt,
+    createdAt: submittedAt,
     consent: Boolean(values.consent),
     honeypot: values.website,
     rawFields
