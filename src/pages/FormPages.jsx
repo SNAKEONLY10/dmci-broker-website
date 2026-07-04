@@ -50,8 +50,8 @@ export function RequestComputation() {
     selectedProject={selectedProject}
     panel={{
       eyebrow: "Computation Request",
-      title: "Get numbers that match your buyer profile",
-      text: "Request updated sample computation, payment terms, fees, and reservation guidance before making a decision.",
+      title: "Get a clear computation before reserving",
+      text: "Share your project, unit type, budget, and payment preference. Luisa will confirm pricing, promos, fees, and terms before you decide.",
       cta: "Send Computation Request"
     }}
   >
