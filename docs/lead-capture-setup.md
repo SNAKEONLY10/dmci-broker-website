@@ -36,6 +36,14 @@ LEAD_EMAIL_SUBJECT_PREFIX=[DMCI Broker Lead]
 
 `LEAD_EMAIL_FROM` must use a sender domain verified in Resend. Do not use `mrcorral@dmcihomes.com` as the sender unless `dmcihomes.com` is verified in Resend and legally/technically allowed. Use `mrcorral@dmcihomes.com` as `LEAD_EMAIL_TO` and as fallback reply-to.
 
+For temporary Resend test mode only, you may use:
+
+```text
+LEAD_EMAIL_FROM=DMCI Leads <onboarding@resend.dev>
+```
+
+This only works when `LEAD_EMAIL_TO` is the verified Resend account owner email. If the recipient is a different Gmail address, Resend rejects the send until a sender domain is verified.
+
 Safe sender examples after domain verification:
 
 ```text
@@ -170,8 +178,12 @@ Expected delivery failure when Resend rejects the request:
 ```json
 {
   "ok": false,
-  "code": "lead_delivery_failed",
-  "message": "Your inquiry could not be delivered right now. Please contact Luisa directly using the contact details on this page."
+  "code": "lead_saved_email_failed",
+  "deliveryError": {
+    "code": "resend_domain_not_verified",
+    "message": "Email delivery failed: sender domain is not verified."
+  },
+  "message": "Your inquiry was saved in this browser, but Email delivery failed: sender domain is not verified."
 }
 ```
 

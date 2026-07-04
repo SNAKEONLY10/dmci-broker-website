@@ -71,39 +71,39 @@ The production build generates static HTML fallbacks for public routes, `sitemap
 
 The `/request-computation` form posts to the secure Vercel serverless function at `/api/request-computation`. The Resend API key must stay server-side only.
 
-Required Vercel environment variable:
+Required Vercel environment variables:
 
 ```text
 RESEND_API_KEY=your_resend_api_key
+LEAD_EMAIL_TO=howardxxcelestial69@gmail.com
+LEAD_EMAIL_FROM=DMCI Leads <leads@your-verified-dmci-domain.com>
 ```
 
-Optional sender environment variable:
+Optional:
 
 ```text
-EMAIL_FROM=DMCI Broker Website <verified-sender@yourdomain.com>
+LEAD_EMAIL_REPLY_TO=howardxxcelestial69@gmail.com
+LEAD_EMAIL_SUBJECT_PREFIX=[DMCI Broker Test Lead]
 ```
 
-If `EMAIL_FROM` is not set, the API uses this testing sender:
+For immediate Resend test mode only, this sender can be used:
 
 ```text
-DMCI Broker Website <onboarding@resend.dev>
+LEAD_EMAIL_FROM=DMCI Leads <onboarding@resend.dev>
 ```
 
-Current test recipient:
-
-```text
-howardxxcelestial69@gmail.com
-```
+Resend only allows `onboarding@resend.dev` to send to the verified account owner email. If the account owner is not Howard's Gmail, verify a DMCI-owned sender domain in Resend and use that verified sender instead.
 
 Setup steps:
 
 1. Add `RESEND_API_KEY` in Vercel Project Settings -> Environment Variables.
-2. Optionally add `EMAIL_FROM` using a sender verified in Resend.
-3. Deploy the site.
-4. Open `/request-computation`.
-5. Submit a test request.
-6. Check Howard's Gmail inbox and spam folder for the test email.
-7. After approval, change the API recipient to Luisa's official email.
+2. Add `LEAD_EMAIL_TO` as Howard's Gmail for testing.
+3. Add `LEAD_EMAIL_FROM` using either Resend's allowed test sender or a verified DMCI sender domain.
+4. Deploy the site.
+5. Open `/request-computation`.
+6. Submit a test request.
+7. Check Howard's Gmail inbox and spam folder for the test email.
+8. After approval, change the API recipient to Luisa's official email.
 
 Never expose `RESEND_API_KEY` in frontend code, public docs, screenshots, route inventory, comments, or browser bundles.
 

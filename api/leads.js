@@ -37,13 +37,16 @@ export default async function handler(req, res) {
     return;
   }
 
-  const providers = configuredProviders();
+  const { providers, missingEmailEnv } = configuredProviders();
   if (!providers.length) {
     res.status(200).json({
       ok: false,
       code: "delivery_not_configured",
       previewOnly: true,
-      message: "Lead delivery is not configured yet. The site can save this inquiry locally for preview testing."
+      missingEnv: missingEmailEnv,
+      message: missingEmailEnv.length
+        ? `Lead delivery is not configured yet. Missing server env vars: ${missingEmailEnv.join(", ")}.`
+        : "Lead delivery is not configured yet. The site can save this inquiry locally for preview testing."
     });
     return;
   }
@@ -52,21 +55,39 @@ export default async function handler(req, res) {
   const delivered = results.some((result) => result.status === "fulfilled");
 
   if (!delivered) {
-    console.error("Lead delivery failed", results.map((result) => result.reason?.message || "Unknown error"));
+    const failures = safeProviderFailures(providers, results);
+    console.error("Lead delivery failed", failures);
+    const primaryFailure = failures[0] || {
+      code: "email_delivery_failed",
+      message: "Email delivery failed. Please contact Luisa directly using the contact details on this page."
+    };
     res.status(200).json({
       ok: false,
-      code: "lead_delivery_failed",
-      message: "Your inquiry could not be delivered right now. Please contact Luisa directly using the contact details on this page."
+      code: "lead_saved_email_failed",
+      deliveryError: {
+        code: primaryFailure.code,
+        message: primaryFailure.message
+      },
+      message: `Your inquiry was saved in this browser, but ${primaryFailure.message}`
     });
     return;
   }
 
   const warnings = results
     .filter((result) => result.status === "rejected")
-    .map((result) => result.reason?.message || "A configured delivery provider failed.");
+    .map((result) => result.reason?.publicMessage || result.reason?.message || "A configured delivery provider failed.");
   const deliveredTo = providers
     .filter((provider, index) => results[index].status === "fulfilled")
     .map((provider) => provider.name);
+  results.forEach((result, index) => {
+    if (result.status === "fulfilled" && result.value?.messageId) {
+      console.info("Lead email delivered", {
+        provider: providers[index].name,
+        referenceId: lead.referenceId,
+        messageId: result.value.messageId
+      });
+    }
+  });
 
   res.status(200).json({
     ok: true,
@@ -93,6 +114,12 @@ function normalizeLead(payload) {
     projectInterestedIn: clean(payload.projectInterestedIn || payload.project, 160),
     cityLocation: clean(payload.cityLocation || payload.location, 160),
     inquiryType: clean(payload.inquiryType, 80),
+    unitType: clean(payload.unitType, 120),
+    budgetRange: clean(payload.budgetRange, 120),
+    paymentPreference: clean(payload.paymentPreference || payload.paymentOption, 120),
+    buyerType: clean(payload.buyerType, 120),
+    timeline: clean(payload.timeline, 120),
+    purpose: clean(payload.purpose, 160),
     message: clean(payload.message, messageLimit),
     sourcePage: clean(payload.sourcePage, 300),
     sourceUrl: clean(payload.sourceUrl, 500),
@@ -122,29 +149,45 @@ function normalizeLead(payload) {
 
 function configuredProviders() {
   const providers = [];
-  if (process.env.RESEND_API_KEY && process.env.LEAD_EMAIL_TO && process.env.LEAD_EMAIL_FROM) {
-    providers.push({ name: "email", send: sendEmail });
+  const emailConfig = getEmailConfig();
+  if (!emailConfig.missing.length) {
+    providers.push({ name: "email", send: (lead) => sendEmail(lead, emailConfig) });
   }
   if (process.env.LEADS_WEBHOOK_URL) {
     providers.push({ name: "webhook", send: sendWebhook });
   }
-  return providers;
+
+  return { providers, missingEmailEnv: emailConfig.missing };
 }
 
-async function sendEmail(lead) {
-  const subjectPrefix = process.env.LEAD_EMAIL_SUBJECT_PREFIX || "DMCI Broker Lead";
+function getEmailConfig() {
+  const apiKey = process.env.RESEND_API_KEY;
+  const from = firstEnvValue("LEAD_EMAIL_FROM", "RESEND_FROM");
+  const to = firstEnvValue("LEAD_EMAIL_TO", "LEAD_TO_EMAIL");
+  const replyTo = firstEnvValue("LEAD_EMAIL_REPLY_TO", "LEAD_REPLY_TO_EMAIL");
+  const subjectPrefix = firstEnvValue("LEAD_EMAIL_SUBJECT_PREFIX") || "DMCI Broker Lead";
+  const missing = [];
+
+  if (!apiKey) missing.push("RESEND_API_KEY");
+  if (!from) missing.push("LEAD_EMAIL_FROM or RESEND_FROM");
+  if (!to) missing.push("LEAD_EMAIL_TO or LEAD_TO_EMAIL");
+
+  return { apiKey, from, to, replyTo, subjectPrefix, missing };
+}
+
+async function sendEmail(lead, config) {
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+      Authorization: `Bearer ${config.apiKey}`,
       "Content-Type": "application/json",
       "Idempotency-Key": lead.referenceId
     },
     body: JSON.stringify({
-      from: process.env.LEAD_EMAIL_FROM,
-      to: splitRecipients(process.env.LEAD_EMAIL_TO),
-      reply_to: lead.email || process.env.LEAD_EMAIL_REPLY_TO || undefined,
-      subject: `${subjectPrefix}: ${titleCase(lead.inquiryType || "Inquiry")}${lead.projectInterestedIn ? ` - ${lead.projectInterestedIn}` : ""}`,
+      from: config.from,
+      to: splitRecipients(config.to),
+      reply_to: lead.email || config.replyTo || undefined,
+      subject: `${config.subjectPrefix}: ${titleCase(lead.inquiryType || "Inquiry")}${lead.projectInterestedIn ? ` - ${lead.projectInterestedIn}` : ""}`,
       text: formatLeadText(lead),
       html: formatLeadHtml(lead)
     })
@@ -152,8 +195,11 @@ async function sendEmail(lead) {
 
   if (!response.ok) {
     const details = await response.text();
-    throw new Error(`Email provider failed with ${response.status}: ${details.slice(0, 300)}`);
+    throw classifyResendError(response.status, details);
   }
+
+  const data = await safeResponseJson(response);
+  return { messageId: data?.id };
 }
 
 async function sendWebhook(lead) {
@@ -194,6 +240,14 @@ function formatLeadText(lead) {
     `City/location: ${lead.cityLocation || "Not provided"}`,
     `Preferred contact method: ${lead.preferredContactMethod || "Not provided"}`,
     `Source page: ${lead.sourcePage || lead.sourceUrl || "Not provided"}`,
+    "",
+    "Computation request details",
+    `Unit type: ${lead.unitType || "Not provided"}`,
+    `Budget range: ${lead.budgetRange || "Not provided"}`,
+    `Payment preference: ${lead.paymentPreference || "Not provided"}`,
+    `Buyer type: ${lead.buyerType || "Not provided"}`,
+    `Timeline: ${lead.timeline || "Not provided"}`,
+    `Purpose: ${lead.purpose || "Not provided"}`,
     "",
     "Lead information",
     `Name: ${lead.name}`,
@@ -239,6 +293,14 @@ function formatLeadHtml(lead) {
     ["Email", lead.email || "Not provided"],
     ["Preferred contact method", lead.preferredContactMethod || "Not provided"]
   ];
+  const computationRows = [
+    ["Unit type", lead.unitType || "Not provided"],
+    ["Budget range", lead.budgetRange || "Not provided"],
+    ["Payment preference", lead.paymentPreference || "Not provided"],
+    ["Buyer type", lead.buyerType || "Not provided"],
+    ["Timeline", lead.timeline || "Not provided"],
+    ["Purpose", lead.purpose || "Not provided"]
+  ];
   const projectRows = [
     ["Project name", lead.projectInterestedIn || "Not provided"],
     ["City/location", lead.cityLocation || "Not provided"],
@@ -281,6 +343,12 @@ function formatLeadHtml(lead) {
                       <p style="margin:0 0 8px;color:#486176;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.9px;">Message</p>
                       <p style="margin:0;color:#102a45;font-size:15px;line-height:1.7;">${escapeHtml(lead.message || "No message provided.").replace(/\n/g, "<br>")}</p>
                     </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:24px 30px 0;">
+                    ${sectionTitle("Computation Request Details")}
+                    ${infoTable(computationRows)}
                   </td>
                 </tr>
                 <tr>
@@ -417,6 +485,75 @@ function splitRecipients(value) {
   return String(value || "")
     .split(",")
     .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function firstEnvValue(...names) {
+  for (const name of names) {
+    const value = process.env[name];
+    if (value && String(value).trim()) return String(value).trim();
+  }
+  return "";
+}
+
+async function safeResponseJson(response) {
+  try {
+    return await response.json();
+  } catch {
+    return null;
+  }
+}
+
+function classifyResendError(status, rawDetails) {
+  let parsed = null;
+  try {
+    parsed = JSON.parse(rawDetails);
+  } catch {
+    parsed = null;
+  }
+
+  const detailText = [
+    parsed?.message,
+    parsed?.name,
+    rawDetails
+  ].filter(Boolean).join(" ");
+  const lower = detailText.toLowerCase();
+  let code = "email_delivery_failed";
+  let publicMessage = "Email delivery failed. Please contact Luisa directly using the contact details on this page.";
+
+  if (lower.includes("domain is not verified") || lower.includes("verify your domain")) {
+    code = "resend_domain_not_verified";
+    publicMessage = "Email delivery failed: sender domain is not verified.";
+  } else if (lower.includes("only send testing emails to your own email address")) {
+    code = "resend_test_recipient_not_allowed";
+    publicMessage = "Email delivery failed: Resend test sender can only send to the verified account email.";
+  } else if (lower.includes("from") && (lower.includes("not allowed") || lower.includes("sender"))) {
+    code = "resend_sender_not_allowed";
+    publicMessage = "Email delivery failed: Resend sender is not allowed.";
+  } else if (status === 401 || status === 403) {
+    code = "resend_auth_or_sender_rejected";
+    publicMessage = "Email delivery failed: Resend rejected the sender or API credentials.";
+  }
+
+  const error = new Error(`Email provider failed with ${status}: ${parsed?.message || "Resend request failed"}`);
+  error.code = code;
+  error.publicMessage = publicMessage;
+  error.status = status;
+  error.provider = "resend";
+  return error;
+}
+
+function safeProviderFailures(providers, results) {
+  return results
+    .map((result, index) => {
+      if (result.status !== "rejected") return null;
+      return {
+        provider: providers[index]?.name || "unknown",
+        code: result.reason?.code || "email_delivery_failed",
+        status: result.reason?.status || undefined,
+        message: result.reason?.publicMessage || "Email delivery failed. Please contact Luisa directly using the contact details on this page."
+      };
+    })
     .filter(Boolean);
 }
 
