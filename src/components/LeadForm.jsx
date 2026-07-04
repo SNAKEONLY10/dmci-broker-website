@@ -228,18 +228,38 @@ function validateForm(values, required) {
 }
 
 function withContextualOptions(field, values, projectCatalog) {
-  if (field.name !== "project" || !projectCatalog.length || !values.location) {
+  if (field.name !== "project" || !projectCatalog.length) {
     return field;
+  }
+
+  if (!values.location) {
+    return {
+      ...field,
+      helper: field.helper || "Choose a City / Location first to narrow this list, or open it now to view all approved projects."
+    };
   }
 
   const matchingProjects = projectCatalog
     .filter((project) => normalizeLocation(project.location) === normalizeLocation(values.location))
     .map((project) => project.name);
-  const options = values.project && !matchingProjects.includes(values.project)
-    ? [values.project, ...matchingProjects]
-    : matchingProjects;
+  const hasMismatchSelection = Boolean(values.project && !matchingProjects.includes(values.project));
+  const optionGroups = hasMismatchSelection
+    ? [
+        { label: "Current selection", options: [values.project] },
+        { label: `${values.location} Projects`, options: matchingProjects }
+      ]
+    : [{ label: `${values.location} Projects`, options: matchingProjects }];
+  const projectCount = matchingProjects.length;
 
-  return { ...field, options: options.length ? options : field.options };
+  return {
+    ...field,
+    options: matchingProjects.length ? matchingProjects : field.options,
+    optionGroups: matchingProjects.length ? optionGroups : undefined,
+    placeholder: `Select ${values.location} project`,
+    helper: matchingProjects.length
+      ? `Showing ${projectCount} ${values.location} project${projectCount === 1 ? "" : "s"}. Change City / Location to update this shortlist.`
+      : `No project is tagged under ${values.location} yet. You can still ask Luisa for nearby options.`
+  };
 }
 
 function normalizeLocation(value) {
@@ -303,6 +323,11 @@ async function safeJson(response) {
 function Field({ field, value, onChange, error, required }) {
   const id = `field-${field.name}`;
   const errorId = `${id}-error`;
+  const helperId = `${id}-helper`;
+  const describedBy = [
+    field.helper ? helperId : "",
+    error ? errorId : ""
+  ].filter(Boolean).join(" ") || undefined;
   const shared = {
     id,
     name: field.name,
@@ -311,7 +336,7 @@ function Field({ field, value, onChange, error, required }) {
     placeholder: field.placeholder || placeholderFor(field),
     required,
     "aria-invalid": Boolean(error),
-    "aria-describedby": error ? errorId : undefined
+    "aria-describedby": describedBy
   };
   return (
     <div className={`field ${field.full ? "full" : ""}`}>
@@ -320,12 +345,17 @@ function Field({ field, value, onChange, error, required }) {
         <textarea {...shared} rows="5" maxLength={messageLimit} />
       ) : field.options ? (
         <select {...shared}>
-          <option value="">Select {field.label}</option>
-          {field.options.map((option) => <option key={option}>{option}</option>)}
+          <option value="">{field.placeholder || `Select ${field.label}`}</option>
+          {field.optionGroups ? field.optionGroups.map((group) => (
+            <optgroup key={group.label} label={group.label}>
+              {group.options.map((option) => <option key={`${group.label}-${option}`} value={option}>{option}</option>)}
+            </optgroup>
+          )) : field.options.map((option) => <option key={option}>{option}</option>)}
         </select>
       ) : (
         <input {...shared} type={field.type || "text"} />
       )}
+      {field.helper && <small id={helperId} className="field-helper">{field.helper}</small>}
       {error && <small id={errorId} className="error">{error}</small>}
     </div>
   );

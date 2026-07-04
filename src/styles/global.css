@@ -3380,6 +3380,15 @@ textarea {
   background: #fffafa;
 }
 
+.field-helper {
+  display: block;
+  margin-top: 1px;
+  color: #697a8c;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
 .project-location-note {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;

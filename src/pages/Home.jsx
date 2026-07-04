@@ -18,7 +18,7 @@ const computationFields = [
   { name: "fullName", label: "Full Name" },
   { name: "contactNumber", label: "Mobile / Viber", type: "tel" },
   { name: "email", label: "Email Address", type: "email" },
-  { name: "location", label: "City / Location", options: locations.map((item) => item.name) },
+  { name: "location", label: "City / Location", options: locations.map((item) => item.name), helper: "This narrows Interested Project to the selected city." },
   { name: "project", label: "Interested Project", options: projects.map((item) => item.name) },
   { name: "unitType", label: "Unit Type", options: unitTypes },
   { name: "budgetRange", label: "Budget Range", options: ["Still checking", "Entry level", "Mid range", "Premium range"] },

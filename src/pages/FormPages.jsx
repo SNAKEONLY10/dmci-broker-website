@@ -57,7 +57,7 @@ export function RequestComputation() {
   >
     <DemoForm title="Computation Request Details" fields={[
       f("fullName", "Full Name"), f("contactNumber", "Mobile / Viber", "tel"), f("email", "Email Address", "email"),
-      s("location", "City / Location", locationOptions), s("project", "Interested Project", projectOptions), s("unitType", "Unit Type", unitTypes),
+      { ...s("location", "City / Location", locationOptions), helper: "This narrows Interested Project to the selected city." }, s("project", "Interested Project", projectOptions), s("unitType", "Unit Type", unitTypes),
       s("budgetRange", "Budget Range", ["Still checking", "Entry level", "Mid range", "Premium range"]),
       s("paymentPreference", "Payment Preference", ["Cash", "In-house", "Bank Financing", "Not sure"]),
       s("buyerType", "Buyer Type", ["Local", "OFW", "Investor", "First-time buyer", "Family use"]),
