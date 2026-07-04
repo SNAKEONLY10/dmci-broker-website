@@ -101,7 +101,7 @@ export function BookViewing() {
       { ...s("viewingType", "Viewing Type", ["Model unit / showroom", "Project presentation", "Online consultation", "Phone / Viber call"]), compact: true, placeholder: "Select" },
       { ...f("preferredDate", "Preferred Date", "date"), compact: true },
       { ...f("preferredTime", "Preferred Time", "time"), compact: true },
-      { ...f("guests", "Guests", "number"), compact: true },
+      { ...f("guests", "Guests", "number"), compact: true, min: 1, step: 1, inputMode: "numeric", placeholder: "1" },
       { ...s("contactMethod", "Contact Method", contactMethodOptions), compact: true, placeholder: "Select" },
       t("Viewing notes")
     ]} storageKey="dmci_viewing_requests" submitLabel="Request Viewing Schedule" initialValues={initialValues} required={["fullName", "contactNumber", "contactMethod"]} inquiryType="Book Site Viewing" projectCatalog={projects} onValuesChange={setPreviewValues} compact />

@@ -31,6 +31,7 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
   const [status, setStatus] = useState("idle");
   const requiredSet = new Set(required);
   const allFields = useMemo(() => fields.map((field) => field.name), [fields]);
+  const fieldByName = useMemo(() => new Map(fields.map((field) => [field.name, field])), [fields]);
   const projectByName = useMemo(() => {
     return new Map(projectCatalog.map((project) => [project.name, project]));
   }, [projectCatalog]);
@@ -54,11 +55,19 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
 
   function update(event) {
     const { name, value, type, checked } = event.target;
+    const field = fieldByName.get(name);
     setValues((current) => {
-      const next = { ...current, [name]: type === "checkbox" ? checked : value };
-      const nextProject = name === "project" ? projectByName.get(value) : null;
+      const nextValue = type === "checkbox" ? checked : sanitizeFieldValue(field, value);
+      const next = { ...current, [name]: nextValue };
+      const nextProject = name === "project" ? projectByName.get(nextValue) : null;
       if (nextProject && !next.location) {
         next.location = nextProject.location;
+      }
+      if (name === "location" && next.project) {
+        const selectedProjectForCity = projectByName.get(next.project);
+        if (selectedProjectForCity && normalizeLocation(selectedProjectForCity.location) !== normalizeLocation(nextValue)) {
+          next.project = "";
+        }
       }
       onValuesChange?.(next);
       return next;
@@ -71,6 +80,9 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
       }
       if (name === "project") {
         next.location = "";
+      }
+      if (name === "location") {
+        next.project = "";
       }
       return next;
     });
@@ -94,7 +106,7 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
 
   async function submit(event) {
     event.preventDefault();
-    const nextErrors = validateForm(values, required);
+    const nextErrors = validateForm(values, required, fields);
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length) {
       setNotice({ type: "error", text: "Please review the highlighted fields before sending." });
@@ -192,7 +204,7 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
   );
 }
 
-function validateForm(values, required) {
+function validateForm(values, required, fields = []) {
   const requiredFields = [...new Set(["fullName", ...required, "consent"])];
   const nextErrors = validateRequired(values, requiredFields);
   const requiresContactNumber = requiredFields.includes("contactNumber");
@@ -220,6 +232,28 @@ function validateForm(values, required) {
   if (String(values.message || "").length > messageLimit) {
     nextErrors.message = `Please keep the message under ${messageLimit} characters.`;
   }
+  fields.forEach((field) => {
+    if (field.type !== "number" || !String(values[field.name] || "").trim()) return;
+    const numericValue = Number(values[field.name]);
+    const minimum = Number(field.min);
+    const maximum = Number(field.max);
+
+    if (!Number.isFinite(numericValue)) {
+      nextErrors[field.name] = "Please enter a valid number.";
+      return;
+    }
+    if (Number.isFinite(minimum) && numericValue < minimum) {
+      nextErrors[field.name] = `Please enter at least ${minimum}.`;
+      return;
+    }
+    if (Number.isFinite(maximum) && numericValue > maximum) {
+      nextErrors[field.name] = `Please enter ${maximum} or less.`;
+      return;
+    }
+    if (Number(field.step) === 1 && !Number.isInteger(numericValue)) {
+      nextErrors[field.name] = "Please enter a whole number.";
+    }
+  });
   if (!values.consent) {
     nextErrors.consent = "Please confirm consent before sending.";
   }
@@ -242,21 +276,24 @@ function withContextualOptions(field, values, projectCatalog) {
     };
   }
 
-  const matchingProjects = projectCatalog
-    .filter((project) => normalizeLocation(project.location) === normalizeLocation(values.location))
-    .map((project) => project.name);
-  const hasMismatchSelection = Boolean(values.project && !matchingProjects.includes(values.project));
-  const optionGroups = hasMismatchSelection
-    ? [
-        { label: "Current selection", options: [values.project] },
-        { label: `${values.location} Projects`, options: matchingProjects }
-      ]
-    : [{ label: `${values.location} Projects`, options: matchingProjects }];
+  const matchingProjects = projectCatalog.filter((project) => normalizeLocation(project.location) === normalizeLocation(values.location));
+  const otherProjects = projectCatalog.filter((project) => normalizeLocation(project.location) !== normalizeLocation(values.location));
+  const optionGroups = [
+    { label: `${values.location} Projects`, options: matchingProjects.map((project) => project.name) },
+    {
+      label: "Other approved projects - change city first",
+      options: otherProjects.map((project) => ({
+        value: project.name,
+        label: `${project.name} - ${project.location}`,
+        disabled: true
+      }))
+    }
+  ].filter((group) => group.options.length);
   const projectCount = matchingProjects.length;
 
   return {
     ...field,
-    options: matchingProjects.length ? matchingProjects : field.options,
+    options: matchingProjects.length ? matchingProjects.map((project) => project.name) : field.options,
     optionGroups: matchingProjects.length ? optionGroups : undefined,
     placeholder: `Select ${values.location} project`,
     helper: matchingProjects.length
@@ -341,6 +378,14 @@ function Field({ field, value, onChange, error, required }) {
     "aria-invalid": Boolean(error),
     "aria-describedby": describedBy
   };
+  const numberProps = field.type === "number" ? {
+    min: field.min,
+    max: field.max,
+    step: field.step,
+    inputMode: field.inputMode,
+    pattern: field.pattern,
+    onKeyDown: blockInvalidNumberKeys
+  } : {};
   return (
     <div className={`field ${field.full ? "full" : ""} ${field.compact ? "compact" : ""} ${field.mobileFull ? "mobile-full" : ""}`}>
       <label htmlFor={id}>{field.label}{required && <span className="required-mark"> Required</span>}</label>
@@ -351,17 +396,60 @@ function Field({ field, value, onChange, error, required }) {
           <option value="">{field.placeholder || `Select ${field.label}`}</option>
           {field.optionGroups ? field.optionGroups.map((group) => (
             <optgroup key={group.label} label={group.label}>
-              {group.options.map((option) => <option key={`${group.label}-${option}`} value={option}>{option}</option>)}
+              {group.options.map((option) => <option key={`${group.label}-${optionValue(option)}`} value={optionValue(option)} disabled={Boolean(option.disabled)}>{optionLabel(option)}</option>)}
             </optgroup>
-          )) : field.options.map((option) => <option key={option}>{option}</option>)}
+          )) : field.options.map((option) => <option key={optionValue(option)} value={optionValue(option)} disabled={Boolean(option.disabled)}>{optionLabel(option)}</option>)}
         </select>
       ) : (
-        <input {...shared} type={field.type || "text"} />
+        <input {...shared} {...numberProps} type={field.type || "text"} />
       )}
       {field.helper && <small id={helperId} className="field-helper">{field.helper}</small>}
       {error && <small id={errorId} className="error">{error}</small>}
     </div>
   );
+}
+
+function optionValue(option) {
+  return typeof option === "string" ? option : option.value;
+}
+
+function optionLabel(option) {
+  return typeof option === "string" ? option : option.label;
+}
+
+function sanitizeFieldValue(field, value) {
+  if (field?.type !== "number") {
+    return value;
+  }
+
+  const rawValue = String(value ?? "");
+  if (!rawValue) {
+    return "";
+  }
+
+  const numericMatch = rawValue.match(/\d+/);
+  if (!numericMatch) {
+    return "";
+  }
+
+  const numericValue = Number(numericMatch[0]);
+  const minimum = Number(field.min);
+  const maximum = Number(field.max);
+
+  if (Number.isFinite(minimum) && numericValue < minimum) {
+    return String(minimum);
+  }
+  if (Number.isFinite(maximum) && numericValue > maximum) {
+    return String(maximum);
+  }
+
+  return String(numericValue);
+}
+
+function blockInvalidNumberKeys(event) {
+  if (["-", "+", "e", "E"].includes(event.key)) {
+    event.preventDefault();
+  }
 }
 
 function SelectedProjectPreview({ project, mismatch }) {
