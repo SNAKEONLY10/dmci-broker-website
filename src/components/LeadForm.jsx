@@ -484,10 +484,10 @@ function ProjectLocationNotice({ feedback, mismatch, onUseProjectLocation, onCle
 
 function placeholderFor(field) {
   const placeholders = {
-    fullName: "Juan Dela Cruz",
-    contactNumber: "0998 865 8902",
-    email: "buyer@email.com",
-    message: "Share your preferred unit, timing, budget range, or questions.",
+    fullName: "Your full name",
+    contactNumber: "09XX XXX XXXX",
+    email: "name@email.com",
+    message: "Preferred unit, budget, schedule, or questions.",
     preferredDate: "Select preferred date",
     preferredTime: "Select preferred time",
     guests: "Number of guests"

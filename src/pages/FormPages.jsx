@@ -61,12 +61,12 @@ export function RequestComputation() {
       { ...f("email", "Email Address", "email"), compact: true },
       { ...s("location", "City / Location", locationOptions), helper: "This narrows Interested Project to the selected city." },
       s("project", "Interested Project", projectOptions),
-      { ...s("unitType", "Unit Type", unitTypes), compact: true, placeholder: "Select" },
-      { ...s("budgetRange", "Budget Range", ["Still checking", "Entry level", "Mid range", "Premium range"]), compact: true, placeholder: "Select" },
-      { ...s("paymentPreference", "Payment", ["Cash", "In-house", "Bank Financing", "Not sure"]), compact: true, placeholder: "Select" },
-      { ...s("buyerType", "Buyer Type", ["Local", "OFW", "Investor", "First-time buyer", "Family use"]), compact: true, placeholder: "Select" },
-      { ...s("timeline", "Timeline", ["Immediately", "1-3 months", "3-6 months", "Still exploring"]), compact: true, placeholder: "Select" },
-      { ...s("contactMethod", "Contact Method", contactMethodOptions), compact: true, placeholder: "Select" },
+      { ...s("unitType", "Unit Type", unitTypes), compact: true, placeholder: "Choose unit" },
+      { ...s("budgetRange", "Budget Range", ["Still checking", "Entry level", "Mid range", "Premium range"]), compact: true, placeholder: "Choose range" },
+      { ...s("paymentPreference", "Payment", ["Cash", "In-house", "Bank Financing", "Not sure"]), compact: true, placeholder: "Choose term" },
+      { ...s("buyerType", "Buyer Type", ["Local", "OFW", "Investor", "First-time buyer", "Family use"]), compact: true, placeholder: "Choose type" },
+      { ...s("timeline", "Timeline", ["Immediately", "1-3 months", "3-6 months", "Still exploring"]), compact: true, placeholder: "Choose timing" },
+      { ...s("contactMethod", "Contact Method", contactMethodOptions), compact: true, placeholder: "Choose method" },
       t()
     ]} storageKey="dmci_computation_requests" submitLabel="Send Computation Request" initialValues={initialValues} required={["fullName", "contactNumber", "email", "contactMethod"]} inquiryType="Request Computation" projectCatalog={projects} onValuesChange={setPreviewValues} compact />
   </FormShell>;
@@ -98,11 +98,11 @@ export function BookViewing() {
       { ...f("email", "Email Address", "email"), compact: true },
       { ...s("location", "City / Location", locationOptions), helper: "This narrows Interested Project to the selected city." },
       s("project", "Interested Project", projectOptions),
-      { ...s("viewingType", "Viewing Type", ["Model unit / showroom", "Project presentation", "Online consultation", "Phone / Viber call"]), compact: true, placeholder: "Select" },
+      { ...s("viewingType", "Viewing Type", ["Model unit / showroom", "Project presentation", "Online consultation", "Phone / Viber call"]), compact: true, placeholder: "Choose visit" },
       { ...f("preferredDate", "Preferred Date", "date"), compact: true },
       { ...f("preferredTime", "Preferred Time", "time"), compact: true },
       { ...f("guests", "Guests", "number"), compact: true, min: 1, step: 1, inputMode: "numeric", placeholder: "1" },
-      { ...s("contactMethod", "Contact Method", contactMethodOptions), compact: true, placeholder: "Select" },
+      { ...s("contactMethod", "Contact Method", contactMethodOptions), compact: true, placeholder: "Choose method" },
       t("Viewing notes")
     ]} storageKey="dmci_viewing_requests" submitLabel="Request Viewing Schedule" initialValues={initialValues} required={["fullName", "contactNumber", "contactMethod"]} inquiryType="Book Site Viewing" projectCatalog={projects} onValuesChange={setPreviewValues} compact />
   </FormShell>;
