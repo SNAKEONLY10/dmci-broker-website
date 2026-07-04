@@ -55,16 +55,20 @@ export function RequestComputation() {
       cta: "Send Computation Request"
     }}
   >
-    <DemoForm title="Computation Request Details" fields={[
-      f("fullName", "Full Name"), f("contactNumber", "Mobile / Viber", "tel"), f("email", "Email Address", "email"),
-      { ...s("location", "City / Location", locationOptions), helper: "This narrows Interested Project to the selected city." }, s("project", "Interested Project", projectOptions), s("unitType", "Unit Type", unitTypes),
-      s("budgetRange", "Budget Range", ["Still checking", "Entry level", "Mid range", "Premium range"]),
-      s("paymentPreference", "Payment Preference", ["Cash", "In-house", "Bank Financing", "Not sure"]),
-      s("buyerType", "Buyer Type", ["Local", "OFW", "Investor", "First-time buyer", "Family use"]),
-      s("inquiryType", "Inquiry Type", inquiryTypes),
-      s("timeline", "Timeline", ["Immediately", "1-3 months", "3-6 months", "Still exploring"]),
-      s("contactMethod", "Preferred Contact Method", contactMethodOptions), t()
-    ]} storageKey="dmci_computation_requests" submitLabel="Send Computation Request" initialValues={initialValues} required={["fullName", "contactNumber", "email", "contactMethod"]} inquiryType="Request Computation" projectCatalog={projects} onValuesChange={setPreviewValues} />
+    <DemoForm title="Computation Details" fields={[
+      { ...f("fullName", "Full Name"), mobileFull: true },
+      { ...f("contactNumber", "Mobile / Viber", "tel"), compact: true },
+      { ...f("email", "Email Address", "email"), compact: true },
+      { ...s("location", "City / Location", locationOptions), helper: "This narrows Interested Project to the selected city." },
+      s("project", "Interested Project", projectOptions),
+      { ...s("unitType", "Unit Type", unitTypes), compact: true, placeholder: "Select" },
+      { ...s("budgetRange", "Budget Range", ["Still checking", "Entry level", "Mid range", "Premium range"]), compact: true, placeholder: "Select" },
+      { ...s("paymentPreference", "Payment", ["Cash", "In-house", "Bank Financing", "Not sure"]), compact: true, placeholder: "Select" },
+      { ...s("buyerType", "Buyer Type", ["Local", "OFW", "Investor", "First-time buyer", "Family use"]), compact: true, placeholder: "Select" },
+      { ...s("timeline", "Timeline", ["Immediately", "1-3 months", "3-6 months", "Still exploring"]), compact: true, placeholder: "Select" },
+      { ...s("contactMethod", "Contact Method", contactMethodOptions), compact: true, placeholder: "Select" },
+      t()
+    ]} storageKey="dmci_computation_requests" submitLabel="Send Computation Request" initialValues={initialValues} required={["fullName", "contactNumber", "email", "contactMethod"]} inquiryType="Request Computation" projectCatalog={projects} onValuesChange={setPreviewValues} compact />
   </FormShell>;
 }
 

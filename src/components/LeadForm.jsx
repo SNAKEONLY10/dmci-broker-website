@@ -24,7 +24,7 @@ const computationTestFailedMessage = "Your request was saved in this browser, bu
 const sendErrorMessage = "We could not send your inquiry right now. Please try again or contact Luisa directly.";
 const messageLimit = 1500;
 
-export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, initialValues = {}, required = [], inquiryType = "general", projectCatalog = [], onValuesChange }) {
+export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, initialValues = {}, required = [], inquiryType = "general", projectCatalog = [], onValuesChange, compact = false }) {
   const [values, setValues] = useState({ ...defaults, ...initialValues });
   const [errors, setErrors] = useState({});
   const [notice, setNotice] = useState(null);
@@ -149,20 +149,23 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
   }
 
   return (
-    <form className="form-card" onSubmit={submit} noValidate aria-busy={status === "submitting"}>
+    <form className={`form-card ${compact ? "form-card-compact" : ""}`} onSubmit={submit} noValidate aria-busy={status === "submitting"}>
       <div className="form-intro">
         <span className="eyebrow">Buyer Inquiry</span>
         <h2>{title}</h2>
         {subtitle && <p>{subtitle}</p>}
       </div>
       <div className="form-grid">
-        <div className="hp-field" aria-hidden="true">
+        <div className="hp-field" aria-hidden="true" hidden>
           <label htmlFor="field-website">Website</label>
           <input id="field-website" name="website" value={values.website || ""} onChange={update} tabIndex="-1" autoComplete="off" />
         </div>
         {displayFields.map((field) => (
           <Fragment key={field.name}>
             <Field field={field} value={values[field.name] || ""} onChange={update} error={errors[field.name]} required={requiredSet.has(field.name)} />
+            {field.name === "project" && selectedProject && (
+              <SelectedProjectPreview project={selectedProject} mismatch={projectLocationMismatch} />
+            )}
             {field.name === "project" && projectLocationFeedback && (
               <ProjectLocationNotice
                 feedback={projectLocationFeedback}
@@ -339,7 +342,7 @@ function Field({ field, value, onChange, error, required }) {
     "aria-describedby": describedBy
   };
   return (
-    <div className={`field ${field.full ? "full" : ""}`}>
+    <div className={`field ${field.full ? "full" : ""} ${field.compact ? "compact" : ""} ${field.mobileFull ? "mobile-full" : ""}`}>
       <label htmlFor={id}>{field.label}{required && <span className="required-mark"> Required</span>}</label>
       {field.type === "textarea" ? (
         <textarea {...shared} rows="5" maxLength={messageLimit} />
@@ -357,6 +360,19 @@ function Field({ field, value, onChange, error, required }) {
       )}
       {field.helper && <small id={helperId} className="field-helper">{field.helper}</small>}
       {error && <small id={errorId} className="error">{error}</small>}
+    </div>
+  );
+}
+
+function SelectedProjectPreview({ project, mismatch }) {
+  return (
+    <div className={`selected-project-preview ${mismatch ? "mismatch" : ""} full`} aria-live="polite">
+      <img src={project.image} alt={`${project.name} project preview`} loading="lazy" />
+      <div>
+        <span>{mismatch ? "Review selection" : "Selected project"}</span>
+        <strong>{project.name}</strong>
+        <small>{project.location}</small>
+      </div>
     </div>
   );
 }
