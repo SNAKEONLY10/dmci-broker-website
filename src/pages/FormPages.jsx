@@ -74,21 +74,37 @@ export function RequestComputation() {
 
 export function BookViewing() {
   const initialValues = useInquiryDefaults();
+  const [previewValues, setPreviewValues] = useState(initialValues);
+  const selectedProject = previewValues.project ? projectByName.get(previewValues.project) : null;
+
+  useEffect(() => {
+    setPreviewValues(initialValues);
+  }, [initialValues.project, initialValues.location, initialValues.inquiryType]);
+
   return <FormShell
     title="Book a Site Viewing"
-    text="Choose your preferred viewing setup and schedule. Luisa can help coordinate based on project access and available slots."
+    text="Share your preferred project, schedule, and viewing setup. Luisa will confirm access, available slots, and visit instructions before the appointment."
+    selectedProject={selectedProject}
     panel={{
-      eyebrow: "Viewing Coordination",
-      title: "Plan your visit with broker guidance",
-      text: "Ask for a model unit visit, project presentation, or online consultation before reserving.",
-      cta: "Book Viewing"
+      eyebrow: "Viewing Request",
+      title: "Plan a smoother project visit",
+      text: "Choose a project and preferred schedule. Luisa will help confirm viewing availability, access requirements, and the best visit setup.",
+      cta: "Request Viewing Schedule"
     }}
   >
-    <DemoForm title="Viewing Request Details" fields={[
-      f("fullName", "Full Name"), f("contactNumber", "Mobile / Viber", "tel"), f("email", "Email Address", "email"), s("project", "Interested Project", projectOptions), s("location", "City / Location", locationOptions),
-      s("viewingType", "Viewing Type", ["On-site model unit viewing", "Online consultation", "Phone call", "Zoom/Google Meet"]),
-      f("preferredDate", "Preferred Date", "date"), f("preferredTime", "Preferred Time", "time"), f("guests", "Number of Guests", "number"), s("contactMethod", "Preferred Contact Method", contactMethodOptions), t("Notes or questions")
-    ]} storageKey="dmci_viewing_requests" submitLabel="Request Viewing Schedule" initialValues={initialValues} required={["fullName", "contactMethod"]} inquiryType="Book Site Viewing" />
+    <DemoForm title="Viewing Details" fields={[
+      { ...f("fullName", "Full Name"), mobileFull: true },
+      { ...f("contactNumber", "Mobile / Viber", "tel"), compact: true },
+      { ...f("email", "Email Address", "email"), compact: true },
+      { ...s("location", "City / Location", locationOptions), helper: "This narrows Interested Project to the selected city." },
+      s("project", "Interested Project", projectOptions),
+      { ...s("viewingType", "Viewing Type", ["Model unit / showroom", "Project presentation", "Online consultation", "Phone / Viber call"]), compact: true, placeholder: "Select" },
+      { ...f("preferredDate", "Preferred Date", "date"), compact: true },
+      { ...f("preferredTime", "Preferred Time", "time"), compact: true },
+      { ...f("guests", "Guests", "number"), compact: true },
+      { ...s("contactMethod", "Contact Method", contactMethodOptions), compact: true, placeholder: "Select" },
+      t("Viewing notes")
+    ]} storageKey="dmci_viewing_requests" submitLabel="Request Viewing Schedule" initialValues={initialValues} required={["fullName", "contactNumber", "contactMethod"]} inquiryType="Book Site Viewing" projectCatalog={projects} onValuesChange={setPreviewValues} compact />
   </FormShell>;
 }
 
@@ -155,8 +171,10 @@ function FormShell({ title, text, panel, children, selectedProject }) {
     meta: "Sales Director, DMCI Homes"
   };
 
+  const sectionStyle = selectedProject ? { "--form-project-bg": `url(${selectedProject.image})` } : undefined;
+
   return (
-    <section className="page-section form-page">
+    <section className={`page-section form-page ${selectedProject ? "has-project-background" : ""}`} style={sectionStyle}>
       <div className="container form-shell-grid">
         <aside className="form-broker-panel">
           <div className={`form-broker-image ${selectedProject ? "has-project-preview" : ""}`}>
