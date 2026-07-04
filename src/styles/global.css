@@ -3380,6 +3380,65 @@ textarea {
   background: #fffafa;
 }
 
+.project-location-note {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  margin-top: -2px;
+  padding: 13px 14px;
+  border: 1px solid rgba(201,162,74,0.28);
+  border-radius: 8px;
+  background: #fffaf0;
+  animation: formNoticeIn 0.26s ease both;
+}
+
+.project-location-note.matched {
+  border-color: rgba(24,120,87,0.22);
+  background: #f1fbf7;
+}
+
+.project-location-note strong {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--navy);
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+.project-location-note p {
+  color: #5d6b78;
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+.project-location-actions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.project-location-actions button {
+  min-height: 36px;
+  padding: 8px 11px;
+  border: 1px solid rgba(15,39,66,0.14);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--navy);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 850;
+  cursor: pointer;
+  transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+}
+
+.project-location-actions button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(201,162,74,0.48);
+  background: #fffdf7;
+}
+
 .success-message,
 .error-message {
   animation: formNoticeIn 0.26s ease both;
@@ -3424,12 +3483,25 @@ textarea {
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes formMediaSwap {
+  from { opacity: 0.68; transform: scale(1.035); filter: saturate(0.92); }
+  to { opacity: 1; transform: scale(1); filter: saturate(1); }
+}
+
+@keyframes formCaptionIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 @keyframes submitSpin {
   to { transform: rotate(360deg); }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .form-card,
+  .form-broker-image img,
+  .form-media-caption,
+  .project-location-note,
   .success-message,
   .error-message,
   .form-submit:disabled::before {
@@ -3437,7 +3509,9 @@ textarea {
   }
   .field input,
   .field select,
-  .field textarea {
+  .field textarea,
+  .project-location-actions button,
+  .form-broker-image img {
     transition: none;
   }
 }
@@ -4115,6 +4189,7 @@ textarea {
 }
 
 .form-broker-image {
+  position: relative;
   aspect-ratio: 4 / 5;
   min-height: 0;
   max-height: none;
@@ -4128,6 +4203,60 @@ textarea {
   min-height: 0;
   object-fit: cover;
   object-position: 50% 50%;
+  animation: formMediaSwap 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.form-broker-image.has-project-preview img {
+  transform: scale(1.015);
+}
+
+.form-broker-image::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 48%;
+  background: linear-gradient(180deg, rgba(7,26,45,0), rgba(7,26,45,0.76));
+  pointer-events: none;
+}
+
+.form-media-caption {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1;
+  display: grid;
+  gap: 4px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 8px;
+  background: rgba(7,26,45,0.68);
+  color: #ffffff;
+  box-shadow: 0 16px 38px rgba(7,26,45,0.22);
+  backdrop-filter: blur(10px);
+  animation: formCaptionIn 0.34s ease both;
+}
+
+.form-media-caption span {
+  color: #d8b65d;
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.form-media-caption strong {
+  color: #ffffff;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.12rem, 2vw, 1.4rem);
+  line-height: 1.12;
+}
+
+.form-media-caption small {
+  color: rgba(255,255,255,0.78);
+  font-size: 0.8rem;
+  font-weight: 750;
 }
 
 .form-broker-copy {
@@ -4318,6 +4447,13 @@ textarea {
     object-position: 50% 50%;
   }
 
+  .form-media-caption {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    padding: 12px 13px;
+  }
+
   .form-broker-copy {
     padding: 22px 18px;
   }
@@ -4333,6 +4469,18 @@ textarea {
 
   .form-card {
     padding: 18px;
+  }
+
+  .project-location-note {
+    grid-template-columns: 1fr;
+  }
+
+  .project-location-actions {
+    justify-content: stretch;
+  }
+
+  .project-location-actions button {
+    flex: 1 1 130px;
   }
 
   .consent {

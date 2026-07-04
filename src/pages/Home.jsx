@@ -109,6 +109,7 @@ export default function Home() {
             submitLabel="Send Computation Request"
             required={["fullName", "contactNumber", "email", "location", "project", "unitType", "budgetRange", "purpose", "contactMethod", "message"]}
             inquiryType="Request Computation"
+            projectCatalog={projects}
           />
         </div>
       </section>

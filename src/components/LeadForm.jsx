@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { Fragment, useMemo, useState } from "react";
 import { saveSubmission, validateRequired } from "../utils/storage";
 import { Button } from "./Button";
 
@@ -24,25 +24,71 @@ const computationTestFailedMessage = "Your request was saved in this browser, bu
 const sendErrorMessage = "We could not send your inquiry right now. Please try again or contact Luisa directly.";
 const messageLimit = 1500;
 
-export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, initialValues = {}, required = [], inquiryType = "general" }) {
+export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, initialValues = {}, required = [], inquiryType = "general", projectCatalog = [], onValuesChange }) {
   const [values, setValues] = useState({ ...defaults, ...initialValues });
   const [errors, setErrors] = useState({});
   const [notice, setNotice] = useState(null);
   const [status, setStatus] = useState("idle");
   const requiredSet = new Set(required);
   const allFields = useMemo(() => fields.map((field) => field.name), [fields]);
+  const projectByName = useMemo(() => {
+    return new Map(projectCatalog.map((project) => [project.name, project]));
+  }, [projectCatalog]);
+  const displayFields = useMemo(() => fields.map((field) => withContextualOptions(field, values, projectCatalog)), [fields, values, projectCatalog]);
+  const selectedProject = values.project ? projectByName.get(values.project) : null;
+  const projectLocationMismatch = Boolean(selectedProject && values.location && normalizeLocation(selectedProject.location) !== normalizeLocation(values.location));
+  const projectLocationFeedback = selectedProject ? {
+    type: projectLocationMismatch ? "warning" : "info",
+    title: projectLocationMismatch
+      ? `${selectedProject.name} is listed under ${selectedProject.location}.`
+      : `${selectedProject.name} is connected to ${selectedProject.location}.`,
+    text: projectLocationMismatch
+      ? `You selected ${values.location}. You can keep it for comparison, but Luisa will confirm the correct project location before preparing computation.`
+      : "The city and project now match for a cleaner computation request."
+  } : null;
+
+  function commitValues(nextValues) {
+    setValues(nextValues);
+    onValuesChange?.(nextValues);
+  }
 
   function update(event) {
     const { name, value, type, checked } = event.target;
-    setValues((current) => ({ ...current, [name]: type === "checkbox" ? checked : value }));
+    setValues((current) => {
+      const next = { ...current, [name]: type === "checkbox" ? checked : value };
+      const nextProject = name === "project" ? projectByName.get(value) : null;
+      if (nextProject && !next.location) {
+        next.location = nextProject.location;
+      }
+      onValuesChange?.(next);
+      return next;
+    });
     setErrors((current) => {
       const next = { ...current, [name]: "" };
       if (name === "contactNumber" || name === "email") {
         next.contactNumber = "";
         next.email = "";
       }
+      if (name === "project") {
+        next.location = "";
+      }
       return next;
     });
+    setNotice(null);
+  }
+
+  function useProjectLocation() {
+    if (!selectedProject) return;
+    const nextValues = { ...values, location: selectedProject.location };
+    commitValues(nextValues);
+    setErrors((current) => ({ ...current, location: "" }));
+    setNotice(null);
+  }
+
+  function clearSelectedProject() {
+    const nextValues = { ...values, project: "" };
+    commitValues(nextValues);
+    setErrors((current) => ({ ...current, project: "" }));
     setNotice(null);
   }
 
@@ -73,13 +119,13 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
 
       if (response.ok && data?.ok) {
         setNotice({ type: "success", text: isComputationRequest ? computationTestDeliveredMessage : deliveredMessage });
-        setValues({ ...defaults, ...initialValues });
+        commitValues({ ...defaults, ...initialValues });
         return;
       }
 
       if (!isComputationRequest && (data?.previewOnly || data?.code === "delivery_not_configured" || data?.code === "lead_delivery_not_configured" || (!data && (response.status === 404 || contentType.includes("text/html"))))) {
         setNotice({ type: "success", text: previewMessage });
-        setValues({ ...defaults, ...initialValues });
+        commitValues({ ...defaults, ...initialValues });
         return;
       }
 
@@ -95,7 +141,7 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
       }
       setNotice({ type: isComputationRequest ? "error" : "success", text: isComputationRequest ? computationTestFailedMessage : previewMessage });
       if (!isComputationRequest) {
-        setValues({ ...defaults, ...initialValues });
+        commitValues({ ...defaults, ...initialValues });
       }
     } finally {
       setStatus("idle");
@@ -114,8 +160,18 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
           <label htmlFor="field-website">Website</label>
           <input id="field-website" name="website" value={values.website || ""} onChange={update} tabIndex="-1" autoComplete="off" />
         </div>
-        {fields.map((field) => (
-          <Field key={field.name} field={field} value={values[field.name] || ""} onChange={update} error={errors[field.name]} required={requiredSet.has(field.name)} />
+        {displayFields.map((field) => (
+          <Fragment key={field.name}>
+            <Field field={field} value={values[field.name] || ""} onChange={update} error={errors[field.name]} required={requiredSet.has(field.name)} />
+            {field.name === "project" && projectLocationFeedback && (
+              <ProjectLocationNotice
+                feedback={projectLocationFeedback}
+                mismatch={projectLocationMismatch}
+                onUseProjectLocation={useProjectLocation}
+                onClearProject={clearSelectedProject}
+              />
+            )}
+          </Fragment>
         ))}
         <label className="consent full">
           <input name="consent" type="checkbox" checked={values.consent} onChange={update} />
@@ -136,14 +192,22 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
 function validateForm(values, required) {
   const requiredFields = [...new Set(["fullName", ...required, "consent"])];
   const nextErrors = validateRequired(values, requiredFields);
+  const requiresContactNumber = requiredFields.includes("contactNumber");
+  const requiresEmail = requiredFields.includes("email");
 
   if (!String(values.fullName || "").trim()) {
     nextErrors.fullName = "Please enter your full name.";
   }
+  if (requiresContactNumber && !String(values.contactNumber || "").trim()) {
+    nextErrors.contactNumber = "Please enter your mobile or contact number.";
+  }
+  if (requiresEmail && !String(values.email || "").trim()) {
+    nextErrors.email = "Please enter your email address.";
+  }
   if (!String(values.contactMethod || "").trim()) {
     nextErrors.contactMethod = "Please choose how Luisa should contact you.";
   }
-  if (!String(values.contactNumber || "").trim() && !String(values.email || "").trim()) {
+  if (!requiresContactNumber && !requiresEmail && !String(values.contactNumber || "").trim() && !String(values.email || "").trim()) {
     nextErrors.contactNumber = "Provide a phone number or email address.";
     nextErrors.email = "Provide an email address or phone number.";
   }
@@ -161,6 +225,28 @@ function validateForm(values, required) {
   }
 
   return Object.fromEntries(Object.entries(nextErrors).filter(([, value]) => value));
+}
+
+function withContextualOptions(field, values, projectCatalog) {
+  if (field.name !== "project" || !projectCatalog.length || !values.location) {
+    return field;
+  }
+
+  const matchingProjects = projectCatalog
+    .filter((project) => normalizeLocation(project.location) === normalizeLocation(values.location))
+    .map((project) => project.name);
+  const options = values.project && !matchingProjects.includes(values.project)
+    ? [values.project, ...matchingProjects]
+    : matchingProjects;
+
+  return { ...field, options: options.length ? options : field.options };
+}
+
+function normalizeLocation(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
 }
 
 function buildLeadPayload(values, inquiryType, fieldNames) {
@@ -241,6 +327,23 @@ function Field({ field, value, onChange, error, required }) {
         <input {...shared} type={field.type || "text"} />
       )}
       {error && <small id={errorId} className="error">{error}</small>}
+    </div>
+  );
+}
+
+function ProjectLocationNotice({ feedback, mismatch, onUseProjectLocation, onClearProject }) {
+  return (
+    <div className={`project-location-note ${mismatch ? "warning" : "matched"} full`} role="status">
+      <div>
+        <strong>{feedback.title}</strong>
+        <p>{feedback.text}</p>
+      </div>
+      {mismatch && (
+        <div className="project-location-actions">
+          <button type="button" onClick={onUseProjectLocation}>Use project city</button>
+          <button type="button" onClick={onClearProject}>Clear project</button>
+        </div>
+      )}
     </div>
   );
 }

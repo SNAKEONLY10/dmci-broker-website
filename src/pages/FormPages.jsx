@@ -5,11 +5,13 @@ import { projects, unitTypes } from "../data/projects";
 import { locations } from "../data/locations";
 import { contact } from "../data/contact";
 import { useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const projectOptions = projects.map((project) => project.name);
 const locationOptions = locations.map((location) => location.name);
 const inquiryTypes = ["Request Computation", "Check Availability", "Book Site Viewing", "General Inquiry"];
 const contactMethodOptions = ["Call", "Viber", "Email", "SMS"];
+const projectByName = new Map(projects.map((project) => [project.name, project]));
 
 export function Availability() {
   const initialValues = useInquiryDefaults();
@@ -35,9 +37,17 @@ export function Availability() {
 
 export function RequestComputation() {
   const initialValues = useInquiryDefaults();
+  const [previewValues, setPreviewValues] = useState(initialValues);
+  const selectedProject = previewValues.project ? projectByName.get(previewValues.project) : null;
+
+  useEffect(() => {
+    setPreviewValues(initialValues);
+  }, [initialValues.project, initialValues.location, initialValues.inquiryType]);
+
   return <FormShell
     title="Request Latest Computation"
     text="Tell Luisa your preferred project, unit type, payment preference, and timeline so she can prepare the right computation reference."
+    selectedProject={selectedProject}
     panel={{
       eyebrow: "Computation Request",
       title: "Get numbers that match your buyer profile",
@@ -54,7 +64,7 @@ export function RequestComputation() {
       s("inquiryType", "Inquiry Type", inquiryTypes),
       s("timeline", "Timeline", ["Immediately", "1-3 months", "3-6 months", "Still exploring"]),
       s("contactMethod", "Preferred Contact Method", contactMethodOptions), t()
-    ]} storageKey="dmci_computation_requests" submitLabel="Send Computation Request" initialValues={initialValues} required={["fullName", "contactNumber", "email", "contactMethod"]} inquiryType="Request Computation" />
+    ]} storageKey="dmci_computation_requests" submitLabel="Send Computation Request" initialValues={initialValues} required={["fullName", "contactNumber", "email", "contactMethod"]} inquiryType="Request Computation" projectCatalog={projects} onValuesChange={setPreviewValues} />
   </FormShell>;
 }
 
@@ -119,7 +129,7 @@ function useInquiryDefaults() {
   };
 }
 
-function FormShell({ title, text, panel, children }) {
+function FormShell({ title, text, panel, children, selectedProject }) {
   const panelContent = {
     eyebrow: "Buyer Support",
     title: "Get guided before deciding",
@@ -127,12 +137,31 @@ function FormShell({ title, text, panel, children }) {
     cta: "Message Luisa",
     ...panel
   };
+  const media = selectedProject ? {
+    src: selectedProject.image,
+    alt: `${selectedProject.name} project preview`,
+    eyebrow: "Selected Project",
+    title: selectedProject.name,
+    meta: selectedProject.location
+  } : {
+    src: "/assets/img/luisa-corral.jpg",
+    alt: "Maria Luisa Corral",
+    eyebrow: "Broker Guidance",
+    title: "Maria Luisa Corral",
+    meta: "Sales Director, DMCI Homes"
+  };
+
   return (
     <section className="page-section form-page">
       <div className="container form-shell-grid">
         <aside className="form-broker-panel">
-          <div className="form-broker-image">
-            <img src="/assets/img/luisa-corral.jpg" alt="Maria Luisa Corral" />
+          <div className={`form-broker-image ${selectedProject ? "has-project-preview" : ""}`}>
+            <img key={media.src} src={media.src} alt={media.alt} />
+            <div className="form-media-caption" aria-live="polite">
+              <span>{media.eyebrow}</span>
+              <strong>{media.title}</strong>
+              <small>{media.meta}</small>
+            </div>
           </div>
           <div className="form-broker-copy">
             <span className="eyebrow">{panelContent.eyebrow}</span>
