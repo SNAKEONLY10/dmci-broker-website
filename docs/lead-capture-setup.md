@@ -23,18 +23,20 @@ Required for email delivery:
 
 ```text
 RESEND_API_KEY=...
-LEAD_EMAIL_FROM=DMCI Leads <leads@your-verified-domain.com>
 LEAD_EMAIL_TO=mrcorral@dmcihomes.com
 ```
 
 Optional:
 
 ```text
+LEAD_EMAIL_FROM=DMCI Leads <leads@your-verified-domain.com>
 LEAD_EMAIL_REPLY_TO=mrcorral@dmcihomes.com
 LEAD_EMAIL_SUBJECT_PREFIX=[DMCI Broker Lead]
 ```
 
-`LEAD_EMAIL_FROM` must use a sender domain verified in Resend. Do not use `mrcorral@dmcihomes.com` as the sender unless `dmcihomes.com` is verified in Resend and legally/technically allowed. Use `mrcorral@dmcihomes.com` as `LEAD_EMAIL_TO` and as fallback reply-to.
+`LEAD_EMAIL_TO` is the recipient inbox for lead notifications. `LEAD_EMAIL_FROM` is only the technical sender used by Resend. Do not use ordinary Gmail, Yahoo, Outlook, or iCloud addresses as `LEAD_EMAIL_FROM`; Resend rejects unverified sender domains. If `LEAD_EMAIL_FROM` is missing or set to a personal email domain, the backend falls back to `DMCI Leads <onboarding@resend.dev>`.
+
+For final production, `LEAD_EMAIL_FROM` must use a sender domain verified in Resend. Do not use `mrcorral@dmcihomes.com` as the sender unless `dmcihomes.com` is verified in Resend and legally/technically allowed. Use `mrcorral@dmcihomes.com` as `LEAD_EMAIL_TO` and as fallback reply-to.
 
 For temporary Resend test mode only, you may use:
 
@@ -251,7 +253,7 @@ Do not use `mrcorral@dmcihomes.com` as `LEAD_EMAIL_FROM` unless `dmcihomes.com` 
 - `403` or domain errors: verify the sender domain in Resend and confirm `LEAD_EMAIL_FROM` uses that verified domain.
 - No email arrived: check spam, Resend dashboard logs, and Vercel Function logs for `/api/leads`.
 - Reply-to looks wrong: confirm the buyer supplied an email; otherwise the endpoint falls back to `LEAD_EMAIL_REPLY_TO`.
-- Production still shows preview mode: confirm `RESEND_API_KEY`, `LEAD_EMAIL_FROM`, and `LEAD_EMAIL_TO` exist in the Production environment and redeploy.
+- Production still shows preview mode: confirm `RESEND_API_KEY` and `LEAD_EMAIL_TO` exist in the Production environment and redeploy.
 - Resend API key was pasted into chat or exposed: revoke it in Resend, generate a new key, update Vercel env vars, and redeploy.
 
 ## Rotate API Keys

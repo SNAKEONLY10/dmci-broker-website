@@ -2,6 +2,19 @@ import { randomUUID } from "node:crypto";
 
 const messageLimit = 1500;
 const allowedMethods = "POST, OPTIONS";
+const defaultTestSender = "DMCI Leads <onboarding@resend.dev>";
+const personalSenderDomains = new Set([
+  "gmail.com",
+  "googlemail.com",
+  "yahoo.com",
+  "ymail.com",
+  "outlook.com",
+  "hotmail.com",
+  "live.com",
+  "icloud.com",
+  "me.com",
+  "aol.com"
+]);
 
 export default async function handler(req, res) {
   setHeaders(res);
@@ -162,17 +175,17 @@ function configuredProviders() {
 
 function getEmailConfig() {
   const apiKey = process.env.RESEND_API_KEY;
-  const from = firstEnvValue("LEAD_EMAIL_FROM", "RESEND_FROM");
+  const configuredFrom = firstEnvValue("LEAD_EMAIL_FROM", "RESEND_FROM");
+  const from = resolveSender(configuredFrom);
   const to = firstEnvValue("LEAD_EMAIL_TO", "LEAD_TO_EMAIL");
   const replyTo = firstEnvValue("LEAD_EMAIL_REPLY_TO", "LEAD_REPLY_TO_EMAIL");
   const subjectPrefix = firstEnvValue("LEAD_EMAIL_SUBJECT_PREFIX") || "DMCI Broker Lead";
   const missing = [];
 
   if (!apiKey) missing.push("RESEND_API_KEY");
-  if (!from) missing.push("LEAD_EMAIL_FROM or RESEND_FROM");
   if (!to) missing.push("LEAD_EMAIL_TO or LEAD_TO_EMAIL");
 
-  return { apiKey, from, to, replyTo, subjectPrefix, missing };
+  return { apiKey, from, configuredFrom, to, replyTo, subjectPrefix, missing };
 }
 
 async function sendEmail(lead, config) {
@@ -494,6 +507,25 @@ function firstEnvValue(...names) {
     if (value && String(value).trim()) return String(value).trim();
   }
   return "";
+}
+
+function resolveSender(configuredFrom) {
+  if (!configuredFrom) return defaultTestSender;
+  const email = extractEmailAddress(configuredFrom);
+  const domain = email.split("@")[1]?.toLowerCase();
+
+  // Resend cannot send from ordinary mailbox domains unless that domain is verified.
+  if (!domain || personalSenderDomains.has(domain)) {
+    return defaultTestSender;
+  }
+
+  return configuredFrom;
+}
+
+function extractEmailAddress(value) {
+  const text = String(value || "").trim();
+  const match = text.match(/<([^>]+)>/);
+  return (match ? match[1] : text).trim().toLowerCase();
 }
 
 async function safeResponseJson(response) {
