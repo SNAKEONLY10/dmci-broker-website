@@ -5410,8 +5410,6 @@ textarea {
 }
 
 @media (max-width: 520px) {
-  .projects-page .project-grid,
-  .city-projects .project-grid,
   .project-grid,
   .location-grid,
   .card-grid,
@@ -5450,6 +5448,26 @@ textarea {
     min-height: 44px;
     padding: 9px 10px;
     font-size: 0.82rem;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 520px) {
+  .projects-page .project-grid,
+  .city-projects .project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .projects-page .project-image,
+  .city-projects .project-image,
+  .projects-page .project-image .image-placeholder,
+  .projects-page .project-image .image-cover,
+  .projects-page .project-image .image-picture,
+  .city-projects .project-image .image-placeholder,
+  .city-projects .project-image .image-cover,
+  .city-projects .project-image .image-picture {
+    min-height: 150px;
+    height: 150px;
   }
 }
 
