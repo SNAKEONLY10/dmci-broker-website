@@ -12,7 +12,7 @@ const navItems = [
   ["Projects", "/projects"],
   ["Locations", "/locations"],
   ["Buyer's Guide", "/buyers-guide"],
-  ["Availability", "/availability"],
+  ["Available Units", "/availability"],
   ["Promos", "/promos"],
   ["About Luisa", "/about"],
   ["Contact", "/contact"]
@@ -52,7 +52,12 @@ export function Layout({ children }) {
             <span />
           </button>
         </div>
-        {open && <MobileMenu onClose={() => setOpen(false)} />}
+        {open && (
+          <div className="mobile-menu-shell">
+            <button className="mobile-menu-backdrop" type="button" aria-label="Close mobile menu" onClick={() => setOpen(false)} />
+            <MobileMenu onClose={() => setOpen(false)} />
+          </div>
+        )}
       </header>
       <main>{children}</main>
       <Footer />
@@ -64,6 +69,10 @@ export function Layout({ children }) {
 function MobileMenu({ onClose }) {
   return (
     <nav className="mobile-menu" aria-label="Mobile navigation">
+      <div className="mobile-menu-head">
+        <span>Menu</span>
+        <button className="mobile-menu-close" type="button" onClick={onClose} aria-label="Close menu">Close</button>
+      </div>
       {navItems.map(([label, to]) => (
         <NavLink key={to} to={to} onClick={onClose}>{label}</NavLink>
       ))}
@@ -91,7 +100,7 @@ function Footer() {
           <h4>Buyer Tools</h4>
           <NavLink to="/projects">Projects</NavLink>
           <NavLink to="/request-computation">Request Computation</NavLink>
-          <NavLink to="/availability">Check Availability</NavLink>
+          <NavLink to="/availability">Available Units</NavLink>
           <NavLink to="/book-viewing">Book Viewing</NavLink>
         </div>
         <div className="footer-contact">

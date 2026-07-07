@@ -5079,3 +5079,434 @@ textarea {
     font-size: 0.68rem;
   }
 }
+
+/* Launch readability pass: route labels, mobile drawer, sticky CTA, and directory polish. */
+.project-listing-hero .section-header .eyebrow {
+  color: #f3cf75;
+}
+
+.project-listing-hero .section-header h1,
+.project-listing-hero .section-header h2,
+.project-listing-hero .section-header p {
+  color: var(--white);
+}
+
+.project-listing-hero .section-header p {
+  color: rgba(255,255,255,0.84);
+}
+
+.mobile-menu-shell {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  pointer-events: none;
+}
+
+.mobile-menu-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(7,26,45,0.46);
+  backdrop-filter: blur(2px);
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.mobile-menu {
+  position: absolute;
+  top: 76px;
+  right: max(12px, env(safe-area-inset-right));
+  left: max(12px, env(safe-area-inset-left));
+  max-height: calc(100dvh - 92px);
+  overflow-y: auto;
+  display: grid;
+  gap: 6px;
+  padding: 14px;
+  border: 1px solid rgba(201,162,74,0.24);
+  border-radius: 18px;
+  background: rgba(255,255,255,0.98);
+  box-shadow: 0 28px 70px rgba(7,26,45,0.28);
+  pointer-events: auto;
+}
+
+.mobile-menu-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 2px 2px 8px;
+  color: var(--navy);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.76rem;
+}
+
+.mobile-menu-close {
+  min-width: 44px;
+  min-height: 36px;
+  border: 1px solid rgba(15,39,66,0.12);
+  border-radius: 999px;
+  background: #fff8e8;
+  color: var(--navy);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.mobile-menu a {
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+  padding: 11px 13px;
+  border-radius: 12px;
+  color: var(--navy);
+  text-decoration: none;
+}
+
+.mobile-menu a:hover,
+.mobile-menu a.active {
+  background: #fff8e8;
+  color: var(--navy);
+}
+
+.mobile-menu .btn {
+  width: 100%;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.reveal-enabled .filters-panel[data-reveal] {
+  opacity: 1;
+  transform: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  will-change: auto;
+}
+
+.reveal-enabled .filters-panel[data-reveal].is-visible > * {
+  animation: none;
+  opacity: 1;
+  transform: none;
+}
+
+.menu-toggle:focus-visible,
+.mobile-menu-close:focus-visible,
+.mobile-menu a:focus-visible,
+.mobile-sticky-cta a:focus-visible {
+  outline: 3px solid rgba(201,162,74,0.45);
+  outline-offset: 3px;
+}
+
+@media (min-width: 761px) {
+  .mobile-sticky-cta {
+    display: none !important;
+  }
+}
+
+@media (max-width: 760px) {
+  body {
+    padding-bottom: calc(86px + env(safe-area-inset-bottom));
+  }
+
+  main {
+    padding-bottom: 10px;
+  }
+
+  .site-header {
+    min-width: 0;
+  }
+
+  .nav-wrap {
+    min-height: 64px;
+  }
+
+  .brand {
+    min-width: 0;
+  }
+
+  .brand-logo,
+  .brand-mark {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+  }
+
+  .brand-copy {
+    min-width: 0;
+  }
+
+  .brand-copy strong {
+    max-width: 210px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .brand-copy small {
+    max-width: 190px;
+  }
+
+  .menu-toggle {
+    display: grid;
+    place-items: center;
+    flex: 0 0 44px;
+  }
+
+  .menu-toggle span {
+    margin: 2px auto;
+  }
+
+  .projects-page.page-section {
+    padding-top: 92px;
+  }
+
+  .project-listing-hero {
+    gap: 16px;
+    padding: 18px;
+    border-radius: 18px;
+    background: linear-gradient(145deg, #071a2d 0%, #123352 100%);
+  }
+
+  .project-listing-hero .section-header {
+    margin-bottom: 0;
+  }
+
+  .project-listing-hero .section-header h1,
+  .project-listing-hero .section-header h2 {
+    max-width: 13ch;
+    font-size: clamp(2rem, 8.8vw, 2.55rem);
+    line-height: 1.03;
+  }
+
+  .project-listing-hero .section-header p {
+    max-width: 34rem;
+    font-size: 0.94rem;
+    line-height: 1.56;
+  }
+
+  .listing-hero-card {
+    padding: 16px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.1);
+  }
+
+  .listing-hero-card strong {
+    font-size: 1.42rem;
+  }
+
+  .results-bar {
+    display: grid;
+    justify-items: start;
+    gap: 5px;
+    padding: 13px 14px;
+    border-radius: 12px;
+  }
+
+  .results-bar strong {
+    font-size: 0.98rem;
+  }
+
+  .results-bar span {
+    font-size: 0.8rem;
+    line-height: 1.38;
+  }
+
+  .filters-panel,
+  .search-fields {
+    gap: 10px;
+  }
+
+  .filters-panel input,
+  .filters-panel select,
+  .search-fields select {
+    min-height: 46px;
+    font-size: 0.94rem;
+  }
+
+  .project-card {
+    min-width: 0;
+    border-radius: 16px;
+  }
+
+  .project-image {
+    height: 186px;
+  }
+
+  .project-image .image-placeholder,
+  .project-image .image-cover,
+  .project-image .image-picture {
+    min-height: 186px;
+  }
+
+  .project-body {
+    padding: 16px;
+  }
+
+  .project-body h3 {
+    font-size: 1.22rem;
+    line-height: 1.12;
+  }
+
+  .project-meta {
+    display: grid;
+    gap: 6px;
+  }
+
+  .project-meta span:nth-child(2),
+  .project-body .card-tagline,
+  .project-body small:first-of-type {
+    display: block;
+  }
+
+  .project-body ul {
+    display: none;
+  }
+
+  .card-actions {
+    gap: 8px;
+  }
+
+  .card-actions .btn {
+    min-height: 44px;
+    padding: 10px 12px;
+    font-size: 0.82rem;
+  }
+
+  .card-actions .btn:nth-child(3) {
+    display: flex;
+  }
+
+  .mobile-sticky-cta {
+    position: fixed;
+    inset: auto 10px max(8px, env(safe-area-inset-bottom));
+    z-index: 90;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    overflow: hidden;
+    border: 1px solid rgba(15,39,66,0.12);
+    border-radius: 18px;
+    background: rgba(255,255,255,0.98);
+    box-shadow: 0 18px 44px rgba(7,26,45,0.18);
+    backdrop-filter: blur(14px);
+  }
+
+  .mobile-sticky-cta a {
+    min-height: 54px;
+    padding: 7px 4px;
+    border-right: 1px solid rgba(15,39,66,0.1);
+    color: var(--navy);
+    font-size: 0.72rem;
+    line-height: 1.05;
+    text-align: center;
+  }
+
+  .mobile-sticky-cta a:nth-child(3),
+  .mobile-sticky-cta a.active {
+    background: linear-gradient(180deg, #f3cf75 0%, #dfb842 100%);
+  }
+
+  .site-footer {
+    padding-bottom: calc(100px + env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 520px) {
+  .projects-page .project-grid,
+  .city-projects .project-grid,
+  .project-grid,
+  .location-grid,
+  .card-grid,
+  .card-grid.five,
+  .steps-grid,
+  .checklist-grid,
+  .timeline,
+  .showcase-card-grid,
+  .page-map-grid,
+  .showcase-timeline,
+  .completion-plan-grid,
+  .quick-link-grid,
+  .demo-preview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-image,
+  .project-image .image-placeholder,
+  .project-image .image-cover,
+  .project-image .image-picture {
+    min-height: 205px;
+    height: 205px;
+  }
+
+  .filters-panel {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  .filters-panel input[name="search"] {
+    grid-column: 1 / -1;
+  }
+
+  .filters-panel input,
+  .filters-panel select {
+    min-height: 44px;
+    padding: 9px 10px;
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .container {
+    width: calc(100% - 24px);
+  }
+
+  .brand-copy strong {
+    max-width: 178px;
+    font-size: 0.98rem;
+  }
+
+  .mobile-menu {
+    top: 70px;
+    max-height: calc(100dvh - 84px);
+  }
+
+  .project-listing-hero {
+    padding: 16px;
+  }
+
+  .project-listing-hero .section-header h1,
+  .project-listing-hero .section-header h2 {
+    font-size: clamp(1.9rem, 9vw, 2.28rem);
+  }
+
+  .project-listing-hero .section-header p {
+    font-size: 0.9rem;
+  }
+
+  .listing-hero-card {
+    display: grid;
+    gap: 3px;
+  }
+
+  .project-body {
+    padding: 15px;
+  }
+
+  .card-actions .btn {
+    font-size: 0.8rem;
+  }
+
+  .mobile-sticky-cta a {
+    font-size: 0.69rem;
+  }
+}
+
+@media (max-width: 340px) {
+  .brand-copy strong {
+    max-width: 148px;
+    font-size: 0.88rem;
+  }
+
+  .project-listing-hero .section-header h1,
+  .project-listing-hero .section-header h2 {
+    font-size: 1.78rem;
+  }
+}
