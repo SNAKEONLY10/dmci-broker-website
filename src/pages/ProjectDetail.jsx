@@ -162,7 +162,7 @@ function ProjectHero({ project, isRichProject }) {
           <div className="hero-meta-line">
             <Badge>{project.status}</Badge>
             <span>{project.location}</span>
-            {project.targetRfo && <span>Target RFO: {project.targetRfo}</span>}
+            {project.targetRfo && <span className="target-rfo-chip">Target RFO: {project.targetRfo}</span>}
           </div>
           <p className="mini">{project.detailTitle || project.developmentType}</p>
           <h1>{project.heroHeadline || project.name}</h1>
