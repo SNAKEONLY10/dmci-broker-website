@@ -10,7 +10,10 @@ import { useResponsiveProjectPageSize } from "../hooks/useResponsiveProjectPageS
 
 export default function Projects() {
   const [params] = useSearchParams();
-  const [filters, setFilters] = useState({ location: params.get("location") || "" });
+  const [filters, setFilters] = useState({
+    location: params.get("location") || "",
+    purpose: params.get("purpose") || ""
+  });
   const [sort, setSort] = useState("featured");
   const [currentPage, setCurrentPage] = useState(1);
   const projectPageSize = useResponsiveProjectPageSize();
@@ -29,14 +32,54 @@ export default function Projects() {
     setCurrentPage((page) => Math.min(page, totalPages || 1));
   }, [totalPages]);
 
+  function selectBuyerGoal(purpose) {
+    setFilters((current) => ({ ...current, purpose }));
+  }
+
   return (
     <section className="page-section projects-page">
       <div className="container">
         <div className="project-listing-hero">
-          <SectionHeader as="h1" align="left" eyebrow="Project Directory" title="Browse DMCI Homes Projects with Broker Guidance" text="Search sample project listings by location, turnover, unit type, and buyer purpose. Request updated computation and availability confirmation before making any decision." />
-          <div className="listing-hero-card" data-reveal="text-group">
-            <strong>Need help choosing?</strong>
-            <p>Ask Luisa for project recommendations based on budget, purpose, location, and preferred turnover.</p>
+          <SectionHeader
+            as="h1"
+            align="left"
+            eyebrow="18 Approved DMCI Projects"
+            title="Find a DMCI home that fits your plan"
+            text="Whether you are choosing a future home or comparing an investment, start with your goal. Then narrow the shortlist by location, turnover, unit type, and budget with Luisa's guidance."
+          />
+          <div className="listing-hero-card buyer-intent-card" data-reveal="text-group">
+            <span className="intent-eyebrow">Start with your goal</span>
+            <strong>What are you looking for?</strong>
+            <div className="buyer-intent-options" role="group" aria-label="Choose your buyer goal">
+              <button
+                type="button"
+                className={filters.purpose === "Own Use" ? "active" : ""}
+                aria-pressed={filters.purpose === "Own Use"}
+                onClick={() => selectBuyerGoal("Own Use")}
+              >
+                <span>For my home</span>
+                <small>Live in the unit</small>
+              </button>
+              <button
+                type="button"
+                className={filters.purpose === "Investment" ? "active" : ""}
+                aria-pressed={filters.purpose === "Investment"}
+                onClick={() => selectBuyerGoal("Investment")}
+              >
+                <span>For investment</span>
+                <small>Compare growth or rental options</small>
+              </button>
+              <button
+                type="button"
+                className={!filters.purpose ? "active" : ""}
+                aria-pressed={!filters.purpose}
+                onClick={() => selectBuyerGoal("")}
+              >
+                <span>Show all projects</span>
+                <small>Browse the complete directory</small>
+              </button>
+            </div>
+            <p className="intent-note">Not sure yet? Luisa can help compare projects based on your budget and preferred timeline.</p>
             <Button to="/contact" variant="secondary">Ask Luisa</Button>
           </div>
         </div>

@@ -84,7 +84,7 @@ const pageMeta = {
     cta: "/request-computation"
   },
   "/projects": {
-    h1: "Browse DMCI Homes Projects with Broker Guidance",
+    h1: "Find a DMCI Home That Fits Your Plan",
     title: "DMCI Homes Project Directory | Condo Projects by City | Luisa Corral",
     description:
       "Browse priority DMCI condo and leisure projects by city, status, unit type, and buyer purpose. Request latest computations and confirmed availability from Luisa Corral.",
