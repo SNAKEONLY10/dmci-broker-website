@@ -37,11 +37,11 @@ const computationFields = [
 ];
 
 export default function Home() {
-  const [buyerGoal, setBuyerGoal] = useState("Own Use");
+  const [buyerGoal, setBuyerGoal] = useState("");
   const projectPageSize = useResponsiveProjectPageSize();
   const homepageProjects = useMemo(
     () => projects
-      .filter((project) => project.purposeTags.includes(buyerGoal))
+      .filter((project) => !buyerGoal || project.purposeTags.includes(buyerGoal))
       .sort((a, b) => (a.directoryOrder ?? 999) - (b.directoryOrder ?? 999)),
     [buyerGoal]
   );
@@ -51,17 +51,24 @@ export default function Home() {
       title: "Compare DMCI properties with your investment goals in mind",
       text: "Review location, turnover, unit mix, and payment options with current details confirmed before you decide.",
       projectTitle: "Projects for investment consideration",
-      projectText: "A focused shortlist for comparing location, turnover, unit options, and payment terms.",
-      button: "View Investment Options"
+      projectText: "A focused shortlist for comparing location, turnover, unit options, and payment terms."
     }
-    : {
+    : buyerGoal === "Own Use"
+      ? {
       title: "Find a DMCI home that fits the way you live",
       text: "Explore communities by location, unit type, and turnover, with clear guidance from shortlist to viewing.",
       projectTitle: "Homes selected for residence",
-      projectText: "Compare communities, unit options, and turnover schedules for your own use.",
-      button: "View Residence Options"
-    };
-  const projectDirectoryLink = `/projects?purpose=${encodeURIComponent(buyerGoal)}`;
+      projectText: "Compare communities, unit options, and turnover schedules for your own use."
+    }
+      : {
+        title: "Explore DMCI homes for living or investment",
+        text: "Compare communities, unit options, and turnover schedules, then choose the path that fits your plans.",
+        projectTitle: "Selected DMCI projects",
+        projectText: "Start with the approved directory, then refine your shortlist by goal, location, and timing."
+      };
+  const projectDirectoryLink = buyerGoal
+    ? `/projects?purpose=${encodeURIComponent(buyerGoal)}`
+    : "/projects";
 
   return (
     <>
@@ -91,13 +98,9 @@ export default function Home() {
                 <small>A property to compare</small>
               </button>
             </div>
-            <div className="hero-proof">
-              <span>PRC Licensed Broker</span>
-              <span>Direct DMCI Guidance</span>
-            </div>
             <div className="hero-actions center">
-              <Button to={projectDirectoryLink}>{goalCopy.button}</Button>
-              <Button to="/request-computation" variant="secondary">Request Computation</Button>
+              <Button to={projectDirectoryLink}>Browse Projects</Button>
+              <Button to="/request-computation" variant="secondary">Get Computation</Button>
             </div>
           </div>
         </div>
@@ -202,7 +205,7 @@ function QuickSearch({ buyerGoal, onBuyerGoalChange }) {
   function update(event) {
     const { name, value } = event.target;
     setFilters((current) => ({ ...current, [name]: value }));
-    if (name === "purpose" && value) onBuyerGoalChange(value);
+    if (name === "purpose") onBuyerGoalChange(value);
   }
 
   const query = new URLSearchParams(
@@ -227,6 +230,7 @@ function QuickSearch({ buyerGoal, onBuyerGoalChange }) {
           <select id="quick-unit-type" name="unitType" value={filters.unitType} onChange={update}><option value="">Unit Type</option>{unitTypes.map((item) => <option key={item}>{item}</option>)}</select>
           <label className="sr-only" htmlFor="quick-purpose">Buyer Purpose</label>
           <select id="quick-purpose" name="purpose" value={filters.purpose} onChange={update}>
+            <option value="">Any Buyer Goal</option>
             <option value="Own Use">For Residence</option>
             <option value="Investment">For Investment</option>
           </select>
