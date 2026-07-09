@@ -13,6 +13,7 @@ import { guideCards } from "../data/guides";
 import { promos } from "../data/promos";
 import { contact } from "../data/contact";
 import { useResponsiveProjectPageSize } from "../hooks/useResponsiveProjectPageSize";
+import { projectMatchesPurpose, sortProjectsForGoal } from "../utils/projectGoals";
 
 const HOME_BUYER_GOAL_KEY = "dmci_home_buyer_goal";
 const HOME_GOAL_PROMPT_KEY = "dmci_home_goal_prompt_seen";
@@ -50,9 +51,10 @@ export default function Home() {
   const projectPageSize = useResponsiveProjectPageSize();
   const showIntentPrompt = !intentPromptDismissed && !buyerGoal;
   const homepageProjects = useMemo(
-    () => projects
-      .filter((project) => !buyerGoal || project.purposeTags.includes(buyerGoal))
-      .sort((a, b) => (a.directoryOrder ?? 999) - (b.directoryOrder ?? 999)),
+    () => sortProjectsForGoal(
+      projects.filter((project) => projectMatchesPurpose(project, buyerGoal)),
+      buyerGoal
+    ),
     [buyerGoal]
   );
   const visibleProjects = homepageProjects.slice(0, projectPageSize);
@@ -60,15 +62,15 @@ export default function Home() {
     ? {
       title: "Compare DMCI properties with your investment goals in mind",
       text: "Review location, turnover, unit mix, and payment options with current details confirmed before you decide.",
-      projectTitle: "Projects for investment consideration",
-      projectText: "A focused shortlist for comparing location, turnover, unit options, and payment terms."
+      projectTitle: "Projects ranked for investment review",
+      projectText: "All approved projects stay visible, ordered to surface rental, upcoming, and comparison-friendly options first."
     }
     : buyerGoal === "Own Use"
       ? {
       title: "Find a DMCI home that fits the way you live",
       text: "Explore communities by location, unit type, and turnover, with clear guidance from shortlist to viewing.",
-      projectTitle: "Homes selected for residence",
-      projectText: "Compare communities, unit options, and turnover schedules for your own use."
+      projectTitle: "Projects ranked for residence",
+      projectText: "All approved projects stay visible, ordered to prioritize ready, family-friendly, and near-turnover options first."
     }
       : {
         title: "Explore DMCI homes for living or investment",
@@ -79,6 +81,9 @@ export default function Home() {
   const projectDirectoryLink = buyerGoal
     ? `/projects?purpose=${encodeURIComponent(buyerGoal)}`
     : "/projects";
+  const computationLink = buyerGoal
+    ? `/request-computation?purpose=${encodeURIComponent(buyerGoal)}`
+    : "/request-computation";
 
   function selectBuyerGoal(goal, options = {}) {
     setBuyerGoal(goal);
@@ -140,7 +145,7 @@ export default function Home() {
             </div>
             <div className="hero-actions center">
               <Button to={projectDirectoryLink}>Browse Projects</Button>
-              <Button to="/request-computation" variant="secondary">Get Computation</Button>
+              <Button to={computationLink} variant="secondary">Get Computation</Button>
             </div>
           </div>
         </div>
@@ -153,7 +158,7 @@ export default function Home() {
           <SectionHeader eyebrow="Selected Projects" title={goalCopy.projectTitle} text={goalCopy.projectText} />
           <div className="home-project-toolbar" data-reveal="text-group">
             <p className="pagination-summary" aria-live="polite">
-              Showing {visibleProjects.length} of {homepageProjects.length} approved projects for this goal
+              Showing {visibleProjects.length} of {homepageProjects.length} approved projects{buyerGoal ? " ranked for this goal" : ""}
             </p>
             <Link to={projectDirectoryLink}>View the complete shortlist</Link>
           </div>
@@ -233,7 +238,7 @@ function QuickSearch({ buyerGoal, onBuyerGoalChange }) {
     (!filters.location || project.location === filters.location) &&
     (!filters.status || project.status === filters.status) &&
     (!filters.unitType || project.unitTypes.includes(filters.unitType)) &&
-    (!filters.purpose || project.purposeTags.includes(filters.purpose))
+    projectMatchesPurpose(project, filters.purpose)
   )), [filters]);
 
   useEffect(() => {

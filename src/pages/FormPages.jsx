@@ -136,6 +136,7 @@ function useInquiryDefaults() {
   const [searchParams] = useSearchParams();
   const projectParam = searchParams.get("project") || "";
   const locationParam = searchParams.get("location") || "";
+  const purposeParam = normalizePurpose(searchParams.get("purpose") || "");
   const inquiryType = normalizeInquiryType(searchParams.get("inquiryType") || "");
   const matchedProject = projects.find((project) => (
     project.name.toLowerCase() === projectParam.toLowerCase() ||
@@ -145,6 +146,8 @@ function useInquiryDefaults() {
   return {
     project: matchedProject?.name || projectParam,
     location: matchedProject?.location || locationParam,
+    purpose: purposeParam,
+    buyerType: purposeParam === "Investment" ? "Investor" : purposeParam === "Own Use" ? "Family use" : "",
     inquiryType,
     concernType: inquiryType
   };
@@ -225,6 +228,18 @@ function normalizeInquiryType(value) {
     viewing: "Book Site Viewing",
     reservation: "General Inquiry",
     other: "General Inquiry"
+  };
+  return map[normalized] || value;
+}
+
+function normalizePurpose(value) {
+  const normalized = value.trim().toLowerCase();
+  const map = {
+    residence: "Own Use",
+    home: "Own Use",
+    "own use": "Own Use",
+    investment: "Investment",
+    investor: "Investment"
   };
   return map[normalized] || value;
 }

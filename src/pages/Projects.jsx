@@ -7,6 +7,15 @@ import { DisclaimerBanner } from "../components/DisclaimerBanner";
 import { Button } from "../components/Button";
 import { projects } from "../data/projects";
 import { useResponsiveProjectPageSize } from "../hooks/useResponsiveProjectPageSize";
+import {
+  buyerGoalLabel,
+  isPrimaryBuyerGoal,
+  isReadyForOccupancy,
+  isUpcomingProject,
+  latestTurnoverYear,
+  projectMatchesPurpose,
+  sortProjectsForGoal
+} from "../utils/projectGoals";
 
 export default function Projects() {
   const [params] = useSearchParams();
@@ -19,12 +28,14 @@ export default function Projects() {
   const [sort, setSort] = useState("featured");
   const [currentPage, setCurrentPage] = useState(1);
   const projectPageSize = useResponsiveProjectPageSize();
-  const filtered = useMemo(() => sortProjects(projects.filter((project) => matches(project, filters)), sort), [filters, sort]);
+  const filtered = useMemo(() => sortProjects(projects.filter((project) => matches(project, filters)), sort, filters.purpose), [filters, sort]);
   const totalPages = Math.ceil(filtered.length / projectPageSize);
   const safePage = Math.min(currentPage, totalPages || 1);
   const startIndex = (safePage - 1) * projectPageSize;
   const endIndex = Math.min(startIndex + projectPageSize, filtered.length);
   const paginatedProjects = filtered.slice(startIndex, endIndex);
+  const isGoalView = isPrimaryBuyerGoal(filters.purpose);
+  const goalLabel = buyerGoalLabel(filters.purpose);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -87,8 +98,8 @@ export default function Projects() {
         </div>
         <ProjectFilters projects={projects} filters={filters} setFilters={setFilters} sort={sort} setSort={setSort} />
         <div className="results-bar" data-reveal="text-group">
-          <strong>{filtered.length} matching approved projects</strong>
-          <span>Updated price available upon request. Availability subject to confirmation.</span>
+          <strong>{isGoalView ? `${filtered.length} approved projects ranked for ${goalLabel}` : `${filtered.length} matching approved projects`}</strong>
+          <span>{isGoalView ? "Goal views keep all approved projects visible; use location, status, and unit filters to narrow the list." : "Updated price available upon request. Availability subject to confirmation."}</span>
         </div>
         {filtered.length > 0 && (
           <p className="pagination-summary" aria-live="polite" data-reveal="text">
@@ -150,7 +161,7 @@ function matches(project, filters) {
     (!filters.turnoverYear || project.turnoverYear === filters.turnoverYear) &&
     (!filters.unitType || project.unitTypes.includes(filters.unitType)) &&
     (!filters.propertyType || project.propertyType === filters.propertyType) &&
-    (!filters.purpose || project.purposeTags.includes(filters.purpose))
+    projectMatchesPurpose(project, filters.purpose)
   );
 }
 
@@ -158,17 +169,20 @@ function normalizeFilterValue(value) {
   return String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 }
 
-function sortProjects(items, sort) {
+function sortProjects(items, sort, purpose) {
   const sorted = [...items];
   if (sort === "featured") {
+    if (isPrimaryBuyerGoal(purpose)) {
+      return sortProjectsForGoal(sorted, purpose);
+    }
     return sorted.sort((a, b) => {
       const aOrder = a.directoryOrder ?? 999;
       const bOrder = b.directoryOrder ?? 999;
       return aOrder - bOrder;
     });
   }
-  if (sort === "rfo") return sorted.sort((a, b) => Number(b.status === "RFO") - Number(a.status === "RFO"));
-  if (sort === "preselling") return sorted.sort((a, b) => Number(b.status === "Preselling") - Number(a.status === "Preselling"));
-  if (sort === "turnover") return sorted.sort((a, b) => String(b.turnoverYear).localeCompare(String(a.turnoverYear)));
+  if (sort === "rfo") return sorted.sort((a, b) => Number(isReadyForOccupancy(b)) - Number(isReadyForOccupancy(a)) || ((a.directoryOrder ?? 999) - (b.directoryOrder ?? 999)));
+  if (sort === "preselling") return sorted.sort((a, b) => Number(isUpcomingProject(b)) - Number(isUpcomingProject(a)) || ((a.directoryOrder ?? 999) - (b.directoryOrder ?? 999)));
+  if (sort === "turnover") return sorted.sort((a, b) => latestTurnoverYear(b) - latestTurnoverYear(a) || ((a.directoryOrder ?? 999) - (b.directoryOrder ?? 999)));
   return sorted.sort((a, b) => a.location.localeCompare(b.location));
 }

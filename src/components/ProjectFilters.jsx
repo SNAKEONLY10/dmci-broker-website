@@ -46,7 +46,7 @@ export function ProjectFilters({ projects, filters, setFilters, sort, setSort })
       <select value={sort} onChange={(event) => setSort(event.target.value)} aria-label="Sort projects">
         <option value="featured">Featured first</option>
         <option value="rfo">RFO first</option>
-        <option value="preselling">Preselling first</option>
+        <option value="preselling">Upcoming first</option>
         <option value="turnover">Newest turnover</option>
         <option value="location">By location</option>
       </select>
