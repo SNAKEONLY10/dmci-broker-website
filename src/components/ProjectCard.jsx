@@ -18,12 +18,24 @@ export function ProjectCard({ project, index = 0 }) {
     ? buyerSafePriceNote(project.priceSourceNote)
     : "Updated computation available upon request.";
   const revealDelay = `${Math.min(index, 5) * 70}ms`;
+  const slideDelay = `${(index % 6) * 0.55}s`;
   const projectQuery = encodeURIComponent(project.name);
+  const imageSlides = [
+    project.thumbnail || project.image,
+    project.gallery?.[0]
+  ].filter((src, slideIndex, slides) => src && slides.indexOf(src) === slideIndex).slice(0, 2);
 
   return (
-    <article className="project-card" data-reveal="card" style={{ "--reveal-delay": revealDelay }}>
+    <article className="project-card" data-reveal="card" style={{ "--reveal-delay": revealDelay, "--slide-delay": slideDelay }}>
       <div className="project-image">
-        <ImagePlaceholder src={project.thumbnail || project.image} label={project.name} variant="card" />
+        <Link className={`project-image-link ${imageSlides.length > 1 ? "has-slideshow" : ""}`} to={`/projects/${project.slug}`} aria-label={`View ${project.name} details`}>
+          {imageSlides.map((src, slideIndex) => (
+            <span className="project-image-slide" key={`${src}-${slideIndex}`} aria-hidden={slideIndex > 0 ? "true" : undefined}>
+              <ImagePlaceholder src={src} label={project.name} variant="card" />
+            </span>
+          ))}
+          <span className="project-image-cta" aria-hidden="true">View project</span>
+        </Link>
         <Badge>{project.status}</Badge>
         <span className="location-tag">{project.location}</span>
       </div>
