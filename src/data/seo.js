@@ -77,10 +77,10 @@ export function findCityPageBySlug(slug) {
 
 const pageMeta = {
   "/": {
-    h1: "Find the right DMCI home with broker-guided assistance",
+    h1: "Find a DMCI Home That Fits the Way You Live",
     title: "DMCI Homes Broker Philippines | Luisa Corral | Condo Projects in QC, Pasig, Taguig & More",
     description:
-      "Explore DMCI condo projects with broker guidance from Luisa Corral. Browse properties in Quezon City, Pasig, Mandaluyong, Taguig, Manila, Pasay, Para\u00f1aque, Las Pi\u00f1as, Baguio, and Batangas.",
+      "Compare approved DMCI Homes projects for residence or investment with licensed broker guidance from Maria Luisa Corral.",
     cta: "/request-computation"
   },
   "/projects": {

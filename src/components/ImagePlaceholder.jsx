@@ -18,7 +18,7 @@ export function ImagePlaceholder({ label = "Property preview", src, compact = fa
         alt={label}
         loading={variant === "hero" ? "eager" : "lazy"}
         decoding="async"
-        fetchPriority={variant === "hero" ? "high" : undefined}
+        fetchpriority={variant === "hero" ? "high" : undefined}
         onLoad={() => setFailed(false)}
         onError={() => setFailed(true)}
         {...(!responsive ? revealProps : {})}

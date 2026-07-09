@@ -12,7 +12,9 @@ export default function Projects() {
   const [params] = useSearchParams();
   const [filters, setFilters] = useState({
     location: params.get("location") || "",
-    purpose: params.get("purpose") || ""
+    purpose: params.get("purpose") || "",
+    status: params.get("status") || "",
+    unitType: params.get("unitType") || ""
   });
   const [sort, setSort] = useState("featured");
   const [currentPage, setCurrentPage] = useState(1);
