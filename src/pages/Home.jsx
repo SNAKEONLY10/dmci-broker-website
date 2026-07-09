@@ -17,8 +17,8 @@ import { useResponsiveProjectPageSize } from "../hooks/useResponsiveProjectPageS
 const HOME_BUYER_GOAL_KEY = "dmci_home_buyer_goal";
 const HOME_GOAL_PROMPT_KEY = "dmci_home_goal_prompt_seen";
 const primaryBuyerGoals = [
-  { value: "Own Use", label: "Residence", description: "A home to live in" },
-  { value: "Investment", label: "Investment", description: "A property to compare" }
+  { value: "Own Use", label: "Residence", description: "For own use or family living" },
+  { value: "Investment", label: "Investment", description: "For rental, resale, or portfolio planning" }
 ];
 const validPrimaryBuyerGoals = new Set(primaryBuyerGoals.map((goal) => goal.value));
 
@@ -208,11 +208,11 @@ function HomeGoalPrompt({ onChoose, onDismiss }) {
         aria-describedby="home-goal-prompt-copy"
         onClick={(event) => event.stopPropagation()}
       >
-        <button className="home-goal-prompt-close" type="button" onClick={onDismiss} aria-label="Close property goal prompt">Close</button>
-        <span className="eyebrow">Start Here</span>
-        <h2 id="home-goal-prompt-title">Are you looking for a home or an investment?</h2>
+        <button className="home-goal-prompt-close" type="button" onClick={onDismiss} aria-label="Close buyer goal prompt">×</button>
+        <span className="eyebrow">Buyer Goal</span>
+        <h2 id="home-goal-prompt-title">What are you comparing today?</h2>
         <p id="home-goal-prompt-copy">
-          Choose one so the homepage can adjust the project shortlist and wording. You can still browse all approved DMCI projects anytime.
+          Select a goal to refine the project shortlist. You can change this anytime.
         </p>
         <div className="home-goal-prompt-options">
           {primaryBuyerGoals.map((goal) => (
@@ -222,7 +222,6 @@ function HomeGoalPrompt({ onChoose, onDismiss }) {
             </button>
           ))}
         </div>
-        <button className="home-goal-prompt-skip" type="button" onClick={onDismiss}>Browse without choosing</button>
       </section>
     </div>
   );
