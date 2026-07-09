@@ -672,7 +672,7 @@ function StandardProjectSections({ project }) {
 
       <DetailSection id="theme" eyebrow="Theme" title={project.architecturalTheme}>
         <div className="split-placeholder">
-          <ImagePlaceholder label={`${project.name} design inspiration`} compact variant="gallery" />
+          <ImagePlaceholder src={project.gallery?.[0] || project.image} label={`${project.name} design inspiration`} compact variant="gallery" />
           <p>{project.themeDescription}</p>
         </div>
       </DetailSection>

@@ -123,6 +123,7 @@ input:focus, select:focus, textarea:focus { border-color: var(--gold); box-shado
 .content-hint { margin: 10px 0 0; color: var(--gold-2); font-size: 0.86rem; font-weight: 900; }
 .price-note { margin: 10px 0 4px; color: var(--navy); font-size: 0.9rem; font-weight: 900; }
 .card-actions { display: grid; gap: 9px; margin-top: 16px; }
+.cta-mobile-label { display: none; }
 
 .project-listing-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 360px); gap: 24px; align-items: end; margin-bottom: 22px; }
 .listing-hero-card, .cta-strip { border: 1px solid rgba(229,231,235,0.9); border-radius: 10px; padding: 20px; background: linear-gradient(135deg, var(--white), var(--blue)); box-shadow: var(--shadow); }
@@ -5672,6 +5673,26 @@ textarea {
   .city-projects .card-actions .btn:nth-child(3) {
     display: none;
   }
+
+  .projects-page .project-card .btn-label,
+  .city-projects .project-card .btn-label {
+    white-space: nowrap;
+  }
+
+  .projects-page .project-card .cta-desktop-label,
+  .city-projects .project-card .cta-desktop-label {
+    display: none;
+  }
+
+  .projects-page .project-card .cta-mobile-label,
+  .city-projects .project-card .cta-mobile-label {
+    display: inline;
+  }
+
+  .projects-page .pagination,
+  .city-projects .pagination {
+    margin-bottom: calc(96px + env(safe-area-inset-bottom));
+  }
 }
 
 @media (max-width: 430px) {
@@ -5888,6 +5909,18 @@ textarea {
 
   .home-featured-projects .card-actions .btn:nth-child(3) {
     display: none;
+  }
+
+  .home-featured-projects .project-card .btn-label {
+    white-space: nowrap;
+  }
+
+  .home-featured-projects .project-card .cta-desktop-label {
+    display: none;
+  }
+
+  .home-featured-projects .project-card .cta-mobile-label {
+    display: inline;
   }
 
   .home-locations .location-card {
