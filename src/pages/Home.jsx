@@ -14,6 +14,14 @@ import { promos } from "../data/promos";
 import { contact } from "../data/contact";
 import { useResponsiveProjectPageSize } from "../hooks/useResponsiveProjectPageSize";
 
+const HOME_BUYER_GOAL_KEY = "dmci_home_buyer_goal";
+const HOME_GOAL_PROMPT_KEY = "dmci_home_goal_prompt_seen";
+const primaryBuyerGoals = [
+  { value: "Own Use", label: "Residence", description: "A home to live in" },
+  { value: "Investment", label: "Investment", description: "A property to compare" }
+];
+const validPrimaryBuyerGoals = new Set(primaryBuyerGoals.map((goal) => goal.value));
+
 const computationFields = [
   { name: "fullName", label: "Full Name" },
   { name: "contactNumber", label: "Mobile / Viber", type: "tel" },
@@ -37,8 +45,10 @@ const computationFields = [
 ];
 
 export default function Home() {
-  const [buyerGoal, setBuyerGoal] = useState("");
+  const [buyerGoal, setBuyerGoal] = useState(readStoredBuyerGoal);
+  const [intentPromptDismissed, setIntentPromptDismissed] = useState(readIntentPromptSeen);
   const projectPageSize = useResponsiveProjectPageSize();
+  const showIntentPrompt = !intentPromptDismissed && !buyerGoal;
   const homepageProjects = useMemo(
     () => projects
       .filter((project) => !buyerGoal || project.purposeTags.includes(buyerGoal))
@@ -70,33 +80,63 @@ export default function Home() {
     ? `/projects?purpose=${encodeURIComponent(buyerGoal)}`
     : "/projects";
 
+  function selectBuyerGoal(goal, options = {}) {
+    setBuyerGoal(goal);
+    persistBuyerGoal(goal);
+
+    if (options.closePrompt || showIntentPrompt) {
+      markIntentPromptSeen();
+      setIntentPromptDismissed(true);
+    }
+  }
+
+  function dismissIntentPrompt() {
+    markIntentPromptSeen();
+    setIntentPromptDismissed(true);
+  }
+
+  useEffect(() => {
+    if (!showIntentPrompt) return undefined;
+
+    function closeOnEscape(event) {
+      if (event.key === "Escape") {
+        markIntentPromptSeen();
+        setIntentPromptDismissed(true);
+      }
+    }
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [showIntentPrompt]);
+
   return (
     <>
+      {showIntentPrompt && (
+        <HomeGoalPrompt
+          onChoose={(goal) => selectBuyerGoal(goal, { closePrompt: true })}
+          onDismiss={dismissIntentPrompt}
+        />
+      )}
       <section className="hero-section hero-landing">
         <div className="container hero-landing-inner">
           <div className="hero-copy hero-landing-copy" data-reveal="hero-text">
             <span className="eyebrow">{contact.brokerName} | Licensed Real Estate Broker</span>
             <h1>{goalCopy.title}</h1>
             <p>{goalCopy.text}</p>
-            <div className="home-intent-switch" role="group" aria-label="Choose your property goal">
-              <button
-                type="button"
-                className={buyerGoal === "Own Use" ? "active" : ""}
-                aria-pressed={buyerGoal === "Own Use"}
-                onClick={() => setBuyerGoal("Own Use")}
-              >
-                <span>Residence</span>
-                <small>A home to live in</small>
-              </button>
-              <button
-                type="button"
-                className={buyerGoal === "Investment" ? "active" : ""}
-                aria-pressed={buyerGoal === "Investment"}
-                onClick={() => setBuyerGoal("Investment")}
-              >
-                <span>Investment</span>
-                <small>A property to compare</small>
-              </button>
+            <div className={`home-intent-switch ${buyerGoal ? "has-selection" : "needs-selection"}`} role="group" aria-label="Choose your property goal">
+              <span className="home-intent-label">{buyerGoal ? "Selected property goal" : "Choose your property goal"}</span>
+              {primaryBuyerGoals.map((goal) => (
+                <button
+                  key={goal.value}
+                  type="button"
+                  className={buyerGoal === goal.value ? "active" : ""}
+                  aria-pressed={buyerGoal === goal.value}
+                  onClick={() => selectBuyerGoal(goal.value)}
+                >
+                  <span>{goal.label}</span>
+                  <small>{goal.description}</small>
+                </button>
+              ))}
             </div>
             <div className="hero-actions center">
               <Button to={projectDirectoryLink}>Browse Projects</Button>
@@ -106,7 +146,7 @@ export default function Home() {
         </div>
       </section>
 
-      <QuickSearch buyerGoal={buyerGoal} onBuyerGoalChange={setBuyerGoal} />
+      <QuickSearch buyerGoal={buyerGoal} onBuyerGoalChange={selectBuyerGoal} />
 
       <section className="section home-featured-projects">
         <div className="container">
@@ -154,6 +194,37 @@ export default function Home() {
 
       <FinalCTA />
     </>
+  );
+}
+
+function HomeGoalPrompt({ onChoose, onDismiss }) {
+  return (
+    <div className="home-goal-prompt-backdrop" onClick={onDismiss}>
+      <section
+        className="home-goal-prompt"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="home-goal-prompt-title"
+        aria-describedby="home-goal-prompt-copy"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <button className="home-goal-prompt-close" type="button" onClick={onDismiss} aria-label="Close property goal prompt">Close</button>
+        <span className="eyebrow">Start Here</span>
+        <h2 id="home-goal-prompt-title">Are you looking for a home or an investment?</h2>
+        <p id="home-goal-prompt-copy">
+          Choose one so the homepage can adjust the project shortlist and wording. You can still browse all approved DMCI projects anytime.
+        </p>
+        <div className="home-goal-prompt-options">
+          {primaryBuyerGoals.map((goal) => (
+            <button key={goal.value} type="button" onClick={() => onChoose(goal.value)}>
+              <strong>{goal.label}</strong>
+              <span>{goal.description}</span>
+            </button>
+          ))}
+        </div>
+        <button className="home-goal-prompt-skip" type="button" onClick={onDismiss}>Browse without choosing</button>
+      </section>
+    </div>
   );
 }
 
@@ -210,6 +281,52 @@ function QuickSearch({ buyerGoal, onBuyerGoalChange }) {
       </div>
     </section>
   );
+}
+
+function readStoredBuyerGoal() {
+  if (typeof window === "undefined") return "";
+
+  try {
+    const value = window.localStorage.getItem(HOME_BUYER_GOAL_KEY);
+    return validPrimaryBuyerGoals.has(value) ? value : "";
+  } catch {
+    return "";
+  }
+}
+
+function readIntentPromptSeen() {
+  if (typeof window === "undefined") return true;
+
+  try {
+    return window.localStorage.getItem(HOME_GOAL_PROMPT_KEY) === "1";
+  } catch {
+    return true;
+  }
+}
+
+function persistBuyerGoal(goal) {
+  if (typeof window === "undefined") return;
+
+  try {
+    if (validPrimaryBuyerGoals.has(goal)) {
+      window.localStorage.setItem(HOME_BUYER_GOAL_KEY, goal);
+      return;
+    }
+
+    window.localStorage.removeItem(HOME_BUYER_GOAL_KEY);
+  } catch {
+    // Browsing still works if local storage is unavailable.
+  }
+}
+
+function markIntentPromptSeen() {
+  if (typeof window === "undefined") return;
+
+  try {
+    window.localStorage.setItem(HOME_GOAL_PROMPT_KEY, "1");
+  } catch {
+    // Browsing still works if local storage is unavailable.
+  }
 }
 
 export function AboutCompact() {

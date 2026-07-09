@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout.jsx";
+import { ScrollToTop } from "./components/ScrollToTop.jsx";
 
 const Home = lazy(() => import("./pages/Home.jsx"));
 const Projects = lazy(() => import("./pages/Projects.jsx"));
@@ -25,6 +26,7 @@ const NotFound = lazy(() => import("./pages/NotFound.jsx"));
 export default function App() {
   return (
     <Layout>
+      <ScrollToTop />
       <Suspense fallback={<RouteLoading />}>
         <Routes>
           <Route path="/" element={<Home />} />
