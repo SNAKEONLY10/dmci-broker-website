@@ -39,7 +39,7 @@ export default async function handler(req, res) {
     }
   }
 
-  if (body.honeypot) {
+  if (body.honeypot || body.website || body.company) {
     res.status(200).json({ ok: true, referenceId: randomUUID() });
     return;
   }

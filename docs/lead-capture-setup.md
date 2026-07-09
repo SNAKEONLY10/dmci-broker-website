@@ -9,7 +9,9 @@ The production-ready path is email delivery first, with an optional webhook for 
 - Email: Resend API from the backend function.
 - Google Sheets or CRM: secure webhook from the backend function.
 - Both can be enabled at the same time.
-- If no delivery provider is configured, the endpoint returns `ok:false`, `delivery_not_configured`, and `previewOnly:true`; the UI falls back to local preview storage only.
+- If no delivery provider is configured, the endpoint returns `ok:false`, `delivery_not_configured`, and `previewOnly:true`.
+- In local development, the UI can show a preview/local saved warning for testing.
+- In production, missing delivery configuration must be treated as an error. The site must not imply that the inquiry reached Luisa or a CRM.
 
 ## Required Environment Variables
 
@@ -153,7 +155,7 @@ curl -i http://localhost:3000/api/leads \
   -d "{\"name\":\"Test Buyer\",\"phone\":\"09171234567\",\"email\":\"buyer@example.com\",\"preferredContactMethod\":\"Viber\",\"projectInterestedIn\":\"The Erin Heights\",\"cityLocation\":\"Quezon City\",\"inquiryType\":\"computation\",\"message\":\"Testing lead capture.\",\"sourcePage\":\"/request-computation\",\"submittedAt\":\"2026-07-01T00:00:00.000Z\",\"consent\":true,\"honeypot\":\"\"}"
 ```
 
-Expected without env vars:
+Expected backend response without env vars:
 
 ```json
 {
@@ -164,6 +166,16 @@ Expected without env vars:
 ```
 
 This response intentionally uses HTTP 200 to avoid noisy browser console errors during preview mode. The `ok:false` and `previewOnly:true` flags are what the UI uses to avoid fake delivery success.
+
+Spam check:
+
+- The public form posts a hidden honeypot value as `honeypot`.
+- The backend also treats common bot-filled fields such as `website` and `company` as honeypot fields and returns a neutral response without sending email.
+
+Frontend behavior:
+
+- Localhost / Vite preview: show a warning that the inquiry was saved locally for testing only.
+- Production: show an error that email/CRM delivery is not configured yet and direct the buyer to contact Luisa.
 
 Expected with valid email or webhook env vars:
 
@@ -202,15 +214,19 @@ After setting env vars:
 5. Confirm the email inbox or Google Sheet/CRM received the lead.
 6. Confirm the browser success message says the inquiry was submitted.
 
-Without env vars, the production UI must show:
+Without env vars, the local development UI may show:
 
 ```text
 Preview mode: your inquiry was saved locally for testing. Email/CRM delivery is not connected yet.
 ```
 
+Without env vars, the production UI should show a delivery configuration error instead of a preview success state.
+
 ## Fallback Behavior
 
-If `/api/leads` is missing, unavailable, or reports `delivery_not_configured`, the form saves to localStorage and shows a preview-only message.
+If `/api/leads` is missing, unavailable, or reports `delivery_not_configured`, the form only shows a preview/local saved warning on localhost or local preview.
+
+On the production domain, missing delivery configuration is shown as an error. The form does not show a fake success and does not claim that Luisa received the inquiry.
 
 The current frontend recognizes both `delivery_not_configured` and the older `lead_delivery_not_configured` code for compatibility.
 

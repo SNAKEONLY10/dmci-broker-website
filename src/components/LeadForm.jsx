@@ -134,9 +134,19 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
         return;
       }
 
-      if (data?.previewOnly || data?.code === "delivery_not_configured" || data?.code === "lead_delivery_not_configured" || (canUseLocalPreview() && !data && (response.status === 404 || contentType.includes("text/html")))) {
-        setNotice({ type: "success", text: previewMessage });
-        commitValues({ ...defaults, ...initialValues });
+      const deliveryNotConfigured = data?.previewOnly || data?.code === "delivery_not_configured" || data?.code === "lead_delivery_not_configured";
+      const missingLocalApi = canUseLocalPreview() && !data && (response.status === 404 || contentType.includes("text/html"));
+      if (deliveryNotConfigured || missingLocalApi) {
+        if (canUseLocalPreview()) {
+          setNotice({ type: "warning", text: previewMessage });
+          commitValues({ ...defaults, ...initialValues });
+          return;
+        }
+
+        setNotice({
+          type: "error",
+          text: data?.message || "Email/CRM delivery is not configured yet. Please contact Luisa directly or try again later."
+        });
         return;
       }
 
@@ -151,7 +161,7 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
         console.error("Lead form submission failed", error);
       }
       if (canUseLocalPreview()) {
-        setNotice({ type: "success", text: previewMessage });
+        setNotice({ type: "warning", text: previewMessage });
         commitValues({ ...defaults, ...initialValues });
         return;
       }
