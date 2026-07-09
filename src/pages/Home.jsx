@@ -107,7 +107,6 @@ export default function Home() {
       </section>
 
       <QuickSearch buyerGoal={buyerGoal} onBuyerGoalChange={setBuyerGoal} />
-      <BrokerTrustStrip />
 
       <section className="section home-featured-projects">
         <div className="container">
@@ -135,6 +134,7 @@ export default function Home() {
 
       <AboutCompact />
       <BuyerJourney />
+      <PreviewSections />
       <HomeFAQ />
 
       <section className="section">
@@ -152,40 +152,8 @@ export default function Home() {
         </div>
       </section>
 
-      <PreviewSections />
       <FinalCTA />
     </>
-  );
-}
-
-function BrokerTrustStrip() {
-  const trustItems = [
-    { label: "Broker", value: contact.brokerName },
-    { label: "Role", value: contact.role },
-    { label: "PRC License", value: contact.prcLicense },
-    { label: "Office", value: contact.office }
-  ];
-
-  return (
-    <section className="section compact-section broker-trust-strip" aria-labelledby="broker-trust-heading">
-      <div className="container">
-        <div className="content-panel trust-panel" data-reveal="text-group">
-          <div>
-            <span className="eyebrow">Professional Guidance</span>
-            <h2 id="broker-trust-heading">Licensed guidance, direct answers</h2>
-            <p>Work directly with Luisa to compare projects, review current figures, and coordinate your next step.</p>
-          </div>
-          <div className="trust-fact-grid">
-            {trustItems.map((item) => (
-              <span key={item.label}><strong>{item.label}</strong>{item.value}</span>
-            ))}
-          </div>
-          <div className="hero-actions">
-            <Button to="/about" variant="secondary">View Broker Profile</Button>
-          </div>
-        </div>
-      </div>
-    </section>
   );
 }
 
@@ -302,7 +270,7 @@ function HomeFAQ() {
   ];
 
   return (
-    <section className="section">
+    <section className="section soft home-faq">
       <div className="container" data-reveal="text-group">
         <SectionHeader eyebrow="Before You Decide" title="Important questions, answered clearly" />
         <div className="card-grid">

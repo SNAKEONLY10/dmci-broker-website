@@ -3309,51 +3309,9 @@ textarea {
   padding-block: clamp(34px, 5vw, 52px);
 }
 
-.broker-trust-strip {
-  background: linear-gradient(180deg, #ffffff, #f7fbfd);
-}
-
-.trust-panel {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 1fr) auto;
-  gap: clamp(16px, 3vw, 28px);
-  align-items: center;
-  padding: clamp(18px, 3vw, 26px);
-}
-
-.trust-panel h2 {
-  margin: 8px 0 10px;
-  font-size: clamp(1.6rem, 2.7vw, 2.35rem);
-}
-
-.trust-fact-grid,
 .city-summary-grid {
   display: grid;
   gap: 10px;
-}
-
-.trust-fact-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.trust-fact-grid span {
-  display: grid;
-  gap: 4px;
-  min-width: 0;
-  padding: 11px 12px;
-  border: 1px solid rgba(15,39,66,0.1);
-  border-radius: 12px;
-  background: #f7fbfd;
-  color: #526172;
-  font-size: 0.86rem;
-  overflow-wrap: anywhere;
-}
-
-.trust-fact-grid strong {
-  color: var(--navy);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .city-summary-grid {
@@ -3722,27 +3680,15 @@ textarea {
 }
 
 @media (max-width: 1180px) {
-  .trust-panel,
   .site-footer .footer-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .trust-panel > div:first-child,
-  .trust-panel .hero-actions {
-    grid-column: 1 / -1;
   }
 }
 
 @media (max-width: 760px) {
-  .trust-panel,
-  .trust-fact-grid,
   .city-summary-grid,
   .site-footer .footer-grid {
     grid-template-columns: 1fr;
-  }
-
-  .trust-panel .hero-actions {
-    justify-content: flex-start;
   }
 }
 
@@ -5511,7 +5457,7 @@ textarea {
   }
 }
 
-@media (min-width: 360px) and (max-width: 520px) {
+@media (min-width: 350px) and (max-width: 520px) {
   .projects-page .project-grid,
   .city-projects .project-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -5649,7 +5595,7 @@ textarea {
   }
 }
 
-@media (min-width: 360px) and (max-width: 520px) {
+@media (min-width: 350px) and (max-width: 520px) {
   .projects-page .project-card,
   .city-projects .project-card {
     border-radius: 10px;
@@ -5876,7 +5822,7 @@ textarea {
   }
 }
 
-@media (min-width: 360px) and (max-width: 520px) {
+@media (min-width: 350px) and (max-width: 520px) {
   .home-featured-projects .project-grid,
   .home-locations .location-grid,
   .home-tours .card-grid.five {
