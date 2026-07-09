@@ -605,7 +605,7 @@ const baseProjects = [
     landArea: "36,474 sqm.",
     address: "Acacia Estates, Taguig City",
     unitTypes: ["2BR", "3BR", "4BR"],
-    purposeTags: ["Own Use", "Family"],
+    purposeTags: ["Own Use", "Investment", "Family"],
     assetStatus: "complete",
     assetSlug: "mulberry-place-2",
     contentLevel: "rich",
