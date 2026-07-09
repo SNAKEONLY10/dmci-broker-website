@@ -156,6 +156,11 @@ function ProjectHero({ project, isRichProject }) {
               <ZoomableProjectImage key={`${image.src}-${index}`} image={image} compact onOpen={setZoomImage} />
             ))}
           </div>
+          <div className="project-media-note" aria-label={`${project.name} visual review note`}>
+            <span>Broker-assisted review</span>
+            <strong>Review the visuals, then confirm the latest details before reserving.</strong>
+            <p>Availability, pricing, promos, payment terms, and viewing access are confirmed with Luisa before any decision.</p>
+          </div>
         </div>
         <article className="project-hero-copy" data-reveal="hero-text">
           {project.logoImage && <img className="project-logo-mark" src={project.logoImage} alt={`${project.name} logo`} loading="lazy" decoding="async" />}
