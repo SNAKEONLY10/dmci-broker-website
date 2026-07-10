@@ -19,7 +19,7 @@ const defaults = {
   website: ""
 };
 
-const previewMessage = "Preview mode: your inquiry was saved locally for testing. Email/CRM delivery is not connected yet.";
+const previewMessage = "Preview mode: this test inquiry stayed in this browser. Email/CRM delivery is not connected yet.";
 const deliveredMessage = "Your inquiry has been submitted. Luisa or her team will contact you after details are confirmed.";
 const sendErrorMessage = "We could not send your inquiry right now. Please try again or contact Luisa directly.";
 const messageLimit = 1500;
@@ -29,6 +29,7 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
   const [errors, setErrors] = useState({});
   const [notice, setNotice] = useState(null);
   const [status, setStatus] = useState("idle");
+  const [submittedLead, setSubmittedLead] = useState(null);
   const requiredSet = new Set(required);
   const allFields = useMemo(() => fields.map((field) => field.name), [fields]);
   const fieldByName = useMemo(() => new Map(fields.map((field) => [field.name, field])), [fields]);
@@ -87,6 +88,7 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
       return next;
     });
     setNotice(null);
+    setSubmittedLead(null);
   }
 
   function useProjectLocation() {
@@ -110,6 +112,7 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
 
     const nextErrors = validateForm(values, required, fields, inquiryType);
     setErrors(nextErrors);
+    setSubmittedLead(null);
     if (Object.keys(nextErrors).length) {
       setNotice({ type: "error", text: "Please review the highlighted fields before sending." });
       return;
@@ -132,13 +135,18 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
       const contentType = response.headers.get("content-type") || "";
 
       if (response.ok && data?.ok) {
+        setSubmittedLead({
+          referenceId: data.referenceId,
+          submittedAt: data.submittedAt,
+          inquiryType: payload.inquiryType,
+          project: payload.projectInterestedIn,
+          location: payload.cityLocation,
+          preferredContactMethod: payload.preferredContactMethod
+        });
         setNotice({
           type: "success",
-          text: data.referenceId
-            ? `${deliveredMessage} Reference ID: ${data.referenceId}.`
-            : deliveredMessage
+          text: deliveredMessage
         });
-        commitValues({ ...defaults, ...initialValues });
         return;
       }
 
@@ -147,7 +155,6 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
       if (deliveryNotConfigured || missingLocalApi) {
         if (canUseLocalPreview()) {
           setNotice({ type: "warning", text: previewMessage });
-          commitValues({ ...defaults, ...initialValues });
           return;
         }
 
@@ -170,13 +177,20 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
       }
       if (canUseLocalPreview()) {
         setNotice({ type: "warning", text: previewMessage });
-        commitValues({ ...defaults, ...initialValues });
         return;
       }
       setNotice({ type: "error", text: sendErrorMessage });
     } finally {
       setStatus("idle");
     }
+  }
+
+  function submitAnotherInquiry() {
+    setSubmittedLead(null);
+    setNotice(null);
+    setErrors({});
+    setStatus("idle");
+    commitValues({ ...defaults, ...initialValues });
   }
 
   return (
@@ -211,21 +225,28 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
           </Fragment>
         ))}
         <label className="consent full" htmlFor="field-consent">
-          <input id="field-consent" name="consent" type="checkbox" checked={values.consent} onChange={update} />
+          <input
+            id="field-consent"
+            name="consent"
+            type="checkbox"
+            checked={values.consent}
+            onChange={update}
+            aria-invalid={Boolean(errors.consent)}
+            aria-describedby={errors.consent ? "field-consent-error" : undefined}
+          />
           <span>I agree to be contacted regarding my DMCI inquiry. Project details, pricing, promos, and availability are subject to confirmation.</span>
         </label>
         <p className="form-note full">Your inquiry details are used for DMCI Homes buyer assistance and contact follow-up. See the <a href="/privacy-policy">Privacy Policy</a>.</p>
-        {errors.consent && <small className="error full">{errors.consent}</small>}
+        {errors.consent && <small id="field-consent-error" className="error full">{errors.consent}</small>}
       </div>
       <p className="form-trust-note">Luisa reviews each inquiry before sharing project references, computations, or viewing guidance. Final pricing, promos, and availability are confirmed through authorized sales channels.</p>
-      {notice && (
+      {notice && notice.type === "success" && submittedLead ? (
+        <LeadSuccessPanel info={submittedLead} onSubmitAnother={submitAnotherInquiry} />
+      ) : notice && (
         <div className={`${notice.type}-message`} role={notice.type === "error" ? "alert" : "status"}>
           <p>{notice.text}</p>
           {notice.type !== "success" && (
-            <div className="form-direct-actions" aria-label="Direct contact options">
-              <a href={contact.phoneHref}>Call Luisa</a>
-              <a href={contact.emailHref}>Email Luisa</a>
-            </div>
+            <DirectContactActions />
           )}
         </div>
       )}
@@ -233,6 +254,40 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
         {status === "submitting" ? "Sending..." : submitLabel}
       </Button>
     </form>
+  );
+}
+
+function LeadSuccessPanel({ info, onSubmitAnother }) {
+  const preferred = info.preferredContactMethod || "your preferred channel";
+  const subject = info.project || info.location || "your DMCI inquiry";
+
+  return (
+    <div className="lead-success-panel" role="status" aria-live="polite">
+      <div className="lead-success-header">
+        <span>Inquiry received</span>
+        {info.referenceId && <strong>Reference ID: {info.referenceId}</strong>}
+      </div>
+      <p>{deliveredMessage}</p>
+      <ul className="lead-success-next" aria-label="What happens next">
+        <li>Luisa reviews the details for {subject} before sharing any computation, availability, or viewing guidance.</li>
+        <li>Pricing, promos, payment terms, and unit availability will be confirmed before any reservation step.</li>
+        <li>Follow-up will be through {preferred}; direct contact options are also available below.</li>
+      </ul>
+      <DirectContactActions />
+      <button type="button" className="success-secondary-action" onClick={onSubmitAnother}>
+        Submit another inquiry
+      </button>
+    </div>
+  );
+}
+
+function DirectContactActions() {
+  return (
+    <div className="form-direct-actions" aria-label="Direct contact options">
+      <a href={contact.phoneHref}>Call</a>
+      {contact.viber && <a href={contact.viber}>Viber</a>}
+      <a href={contact.emailHref}>Email</a>
+    </div>
   );
 }
 

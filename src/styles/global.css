@@ -3742,6 +3742,102 @@ textarea {
   text-decoration: none;
 }
 
+.lead-success-panel {
+  margin: 18px 0;
+  padding: clamp(16px, 2.5vw, 22px);
+  border: 1px solid rgba(24,120,87,0.22);
+  border-radius: 18px;
+  background: linear-gradient(135deg, #f1fbf7, #ffffff);
+  color: #102a45;
+  box-shadow: 0 16px 38px rgba(15,39,66,0.08);
+  animation: formNoticeIn 0.26s ease both;
+}
+
+.lead-success-panel p {
+  margin: 10px 0 0;
+  color: #28425c;
+  font-weight: 760;
+  line-height: 1.55;
+}
+
+.lead-success-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lead-success-header span {
+  color: #0f6b4b;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.lead-success-header strong {
+  padding: 6px 9px;
+  border: 1px solid rgba(15,39,66,0.12);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.72);
+  color: #102a45;
+  font-size: 0.78rem;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.lead-success-next {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lead-success-next li {
+  position: relative;
+  padding-left: 18px;
+  color: #3d5872;
+  font-size: 0.9rem;
+  font-weight: 680;
+  line-height: 1.5;
+}
+
+.lead-success-next li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #0f6b4b;
+}
+
+.success-secondary-action {
+  min-height: 42px;
+  margin-top: 14px;
+  padding: 10px 16px;
+  border: 1px solid rgba(15,39,66,0.16);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--navy);
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.success-secondary-action:hover,
+.success-secondary-action:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(15,107,75,0.34);
+  box-shadow: 0 10px 24px rgba(15,39,66,0.08);
+  outline: none;
+}
+
 .form-trust-note {
   margin: 16px 0 0;
   padding: 13px 15px;
@@ -3819,6 +3915,7 @@ textarea {
   .success-message,
   .warning-message,
   .error-message,
+  .lead-success-panel,
   .form-submit:disabled::before {
     animation: none;
   }
@@ -3826,6 +3923,7 @@ textarea {
   .field select,
   .field textarea,
   .project-location-actions button,
+  .success-secondary-action,
   .form-broker-image img {
     transition: none;
   }
@@ -5527,10 +5625,32 @@ textarea {
 
   .form-card-compact .success-message,
   .form-card-compact .warning-message,
-  .form-card-compact .error-message {
+  .form-card-compact .error-message,
+  .form-card-compact .lead-success-panel {
     margin: 10px 0;
     padding: 11px 12px;
     font-size: 0.82rem;
+  }
+
+  .form-card-compact .lead-success-panel p {
+    font-size: 0.82rem;
+    line-height: 1.42;
+  }
+
+  .form-card-compact .lead-success-next {
+    gap: 6px;
+    margin-top: 10px;
+  }
+
+  .form-card-compact .lead-success-next li {
+    font-size: 0.78rem;
+    line-height: 1.38;
+  }
+
+  .form-card-compact .success-secondary-action {
+    min-height: 40px;
+    margin-top: 10px;
+    font-size: 0.78rem;
   }
 
   .form-card-compact .form-submit {
@@ -5627,10 +5747,21 @@ textarea {
 
   .form-card-compact .success-message,
   .form-card-compact .warning-message,
-  .form-card-compact .error-message {
+  .form-card-compact .error-message,
+  .form-card-compact .lead-success-panel {
     padding: 10px 11px;
     font-size: 0.78rem;
     line-height: 1.35;
+  }
+
+  .lead-success-header {
+    align-items: flex-start;
+  }
+
+  .lead-success-header strong {
+    width: 100%;
+    border-radius: 10px;
+    font-size: 0.7rem;
   }
 
   .form-card-compact .form-submit {

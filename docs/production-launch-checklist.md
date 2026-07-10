@@ -1,77 +1,25 @@
 # DMCI Broker Website Production Launch Checklist
 
-This checklist is for the personal DMCI broker / buyer-assistance website for Maria Luisa Corral. It is not an official DMCI corporate site. Project details, pricing, promos, availability, turnover, payment terms, and unit details must stay subject to confirmation.
+This checklist is for the personal DMCI broker / buyer-assistance website for Maria Luisa Corral. It is not an official DMCI corporate website. Pricing, promos, availability, turnover dates, payment terms, and unit details must remain subject to final confirmation.
 
-## What Works Without Vercel Env Vars
+Last hardening update: July 10, 2026.
 
-- Static public routes and SEO fallbacks can build and deploy.
-- Project directory and project detail pages can be browsed.
-- Forms render and validate required fields in the browser.
-- On localhost or local preview only, form submissions can be saved to localStorage for testing.
+## Current Production-Ready Foundation
 
-## What Requires Vercel Env Vars
+- Approved 18-project directory is preserved.
+- Static routes, SEO fallbacks, sitemap, robots, and route inventory are covered by QA commands.
+- Project images are validated by the image QA script.
+- Internal links are validated by the internal link QA script.
+- External links are categorized by the external-link audit.
+- YouTube and Google Maps embeds are click-to-load.
+- Forms have frontend and backend validation.
+- Honeypot spam protection is enabled.
+- Mobile menu Escape/focus return and image lightbox focus return are implemented.
+- Lead email delivery uses backend-only environment variables.
 
-Real lead delivery requires at least:
+## Required Commands Before Deployment
 
-```text
-RESEND_API_KEY
-LEAD_EMAIL_TO
-```
-
-Optional production variables:
-
-```text
-LEAD_EMAIL_FROM
-LEAD_EMAIL_REPLY_TO
-LEAD_EMAIL_SUBJECT_PREFIX
-LEADS_WEBHOOK_URL
-LEADS_WEBHOOK_SECRET
-```
-
-If these are missing on the production domain, the form must show a delivery configuration error. It must not show a fake "sent to broker" success state.
-
-## What Requires a Verified Sender Domain
-
-For real production email sending, Resend needs a verified sender domain controlled by the site owner.
-
-Do not use ordinary personal mailbox domains such as Gmail, Yahoo, Outlook, or iCloud as `LEAD_EMAIL_FROM`.
-
-Do not use `mrcorral@dmcihomes.com` as `LEAD_EMAIL_FROM` unless `dmcihomes.com` is verified in Resend and legally/technically approved.
-
-Recommended production pattern:
-
-```text
-LEAD_EMAIL_FROM=DMCI Broker Leads <leads@verified-domain.com>
-LEAD_EMAIL_TO=mrcorral@dmcihomes.com
-LEAD_EMAIL_REPLY_TO=mrcorral@dmcihomes.com
-LEAD_EMAIL_SUBJECT_PREFIX=[DMCI Broker Lead]
-```
-
-Temporary testing with Resend may use:
-
-```text
-LEAD_EMAIL_FROM=DMCI Leads <onboarding@resend.dev>
-```
-
-But Resend test mode can only send to the verified Resend account email.
-
-## After Every Production Redeploy
-
-1. Open `/`, `/projects`, one project detail page, `/request-computation`, `/availability`, `/book-viewing`, and `/contact`.
-2. Confirm direct refresh works on each route.
-3. Confirm `/sitemap.xml` and `/robots.txt` load.
-4. Submit an invalid form and confirm field errors are readable.
-5. Submit a valid test lead and confirm the UI success state only appears after backend delivery succeeds.
-6. Check Vercel Function logs for `/api/leads` and `/api/request-computation`.
-7. Confirm the recipient inbox or webhook received the lead.
-8. Check mobile widths around 360px, 390px, and 414px for no horizontal overflow.
-9. Check tablet and desktop layouts for readable project cards, forms, footer, and sticky CTAs.
-
-## Second-Pass QA Commands
-
-Run these before pushing or redeploying:
-
-```text
+```bash
 npm run build
 npm run qa:routes
 npm run qa:images
@@ -80,61 +28,170 @@ npm run qa:external-links
 npm run inventory:routes
 ```
 
-For one full local gate, run:
+Full local gate:
 
-```text
+```bash
 npm run qa:production
 ```
 
-`qa:external-links` creates `docs/external-link-audit.md`. It is a static source/data report for official DMCI links, Google Maps, YouTube, Google Drive, virtual tours, tel, mailto, sms, and Viber links. It does not network-fetch external sites, so it is stable for CI. Device links are reported but not treated as failures.
+Optional runtime smoke check after a local preview or production deploy:
 
-## Manual Visual QA Matrix
-
-Check these public routes after deploy:
-
-```text
-/
-/projects
-/projects/the-oriana
-/projects/one-delta-terraces
-/locations
-/locations/quezon-city
-/availability
-/request-computation
-/book-viewing
-/buyers-guide
-/reservation-requirements
-/virtual-tours
-/promos
-/resale-units
-/about
-/contact
-/privacy-policy
-/disclaimer
+```bash
+npm run smoke:runtime -- --base-url https://dmci-broker-website.vercel.app
 ```
 
-Use 375px, 390px, 430px, 760px, 1366px, and 1920px viewports. Check for horizontal overflow, cropped heroes, sticky CTA overlap, crowded project cards, gallery/lightbox focus return, menu open/close behavior, readable tables, and footer spacing.
+By default, runtime smoke tests do not send valid lead emails. To intentionally send valid test leads:
 
-## Accessibility Checks
+```bash
+DMCI_SMOKE_SEND_VALID=true npm run smoke:runtime -- --base-url https://dmci-broker-website.vercel.app --include-valid
+```
 
-- Mobile menu opens from the menu button and closes with Escape.
-- Image lightbox closes with Escape and returns focus to the image trigger.
-- Heavy YouTube and Google Maps embeds are click-to-load so phone pages do not load iframes until the buyer asks for them.
-- Forms keep errors near the related fields and use accessible labels.
-- Table sections show a swipe hint on narrow screens.
+Use the valid-email mode only when the recipient inbox is ready for test messages. In this mode, the smoke script expects backend `ok:true` delivery and fails if email delivery is not configured.
 
-## Vercel Logs To Check
+PowerShell equivalent:
 
-- Function logs for `/api/leads`.
-- Function logs for `/api/request-computation`.
-- Deployment build logs for route/asset failures.
-- Resend dashboard logs for rejected sender, unverified domain, or blocked test recipient errors.
+```powershell
+$env:DMCI_SMOKE_SEND_VALID = "true"
+npm.cmd run smoke:runtime -- --base-url https://dmci-broker-website.vercel.app --include-valid
+Remove-Item Env:\DMCI_SMOKE_SEND_VALID
+```
 
-## Known Launch Blockers Outside Code
+## Production Email Gate
 
-- A final custom domain has not been connected yet; canonical URLs currently use `https://dmci-broker-website.vercel.app`.
-- Final production email sender needs a verified sender domain in Resend.
-- Lead delivery must be tested after production env vars are added or rotated.
-- If a Resend API key was ever pasted into chat or screenshots, rotate it before launch.
+Read `docs/email-production-setup.md` before launch.
 
-Last second-pass QA update: July 10, 2026.
+Production email requires:
+
+```text
+RESEND_API_KEY
+LEAD_EMAIL_TO
+LEAD_EMAIL_FROM or RESEND_FROM
+LEAD_EMAIL_REPLY_TO
+LEAD_EMAIL_SUBJECT_PREFIX
+```
+
+The active code requires `RESEND_API_KEY` and `LEAD_EMAIL_TO` for email delivery. `LEAD_EMAIL_FROM` falls back to `RESEND_FROM`, then to Resend's test sender. Production must still use a verified sender domain.
+
+Do not use personal Gmail/Yahoo/Outlook/iCloud addresses as `LEAD_EMAIL_FROM`.
+
+Do not use `mrcorral@dmcihomes.com` as `LEAD_EMAIL_FROM` unless `dmcihomes.com` is verified in Resend and legally/technically approved.
+
+## Build Freshness Marker
+
+Each build writes:
+
+- `/build-info.json`
+- `/launch-diagnostics.txt`
+
+These files include app version, commit SHA, branch, build date, QA date, and dirty flag. They are not public navigation links. Use them only to confirm the live deployment is serving the newest build.
+
+## Runtime/API Smoke Coverage
+
+Documented and scripted checks:
+
+- `GET /`
+- `GET /projects`
+- `GET /projects/the-oriana`
+- `GET /request-computation`
+- `POST /api/leads` invalid payload
+- `POST /api/leads` honeypot payload
+- `POST /api/leads` valid payload only with explicit opt-in
+- `POST /api/request-computation` invalid payload
+- `POST /api/request-computation` valid payload only with explicit opt-in
+
+## Manual QA Gate
+
+Run `docs/manual-qa-checklist.md` after deployment. Required manual categories:
+
+- Route navigation and direct refresh
+- Mobile/tablet/desktop viewport checks
+- Form validation and success state checks
+- Email inbox delivery checks
+- Official DMCI links
+- Google Maps direction links and map embeds
+- YouTube AVP links
+- Google Drive and virtual tour links
+- Phone, mailto, and Viber links on real devices
+- Accessibility keyboard flow
+- Buyer-safe legal copy
+
+## SEO And Domain Gate
+
+Current canonical domain:
+
+```text
+https://dmci-broker-website.vercel.app
+```
+
+If a custom domain is launched, update:
+
+- `SITE_URL`
+- canonical URLs
+- OG URLs
+- Twitter image URLs
+- sitemap
+- robots
+- `index.html` static fallback
+- route inventory docs
+- email source-page expectations if needed
+
+`/showcase` must remain noindex/internal and not publicly linked.
+
+## Analytics Readiness
+
+Recommended launch-safe analytics:
+
+- Vercel Analytics for page views and Web Vitals, or Google Analytics if the owner prefers.
+- Track only non-sensitive events such as CTA clicks, project detail views, form submit success/failure, and availability/computation/viewing CTA clicks.
+- Do not send names, phone numbers, emails, messages, budget notes, or reference IDs to analytics events.
+
+## Security And Abuse Readiness
+
+Implemented:
+
+- Backend validation for required fields.
+- Email format validation.
+- Consent requirement.
+- Honeypot spam protection.
+- Payload size guard.
+- No frontend API keys.
+- No raw stack traces in buyer-facing messages.
+- Lead email HTML escapes buyer-provided values.
+
+Recommended if traffic or spam increases:
+
+- Add IP/rate limiting at Vercel Firewall or another edge layer.
+- Add Turnstile or reCAPTCHA only if spam becomes real.
+- Add server log monitoring for repeated failed submissions.
+- Add webhook signing verification if a CRM/Sheets webhook is enabled.
+
+## Performance Gate
+
+Before launch, confirm:
+
+- Project hero images are compressed and have WebP variants.
+- Repeated gallery images lazy-load.
+- YouTube and Google Maps stay click-to-load on mobile.
+- Fonts are limited to the current project set.
+- Animations respect `prefers-reduced-motion`.
+- No layout shift from project cards, forms, or image galleries.
+
+## Remaining Owner Confirmations
+
+High importance:
+
+- Final production recipient inbox.
+- Verified Resend sender domain.
+- Final custom domain decision.
+- Final broker contact details and license.
+
+Medium importance:
+
+- Analytics provider choice.
+- Whether webhook/Google Sheets backup is needed.
+- Real phone test for Call and Viber links.
+
+Low importance:
+
+- Additional custom OG image polish after final domain.
+- Future admin dashboard for leads.

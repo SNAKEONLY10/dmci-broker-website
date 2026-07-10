@@ -217,14 +217,14 @@ After setting env vars:
 Without env vars, the local development UI may show:
 
 ```text
-Preview mode: your inquiry was saved locally for testing. Email/CRM delivery is not connected yet.
+Preview mode: this test inquiry stayed in this browser. Email/CRM delivery is not connected yet.
 ```
 
 Without env vars, the production UI should show a delivery configuration error instead of a preview success state.
 
 ## Fallback Behavior
 
-If `/api/leads` is missing, unavailable, or reports `delivery_not_configured`, the form only shows a preview/local saved warning on localhost or local preview.
+If `/api/leads` is missing, unavailable, or reports `delivery_not_configured`, the form only shows a preview/test warning on localhost or local preview.
 
 On the production domain, missing delivery configuration is shown as an error. The form does not show a fake success and does not claim that Luisa received the inquiry.
 

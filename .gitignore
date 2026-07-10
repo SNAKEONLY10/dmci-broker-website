@@ -9,3 +9,5 @@ vite*.log
 .vercel
 public/assets/project-source/**
 !public/assets/project-source/.gitkeep
+public/build-info.json
+public/launch-diagnostics.txt

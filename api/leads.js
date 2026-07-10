@@ -1,6 +1,7 @@
 import { randomUUID } from "node:crypto";
 
 const messageLimit = 1500;
+const maxPayloadBytes = 24 * 1024;
 const allowedMethods = "POST, OPTIONS";
 const defaultTestSender = "DMCI Leads <onboarding@resend.dev>";
 const personalSenderDomains = new Set([
@@ -47,6 +48,11 @@ export default async function handler(req, res) {
 
   if (req.method !== "POST") {
     res.status(405).json({ ok: false, message: "Method not allowed." });
+    return;
+  }
+
+  if (payloadTooLarge(req.body)) {
+    res.status(413).json({ ok: false, message: "Inquiry payload is too large. Please shorten the message and try again." });
     return;
   }
 
@@ -196,6 +202,16 @@ function normalizeLead(payload) {
   if (!lead.consent) errors.consent = "Please confirm consent before sending.";
 
   return { lead, errors };
+}
+
+function payloadTooLarge(body) {
+  if (!body) return false;
+  if (typeof body === "string") return Buffer.byteLength(body, "utf8") > maxPayloadBytes;
+  try {
+    return Buffer.byteLength(JSON.stringify(body), "utf8") > maxPayloadBytes;
+  } catch {
+    return true;
+  }
 }
 
 function configuredProviders() {

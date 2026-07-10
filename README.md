@@ -64,26 +64,26 @@ The production build generates static HTML fallbacks for public routes, `sitemap
 - Project data is buyer guidance only and must be confirmed before presentation or reservation
 - No real-time availability
 - The Request Latest Computation form can send a test email notification when server-side email env vars are configured
-- Forms still save demo submissions to browser `localStorage` for testing and fallback behavior
+- Local development can keep preview submissions in the browser for testing and fallback behavior
 - Final pricing, availability, promos, payment terms, unit details, and turnover schedules must be confirmed by Luisa or official DMCI channels
 
-## Email Notification Test Setup
+## Email Notification Setup
 
-The `/request-computation` form posts to the secure Vercel serverless function at `/api/request-computation`. The Resend API key must stay server-side only.
+The `/request-computation` form posts to the secure Vercel serverless function at `/api/request-computation`. Other lead forms post to `/api/leads`. The Resend API key must stay server-side only.
 
 Required Vercel environment variables:
 
 ```text
 RESEND_API_KEY=your_resend_api_key
-LEAD_EMAIL_TO=howardxxcelestial69@gmail.com
+LEAD_EMAIL_TO=recipient@example.com
 ```
 
 Optional:
 
 ```text
 LEAD_EMAIL_FROM=DMCI Leads <leads@your-verified-dmci-domain.com>
-LEAD_EMAIL_REPLY_TO=howardxxcelestial69@gmail.com
-LEAD_EMAIL_SUBJECT_PREFIX=[DMCI Broker Test Lead]
+LEAD_EMAIL_REPLY_TO=recipient@example.com
+LEAD_EMAIL_SUBJECT_PREFIX=[DMCI Broker Lead]
 ```
 
 `LEAD_EMAIL_TO` is where the inquiry notification goes. `LEAD_EMAIL_FROM` is only the technical sender used by Resend. Do not put an ordinary Gmail address in `LEAD_EMAIL_FROM`; Resend rejects unverified sender domains. If `LEAD_EMAIL_FROM` is empty or set to a personal email domain, the backend uses this test sender:
@@ -92,17 +92,17 @@ LEAD_EMAIL_SUBJECT_PREFIX=[DMCI Broker Test Lead]
 LEAD_EMAIL_FROM=DMCI Leads <onboarding@resend.dev>
 ```
 
-Resend only allows `onboarding@resend.dev` to send to the verified account owner email. If the account owner is not Howard's Gmail, verify a DMCI-owned sender domain in Resend and use that verified sender instead.
+Resend only allows `onboarding@resend.dev` to send to the verified account owner email. For production, verify a sender domain in Resend and use that verified sender instead.
 
 Setup steps:
 
 1. Add `RESEND_API_KEY` in Vercel Project Settings -> Environment Variables.
-2. Add `LEAD_EMAIL_TO` as Howard's Gmail for testing.
+2. Add `LEAD_EMAIL_TO` as the intended test or production recipient.
 3. Leave `LEAD_EMAIL_FROM` blank for Resend test mode, or set it to a verified DMCI sender domain later.
 4. Deploy the site.
 5. Open `/request-computation`.
 6. Submit a test request.
-7. Check Howard's Gmail inbox and spam folder for the test email.
+7. Check the configured recipient inbox and spam folder for the test email.
 8. After approval, change the API recipient to Luisa's official email.
 
 Never expose `RESEND_API_KEY` in frontend code, public docs, screenshots, route inventory, comments, or browser bundles.

@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/generate-seo-pages.mjs",
+    "build": "node scripts/write-build-info.mjs && vite build && node scripts/generate-seo-pages.mjs",
     "assets:optimize": "node scripts/optimize-project-images.mjs",
     "inventory:routes": "node scripts/write-route-inventory.mjs",
     "qa:routes": "node scripts/validate-seo-routes.mjs",
@@ -14,6 +14,7 @@
     "qa:links": "node scripts/validate-internal-links.mjs",
     "qa:external-links": "node scripts/audit-external-links.mjs",
     "qa:production": "npm run build && npm run qa:routes && npm run qa:images && npm run qa:links && npm run qa:external-links && npm run inventory:routes",
+    "smoke:runtime": "node scripts/smoke-runtime.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

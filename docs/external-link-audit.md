@@ -1,6 +1,6 @@
 # External Link Audit
 
-Generated: 2026-07-10T10:15:51.986Z
+Generated: 2026-07-10T15:19:16.136Z
 
 Mode: static source/data scan. This report does not make network requests, so CI stays stable. Device links such as tel, mailto, sms, and viber are reported but not treated as failures.
 
@@ -27,6 +27,20 @@ Production canonical: https://dmci-broker-website.vercel.app
 - Official DMCI, Google Maps, YouTube, Google Drive, and virtual-tour links are categorized for manual browser checks.
 - Tel, mailto, sms, and Viber links depend on the buyer's device and installed apps.
 - This audit fails only for malformed links or insecure non-local http links.
+
+## Manual Click Checklist
+
+| Link type | What to verify | Device note |
+| --- | --- | --- |
+| Official DMCI links | Open each official DMCI/dmci-online reference from project detail pages. | Desktop and mobile browser |
+| Google Maps direction links | Click Get Directions and confirm the pin/search lands on the intended project or city area. | Manual browser test |
+| Google Maps embedded maps | Click to load the map, then zoom and pan once. | Manual browser test |
+| YouTube AVP links | Click to load/play and confirm no unavailable/private video message appears. | Manual browser test |
+| Google Drive links | Open in an incognito window and confirm buyer-safe access permissions. | Manual owner test |
+| Virtual tour links | Open the 360/tour link and confirm it is public, fast enough, and project-matched. | Manual browser test |
+| Telephone links | Tap Call on a real phone and confirm the dialer opens the correct number. | Manual phone test required |
+| Mail links | Tap Email and confirm the mail client opens the broker address. | Manual device test |
+| Viber links | Tap Viber on a phone with Viber installed and confirm it opens the broker number. | Manual phone test required |
 
 ## Device link - email
 
