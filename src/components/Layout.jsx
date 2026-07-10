@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { contact } from "../data/contact";
 import { cityPages } from "../data/seo";
@@ -22,16 +22,38 @@ const formRoutePaths = new Set(["/availability", "/request-computation", "/book-
 
 export function Layout({ children }) {
   const [open, setOpen] = useState(false);
+  const menuButtonRef = useRef(null);
   const { pathname } = useLocation();
   useScrollReveal();
   const hideQuickActions = open || formRoutePaths.has(pathname);
+  const closeMobileMenu = useCallback((restoreFocus = true) => {
+    setOpen(false);
+    if (restoreFocus) {
+      window.requestAnimationFrame(() => menuButtonRef.current?.focus());
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!open) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") closeMobileMenu();
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [closeMobileMenu, open]);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   return (
     <>
       <SeoManager />
       <header className="site-header">
         <div className="container nav-wrap">
-          <NavLink className="brand" to="/" onClick={() => setOpen(false)}>
+          <NavLink className="brand" to="/" onClick={() => closeMobileMenu(false)}>
             <span className="brand-logo">
               <img src="/assets/img/dmci-broker-mark.png" alt={`${contact.brokerName} DMCI broker logo`} />
             </span>
@@ -46,7 +68,15 @@ export function Layout({ children }) {
             ))}
           </nav>
           <Button to="/request-computation" className="desktop-cta">Request Computation</Button>
-          <button className="menu-toggle" type="button" onClick={() => setOpen(!open)} aria-expanded={open} aria-label={open ? "Close menu" : "Open menu"}>
+          <button
+            className="menu-toggle"
+            type="button"
+            ref={menuButtonRef}
+            onClick={() => setOpen((isOpen) => !isOpen)}
+            aria-controls="mobile-site-menu"
+            aria-expanded={open}
+            aria-label={open ? "Close menu" : "Open menu"}
+          >
             <span />
             <span />
             <span />
@@ -54,8 +84,8 @@ export function Layout({ children }) {
         </div>
         {open && (
           <div className="mobile-menu-shell">
-            <button className="mobile-menu-backdrop" type="button" aria-label="Close mobile menu" onClick={() => setOpen(false)} />
-            <MobileMenu onClose={() => setOpen(false)} />
+            <button className="mobile-menu-backdrop" type="button" aria-label="Close mobile menu" onClick={() => closeMobileMenu()} />
+            <MobileMenu onClose={closeMobileMenu} />
           </div>
         )}
       </header>
@@ -68,15 +98,15 @@ export function Layout({ children }) {
 
 function MobileMenu({ onClose }) {
   return (
-    <nav className="mobile-menu" aria-label="Mobile navigation">
+    <nav className="mobile-menu" id="mobile-site-menu" aria-label="Mobile navigation">
       <div className="mobile-menu-head">
         <span>Menu</span>
-        <button className="mobile-menu-close" type="button" onClick={onClose} aria-label="Close menu">Close</button>
+        <button className="mobile-menu-close" type="button" onClick={() => onClose()} aria-label="Close menu">Close</button>
       </div>
       {navItems.map(([label, to]) => (
-        <NavLink key={to} to={to} onClick={onClose}>{label}</NavLink>
+        <NavLink key={to} to={to} onClick={() => onClose(false)}>{label}</NavLink>
       ))}
-      <Button to="/request-computation" onClick={onClose}>Request Computation</Button>
+      <Button to="/request-computation" onClick={() => onClose(false)}>Request Computation</Button>
     </nav>
   );
 }

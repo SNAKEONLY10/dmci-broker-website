@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Badge } from "../components/Badge";
 import { Button } from "../components/Button";
@@ -47,6 +47,23 @@ function formatTurnoverLabel(value) {
   if (value === "Ready") return "Ready For Occupancy";
   if (/20\d{2}/.test(String(value))) return `${value} turnover`;
   return value || "Turnover for confirmation";
+}
+
+function useImageLightbox() {
+  const [zoomImage, setZoomImage] = useState(null);
+  const lastTriggerRef = useRef(null);
+
+  const openLightbox = useCallback((image, trigger) => {
+    lastTriggerRef.current = trigger || document.activeElement;
+    setZoomImage(image);
+  }, []);
+
+  const closeLightbox = useCallback(() => {
+    setZoomImage(null);
+    window.requestAnimationFrame(() => lastTriggerRef.current?.focus?.());
+  }, []);
+
+  return { zoomImage, openLightbox, closeLightbox };
 }
 
 export default function ProjectDetail() {
@@ -138,7 +155,7 @@ function ProjectHero({ project, isRichProject }) {
       variant: "gallery"
     }))
   ];
-  const [zoomImage, setZoomImage] = useState(null);
+  const { zoomImage, openLightbox, closeLightbox } = useImageLightbox();
   const heroActions = project.heroCtas || [
     { label: "Request Latest Computation", to: projectInquiryPath("/request-computation", project, "Computation"), variant: "primary" },
     { label: "Check Availability", to: projectInquiryPath("/availability", project, "Availability"), variant: "secondary" },
@@ -157,10 +174,10 @@ function ProjectHero({ project, isRichProject }) {
             <span aria-hidden="true">/</span>
             <span>{project.name}</span>
           </nav>
-          <ZoomableProjectImage image={heroImages[0]} onOpen={setZoomImage} />
+          <ZoomableProjectImage image={heroImages[0]} onOpen={openLightbox} />
           <div className="project-hero-thumbs">
             {heroImages.slice(1).map((image, index) => (
-              <ZoomableProjectImage key={`${image.src}-${index}`} image={image} compact onOpen={setZoomImage} />
+              <ZoomableProjectImage key={`${image.src}-${index}`} image={image} compact onOpen={openLightbox} />
             ))}
           </div>
           <div className="project-media-note" aria-label={`${project.name} visual review note`}>
@@ -195,7 +212,7 @@ function ProjectHero({ project, isRichProject }) {
           </div>
         </article>
       </div>
-      <ImageLightbox image={zoomImage} onClose={() => setZoomImage(null)} />
+      <ImageLightbox image={zoomImage} onClose={closeLightbox} />
     </section>
   );
 }
@@ -939,7 +956,7 @@ function InventoryPreview({ project }) {
 }
 
 function Gallery({ project }) {
-  const [zoomImage, setZoomImage] = useState(null);
+  const { zoomImage, openLightbox, closeLightbox } = useImageLightbox();
   const images = project.gallery.map((src, index) => ({
     src,
     label: project.galleryLabels?.[index] || `${project.name} gallery ${index + 1}`,
@@ -950,10 +967,10 @@ function Gallery({ project }) {
     <>
       <div className="gallery-grid rich-gallery-grid">
         {images.map((image, index) => (
-          <ZoomableProjectImage key={`${image.src}-${index}`} image={image} compact onOpen={setZoomImage} />
+          <ZoomableProjectImage key={`${image.src}-${index}`} image={image} compact onOpen={openLightbox} />
         ))}
       </div>
-      <ImageLightbox image={zoomImage} onClose={() => setZoomImage(null)} />
+      <ImageLightbox image={zoomImage} onClose={closeLightbox} />
     </>
   );
 }
@@ -965,7 +982,7 @@ function ZoomableProjectImage({ image, compact = false, onOpen }) {
       type="button"
       data-reveal="image"
       aria-label={`Open ${image.label} preview`}
-      onClick={() => onOpen(image)}
+      onClick={(event) => onOpen(image, event.currentTarget)}
     >
       <ImagePlaceholder src={image.src} label={image.label} compact={compact} variant={image.variant} />
     </button>
@@ -973,16 +990,40 @@ function ZoomableProjectImage({ image, compact = false, onOpen }) {
 }
 
 function ImageLightbox({ image, onClose }) {
+  const panelRef = useRef(null);
+  const closeButtonRef = useRef(null);
+
   useEffect(() => {
     if (!image) return undefined;
 
     const handleKeyDown = (event) => {
-      if (event.key === "Escape") onClose();
+      if (event.key === "Escape") {
+        event.preventDefault();
+        onClose();
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const focusable = [...(panelRef.current?.querySelectorAll("button, a, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])") || [])]
+        .filter((element) => !element.hasAttribute("disabled") && element.getAttribute("aria-hidden") !== "true");
+      if (!focusable.length) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     };
     const previousOverflow = document.body.style.overflow;
 
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKeyDown);
+    window.requestAnimationFrame(() => closeButtonRef.current?.focus());
 
     return () => {
       document.body.style.overflow = previousOverflow;
@@ -997,8 +1038,8 @@ function ImageLightbox({ image, onClose }) {
   return (
     <div className="image-lightbox" role="dialog" aria-modal="true" aria-label={image.label}>
       <button className="image-lightbox-backdrop" type="button" aria-label="Close image preview" onClick={onClose} />
-      <div className="image-lightbox-panel">
-        <button className="image-lightbox-close" type="button" aria-label="Close zoomed image" onClick={onClose}>X</button>
+      <div className="image-lightbox-panel" ref={panelRef}>
+        <button className="image-lightbox-close" ref={closeButtonRef} type="button" aria-label="Close zoomed image" onClick={onClose}>X</button>
         <ImagePlaceholder src={image.src} label={image.label} variant={lightboxVariant} />
         <p>{image.label}</p>
       </div>
@@ -1033,15 +1074,18 @@ function VideoTourBlock({ project }) {
 
 function MediaEmbed({ title, src }) {
   return (
-    <div className="media-embed-frame">
-      <iframe
-        title={title}
-        src={src}
-        loading="lazy"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      />
-    </div>
+    <DeferredFrame
+      className="media-embed-frame"
+      title={title}
+      src={src}
+      eyebrow="Video presentation"
+      actionLabel="Load video"
+      description="YouTube loads only when selected so project pages stay faster on mobile."
+      iframeProps={{
+        allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+        allowFullScreen: true
+      }}
+    />
   );
 }
 
@@ -1068,12 +1112,17 @@ function LocationMap({ project }) {
     <div className="location-map-card" data-reveal="section">
       <div className="location-map-frame">
         {location.mapEmbedUrl ? (
-          <iframe
+          <DeferredFrame
+            className="location-map-frame-inner"
             title={mapLabel}
             src={location.mapEmbedUrl}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            allowFullScreen
+            eyebrow="Google Maps"
+            actionLabel="Load interactive map"
+            description="Open the map only when needed; directions stay available below."
+            iframeProps={{
+              referrerPolicy: "no-referrer-when-downgrade",
+              allowFullScreen: true
+            }}
           />
         ) : project.locationMapImage ? (
           <ImagePlaceholder src={project.locationMapImage} label={mapLabel} compact variant="masterPlan" />
@@ -1094,6 +1143,24 @@ function LocationMap({ project }) {
           <Button to={projectInquiryPath("/book-viewing", project, "Site viewing")} variant="ghost">Book a Site Viewing</Button>
         </div>
       </div>
+    </div>
+  );
+}
+
+function DeferredFrame({ className = "", title, src, eyebrow, actionLabel, description, iframeProps = {} }) {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <div className={`${className} deferred-frame${loaded ? " is-loaded" : ""}`}>
+      {loaded ? (
+        <iframe title={title} src={src} loading="lazy" {...iframeProps} />
+      ) : (
+        <button className="deferred-frame-button" type="button" onClick={() => setLoaded(true)} aria-label={`${actionLabel}: ${title}`}>
+          <span>{eyebrow}</span>
+          <strong>{actionLabel}</strong>
+          <small>{description}</small>
+        </button>
+      )}
     </div>
   );
 }

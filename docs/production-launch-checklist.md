@@ -67,6 +67,62 @@ But Resend test mode can only send to the verified Resend account email.
 8. Check mobile widths around 360px, 390px, and 414px for no horizontal overflow.
 9. Check tablet and desktop layouts for readable project cards, forms, footer, and sticky CTAs.
 
+## Second-Pass QA Commands
+
+Run these before pushing or redeploying:
+
+```text
+npm run build
+npm run qa:routes
+npm run qa:images
+npm run qa:links
+npm run qa:external-links
+npm run inventory:routes
+```
+
+For one full local gate, run:
+
+```text
+npm run qa:production
+```
+
+`qa:external-links` creates `docs/external-link-audit.md`. It is a static source/data report for official DMCI links, Google Maps, YouTube, Google Drive, virtual tours, tel, mailto, sms, and Viber links. It does not network-fetch external sites, so it is stable for CI. Device links are reported but not treated as failures.
+
+## Manual Visual QA Matrix
+
+Check these public routes after deploy:
+
+```text
+/
+/projects
+/projects/the-oriana
+/projects/one-delta-terraces
+/locations
+/locations/quezon-city
+/availability
+/request-computation
+/book-viewing
+/buyers-guide
+/reservation-requirements
+/virtual-tours
+/promos
+/resale-units
+/about
+/contact
+/privacy-policy
+/disclaimer
+```
+
+Use 375px, 390px, 430px, 760px, 1366px, and 1920px viewports. Check for horizontal overflow, cropped heroes, sticky CTA overlap, crowded project cards, gallery/lightbox focus return, menu open/close behavior, readable tables, and footer spacing.
+
+## Accessibility Checks
+
+- Mobile menu opens from the menu button and closes with Escape.
+- Image lightbox closes with Escape and returns focus to the image trigger.
+- Heavy YouTube and Google Maps embeds are click-to-load so phone pages do not load iframes until the buyer asks for them.
+- Forms keep errors near the related fields and use accessible labels.
+- Table sections show a swipe hint on narrow screens.
+
 ## Vercel Logs To Check
 
 - Function logs for `/api/leads`.
@@ -80,3 +136,5 @@ But Resend test mode can only send to the verified Resend account email.
 - Final production email sender needs a verified sender domain in Resend.
 - Lead delivery must be tested after production env vars are added or rotated.
 - If a Resend API key was ever pasted into chat or screenshots, rotate it before launch.
+
+Last second-pass QA update: July 10, 2026.

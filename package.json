@@ -12,7 +12,8 @@
     "qa:routes": "node scripts/validate-seo-routes.mjs",
     "qa:images": "node scripts/validate-project-images.mjs",
     "qa:links": "node scripts/validate-internal-links.mjs",
-    "qa:production": "npm run build && npm run qa:routes && npm run qa:images && npm run qa:links && npm run inventory:routes",
+    "qa:external-links": "node scripts/audit-external-links.mjs",
+    "qa:production": "npm run build && npm run qa:routes && npm run qa:images && npm run qa:links && npm run qa:external-links && npm run inventory:routes",
     "preview": "vite preview"
   },
   "dependencies": {

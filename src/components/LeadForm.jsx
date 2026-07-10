@@ -210,8 +210,8 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
             )}
           </Fragment>
         ))}
-        <label className="consent full">
-          <input name="consent" type="checkbox" checked={values.consent} onChange={update} />
+        <label className="consent full" htmlFor="field-consent">
+          <input id="field-consent" name="consent" type="checkbox" checked={values.consent} onChange={update} />
           <span>I agree to be contacted regarding my DMCI inquiry. Project details, pricing, promos, and availability are subject to confirmation.</span>
         </label>
         <p className="form-note full">Your inquiry details are used for DMCI Homes buyer assistance and contact follow-up. See the <a href="/privacy-policy">Privacy Policy</a>.</p>
