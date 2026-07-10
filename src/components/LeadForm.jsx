@@ -197,6 +197,9 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
                 onClearProject={clearSelectedProject}
               />
             )}
+            {field.name === "contactMethod" && (
+              <ContactMethodGuide method={values.contactMethod} hasPhone={Boolean(values.contactNumber)} hasEmail={Boolean(values.email)} />
+            )}
           </Fragment>
         ))}
         <label className="consent full">
@@ -492,6 +495,60 @@ function ProjectLocationNotice({ feedback, mismatch, onUseProjectLocation, onCle
       )}
     </div>
   );
+}
+
+function ContactMethodGuide({ method, hasPhone, hasEmail }) {
+  const guide = contactMethodGuide(method, hasPhone, hasEmail);
+  return (
+    <div className={`contact-method-guide ${guide.key} full`} role="status" aria-live="polite">
+      <span className="contact-method-dot" aria-hidden="true" />
+      <div>
+        <strong>{guide.title}</strong>
+        <p>{guide.text}</p>
+      </div>
+    </div>
+  );
+}
+
+function contactMethodGuide(method, hasPhone, hasEmail) {
+  const key = contactMethodKey(method);
+  const guides = {
+    call: {
+      key: "call",
+      title: hasPhone ? "Luisa will call this number first." : "Add a mobile number for a call request.",
+      text: "If unanswered, she may send a short SMS or Viber follow-up."
+    },
+    viber: {
+      key: "viber",
+      title: hasPhone ? "Luisa will message this number on Viber first." : "Add a mobile number for Viber.",
+      text: "Use the same Mobile / Viber field above. No separate Viber link is required."
+    },
+    email: {
+      key: "email",
+      title: hasEmail ? "Luisa will reply by email first." : "Add an email address for email follow-up.",
+      text: "Computation references and longer details are easiest to review by email."
+    },
+    sms: {
+      key: "sms",
+      title: hasPhone ? "Luisa will send a short SMS first." : "Add a mobile number for SMS.",
+      text: "Good for quick confirmation, schedule checks, and short updates."
+    },
+    general: {
+      key: "general",
+      title: "Choose how Luisa should contact you first.",
+      text: "You can still provide both mobile and email so follow-up is easier."
+    }
+  };
+  return guides[key] || guides.general;
+}
+
+function contactMethodKey(value) {
+  const method = String(value || "").toLowerCase();
+  if (method.includes("viber")) return "viber";
+  if (method.includes("email")) return "email";
+  if (method.includes("sms") || method.includes("text")) return "sms";
+  if (method.includes("call") || method.includes("phone")) return "call";
+  return "general";
 }
 
 function placeholderFor(field) {
