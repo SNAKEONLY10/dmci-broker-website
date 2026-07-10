@@ -315,12 +315,12 @@ function formatLeadHtml(lead) {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>New DMCI broker inquiry</title>
         <style type="text/css">
-          @media only screen and (max-width: 680px) {
+          @media only screen and (max-width: 760px) {
             .email-body { width: 100% !important; min-width: 0 !important; }
-            .mp { padding-left: 20px !important; padding-right: 20px !important; }
+            .mp { padding-left: 22px !important; padding-right: 22px !important; }
             .mc { text-align: center !important; }
             .sg-cell { display: block !important; width: 100% !important; border-right: none !important; }
-            .sg-cell-bottom { border-top: 1px solid #E2E8F0 !important; }
+            .sg-cell-bottom { border-top: 1px solid #CBD6E2 !important; }
             .contact-row { display: block !important; width: 100% !important; padding-bottom: 12px !important; }
             .dl { width: 40% !important; }
             .dv { width: 60% !important; }
@@ -329,14 +329,14 @@ function formatLeadHtml(lead) {
           }
         </style>
       </head>
-      <body style="margin:0;padding:0;background-color:#E4E8EE;color:#0D1B2A;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,Helvetica,sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
-        <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;font-size:1px;line-height:1px;color:#E4E8EE;">
+      <body style="margin:0;padding:0;background-color:#D7DFE8;color:#0D1B2A;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,Helvetica,sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
+        <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;font-size:1px;line-height:1px;color:#D7DFE8;">
           ${escapeHtml(requestTypeLabel)} inquiry for ${escapeHtml(lead.projectInterestedIn || "DMCI Homes")} from ${escapeHtml(lead.name || "a buyer")}. Reply via ${escapeHtml(lead.preferredContactMethod || "preferred channel")}. Ref: ${escapeHtml(lead.referenceId)}
         </div>
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;background-color:#E4E8EE;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;background-color:#D7DFE8;">
           <tr>
             <td align="center" style="padding:32px 12px;">
-              <table role="presentation" class="email-body" width="660" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:660px;min-width:660px;background-color:#FFFFFF;border-radius:8px;border-collapse:separate;border-spacing:0;box-shadow:0 1px 16px rgba(10,22,40,0.07);overflow:hidden;">
+              <table role="presentation" class="email-body" width="720" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:720px;min-width:720px;background-color:#FFFFFF;border-radius:8px;border-collapse:separate;border-spacing:0;border:1px solid #B9C7D6;box-shadow:0 16px 42px rgba(10,22,40,0.16);overflow:hidden;">
                 <tr>
                   <td style="background-color:#0D1B2A;padding:0;border-radius:8px 8px 0 0;">
                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -360,13 +360,13 @@ function formatLeadHtml(lead) {
                       </tr>
                       <tr>
                         <td class="mp" style="padding:26px 40px 0 40px;">
-                          <div style="font-size:25px;font-weight:650;color:#FFFFFF;line-height:1.25;">New qualified inquiry</div>
-                          <div style="font-size:13px;color:#A8B5C3;line-height:1.65;padding-top:10px;max-width:480px;">Review the buyer details, confirm the next step, then reply through the preferred channel.</div>
+                          <div style="font-size:28px;font-weight:700;color:#FFFFFF;line-height:1.22;">New qualified inquiry</div>
+                          <div style="font-size:15px;color:#E5ECF3;line-height:1.65;padding-top:10px;max-width:540px;">Review the buyer details, confirm the next step, then reply through the preferred channel.</div>
                         </td>
                       </tr>
                       <tr>
                         <td class="mp" style="padding:18px 40px 28px 40px;">
-                          <div style="font-size:11px;color:#A8B5C3;line-height:1.9;">
+                          <div style="font-size:13px;color:#E5ECF3;line-height:1.9;">
                             Submitted ${escapeHtml(submittedLabel)}<br>
                             <span style="color:#C8A951;font-family:'Courier New',Courier,monospace;font-size:10.5px;letter-spacing:1.1px;">REF: ${escapeHtml(lead.referenceId)}</span>
                           </div>
@@ -411,8 +411,8 @@ function formatLeadHtml(lead) {
                 <tr>
                   <td class="mp" style="padding:24px 40px 32px 40px;">
                     ${sectionLabel("Quick Actions")}
-                    ${actions || '<span style="color:#667085;font-size:14px;">No quick action links available.</span>'}
-                    ${followUp.note ? `<p style="margin:8px 0 0;color:#5c6f80;font-size:12px;line-height:1.55;">${escapeHtml(followUp.note)}</p>` : ""}
+                    ${actions || '<span style="color:#34465A;font-size:15px;font-weight:700;">No quick action links available.</span>'}
+                    ${followUp.note ? `<p style="margin:10px 0 0;color:#34465A;font-size:14px;line-height:1.65;">${escapeHtml(followUp.note)}</p>` : ""}
                   </td>
                 </tr>
                 <tr>
@@ -433,7 +433,7 @@ function sectionLabel(label) {
   return `
     <table role="presentation" cellpadding="0" cellspacing="0" border="0">
       <tr>
-        <td style="font-size:10px;font-weight:700;color:#8899AA;letter-spacing:2px;text-transform:uppercase;padding-bottom:12px;">${escapeHtml(label)}</td>
+        <td style="font-size:13px;font-weight:850;color:#34465A;letter-spacing:1.35px;text-transform:uppercase;padding-bottom:12px;">${escapeHtml(label)}</td>
       </tr>
     </table>
   `;
@@ -448,7 +448,7 @@ function inquirySnapshot(lead) {
   const methodTone = contactTone(contactMethodKey(method));
 
   return `
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#F4F6FA;border-radius:6px;border:1px solid #E2E8F0;overflow:hidden;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#EFF4F8;border-radius:6px;border:1px solid #B8C6D6;overflow:hidden;">
       <tr>
         ${snapshotCell("Inquiry Type", inquiry, true)}
         ${snapshotCell("Project", project)}
@@ -458,9 +458,9 @@ function inquirySnapshot(lead) {
         ${snapshotCell("Reply Via", `<span style="color:${methodTone.color};">&#9679;</span>&nbsp;<span style="color:#0D1B2A;">${escapeHtml(method)}</span>`, false, true, true)}
       </tr>
       <tr>
-        <td colspan="2" style="padding:14px 20px;border-top:1px solid #E2E8F0;vertical-align:top;">
-          <span style="font-size:10px;color:#8899AA;text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:4px;">Source Page</span>
-          <span style="font-family:'Courier New',Courier,monospace;font-size:12px;color:#4A5568;word-break:break-word;">${escapeHtml(source)}</span>
+        <td colspan="2" style="padding:17px 22px;border-top:1px solid #B8C6D6;vertical-align:top;">
+          <span style="font-size:12px;color:#3C4E62;text-transform:uppercase;letter-spacing:.85px;font-weight:850;display:block;margin-bottom:6px;">Source Page</span>
+          <span style="font-family:'Courier New',Courier,monospace;font-size:14px;color:#142A40;font-weight:700;line-height:1.55;word-break:break-word;">${escapeHtml(source)}</span>
         </td>
       </tr>
     </table>
@@ -469,9 +469,9 @@ function inquirySnapshot(lead) {
 
 function snapshotCell(label, value, rightBorder = false, topBorder = false, allowHtml = false) {
   return `
-    <td class="sg-cell${topBorder ? " sg-cell-bottom" : ""}" width="50%" style="padding:14px 20px;${rightBorder ? "border-right:1px solid #E2E8F0;" : ""}${topBorder ? "border-top:1px solid #E2E8F0;" : ""}vertical-align:top;">
-      <span style="font-size:10px;color:#8899AA;text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:4px;">${escapeHtml(label)}</span>
-      <span style="font-size:14px;color:#0D1B2A;font-weight:650;line-height:1.45;word-break:break-word;">${allowHtml ? value : escapeHtml(value)}</span>
+    <td class="sg-cell${topBorder ? " sg-cell-bottom" : ""}" width="50%" style="padding:17px 22px;${rightBorder ? "border-right:1px solid #B8C6D6;" : ""}${topBorder ? "border-top:1px solid #B8C6D6;" : ""}vertical-align:top;">
+      <span style="font-size:12px;color:#3C4E62;text-transform:uppercase;letter-spacing:.85px;font-weight:850;display:block;margin-bottom:6px;">${escapeHtml(label)}</span>
+      <span style="font-size:16px;color:#071D33;font-weight:800;line-height:1.45;word-break:break-word;">${allowHtml ? value : escapeHtml(value)}</span>
     </td>
   `;
 }
@@ -483,22 +483,22 @@ function buyerContactBlock(lead) {
 
   return `
     ${sectionLabel("Buyer Contact")}
-    <div style="font-size:20px;color:#0D1B2A;font-weight:650;line-height:1.3;padding-bottom:14px;">${escapeHtml(lead.name)}</div>
+    <div style="font-size:24px;color:#071D33;font-weight:800;line-height:1.3;padding-bottom:16px;">${escapeHtml(lead.name)}</div>
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
       <tr>
         <td class="contact-row" width="50%" style="padding-bottom:4px;padding-right:12px;vertical-align:top;">
-          <span style="font-size:10px;color:#8899AA;text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:3px;">Phone / Viber</span>
-          <span style="font-size:14px;color:#0D1B2A;font-weight:600;word-break:break-word;">${escapeHtml(phone)}</span>
+          <span style="font-size:12px;color:#3C4E62;text-transform:uppercase;letter-spacing:.85px;font-weight:850;display:block;margin-bottom:5px;">Phone / Viber</span>
+          <span style="font-size:16px;color:#071D33;font-weight:800;line-height:1.45;word-break:break-word;">${escapeHtml(phone)}</span>
         </td>
         <td class="contact-row" width="50%" style="padding-bottom:4px;vertical-align:top;">
-          <span style="font-size:10px;color:#8899AA;text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:3px;">Email</span>
-          <span style="font-size:14px;color:#2B6CB0;font-weight:600;word-break:break-word;">${escapeHtml(email)}</span>
+          <span style="font-size:12px;color:#3C4E62;text-transform:uppercase;letter-spacing:.85px;font-weight:850;display:block;margin-bottom:5px;">Email</span>
+          <span style="font-size:16px;color:#0B5D9E;font-weight:800;line-height:1.45;word-break:break-word;">${escapeHtml(email)}</span>
         </td>
       </tr>
     </table>
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:14px;background-color:#F4F6FA;border-radius:5px;border-left:3px solid #C8A951;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:18px;background-color:#F6F8FA;border-radius:6px;border:1px solid #B8C6D6;border-left:5px solid #C8A951;">
       <tr>
-        <td style="padding:14px 18px;font-size:13px;color:#4A5568;line-height:1.65;">${escapeHtml(message).replace(/\n/g, "<br>")}</td>
+        <td style="padding:18px 20px;font-size:16px;color:#142A40;line-height:1.7;">${escapeHtml(message).replace(/\n/g, "<br>")}</td>
       </tr>
     </table>
   `;
@@ -506,11 +506,11 @@ function buyerContactBlock(lead) {
 
 function requestDetailsCard(rows, typeLabel) {
   return `
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #E2E8F0;border-radius:6px;overflow:hidden;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #B8C6D6;border-radius:6px;overflow:hidden;">
       <tr>
-        <td style="background-color:#F7F8FA;padding:12px 20px;border-bottom:1px solid #E2E8F0;">
-          <span style="font-size:10px;font-weight:700;color:#8899AA;letter-spacing:2px;text-transform:uppercase;">Request Details</span>
-          <span style="font-size:10px;color:#AAB4C2;letter-spacing:1px;text-transform:uppercase;margin-left:10px;">${escapeHtml(typeLabel)}</span>
+        <td style="background-color:#EAF0F6;padding:15px 22px;border-bottom:1px solid #B8C6D6;">
+          <span style="font-size:13px;font-weight:850;color:#34465A;letter-spacing:1.35px;text-transform:uppercase;">Request Details</span>
+          <span style="font-size:12px;color:#4A5E73;letter-spacing:.8px;text-transform:uppercase;margin-left:10px;font-weight:800;">${escapeHtml(typeLabel)}</span>
         </td>
       </tr>
       <tr>
@@ -525,11 +525,11 @@ function requestDetailsCard(rows, typeLabel) {
 }
 
 function detailRow(label, value, last = false) {
-  const border = last ? "" : "border-bottom:1px solid #F0F2F5;";
+  const border = last ? "" : "border-bottom:1px solid #DDE5EE;";
   return `
     <tr>
-      <td class="dl" width="40%" style="padding:12px 20px;font-size:11px;color:#8899AA;text-transform:uppercase;letter-spacing:.5px;${border}background-color:#FAFBFC;vertical-align:top;">${escapeHtml(label)}</td>
-      <td class="dv" width="60%" style="padding:12px 20px;font-size:14px;color:#0D1B2A;font-weight:600;line-height:1.45;${border}vertical-align:top;word-break:break-word;">${escapeHtml(value)}</td>
+      <td class="dl" width="40%" style="padding:15px 22px;font-size:12px;color:#34465A;text-transform:uppercase;letter-spacing:.55px;font-weight:850;${border}background-color:#F5F8FB;vertical-align:top;">${escapeHtml(label)}</td>
+      <td class="dv" width="60%" style="padding:15px 22px;font-size:16px;color:#071D33;font-weight:800;line-height:1.5;${border}vertical-align:top;word-break:break-word;">${escapeHtml(value)}</td>
     </tr>
   `;
 }
@@ -537,20 +537,20 @@ function detailRow(label, value, last = false) {
 function followUpCard(plan) {
   const tone = contactTone(plan.key);
   return `
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#FDFBF3;border-radius:6px;border:1px solid #EBE4CD;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#FFF7DE;border-radius:6px;border:1px solid #CDB772;">
       <tr>
         <td width="4" style="background-color:#C8A951;border-radius:6px 0 0 6px;font-size:0;line-height:0;">&nbsp;</td>
-        <td style="padding:20px 24px;">
+        <td style="padding:22px 26px;">
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-            <tr><td style="font-size:10px;font-weight:700;color:#B08D30;letter-spacing:2px;text-transform:uppercase;padding-bottom:14px;border-bottom:1px solid #EBE4CD;">Recommended Follow-up</td></tr>
+            <tr><td style="font-size:13px;font-weight:850;color:#76520F;letter-spacing:1.35px;text-transform:uppercase;padding-bottom:14px;border-bottom:1px solid #D9C47F;">Recommended Follow-up</td></tr>
           </table>
           <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:14px;">
             <tr>
-              <td width="32" height="32" style="background-color:${tone.color};border-radius:50%;text-align:center;vertical-align:middle;font-size:15px;color:#FFFFFF;line-height:32px;">${tone.icon}</td>
-              <td style="padding-left:14px;font-size:15px;color:#0D1B2A;font-weight:650;line-height:1.4;">${escapeHtml(plan.title)}</td>
+              <td width="36" height="36" style="background-color:${tone.color};border-radius:50%;text-align:center;vertical-align:middle;font-size:16px;color:#FFFFFF;line-height:36px;">${tone.icon}</td>
+              <td style="padding-left:14px;font-size:18px;color:#071D33;font-weight:800;line-height:1.4;">${escapeHtml(plan.title)}</td>
             </tr>
           </table>
-          <p style="margin:12px 0 0;color:#4A5568;font-size:13px;line-height:1.6;">${escapeHtml(plan.text)}</p>
+          <p style="margin:12px 0 0;color:#142A40;font-size:16px;line-height:1.7;">${escapeHtml(plan.text)}</p>
         </td>
       </tr>
     </table>
@@ -559,11 +559,11 @@ function followUpCard(plan) {
 
 function nextStepCard(plan) {
   return `
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:12px;background-color:#FFFFFF;border:1px solid #E2E8F0;border-radius:6px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:14px;background-color:#F6F8FA;border:1px solid #B8C6D6;border-radius:6px;">
       <tr>
-        <td style="padding:14px 18px;">
-          <div style="font-size:10px;color:#8899AA;text-transform:uppercase;letter-spacing:1.5px;font-weight:700;padding-bottom:6px;">Before replying, verify</div>
-          <div style="font-size:13px;color:#4A5568;line-height:1.6;">${escapeHtml(plan.text)}</div>
+        <td style="padding:16px 20px;">
+          <div style="font-size:13px;color:#34465A;text-transform:uppercase;letter-spacing:1.15px;font-weight:850;padding-bottom:8px;">Before replying, verify</div>
+          <div style="font-size:15px;color:#142A40;line-height:1.7;">${escapeHtml(plan.text)}</div>
         </td>
       </tr>
     </table>
@@ -572,8 +572,8 @@ function nextStepCard(plan) {
 
 function consentBlock(lead) {
   return `
-    <div style="font-size:12px;color:#8899AA;line-height:1.75;">
-      <span style="color:#2F855A;font-weight:700;">&#10003; Consent checked: ${lead.consent ? "Yes" : "No"}</span><br>
+    <div style="font-size:15px;color:#34465A;line-height:1.75;">
+      <span style="color:#1F7A4D;font-weight:800;">&#10003; Consent checked: ${lead.consent ? "Yes" : "No"}</span><br>
       Project details, pricing, availability, promos, and terms are subject to confirmation.
     </div>
   `;
@@ -616,12 +616,12 @@ function primaryActionButton(action) {
       <td style="padding-bottom:10px;">
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
           <tr>
-            <td align="center" style="background-color:#C8A951;border-radius:6px;">
-              <a href="${escapeAttribute(action.href)}" target="_blank" style="display:block;padding:15px 24px;font-size:15px;font-weight:700;color:#FFFFFF;text-decoration:none;letter-spacing:.2px;">${action.icon}&nbsp;&nbsp;${escapeHtml(action.label)}</a>
+            <td align="center" style="background-color:#C8A951;border-radius:6px;border:1px solid #A98524;">
+              <a href="${escapeAttribute(action.href)}" target="_blank" style="display:block;padding:17px 24px;font-size:16px;font-weight:850;color:#071D33;text-decoration:none;letter-spacing:.15px;">${action.icon}&nbsp;&nbsp;${escapeHtml(action.label)}</a>
             </td>
           </tr>
         </table>
-        <div style="text-align:center;padding-top:6px;font-size:9px;color:#C8A951;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;">Preferred</div>
+        <div style="text-align:center;padding-top:7px;font-size:11px;color:#8A6719;letter-spacing:1.25px;text-transform:uppercase;font-weight:850;">Preferred Action</div>
       </td>
     </tr>
   `;
@@ -632,8 +632,8 @@ function secondaryActionsGrid(actions) {
     <td class="abtn-td" width="50%" style="padding:0 5px 8px 5px;vertical-align:top;">
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td align="center" style="border:1px solid #D2D6DC;border-radius:6px;">
-            <a href="${escapeAttribute(action.href)}" target="_blank" style="display:block;padding:12px 16px;font-size:13px;font-weight:600;color:#0D1B2A;text-decoration:none;">${action.icon}&nbsp;&nbsp;${escapeHtml(action.label)}</a>
+          <td align="center" style="background-color:#F7F9FB;border:1px solid #B8C6D6;border-radius:6px;">
+            <a href="${escapeAttribute(action.href)}" target="_blank" style="display:block;padding:14px 16px;font-size:15px;font-weight:800;color:#071D33;text-decoration:none;">${action.icon}&nbsp;&nbsp;${escapeHtml(action.label)}</a>
           </td>
         </tr>
       </table>
@@ -664,12 +664,12 @@ function footerBlock() {
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
       <tr>
         <td class="mp mc" style="padding:28px 40px 32px 40px;">
-          <div style="font-family:Georgia,'Times New Roman',Times,serif;font-size:16px;color:#FFFFFF;padding-bottom:14px;line-height:1.3;">Maria Luisa Corral</div>
-          <div style="font-size:12px;color:#A8B5C3;line-height:2.05;">
+          <div style="font-family:Georgia,'Times New Roman',Times,serif;font-size:18px;color:#FFFFFF;padding-bottom:14px;line-height:1.3;">Maria Luisa Corral</div>
+          <div style="font-size:14px;color:#D8E1EA;line-height:2;">
             <a href="mailto:mrcorral@dmcihomes.com" style="color:#C8A951;text-decoration:none;">mrcorral@dmcihomes.com</a><br>
             Mobile/Viber: <span style="color:#FFFFFF;">0998 865 8902</span><br>
             Office: <span style="color:#FFFFFF;">02 8888 7777</span> local 5860<br>
-            <span style="color:#7E8FA3;font-size:11px;">PRC License No. 0003253</span>
+            <span style="color:#D8E1EA;font-size:13px;">PRC License No. 0003253</span>
           </div>
         </td>
       </tr>
