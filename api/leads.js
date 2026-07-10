@@ -235,6 +235,8 @@ async function sendWebhook(lead) {
 
 function formatLeadText(lead) {
   const followUp = contactMethodPlan(lead);
+  const requestRows = buildRequestRows(lead);
+  const nextStep = nextStepPlan(lead);
   const quickActions = [
     lead.phone ? `Call lead: ${telHref(lead.phone)}` : "",
     lead.email ? `Reply by email: mailto:${lead.email}` : "",
@@ -258,15 +260,13 @@ function formatLeadText(lead) {
     "Recommended follow-up",
     `${followUp.label}: ${followUp.text}`,
     followUp.note ? `Note: ${followUp.note}` : "",
+    `Before replying: ${nextStep.text}`,
     "",
-    "Request details",
-    `Unit type: ${lead.unitType || "Not provided"}`,
-    `Budget range: ${lead.budgetRange || "Not provided"}`,
-    `Payment preference: ${lead.paymentPreference || "Not provided"}`,
-    `Buyer type: ${lead.buyerType || "Not provided"}`,
-    `Timeline: ${lead.timeline || "Not provided"}`,
-    `Purpose: ${lead.purpose || "Not provided"}`,
-    "",
+    ...(requestRows.length ? [
+      "Request details",
+      ...requestRows.map(([label, value]) => `${label}: ${value}`),
+      ""
+    ] : []),
     "Lead information",
     `Name: ${lead.name}`,
     `Phone / Viber: ${lead.phone || "Not provided"}`,
@@ -293,21 +293,23 @@ function formatLeadHtml(lead) {
   const submittedLabel = formatDateTime(lead.submittedAt);
   const sourceUrl = safeUrl(lead.sourceUrl);
   const followUp = contactMethodPlan(lead);
+  const nextStep = nextStepPlan(lead);
   const logoUrl = "https://dmci-broker-website.vercel.app/assets/img/dmci-broker-mark.png";
   const leadRows = [
     ["Full name", lead.name],
     ["Phone / Viber", lead.phone || "Not provided"],
     ["Email", lead.email || "Not provided"]
   ];
-  const requestRows = [
-    ["Unit type", lead.unitType || "Not provided"],
-    ["Budget range", lead.budgetRange || "Not provided"],
-    ["Payment preference", lead.paymentPreference || "Not provided"],
-    ["Buyer type", lead.buyerType || "Not provided"],
-    ["Timeline", lead.timeline || "Not provided"],
-    ["Purpose", lead.purpose || "Not provided"]
-  ];
+  const requestRows = buildRequestRows(lead);
   const actions = buildActionButtons(lead, followUp, sourceUrl);
+  const requestDetailsSection = requestRows.length ? `
+                <tr>
+                  <td style="padding:24px 30px 0;">
+                    ${sectionTitle("Request Details")}
+                    ${infoTable(requestRows)}
+                  </td>
+                </tr>
+  ` : "";
 
   return `
     <!doctype html>
@@ -347,6 +349,7 @@ function formatLeadHtml(lead) {
                   <td style="padding:18px 30px 0;">
                     ${sectionTitle("Recommended Follow-up")}
                     ${followUpCard(followUp)}
+                    ${nextStepCard(nextStep)}
                   </td>
                 </tr>
                 <tr>
@@ -359,12 +362,7 @@ function formatLeadHtml(lead) {
                     </div>
                   </td>
                 </tr>
-                <tr>
-                  <td style="padding:24px 30px 0;">
-                    ${sectionTitle("Request Details")}
-                    ${infoTable(requestRows)}
-                  </td>
-                </tr>
+                ${requestDetailsSection}
                 <tr>
                   <td style="padding:24px 30px 0;">
                     ${sectionTitle("Consent and Compliance")}
@@ -465,6 +463,15 @@ function followUpCard(plan) {
   `;
 }
 
+function nextStepCard(plan) {
+  return `
+    <div style="margin-top:12px;padding:14px 16px;border:1px solid #e4edf2;border-radius:14px;background:#ffffff;">
+      <p style="margin:0 0 5px;color:#8d661a;font-size:11px;font-weight:850;letter-spacing:.8px;text-transform:uppercase;">Before replying</p>
+      <p style="margin:0;color:#40566b;font-size:13px;line-height:1.6;font-weight:750;">${escapeHtml(plan.text)}</p>
+    </div>
+  `;
+}
+
 function actionButton(href, label, type, highlighted = false) {
   const styles = {
     phone: highlighted
@@ -519,6 +526,119 @@ function buildActionButtons(lead, followUp, sourceUrl) {
   }
 
   return buttons.join("");
+}
+
+function buildRequestRows(lead) {
+  const raw = lead.rawFields || {};
+  const type = inquiryKind(lead.inquiryType);
+  const rowsByType = {
+    viewing: [
+      ["Viewing type", raw.viewingType],
+      ["Preferred date", formatDateOnly(raw.preferredDate)],
+      ["Preferred time", formatTimeOnly(raw.preferredTime)],
+      ["Guests", raw.guests]
+    ],
+    availability: [
+      ["Unit type", lead.unitType || raw.unitType],
+      ["Preferred floor/size", raw.preferredSize],
+      ["Budget range", lead.budgetRange || raw.budgetRange],
+      ["Payment option", lead.paymentPreference || raw.paymentPreference || raw.paymentOption],
+      ["Urgency", raw.urgency],
+      ["Buyer type", lead.buyerType || raw.buyerType],
+      ["Purpose", lead.purpose || raw.purpose]
+    ],
+    computation: [
+      ["Unit type", lead.unitType || raw.unitType],
+      ["Budget range", lead.budgetRange || raw.budgetRange],
+      ["Payment preference", lead.paymentPreference || raw.paymentPreference],
+      ["Buyer type", lead.buyerType || raw.buyerType],
+      ["Timeline", lead.timeline || raw.timeline],
+      ["Purpose", lead.purpose || raw.purpose]
+    ],
+    general: [
+      ["Inquiry type", raw.concernType],
+      ["Buyer type", lead.buyerType || raw.buyerType],
+      ["Purpose", lead.purpose || raw.purpose],
+      ["Unit type", lead.unitType || raw.unitType],
+      ["Budget range", lead.budgetRange || raw.budgetRange],
+      ["Payment preference", lead.paymentPreference || raw.paymentPreference || raw.paymentOption],
+      ["Timeline", lead.timeline || raw.timeline || raw.urgency]
+    ]
+  };
+
+  const rows = uniqueRows((rowsByType[type] || rowsByType.general).map(([label, value]) => [label, cleanDetail(value)]));
+  if (rows.length) return rows;
+
+  const skipped = new Set([
+    "fullName",
+    "contactNumber",
+    "email",
+    "location",
+    "project",
+    "contactMethod",
+    "message",
+    "consent",
+    "website"
+  ]);
+
+  return uniqueRows(Object.entries(raw)
+    .filter(([key]) => !skipped.has(key))
+    .map(([key, value]) => [labelForRawField(key), cleanDetail(value)]));
+}
+
+function uniqueRows(rows) {
+  const seen = new Set();
+  return rows.filter(([label, value]) => {
+    if (!value) return false;
+    const key = `${label}:${value}`.toLowerCase();
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+function cleanDetail(value) {
+  const cleaned = clean(value, 160);
+  if (!cleaned || cleaned.toLowerCase() === "not provided") return "";
+  return cleaned;
+}
+
+function labelForRawField(key) {
+  const labels = {
+    viewingType: "Viewing type",
+    preferredDate: "Preferred date",
+    preferredTime: "Preferred time",
+    preferredSize: "Preferred floor/size",
+    paymentOption: "Payment option",
+    paymentPreference: "Payment preference",
+    budgetRange: "Budget range",
+    buyerType: "Buyer type",
+    concernType: "Inquiry type",
+    unitType: "Unit type"
+  };
+  return labels[key] || titleCase(String(key).replace(/([a-z])([A-Z])/g, "$1 $2"));
+}
+
+function inquiryKind(value) {
+  const normalized = String(value || "").toLowerCase();
+  if (normalized.includes("view")) return "viewing";
+  if (normalized.includes("availability") || normalized.includes("available")) return "availability";
+  if (normalized.includes("computation") || normalized.includes("compute")) return "computation";
+  return "general";
+}
+
+function nextStepPlan(lead) {
+  const type = inquiryKind(lead.inquiryType);
+  if (type === "viewing") {
+    return { text: "Confirm the viewing slot, access instructions, and meeting point before asking the buyer to travel." };
+  }
+  if (type === "availability") {
+    return { text: "Verify current unit status, promo terms, and reservation timing before confirming availability." };
+  }
+  if (type === "computation") {
+    return { text: "Confirm the latest price, down payment term, fees, and promo validity before sending figures." };
+  }
+  return { text: "Clarify the buyer goal, preferred location, budget, and timeline before preparing a shortlist." };
 }
 
 function contactMethodPlan(lead) {
@@ -643,6 +763,38 @@ function formatDateTime(value) {
       timeStyle: "short",
       timeZone: "Asia/Manila"
     }).format(new Date(value));
+  } catch {
+    return value;
+  }
+}
+
+function formatDateOnly(value) {
+  if (!value) return "";
+  try {
+    return new Intl.DateTimeFormat("en-PH", {
+      dateStyle: "medium",
+      timeZone: "Asia/Manila"
+    }).format(new Date(`${value}T00:00:00+08:00`));
+  } catch {
+    return value;
+  }
+}
+
+function formatTimeOnly(value) {
+  if (!value) return "";
+  const match = String(value).match(/^(\d{1,2}):(\d{2})/);
+  if (!match) return value;
+  const hours = Number(match[1]);
+  const minutes = Number(match[2]);
+  if (!Number.isFinite(hours) || !Number.isFinite(minutes)) return value;
+  const date = new Date(Date.UTC(2026, 0, 1, hours, minutes));
+  try {
+    return new Intl.DateTimeFormat("en-PH", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+      timeZone: "UTC"
+    }).format(date);
   } catch {
     return value;
   }
