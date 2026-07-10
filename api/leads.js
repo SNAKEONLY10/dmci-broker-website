@@ -15,6 +15,27 @@ const personalSenderDomains = new Set([
   "me.com",
   "aol.com"
 ]);
+const publicSiteUrl = "https://dmci-broker-website.vercel.app";
+const projectVisuals = [
+  { name: "The Oriana", slug: "the-oriana", location: "Quezon City", aliases: ["Oriana"] },
+  { name: "One Delta Terraces", slug: "one-delta-terraces", location: "Quezon City" },
+  { name: "The Erin Heights", slug: "the-erin-heights", location: "Quezon City", aliases: ["Erin Heights"] },
+  { name: "Cameron Residences", slug: "cameron-residences", location: "Quezon City" },
+  { name: "The Valeron Tower", slug: "the-valeron-tower", location: "Pasig", aliases: ["Valeron Tower"] },
+  { name: "Allegra Garden Place", slug: "allegra-garden-place", location: "Pasig" },
+  { name: "Prisma Residences", slug: "prisma-residences", location: "Pasig" },
+  { name: "Sage Residences", slug: "sage-residences", location: "Mandaluyong" },
+  { name: "Kai Garden Residences", slug: "kai-garden-residences", location: "Mandaluyong" },
+  { name: "Mulberry Place 2", slug: "mulberry-place-2", location: "Taguig", aliases: ["Mulberry Place"] },
+  { name: "Alder Residences", slug: "alder-residences", location: "Taguig" },
+  { name: "The Aston Place", slug: "the-aston-place", location: "Pasay", aliases: ["Aston Place"] },
+  { name: "The Camden Place", slug: "the-camden-place", location: "Manila", aliases: ["Camden Place"] },
+  { name: "The Atherton", slug: "the-atherton", location: "Paranaque", aliases: ["Atherton"] },
+  { name: "Calathea Place", slug: "calathea-place", location: "Paranaque" },
+  { name: "Sonora Garden Residences", slug: "sonora-garden-residences", location: "Las Pinas" },
+  { name: "Moncello Crest", slug: "moncello-crest", location: "Baguio City / Benguet" },
+  { name: "Solmera Coast", slug: "solmera-coast", location: "San Juan, Batangas" }
+];
 
 export default async function handler(req, res) {
   setHeaders(res);
@@ -294,9 +315,10 @@ function formatLeadHtml(lead) {
   const sourceUrl = safeUrl(lead.sourceUrl);
   const followUp = contactMethodPlan(lead);
   const nextStep = nextStepPlan(lead);
-  const logoUrl = "https://dmci-broker-website.vercel.app/assets/img/dmci-broker-mark.png";
+  const logoUrl = `${publicSiteUrl}/assets/img/dmci-broker-mark.png`;
   const requestRows = buildRequestRows(lead);
   const requestTypeLabel = titleCase(lead.inquiryType || "General Inquiry");
+  const projectVisual = projectHeaderVisual(lead);
   const actions = buildActionButtons(lead, followUp, sourceUrl);
   const requestDetailsSection = requestRows.length ? `
                 <tr>
@@ -324,6 +346,10 @@ function formatLeadHtml(lead) {
             .contact-row { display: block !important; width: 100% !important; padding-bottom: 12px !important; }
             .dl { width: 40% !important; }
             .dv { width: 60% !important; }
+            .hero-copy, .hero-art { display: block !important; width: 100% !important; }
+            .hero-art { padding-left: 0 !important; padding-top: 18px !important; }
+            .project-visual-card { width: 100% !important; max-width: 100% !important; }
+            .project-visual-img { width: 100% !important; max-width: 100% !important; height: auto !important; }
             .abtn-td { display: block !important; width: 100% !important; padding-left: 0 !important; padding-right: 0 !important; }
             .hide-mobile { display: none !important; }
           }
@@ -360,8 +386,15 @@ function formatLeadHtml(lead) {
                       </tr>
                       <tr>
                         <td class="mp" style="padding:26px 40px 0 40px;">
-                          <div style="font-size:28px;font-weight:700;color:#FFFFFF;line-height:1.22;">New qualified inquiry</div>
-                          <div style="font-size:15px;color:#E5ECF3;line-height:1.65;padding-top:10px;max-width:540px;">Review the buyer details, confirm the next step, then reply through the preferred channel.</div>
+                          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                              <td class="hero-copy" width="${projectVisual ? "58%" : "100%"}" style="vertical-align:top;">
+                                <div style="font-size:28px;font-weight:700;color:#FFFFFF;line-height:1.22;">New buyer inquiry</div>
+                                <div style="font-size:15px;color:#E5ECF3;line-height:1.65;padding-top:10px;max-width:520px;">Review the buyer details, verify the project information, then reply through the requested channel.</div>
+                              </td>
+                              ${projectVisual ? `<td class="hero-art" width="42%" align="right" style="vertical-align:top;padding-left:24px;">${projectVisual}</td>` : ""}
+                            </tr>
+                          </table>
                         </td>
                       </tr>
                       <tr>
@@ -437,6 +470,61 @@ function sectionLabel(label) {
       </tr>
     </table>
   `;
+}
+
+function projectHeaderVisual(lead) {
+  const visual = projectVisualForLead(lead);
+  if (!visual) return "";
+
+  const alt = `${visual.name} project preview`;
+  const caption = lead.cityLocation || visual.location || "DMCI Homes";
+
+  return `
+    <table role="presentation" class="project-visual-card" width="238" cellpadding="0" cellspacing="0" border="0" style="width:238px;max-width:238px;background-color:#071421;border:1px solid rgba(229,236,243,0.22);border-radius:12px;overflow:hidden;">
+      <tr>
+        <td style="padding:0;">
+          <a href="${escapeAttribute(visual.pageUrl)}" target="_blank" style="text-decoration:none;border:0;display:block;">
+            <img class="project-visual-img" src="${escapeAttribute(visual.imageUrl)}" width="238" alt="${escapeAttribute(alt)}" style="display:block;width:238px;max-width:238px;height:auto;border:0;line-height:0;">
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:11px 13px 13px 13px;background-color:#071421;">
+          <div style="font-size:10px;color:#C8A951;letter-spacing:1.35px;text-transform:uppercase;font-weight:850;line-height:1.3;">Selected Project</div>
+          <div style="font-size:16px;color:#FFFFFF;font-weight:800;line-height:1.35;padding-top:4px;">${escapeHtml(visual.name)}</div>
+          <div style="font-size:12px;color:#C8D4E0;line-height:1.45;padding-top:2px;">${escapeHtml(caption)}</div>
+        </td>
+      </tr>
+    </table>
+  `;
+}
+
+function projectVisualForLead(lead) {
+  const selected = normalizeProjectName(lead.projectInterestedIn);
+  if (!selected) return null;
+
+  const visual = projectVisuals.find((project) => {
+    const keys = [project.name, ...(project.aliases || [])].map(normalizeProjectName);
+    return keys.some((key) => selected === key || selected.includes(key) || key.includes(selected));
+  });
+
+  if (!visual) return null;
+
+  return {
+    ...visual,
+    imageUrl: `${publicSiteUrl}/assets/projects/${visual.slug}/hero.jpg`,
+    pageUrl: `${publicSiteUrl}/projects/${visual.slug}`
+  };
+}
+
+function normalizeProjectName(value) {
+  return String(value || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
 }
 
 function inquirySnapshot(lead) {
