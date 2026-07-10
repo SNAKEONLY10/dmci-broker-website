@@ -96,7 +96,7 @@ export const theOrianaDetails = {
     ["360 Tour", "virtual-tour"],
     ["Amenities", "amenities"],
     ["Units", "unit-options"],
-    ["Floorplans", "floor-plans"],
+    ["Floor Plans", "floor-plans"],
     ["Payment", "payment"],
     ["Unit Holding", "unit-holding"],
     ["Reservation", "reservation"],
@@ -104,9 +104,9 @@ export const theOrianaDetails = {
     ["Contact", "contact-project"]
   ],
   heroCtas: [
-    { label: "Check Available Units & Computations", to: "/availability?project=The%20Oriana&inquiryType=Availability", variant: "primary" },
-    { label: "Ask Luisa for Latest Computation", to: "/request-computation?project=The%20Oriana&inquiryType=Computation", variant: "secondary" },
-    { label: "Reserve / Inquire Now", to: "/contact?project=The%20Oriana&inquiryType=Reservation", variant: "ghost" }
+    { label: "Check Availability", to: "/availability?project=The%20Oriana&inquiryType=Availability", variant: "primary" },
+    { label: "Request Latest Computation", to: "/request-computation?project=The%20Oriana&inquiryType=Computation", variant: "secondary" },
+    { label: "Ask About Reservation", to: "/contact?project=The%20Oriana&inquiryType=Reservation", variant: "ghost" }
   ],
   availabilitySummary: {
     title: "Main Availability Summary",
@@ -274,7 +274,7 @@ export const theOrianaDetails = {
       labels: ["The Oriana 3BR Tandem B - 3BR B (113 SQM)", "The Oriana 3BR Tandem A - 3BR A (123 SQM)"]
     }
   ],
-  floorPlansTitle: "Floorplans: Tailored Spaces",
+  floorPlansTitle: "Floor Plans: Tailored Spaces",
   floorPlansDescription:
     "The floor plans at The Oriana are designed to maximize space and comfort. The units range from studio to 3-bedroom configurations, catering to different family sizes and lifestyle preferences. Each floor plan emphasizes natural light and ventilation, ensuring a pleasant living experience.",
   floorPlans: [

@@ -12,7 +12,7 @@ const navItems = [
   ["Projects", "/projects"],
   ["Locations", "/locations"],
   ["Buyer's Guide", "/buyers-guide"],
-  ["Available Units", "/availability"],
+  ["Check Availability", "/availability"],
   ["Promos", "/promos"],
   ["About Luisa", "/about"],
   ["Contact", "/contact"]
@@ -100,7 +100,7 @@ function Footer() {
           <h4>Buyer Tools</h4>
           <NavLink to="/projects">Projects</NavLink>
           <NavLink to="/request-computation">Request Computation</NavLink>
-          <NavLink to="/availability">Available Units</NavLink>
+          <NavLink to="/availability">Check Availability</NavLink>
           <NavLink to="/book-viewing">Book Viewing</NavLink>
         </div>
         <div className="footer-contact">
@@ -123,7 +123,6 @@ function Footer() {
           <a href={contact.officialDmciWebsite} target="_blank" rel="noopener noreferrer">DMCI Homes Website</a>
           <NavLink to="/privacy-policy">Privacy Policy</NavLink>
           <NavLink to="/disclaimer">Disclaimer</NavLink>
-          <NavLink to="/showcase">Client Showcase</NavLink>
         </div>
       </div>
       <div className="container"><DisclaimerBanner /></div>
@@ -137,7 +136,7 @@ function MobileStickyCTA({ hidden = false }) {
       <a className="cta-call" href={contact.phoneHref} aria-label={`Call ${contact.displayName}`}>Call</a>
       <NavLink className="cta-message" to="/contact" aria-label={`Message ${contact.displayName}`}>Message</NavLink>
       <NavLink className="cta-compute" to="/request-computation" aria-label="Request latest computation">Compute</NavLink>
-      <NavLink className="cta-viewing" to="/book-viewing" aria-label="Book a site viewing">Viewing</NavLink>
+      <NavLink className="cta-viewing" to="/book-viewing" aria-label="Book a site viewing">Visit</NavLink>
     </nav>
   );
 }

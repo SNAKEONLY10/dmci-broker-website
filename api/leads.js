@@ -170,6 +170,23 @@ function normalizeLead(payload) {
     errors.contactNumber = "Provide a phone number or email address.";
     errors.email = "Provide an email address or phone number.";
   }
+  const kind = inquiryKind(lead.inquiryType);
+  if ((kind === "computation" || kind === "availability") && !lead.projectInterestedIn && !lead.cityLocation) {
+    errors.project = "Choose a project or city/location.";
+    errors.location = "Choose a city/location or project.";
+  }
+  if (kind === "viewing") {
+    if (!lead.projectInterestedIn && !lead.cityLocation) {
+      errors.project = "Choose a project or city/location for the viewing request.";
+      errors.location = "Choose a city/location or project for the viewing request.";
+    }
+    if (!clean(lead.rawFields?.preferredDate, 80)) {
+      errors.preferredDate = "Choose a preferred viewing date.";
+    }
+    if (!clean(lead.rawFields?.preferredTime, 80)) {
+      errors.preferredTime = "Choose a preferred viewing time.";
+    }
+  }
   if (lead.email && !/^\S+@\S+\.\S+$/.test(lead.email)) {
     errors.email = "Use a valid email address.";
   }

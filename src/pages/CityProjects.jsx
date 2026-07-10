@@ -1,4 +1,4 @@
-import { Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { Button } from "../components/Button";
 import { DisclaimerBanner } from "../components/DisclaimerBanner";
 import { ProjectGrid } from "../components/ProjectGrid";
@@ -25,6 +25,13 @@ export default function CityProjects() {
   return (
     <section className="page-section city-page">
       <div className="container">
+        <nav className="breadcrumbs" aria-label="Breadcrumb">
+          <Link to="/">Home</Link>
+          <span aria-hidden="true">/</span>
+          <Link to="/locations">Locations</Link>
+          <span aria-hidden="true">/</span>
+          <span>{city.name}</span>
+        </nav>
         <div className="project-listing-hero city-hero">
           <SectionHeader
             as="h1"
@@ -35,7 +42,7 @@ export default function CityProjects() {
           />
           <div className="listing-hero-card" data-reveal="text-group">
             <strong>Latest details required</strong>
-            <p>Prices, promos, unit cuts, payment terms, and availability can change. Ask Luisa to verify the current details for this location.</p>
+            <p>Prices, promos, unit cuts, payment terms, and availability can change. Ask Luisa to verify current details for this location.</p>
             <Button to={`/request-computation?location=${encodeURIComponent(city.name)}`} variant="secondary">Request Computation</Button>
           </div>
         </div>
@@ -64,7 +71,7 @@ export default function CityProjects() {
           <div className="content-panel" data-reveal="text-group">
             <h2>Project list to be confirmed</h2>
             <p>Luisa can help check current DMCI options in {city.name} and recommend nearby alternatives.</p>
-            <Button to="/contact">Ask Luisa</Button>
+            <Button to="/contact">Ask for Location Options</Button>
           </div>
         )}
 

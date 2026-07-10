@@ -10,6 +10,9 @@
     "assets:optimize": "node scripts/optimize-project-images.mjs",
     "inventory:routes": "node scripts/write-route-inventory.mjs",
     "qa:routes": "node scripts/validate-seo-routes.mjs",
+    "qa:images": "node scripts/validate-project-images.mjs",
+    "qa:links": "node scripts/validate-internal-links.mjs",
+    "qa:production": "npm run build && npm run qa:routes && npm run qa:images && npm run qa:links && npm run inventory:routes",
     "preview": "vite preview"
   },
   "dependencies": {

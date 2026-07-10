@@ -39,7 +39,7 @@ const pages = [
   ["Projects", "/projects", "Searchable project directory with safe availability and computation CTAs."],
   ["Project Detail", "/projects/one-delta-terraces", "Full showcase page for each project with overview, units, amenities, and inquiry flow."],
   ["Locations", "/locations", "Browse project options by city or area."],
-  ["Available Units", "/availability", "Form for asking Luisa to confirm current unit availability."],
+  ["Check Availability", "/availability", "Form for asking Luisa to confirm current unit availability."],
   ["Request Computation", "/request-computation", "Lead form for latest computation and payment term requests."],
   ["Book Viewing", "/book-viewing", "Viewing request form for site visits or online consultations."],
   ["Buyer's Guide", "/buyers-guide", "Educational content for buyers before reserving."],
@@ -56,7 +56,7 @@ const demoLinks = [
   ["Projects", "/projects"],
   ["One Delta Terraces sample", "/projects/one-delta-terraces"],
   ["Request Computation", "/request-computation"],
-  ["Available Units", "/availability"],
+  ["Check Availability", "/availability"],
   ["Book Viewing", "/book-viewing"]
 ];
 

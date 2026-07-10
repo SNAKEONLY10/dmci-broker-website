@@ -56,14 +56,14 @@ export function ProjectCard({ project, index = 0 }) {
         <p className="content-hint">Latest details available through Luisa.</p>
         <p className="price-note">{priceLabel}</p>
         <small>{buyerNote}</small>
-        <small>Availability subject to confirmation.</small>
+        <small>Final availability subject to confirmation.</small>
         <div className="card-actions">
           <Button to={`/projects/${project.slug}`} variant="secondary">View Details</Button>
           <Button to={`/request-computation?project=${projectQuery}&inquiryType=Computation`}>
             <span className="cta-desktop-label">Request Computation</span>
             <span className="cta-mobile-label">Compute</span>
           </Button>
-          <Button to={`/availability?project=${projectQuery}&inquiryType=Availability`} variant="ghost">Check Available Units</Button>
+          <Button to={`/availability?project=${projectQuery}&inquiryType=Availability`} variant="ghost">Check Availability</Button>
         </div>
       </div>
     </article>

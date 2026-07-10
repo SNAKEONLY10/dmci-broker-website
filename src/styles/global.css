@@ -261,6 +261,43 @@ input:focus, select:focus, textarea:focus { border-color: var(--gold); box-shado
 .home-pagination {
   margin-top: 22px;
 }
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+.breadcrumbs a {
+  color: var(--navy);
+  text-decoration: none;
+}
+.breadcrumbs a:hover,
+.breadcrumbs a:focus-visible {
+  color: var(--gold-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.breadcrumbs-on-dark {
+  color: rgba(255,255,255,0.72);
+}
+.breadcrumbs-on-dark a {
+  color: rgba(255,255,255,0.9);
+}
+.breadcrumbs-on-dark a:hover,
+.breadcrumbs-on-dark a:focus-visible {
+  color: var(--gold);
+}
+.table-scroll-hint {
+  display: none;
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 850;
+}
 .cta-strip { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: 28px; }
 
 .project-detail-hero { padding: 112px 0 52px; background: radial-gradient(circle at 84% 4%, rgba(201,162,74,0.22), transparent 27%), linear-gradient(180deg, var(--ivory), var(--white)); }
@@ -3612,6 +3649,34 @@ textarea {
   animation: formNoticeIn 0.26s ease both;
 }
 
+.success-message p,
+.warning-message p,
+.error-message p {
+  margin: 0;
+}
+
+.form-direct-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.form-direct-actions a {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(15,39,66,0.16);
+  border-radius: 999px;
+  padding: 9px 14px;
+  background: rgba(255,255,255,0.78);
+  color: var(--navy);
+  font-size: 0.84rem;
+  font-weight: 900;
+  text-decoration: none;
+}
+
 .form-trust-note {
   margin: 16px 0 0;
   padding: 13px 15px;
@@ -3774,6 +3839,10 @@ textarea {
 }
 
 @media (max-width: 900px) {
+  .table-scroll-hint {
+    display: block;
+  }
+
   .unit-table {
     min-width: 0;
     border-spacing: 0 10px;

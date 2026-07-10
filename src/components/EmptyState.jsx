@@ -5,7 +5,7 @@ export function EmptyState({ title = "No matching projects", text = "Try adjusti
     <div className="empty-state">
       <h3>{title}</h3>
       <p>{text}</p>
-      <Button to="/contact" variant="secondary">Ask Luisa</Button>
+      <Button to="/contact" variant="secondary">Ask for Help</Button>
     </div>
   );
 }

@@ -27,7 +27,7 @@ export default function Disclaimer() {
 
           <div className="hero-actions">
             <Button to="/request-computation">Request Latest Computation</Button>
-            <Button to="/contact" variant="secondary">Ask Luisa</Button>
+            <Button to="/contact" variant="secondary">Ask About Project Details</Button>
           </div>
         </div>
       </div>

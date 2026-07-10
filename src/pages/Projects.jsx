@@ -93,7 +93,7 @@ export default function Projects() {
               </button>
             </div>
             <p className="intent-note">Not sure yet? Luisa can help compare projects based on your budget and preferred timeline.</p>
-            <Button to="/contact" variant="secondary">Ask Luisa</Button>
+            <Button to="/contact" variant="secondary">Ask for Recommendations</Button>
           </div>
         </div>
         <ProjectFilters projects={projects} filters={filters} setFilters={setFilters} sort={sort} setSort={setSort} />
@@ -124,7 +124,7 @@ export default function Projects() {
 function Pagination({ currentPage, totalPages, onPageChange }) {
   if (totalPages <= 1) return null;
 
-  const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
+  const pages = paginationWindow(currentPage, totalPages);
 
   return (
     <nav className="pagination" aria-label="Projects pagination">
@@ -163,6 +163,18 @@ function matches(project, filters) {
     (!filters.propertyType || project.propertyType === filters.propertyType) &&
     projectMatchesPurpose(project, filters.purpose)
   );
+}
+
+function paginationWindow(currentPage, totalPages) {
+  const windowSize = Math.min(3, totalPages);
+  let start = Math.max(1, currentPage - 1);
+  let end = Math.min(totalPages, start + windowSize - 1);
+
+  if (end - start + 1 < windowSize) {
+    start = Math.max(1, end - windowSize + 1);
+  }
+
+  return Array.from({ length: end - start + 1 }, (_, index) => start + index);
 }
 
 function normalizeFilterValue(value) {

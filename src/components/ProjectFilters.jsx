@@ -2,7 +2,7 @@ import { propertyTypes, purposes, statuses, unitTypes } from "../data/projects";
 import { unique } from "../utils/format";
 
 const purposeLabels = {
-  "Own Use": "For My Residence",
+  "Own Use": "For Personal Use",
   Investment: "For Investment",
   Family: "For Family Living",
   Rental: "For Rental Potential"
@@ -24,11 +24,11 @@ export function ProjectFilters({ projects, filters, setFilters, sort, setSort })
         {locations.map((value) => <option key={value}>{value}</option>)}
       </select>
       <select name="status" value={filters.status || ""} onChange={update} aria-label="Filter by status">
-        <option value="">All Status</option>
+        <option value="">All Statuses</option>
         {statuses.map((value) => <option key={value}>{value}</option>)}
       </select>
       <select name="turnoverYear" value={filters.turnoverYear || ""} onChange={update} aria-label="Filter by turnover">
-        <option value="">All Turnover</option>
+        <option value="">All Turnover Dates</option>
         {years.map((value) => <option key={value}>{value}</option>)}
       </select>
       <select name="unitType" value={filters.unitType || ""} onChange={update} aria-label="Filter by unit type">
@@ -40,7 +40,7 @@ export function ProjectFilters({ projects, filters, setFilters, sort, setSort })
         {propertyTypes.map((value) => <option key={value}>{value}</option>)}
       </select>
       <select name="purpose" value={filters.purpose || ""} onChange={update} aria-label="Filter by purpose">
-        <option value="">Any Buyer Goal</option>
+        <option value="">Any Purpose</option>
         {purposes.map((value) => <option key={value} value={value}>{purposeLabels[value] || value}</option>)}
       </select>
       <select value={sort} onChange={(event) => setSort(event.target.value)} aria-label="Sort projects">

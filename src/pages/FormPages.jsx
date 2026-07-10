@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 
 const projectOptions = projects.map((project) => project.name);
 const locationOptions = locations.map((location) => location.name);
-const inquiryTypes = ["Request Computation", "Check Availability", "Book Site Viewing", "General Inquiry"];
+const inquiryTypes = ["Request Computation", "Check Availability", "Book a Site Viewing", "General Inquiry"];
 const contactMethodOptions = ["Call", "Viber", "Email", "SMS"];
 const projectByName = new Map(projects.map((project) => [project.name, project]));
 
@@ -32,7 +32,7 @@ export function Availability() {
       f("preferredSize", "Preferred Floor/Size if any"), s("budgetRange", "Budget Range", ["Still checking", "Entry level", "Mid range", "Premium range"]),
       s("paymentOption", "Payment Option", ["Cash", "In-house", "Bank Financing", "Not sure"]), s("urgency", "Urgency", ["Just checking", "This week", "Ready to reserve"]),
       s("contactMethod", "Preferred Contact Method", contactMethodOptions), t()
-    ]} storageKey="dmci_availability_requests" submitLabel="Check Availability with Luisa" initialValues={initialValues} required={["fullName", "contactMethod"]} inquiryType="Check Availability" />
+    ]} storageKey="dmci_availability_requests" submitLabel="Check Availability with Luisa" initialValues={initialValues} required={["fullName", "contactMethod"]} inquiryType="Check Availability" projectCatalog={projects} />
   </FormShell>;
 }
 
@@ -69,7 +69,7 @@ export function RequestComputation() {
       { ...s("timeline", "Timeline", ["Immediately", "1-3 months", "3-6 months", "Still exploring"]), compact: true, placeholder: "Choose timing" },
       { ...s("contactMethod", "Contact Method", contactMethodOptions), compact: true, placeholder: "Choose method" },
       t()
-    ]} storageKey="dmci_computation_requests" submitLabel="Send Computation Request" initialValues={initialValues} required={["fullName", "contactNumber", "email", "contactMethod"]} inquiryType="Request Computation" projectCatalog={projects} onValuesChange={setPreviewValues} compact />
+    ]} storageKey="dmci_computation_requests" submitLabel="Send Computation Request" initialValues={initialValues} required={["fullName", "contactMethod"]} inquiryType="Request Computation" projectCatalog={projects} onValuesChange={setPreviewValues} compact />
   </FormShell>;
 }
 
@@ -105,7 +105,7 @@ export function BookViewing() {
       { ...f("guests", "Guests", "number"), compact: true, min: 1, step: 1, inputMode: "numeric", placeholder: "1" },
       { ...s("contactMethod", "Contact Method", contactMethodOptions), compact: true, placeholder: "Choose method" },
       t("Viewing notes")
-    ]} storageKey="dmci_viewing_requests" submitLabel="Request Viewing Schedule" initialValues={initialValues} required={["fullName", "contactNumber", "contactMethod"]} inquiryType="Book Site Viewing" projectCatalog={projects} onValuesChange={setPreviewValues} compact />
+    ]} storageKey="dmci_viewing_requests" submitLabel="Request Viewing Schedule" initialValues={initialValues} required={["fullName", "preferredDate", "preferredTime", "contactMethod"]} inquiryType="Book a Site Viewing" projectCatalog={projects} onValuesChange={setPreviewValues} compact />
   </FormShell>;
 }
 
@@ -224,8 +224,8 @@ function normalizeInquiryType(value) {
   const map = {
     computation: "Request Computation",
     availability: "Check Availability",
-    "site viewing": "Book Site Viewing",
-    viewing: "Book Site Viewing",
+    "site viewing": "Book a Site Viewing",
+    viewing: "Book a Site Viewing",
     reservation: "General Inquiry",
     other: "General Inquiry"
   };

@@ -1,4 +1,5 @@
 import { Fragment, useMemo, useState } from "react";
+import { contact } from "../data/contact";
 import { saveSubmission, validateRequired } from "../utils/storage";
 import { Button } from "./Button";
 import { ImagePlaceholder } from "./ImagePlaceholder";
@@ -105,7 +106,9 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
 
   async function submit(event) {
     event.preventDefault();
-    const nextErrors = validateForm(values, required, fields);
+    if (status === "submitting") return;
+
+    const nextErrors = validateForm(values, required, fields, inquiryType);
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length) {
       setNotice({ type: "error", text: "Please review the highlighted fields before sending." });
@@ -129,7 +132,12 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
       const contentType = response.headers.get("content-type") || "";
 
       if (response.ok && data?.ok) {
-        setNotice({ type: "success", text: deliveredMessage });
+        setNotice({
+          type: "success",
+          text: data.referenceId
+            ? `${deliveredMessage} Reference ID: ${data.referenceId}.`
+            : deliveredMessage
+        });
         commitValues({ ...defaults, ...initialValues });
         return;
       }
@@ -210,7 +218,17 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
         {errors.consent && <small className="error full">{errors.consent}</small>}
       </div>
       <p className="form-trust-note">Luisa reviews each inquiry before sharing project references, computations, or viewing guidance. Final pricing, promos, and availability are confirmed through authorized sales channels.</p>
-      {notice && <div className={`${notice.type}-message`} role={notice.type === "error" ? "alert" : "status"}>{notice.text}</div>}
+      {notice && (
+        <div className={`${notice.type}-message`} role={notice.type === "error" ? "alert" : "status"}>
+          <p>{notice.text}</p>
+          {notice.type !== "success" && (
+            <div className="form-direct-actions" aria-label="Direct contact options">
+              <a href={contact.phoneHref}>Call Luisa</a>
+              <a href={contact.emailHref}>Email Luisa</a>
+            </div>
+          )}
+        </div>
+      )}
       <Button type="submit" className="form-submit" disabled={status === "submitting"} aria-live="polite" aria-label={status === "submitting" ? "Sending inquiry" : undefined}>
         {status === "submitting" ? "Sending..." : submitLabel}
       </Button>
@@ -218,11 +236,15 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
   );
 }
 
-function validateForm(values, required, fields = []) {
+function validateForm(values, required, fields = [], inquiryType = "") {
   const requiredFields = [...new Set(["fullName", ...required, "consent"])];
   const nextErrors = validateRequired(values, requiredFields);
   const requiresContactNumber = requiredFields.includes("contactNumber");
   const requiresEmail = requiredFields.includes("email");
+  const hasPhone = Boolean(String(values.contactNumber || "").trim());
+  const hasEmail = Boolean(String(values.email || "").trim());
+  const hasProjectOrLocation = Boolean(String(values.project || "").trim() || String(values.location || "").trim());
+  const kind = inquiryKind(values.inquiryType || values.concernType || inquiryType);
 
   if (!String(values.fullName || "").trim()) {
     nextErrors.fullName = "Please enter your full name.";
@@ -236,9 +258,25 @@ function validateForm(values, required, fields = []) {
   if (!String(values.contactMethod || "").trim()) {
     nextErrors.contactMethod = "Please choose how Luisa should contact you.";
   }
-  if (!requiresContactNumber && !requiresEmail && !String(values.contactNumber || "").trim() && !String(values.email || "").trim()) {
+  if (!hasPhone && !hasEmail) {
     nextErrors.contactNumber = "Provide a phone number or email address.";
     nextErrors.email = "Provide an email address or phone number.";
+  }
+  if ((kind === "computation" || kind === "availability") && !hasProjectOrLocation) {
+    nextErrors.project = "Choose a project or city/location.";
+    nextErrors.location = "Choose a city/location or project.";
+  }
+  if (kind === "viewing") {
+    if (!hasProjectOrLocation) {
+      nextErrors.project = "Choose a project or city/location for the viewing request.";
+      nextErrors.location = "Choose a city/location or project for the viewing request.";
+    }
+    if (!String(values.preferredDate || "").trim()) {
+      nextErrors.preferredDate = "Choose a preferred viewing date.";
+    }
+    if (!String(values.preferredTime || "").trim()) {
+      nextErrors.preferredTime = "Choose a preferred viewing time.";
+    }
   }
   if (values.email && !/^\S+@\S+\.\S+$/.test(values.email)) {
     nextErrors.email = "Use a valid email address.";
@@ -276,6 +314,14 @@ function validateForm(values, required, fields = []) {
   }
 
   return Object.fromEntries(Object.entries(nextErrors).filter(([, value]) => value));
+}
+
+function inquiryKind(value) {
+  const normalized = String(value || "").toLowerCase();
+  if (normalized.includes("view")) return "viewing";
+  if (normalized.includes("availability") || normalized.includes("available")) return "availability";
+  if (normalized.includes("computation") || normalized.includes("compute")) return "computation";
+  return "general";
 }
 
 function withContextualOptions(field, values, projectCatalog) {

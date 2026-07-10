@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Badge } from "../components/Badge";
 import { Button } from "../components/Button";
 import { DisclaimerBanner } from "../components/DisclaimerBanner";
@@ -110,8 +110,8 @@ export default function ProjectDetail() {
           <p>Request updated computation, availability, and viewing assistance before deciding.</p>
           <div className="hero-actions center">
             <Button to={projectInquiryPath("/request-computation", project, "Computation")}>Request Latest Computation</Button>
-            <Button to={projectInquiryPath("/availability", project, "Availability")} variant="secondary">Check Availability with Luisa</Button>
-            <Button to={projectInquiryPath("/book-viewing", project, "Site viewing")} variant="ghost">Book Site Viewing</Button>
+            <Button to={projectInquiryPath("/availability", project, "Availability")} variant="secondary">Check Availability</Button>
+            <Button to={projectInquiryPath("/book-viewing", project, "Site viewing")} variant="ghost">Book a Site Viewing</Button>
             <Button to={projectInquiryPath("/contact", project, "Other")} variant="ghost">Message Luisa</Button>
           </div>
           <DisclaimerBanner text={project.disclaimer} />
@@ -141,7 +141,7 @@ function ProjectHero({ project, isRichProject }) {
   const [zoomImage, setZoomImage] = useState(null);
   const heroActions = project.heroCtas || [
     { label: "Request Latest Computation", to: projectInquiryPath("/request-computation", project, "Computation"), variant: "primary" },
-    { label: "Check Availability with Luisa", to: projectInquiryPath("/availability", project, "Availability"), variant: "secondary" },
+    { label: "Check Availability", to: projectInquiryPath("/availability", project, "Availability"), variant: "secondary" },
     { label: "Book a Site Viewing", to: projectInquiryPath("/book-viewing", project, "Site viewing"), variant: "ghost" },
     { label: "Message Luisa", to: projectInquiryPath("/contact", project, "Other"), variant: "ghost" }
   ];
@@ -150,6 +150,13 @@ function ProjectHero({ project, isRichProject }) {
     <section className={`project-detail-hero ${isRichProject ? "project-detail-hero-rich" : ""}`}>
       <div className="container project-hero-grid">
         <div className="project-hero-media">
+          <nav className="breadcrumbs breadcrumbs-on-dark" aria-label="Breadcrumb">
+            <Link to="/">Home</Link>
+            <span aria-hidden="true">/</span>
+            <Link to="/projects">Projects</Link>
+            <span aria-hidden="true">/</span>
+            <span>{project.name}</span>
+          </nav>
           <ZoomableProjectImage image={heroImages[0]} onOpen={setZoomImage} />
           <div className="project-hero-thumbs">
             {heroImages.slice(1).map((image, index) => (
@@ -157,7 +164,7 @@ function ProjectHero({ project, isRichProject }) {
             ))}
           </div>
           <div className="project-media-note" aria-label={`${project.name} visual review note`}>
-            <span>Broker-assisted review</span>
+            <span>Broker-guided project review</span>
             <strong>Review the visuals, then confirm the latest details before reserving.</strong>
             <p>Availability, pricing, promos, payment terms, and viewing access are confirmed with Luisa before any decision.</p>
           </div>
@@ -176,7 +183,7 @@ function ProjectHero({ project, isRichProject }) {
           <div className="price-panel reference-price-panel">
             <strong>{formatPriceGuide(project.priceRangeLabel)}</strong>
             <span>{buyerSafePriceNote(project.priceSourceNote)}</span>
-            <span>Subject to final confirmation. Ask Luisa for latest computation.</span>
+            <span>Ask Luisa for the latest computation before deciding.</span>
           </div>
           <div className="project-facts">
             {heroFacts.map((fact) => <Fact key={fact.label} label={fact.label} value={fact.value} />)}
@@ -289,11 +296,11 @@ function RichProjectSections({ project }) {
             ))}
           </div>
           <p className="safety-note">{project.rentalPoolProgram.warning}</p>
-          <Button to="/contact" variant="secondary">Ask Luisa About Rental Pool Program</Button>
+          <Button to="/contact" variant="secondary">Ask About Rental Pool Program</Button>
         </DetailSection>
       )}
 
-      <DetailSection id="unit-options" eyebrow="Unit Types" title="Unit Options and Guide Ranges">
+      <DetailSection id="unit-options" eyebrow="Unit Types" title="Unit Options and Price Guides">
         <p className="reference-note">{project.unitIntro || "For guidance only. Unit cuts, floor areas, prices, promos, and availability can change."}</p>
         {project.unitQualityNote && <p className="safety-note">{project.unitQualityNote}</p>}
         {project.unitSections.map((section) => <UnitSection section={section} project={project} key={section.title} />)}
@@ -374,7 +381,7 @@ function RichProjectSections({ project }) {
             {project.fitOutOptions.highlights.map((item) => <article className="info-card" key={item}><p>{item}</p></article>)}
           </div>
           <p className="safety-note">{project.fitOutOptions.warning}</p>
-          <Button to="/contact" variant="secondary">{project.fitOutOptions.cta || "Ask Luisa About Fit-out Options"}</Button>
+          <Button to="/contact" variant="secondary">{project.fitOutOptions.cta || "Ask About Fit-out Options"}</Button>
         </DetailSection>
       )}
 
@@ -384,7 +391,7 @@ function RichProjectSections({ project }) {
             <p>{project.unitHoldingPortal.text}</p>
             <ol>{project.unitHoldingPortal.steps.map((step) => <li key={step}>{step}</li>)}</ol>
             {project.unitHoldingPortal.notes?.length ? <ul>{project.unitHoldingPortal.notes.map((note) => <li key={note}>{note}</li>)}</ul> : null}
-            <Button to="/availability" variant="secondary">Ask Luisa About Unit Holding</Button>
+            <Button to="/availability" variant="secondary">Ask About Unit Holding</Button>
           </article>
           <article className="unit-holding-card">
             <h3>Buyer reminder</h3>
@@ -430,9 +437,9 @@ function OrianaProjectSections({ project }) {
         <p className="reference-note">{project.availabilitySummary.note}</p>
         <AvailabilityTable columns={project.availabilitySummary.columns} rows={project.availabilitySummary.rows} />
         <div className="compact-cta-row">
-          <Button to={projectInquiryPath("/availability", project, "Availability")}>Check Available Units & Computations</Button>
-          <Button to={projectInquiryPath("/request-computation", project, "Computation")} variant="secondary">Ask Luisa for Latest Computation</Button>
-          <Button to={projectInquiryPath("/contact", project, "Reservation")} variant="ghost">Reserve / Inquire Now</Button>
+          <Button to={projectInquiryPath("/availability", project, "Availability")}>Check Availability</Button>
+          <Button to={projectInquiryPath("/request-computation", project, "Computation")} variant="secondary">Request Latest Computation</Button>
+          <Button to={projectInquiryPath("/contact", project, "Reservation")} variant="ghost">Ask About Reservation</Button>
         </div>
       </DetailSection>
 
@@ -527,7 +534,7 @@ function OrianaProjectSections({ project }) {
         {project.unitTypeDetails.map((section) => <OrianaUnitSection section={section} project={project} key={section.title} />)}
       </DetailSection>
 
-      <DetailSection id="floor-plans" eyebrow="Floorplans" title={project.floorPlansTitle}>
+      <DetailSection id="floor-plans" eyebrow="Floor Plans" title={project.floorPlansTitle}>
         <p>{project.floorPlansDescription}</p>
         <div className="floor-plan-grid">
           {project.floorPlans.map((item) => (
@@ -763,12 +770,13 @@ function UnitSection({ section, project }) {
         <div className="unit-layout-pills">{section.layouts.map((layout) => <span key={layout}>{layout}</span>)}</div>
       </div>
       <div className="unit-table-scroll">
+        <p className="table-scroll-hint">Swipe left to view full unit details.</p>
         <table className="unit-table">
           <thead>
             <tr>
               <th>Layout</th>
               <th>Floor Area</th>
-              <th>Guide Range</th>
+              <th>Price Guide</th>
               <th>Status</th>
               <th>Computation</th>
               <th>Action</th>
@@ -779,7 +787,7 @@ function UnitSection({ section, project }) {
               <tr key={`${section.title}-${row.layout}-${row.floorArea}-${index}`}>
                 <td data-label="Layout">{row.layout}</td>
                 <td data-label="Floor Area">{row.floorArea}</td>
-                <td data-label="Guide Range">{formatInlineGuide(row.priceRange)}</td>
+                <td data-label="Price Guide">{formatInlineGuide(row.priceRange)}</td>
                 <td data-label="Status">{row.status}</td>
                 <td data-label="Computation">{row.monthlyDp}</td>
                 <td data-label="Action"><Button to={projectInquiryPath("/request-computation", project, "Computation")} variant="secondary">Request Computation</Button></td>
@@ -826,6 +834,7 @@ function AvailabilityTable({ columns = [], rows = [] }) {
 
   return (
     <div className="rich-table-wrap">
+      <p className="table-scroll-hint">Swipe left to view more columns.</p>
       <table className="rich-table">
         <thead>
           <tr>{columns.map((column) => <th key={column.key}>{column.label}</th>)}</tr>
