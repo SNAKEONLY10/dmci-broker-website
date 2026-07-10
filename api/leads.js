@@ -248,7 +248,7 @@ function formatLeadText(lead) {
     `Reference ID: ${lead.referenceId}`,
     `Submitted at: ${lead.submittedAt}`,
     "",
-    "Priority summary",
+    "Inquiry snapshot",
     `Inquiry type: ${titleCase(lead.inquiryType || "General Inquiry")}`,
     `Interested project: ${lead.projectInterestedIn || "Not provided"}`,
     `City/location: ${lead.cityLocation || "Not provided"}`,
@@ -259,7 +259,7 @@ function formatLeadText(lead) {
     `${followUp.label}: ${followUp.text}`,
     followUp.note ? `Note: ${followUp.note}` : "",
     "",
-    "Computation request details",
+    "Request details",
     `Unit type: ${lead.unitType || "Not provided"}`,
     `Budget range: ${lead.budgetRange || "Not provided"}`,
     `Payment preference: ${lead.paymentPreference || "Not provided"}`,
@@ -272,12 +272,6 @@ function formatLeadText(lead) {
     `Phone / Viber: ${lead.phone || "Not provided"}`,
     `Email: ${lead.email || "Not provided"}`,
     `Message: ${lead.message || "No message provided."}`,
-    "",
-    "Project interest",
-    `Project: ${lead.projectInterestedIn || "Not provided"}`,
-    `Location: ${lead.cityLocation || "Not provided"}`,
-    `Inquiry type: ${titleCase(lead.inquiryType || "General Inquiry")}`,
-    `Source page: ${lead.sourcePage || lead.sourceUrl || "Not provided"}`,
     "",
     "Consent and compliance",
     `Consent checked: ${lead.consent ? "Yes" : "No"}`,
@@ -300,20 +294,12 @@ function formatLeadHtml(lead) {
   const sourceUrl = safeUrl(lead.sourceUrl);
   const followUp = contactMethodPlan(lead);
   const logoUrl = "https://dmci-broker-website.vercel.app/assets/img/dmci-broker-mark.png";
-  const summaryRows = [
-    ["Inquiry type", titleCase(lead.inquiryType || "General Inquiry")],
-    ["Interested project", lead.projectInterestedIn || "Not provided"],
-    ["City/location", lead.cityLocation || "Not provided"],
-    ["Preferred contact", lead.preferredContactMethod || "Not provided"],
-    ["Source page", lead.sourcePage || lead.sourceUrl || "Not provided"]
-  ];
   const leadRows = [
     ["Full name", lead.name],
     ["Phone / Viber", lead.phone || "Not provided"],
-    ["Email", lead.email || "Not provided"],
-    ["Preferred contact method", lead.preferredContactMethod || "Not provided"]
+    ["Email", lead.email || "Not provided"]
   ];
-  const computationRows = [
+  const requestRows = [
     ["Unit type", lead.unitType || "Not provided"],
     ["Budget range", lead.budgetRange || "Not provided"],
     ["Payment preference", lead.paymentPreference || "Not provided"],
@@ -321,17 +307,7 @@ function formatLeadHtml(lead) {
     ["Timeline", lead.timeline || "Not provided"],
     ["Purpose", lead.purpose || "Not provided"]
   ];
-  const projectRows = [
-    ["Project name", lead.projectInterestedIn || "Not provided"],
-    ["City/location", lead.cityLocation || "Not provided"],
-    ["Inquiry type", titleCase(lead.inquiryType || "General Inquiry")],
-    ["Source route/page", lead.sourcePage || lead.sourceUrl || "Not provided"]
-  ];
-  const actions = [
-    lead.phone ? actionButton(telHref(lead.phone), "Call lead", "phone", followUp.key === "call" || followUp.key === "viber" || followUp.key === "sms") : "",
-    lead.email ? actionButton(`mailto:${lead.email}`, "Reply by email", "email", followUp.key === "email") : "",
-    sourceUrl ? actionButton(sourceUrl, "Open source page", "source", false) : ""
-  ].filter(Boolean).join("");
+  const actions = buildActionButtons(lead, followUp, sourceUrl);
 
   return `
     <!doctype html>
@@ -340,7 +316,7 @@ function formatLeadHtml(lead) {
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;background:#eef4f6;padding:30px 12px;">
           <tr>
             <td align="center">
-              <table role="presentation" width="680" cellpadding="0" cellspacing="0" style="width:100%;max-width:680px;border-collapse:separate;border-spacing:0;background:#ffffff;border:1px solid #dfe7ec;border-radius:20px;overflow:hidden;box-shadow:0 18px 44px rgba(16,42,69,0.10);">
+              <table role="presentation" width="680" cellpadding="0" cellspacing="0" style="width:100%;max-width:680px;border-collapse:separate;border-spacing:0;background:#ffffff;border:1px solid #dfe7ec;border-radius:18px;overflow:hidden;box-shadow:0 18px 44px rgba(16,42,69,0.10);">
                 <tr>
                   <td style="padding:28px 30px 26px;background:#0d2740;color:#ffffff;">
                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;">
@@ -363,9 +339,8 @@ function formatLeadHtml(lead) {
                 </tr>
                 <tr>
                   <td style="padding:28px 30px 8px;">
-                    ${sectionTitle("Priority Summary")}
-                    ${priorityStrip(lead)}
-                    ${summaryCard(summaryRows)}
+                    ${sectionTitle("Inquiry Snapshot")}
+                    ${inquirySnapshot(lead)}
                   </td>
                 </tr>
                 <tr>
@@ -376,7 +351,7 @@ function formatLeadHtml(lead) {
                 </tr>
                 <tr>
                   <td style="padding:22px 30px 0;">
-                    ${sectionTitle("Lead Information")}
+                    ${sectionTitle("Buyer Contact")}
                     ${infoTable(leadRows)}
                     <div style="margin-top:16px;padding:17px 18px;background:#f8fbfc;border:1px solid #e5edf2;border-radius:14px;">
                       <p style="margin:0 0 8px;color:#486176;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.9px;">Message</p>
@@ -386,14 +361,8 @@ function formatLeadHtml(lead) {
                 </tr>
                 <tr>
                   <td style="padding:24px 30px 0;">
-                    ${sectionTitle("Computation Request Details")}
-                    ${infoTable(computationRows)}
-                  </td>
-                </tr>
-                <tr>
-                  <td style="padding:24px 30px 0;">
-                    ${sectionTitle("Project Interest")}
-                    ${infoTable(projectRows)}
+                    ${sectionTitle("Request Details")}
+                    ${infoTable(requestRows)}
                   </td>
                 </tr>
                 <tr>
@@ -437,45 +406,39 @@ function formatLeadHtml(lead) {
 }
 
 function sectionTitle(label) {
-  return `<h2 style="margin:0 0 12px;color:#102a45;font-size:17px;line-height:1.35;">${escapeHtml(label)}</h2>`;
+  return `<h2 style="margin:0 0 14px;color:#102a45;font-size:18px;line-height:1.35;font-weight:850;">${escapeHtml(label)}</h2>`;
 }
 
-function priorityStrip(lead) {
+function inquirySnapshot(lead) {
   const inquiry = titleCase(lead.inquiryType || "General Inquiry");
   const project = lead.projectInterestedIn || "No project selected";
   const method = lead.preferredContactMethod || "No method selected";
+  const location = lead.cityLocation || "Not provided";
+  const source = lead.sourcePage || lead.sourceUrl || "Not provided";
+
   return `
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:separate;border-spacing:8px 0;margin:0 -8px 14px;">
-      <tr>
-        ${miniPill("Inquiry", inquiry, "#fff7df", "#9d7420")}
-        ${miniPill("Project", project, "#edf7f2", "#0b6b45")}
-        ${miniPill("Reply via", method, "#eef5fb", "#0f4d78")}
-      </tr>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:separate;border-spacing:0 10px;">
+      ${snapshotRow("Inquiry", inquiry, "#fff7df", "#9d7420")}
+      ${snapshotRow("Project", project, "#edf7f2", "#0b6b45")}
+      ${snapshotRow("Location", location, "#f8fbfc", "#102a45")}
+      ${snapshotRow("Reply via", method, "#eef5fb", "#0f4d78")}
+      ${snapshotRow("Source", source, "#f8fbfc", "#40566b", true)}
     </table>
   `;
 }
 
-function miniPill(label, value, background, color) {
+function snapshotRow(label, value, background, color, small = false) {
   return `
-    <td style="width:33.33%;padding:0;">
-      <div style="padding:12px 13px;border:1px solid #e4edf2;border-radius:14px;background:${background};">
-        <p style="margin:0 0 4px;color:#667085;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;">${escapeHtml(label)}</p>
-        <p style="margin:0;color:${color};font-size:13px;line-height:1.35;font-weight:800;">${escapeHtml(value)}</p>
-      </div>
-    </td>
-  `;
-}
-
-function summaryCard(rows) {
-  return `
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:separate;border-spacing:0;background:#f8fbfc;border:1px solid #e4edf2;border-radius:14px;">
-      ${rows.map(([label, value]) => `
-        <tr>
-          <td style="padding:12px 16px;border-bottom:1px solid #e8eef2;color:#667085;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;width:38%;">${escapeHtml(label)}</td>
-          <td style="padding:12px 16px;border-bottom:1px solid #e8eef2;color:#102a45;font-size:15px;font-weight:700;">${escapeHtml(value)}</td>
-        </tr>
-      `).join("")}
-    </table>
+    <tr>
+      <td style="padding:0;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;border:1px solid #e4edf2;border-radius:14px;background:${background};">
+          <tr>
+            <td style="padding:14px 16px;width:34%;color:#536273;font-size:12px;font-weight:850;text-transform:uppercase;letter-spacing:.7px;vertical-align:top;">${escapeHtml(label)}</td>
+            <td style="padding:14px 16px;color:${color};font-size:${small ? "13px" : "16px"};line-height:1.42;font-weight:850;vertical-align:top;word-break:break-word;">${escapeHtml(value)}</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
   `;
 }
 
@@ -484,8 +447,8 @@ function infoTable(rows) {
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;">
       ${rows.map(([label, value]) => `
         <tr>
-          <td style="padding:10px 0;color:#667085;font-size:13px;width:42%;border-bottom:1px solid #edf2f5;">${escapeHtml(label)}</td>
-          <td style="padding:10px 0;color:#102a45;font-size:14px;font-weight:700;border-bottom:1px solid #edf2f5;">${escapeHtml(value)}</td>
+          <td style="padding:12px 0;color:#40566b;font-size:13px;font-weight:750;width:42%;border-bottom:1px solid #edf2f5;vertical-align:top;">${escapeHtml(label)}</td>
+          <td style="padding:12px 0;color:#102a45;font-size:15px;line-height:1.45;font-weight:800;border-bottom:1px solid #edf2f5;vertical-align:top;word-break:break-word;">${escapeHtml(value)}</td>
         </tr>
       `).join("")}
     </table>
@@ -505,7 +468,13 @@ function followUpCard(plan) {
 function actionButton(href, label, type, highlighted = false) {
   const styles = {
     phone: highlighted
-      ? { background: "#d8b65d", border: "#d8b65d", color: "#102a45", prefix: "Priority" }
+      ? { background: "#d8b65d", border: "#d8b65d", color: "#102a45", prefix: "Preferred" }
+      : { background: "#ffffff", border: "#d7e2e8", color: "#102a45", prefix: "Action" },
+    viber: highlighted
+      ? { background: "#6f4ab8", border: "#6f4ab8", color: "#ffffff", prefix: "Preferred" }
+      : { background: "#ffffff", border: "#d7e2e8", color: "#102a45", prefix: "Action" },
+    sms: highlighted
+      ? { background: "#0f4d78", border: "#0f4d78", color: "#ffffff", prefix: "Preferred" }
       : { background: "#ffffff", border: "#d7e2e8", color: "#102a45", prefix: "Action" },
     email: highlighted
       ? { background: "#0f6b4b", border: "#0f6b4b", color: "#ffffff", prefix: "Preferred" }
@@ -518,6 +487,38 @@ function actionButton(href, label, type, highlighted = false) {
       <span style="display:inline-block;margin-right:8px;color:${tone.color};font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;">${escapeHtml(tone.prefix)}</span>${escapeHtml(label)}
     </a>
   `;
+}
+
+function buildActionButtons(lead, followUp, sourceUrl) {
+  const buttons = [];
+  const tel = lead.phone ? telHref(lead.phone) : "";
+  const sms = lead.phone ? smsHref(lead.phone) : "";
+  const email = lead.email ? `mailto:${lead.email}` : "";
+
+  if (followUp.key === "email" && email) {
+    buttons.push(actionButton(email, "Reply by email", "email", true));
+  }
+  if (followUp.key === "call" && tel) {
+    buttons.push(actionButton(tel, "Call lead", "phone", true));
+  }
+  if (followUp.key === "viber" && tel) {
+    buttons.push(actionButton(tel, "Phone / Viber number", "viber", true));
+  }
+  if (followUp.key === "sms" && sms) {
+    buttons.push(actionButton(sms, "Send SMS", "sms", true));
+  }
+
+  if (email && followUp.key !== "email") {
+    buttons.push(actionButton(email, "Reply by email", "email", false));
+  }
+  if (tel && followUp.key !== "call" && followUp.key !== "viber") {
+    buttons.push(actionButton(tel, followUp.key === "sms" ? "Call if urgent" : "Call lead", "phone", false));
+  }
+  if (sourceUrl) {
+    buttons.push(actionButton(sourceUrl, "Open source page", "source", false));
+  }
+
+  return buttons.join("");
 }
 
 function contactMethodPlan(lead) {
@@ -570,7 +571,7 @@ function contactMethodPlan(lead) {
       text: missingPhone
         ? "The buyer selected SMS but no mobile number was provided. Reply by email if available."
         : "Confirm receipt, project name, and best time to continue the conversation. Call only if the request is time-sensitive.",
-      note: missingPhone ? "SMS was selected, but no mobile number was included." : "",
+      note: missingPhone ? "SMS was selected, but no mobile number was included." : "The SMS button may open a message app on mobile. On desktop, copy the Phone / Viber number above.",
       background: "#eef5fb",
       border: "#cfe0ed",
       accent: "#0f4d78"
@@ -616,6 +617,13 @@ function telHref(phone) {
   if (!digits) return "";
   const normalized = digits.startsWith("0") ? `+63${digits.slice(1)}` : digits.startsWith("63") ? `+${digits}` : `+${digits}`;
   return `tel:${normalized}`;
+}
+
+function smsHref(phone) {
+  const digits = String(phone || "").replace(/\D/g, "");
+  if (!digits) return "";
+  const normalized = digits.startsWith("0") ? `+63${digits.slice(1)}` : digits.startsWith("63") ? `+${digits}` : `+${digits}`;
+  return `sms:${normalized}`;
 }
 
 function safeUrl(value) {
