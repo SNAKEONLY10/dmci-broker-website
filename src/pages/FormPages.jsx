@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 
 const projectOptions = projects.map((project) => project.name);
 const locationOptions = locations.map((location) => location.name);
-const inquiryTypes = ["Sales Inquiry", "Request Computation", "Check Availability", "Book a Site Viewing", "Rent to Own Inquiry", "Leasing Inquiry", "Resale Inquiry", "Reservation Concern", "Other Concern"];
+const inquiryTypes = ["Sales Inquiry", "Request Computation", "Check Availability", "Book a Site Viewing", "Rent to Own Inquiry", "Leasing Inquiry", "Resale Inquiry", "Reservation Concern", "Existing Buyer / Customer Care Concern", "Other Concern"];
 const contactMethodOptions = ["Email and Mobile", "Call", "Viber", "Email", "SMS"];
 const bestTimeOptions = ["Anytime", "Morning", "Afternoon", "Evening"];
 const leadSourceOptions = ["Facebook", "Google", "TikTok", "Instagram", "Referral", "Website", "Viber", "Other"];
@@ -140,7 +140,7 @@ export function Contact() {
     <DemoForm title="Buyer Inquiry Details" fields={[
       f("fullName", "Full Name"), phoneField(), f("email", "Email Address", "email"),
       s("location", "Town / City", locationOptions), s("project", "Project Interested In", projectOptions),
-      s("concernType", "Inquiry Type", inquiryTypes),
+      { ...s("concernType", "Inquiry Type", inquiryTypes), helper: "For existing buyer concerns, Luisa can guide you and help identify the appropriate official DMCI Homes Customer Care channel." },
       s("buyerType", "Buyer Type", ["Local buyer", "OFW", "Investor", "Family use", "First-time buyer", "Still exploring"]),
       s("nationality", "Nationality", ["Filipino", "Dual citizen", "Other"]),
       ...contactPreferenceFields(),

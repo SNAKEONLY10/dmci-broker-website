@@ -924,6 +924,7 @@ function labelForRawField(key) {
 
 function inquiryKind(value) {
   const normalized = String(value || "").toLowerCase();
+  if (normalized.includes("customer care") || normalized.includes("existing buyer")) return "customer-care";
   if (normalized.includes("view")) return "viewing";
   if (normalized.includes("availability") || normalized.includes("available")) return "availability";
   if (normalized.includes("computation") || normalized.includes("compute")) return "computation";
@@ -932,6 +933,9 @@ function inquiryKind(value) {
 
 function nextStepPlan(lead) {
   const type = inquiryKind(lead.inquiryType);
+  if (type === "customer-care") {
+    return { text: "Assist where appropriate, then direct official account, turnover, billing, warranty, or after-sales concerns to the applicable DMCI Homes Customer Care channel for confirmation." };
+  }
   if (type === "viewing") {
     return { text: "Confirm the viewing slot, access instructions, and meeting point before asking the buyer to travel." };
   }
