@@ -10,9 +10,18 @@ import { useEffect, useState } from "react";
 
 const projectOptions = projects.map((project) => project.name);
 const locationOptions = locations.map((location) => location.name);
-const inquiryTypes = ["Request Computation", "Check Availability", "Book a Site Viewing", "General Inquiry"];
-const contactMethodOptions = ["Call", "Viber", "Email", "SMS"];
+const inquiryTypes = ["Sales Inquiry", "Request Computation", "Check Availability", "Book a Site Viewing", "Rent to Own Inquiry", "Leasing Inquiry", "Resale Inquiry", "Reservation Concern", "Other Concern"];
+const contactMethodOptions = ["Email and Mobile", "Call", "Viber", "Email", "SMS"];
+const bestTimeOptions = ["Anytime", "Morning", "Afternoon", "Evening"];
+const leadSourceOptions = ["Facebook", "Google", "TikTok", "Instagram", "Referral", "Website", "Viber", "Other"];
 const projectByName = new Map(projects.map((project) => [project.name, project]));
+
+const phoneField = () => ({ ...f("contactNumber", "Mobile / Viber", "tel"), helper: "Example: 09XXXXXXXXX or +639XXXXXXXXX" });
+const contactPreferenceFields = () => [
+  s("contactMethod", "Preferred Contact Method", contactMethodOptions),
+  s("bestTimeToContact", "Best Time to Contact", bestTimeOptions),
+  s("leadSource", "How Did You Hear About Us?", leadSourceOptions)
+];
 
 export function Availability() {
   const initialValues = useInquiryDefaults();
@@ -27,11 +36,12 @@ export function Availability() {
     }}
   >
     <DemoForm title="Check Availability with Luisa" fields={[
-      f("fullName", "Full Name"), f("contactNumber", "Mobile / Viber", "tel"), f("email", "Email Address", "email"),
+      f("fullName", "Full Name"), phoneField(), f("email", "Email Address", "email"),
       s("project", "Interested Project", projectOptions), s("location", "City / Location", locationOptions), s("unitType", "Unit Type", unitTypes),
       f("preferredSize", "Preferred Floor/Size if any"), s("budgetRange", "Budget Range", ["Still checking", "Entry level", "Mid range", "Premium range"]),
       s("paymentOption", "Payment Option", ["Cash", "In-house", "Bank Financing", "Not sure"]), s("urgency", "Urgency", ["Just checking", "This week", "Ready to reserve"]),
-      s("contactMethod", "Preferred Contact Method", contactMethodOptions), t()
+      s("nationality", "Nationality", ["Filipino", "Dual citizen", "Other"]),
+      ...contactPreferenceFields(), t("Availability notes")
     ]} storageKey="dmci_availability_requests" submitLabel="Check Availability with Luisa" initialValues={initialValues} required={["fullName", "contactMethod"]} inquiryType="Check Availability" projectCatalog={projects} />
   </FormShell>;
 }
@@ -58,7 +68,7 @@ export function RequestComputation() {
   >
     <DemoForm title="Computation Details" fields={[
       { ...f("fullName", "Full Name"), mobileFull: true },
-      { ...f("contactNumber", "Mobile / Viber", "tel"), compact: true },
+      { ...phoneField(), compact: true },
       { ...f("email", "Email Address", "email"), compact: true },
       { ...s("location", "City / Location", locationOptions), helper: "This narrows Interested Project to the selected city." },
       s("project", "Interested Project", projectOptions),
@@ -67,7 +77,10 @@ export function RequestComputation() {
       { ...s("paymentPreference", "Payment", ["Cash", "In-house", "Bank Financing", "Not sure"]), compact: true, placeholder: "Choose term" },
       { ...s("buyerType", "Buyer Type", ["Local", "OFW", "Investor", "First-time buyer", "Family use"]), compact: true, placeholder: "Choose type" },
       { ...s("timeline", "Timeline", ["Immediately", "1-3 months", "3-6 months", "Still exploring"]), compact: true, placeholder: "Choose timing" },
-      { ...s("contactMethod", "Contact Method", contactMethodOptions), compact: true, placeholder: "Choose method" },
+      { ...s("nationality", "Nationality", ["Filipino", "Dual citizen", "Other"]), compact: true },
+      { ...s("contactMethod", "Preferred Contact Method", contactMethodOptions), compact: true, placeholder: "Choose method" },
+      { ...s("bestTimeToContact", "Best Time to Contact", bestTimeOptions), compact: true },
+      { ...s("leadSource", "How Did You Hear About Us?", leadSourceOptions), compact: true },
       t()
     ]} storageKey="dmci_computation_requests" submitLabel="Send Computation Request" initialValues={initialValues} required={["fullName", "contactMethod"]} inquiryType="Request Computation" projectCatalog={projects} onValuesChange={setPreviewValues} compact />
   </FormShell>;
@@ -95,7 +108,7 @@ export function BookViewing() {
   >
     <DemoForm title="Viewing Details" fields={[
       { ...f("fullName", "Full Name"), mobileFull: true },
-      { ...f("contactNumber", "Mobile / Viber", "tel"), compact: true },
+      { ...phoneField(), compact: true },
       { ...f("email", "Email Address", "email"), compact: true },
       { ...s("location", "City / Location", locationOptions), helper: "This narrows Interested Project to the selected city." },
       s("project", "Interested Project", projectOptions),
@@ -103,7 +116,10 @@ export function BookViewing() {
       { ...f("preferredDate", "Preferred Date", "date"), compact: true },
       { ...f("preferredTime", "Preferred Time", "time"), compact: true },
       { ...f("guests", "Guests", "number"), compact: true, min: 1, step: 1, inputMode: "numeric", placeholder: "1" },
-      { ...s("contactMethod", "Contact Method", contactMethodOptions), compact: true, placeholder: "Choose method" },
+      { ...s("nationality", "Nationality", ["Filipino", "Dual citizen", "Other"]), compact: true },
+      { ...s("contactMethod", "Preferred Contact Method", contactMethodOptions), compact: true, placeholder: "Choose method" },
+      { ...s("bestTimeToContact", "Best Time to Contact", bestTimeOptions), compact: true },
+      { ...s("leadSource", "How Did You Hear About Us?", leadSourceOptions), compact: true },
       t("Viewing notes")
     ]} storageKey="dmci_viewing_requests" submitLabel="Request Viewing Schedule" initialValues={initialValues} required={["fullName", "preferredDate", "preferredTime", "contactMethod"]} inquiryType="Book a Site Viewing" projectCatalog={projects} onValuesChange={setPreviewValues} compact />
   </FormShell>;
@@ -122,13 +138,14 @@ export function Contact() {
     }}
   >
     <DemoForm title="Buyer Inquiry Details" fields={[
-      f("fullName", "Full Name"), f("contactNumber", "Mobile / Viber", "tel"), f("email", "Email Address", "email"),
-      s("project", "Interested Project", projectOptions),
+      f("fullName", "Full Name"), phoneField(), f("email", "Email Address", "email"),
+      s("location", "Town / City", locationOptions), s("project", "Project Interested In", projectOptions),
       s("concernType", "Inquiry Type", inquiryTypes),
       s("buyerType", "Buyer Type", ["Local buyer", "OFW", "Investor", "Family use", "First-time buyer", "Still exploring"]),
-      s("contactMethod", "Preferred Contact Method", contactMethodOptions),
-      t("Message / Buyer Requirement")
-    ]} storageKey="dmci_contact_requests" submitLabel="Submit Consultation Request" initialValues={initialValues} required={["fullName", "concernType", "contactMethod"]} inquiryType="General Inquiry" />
+      s("nationality", "Nationality", ["Filipino", "Dual citizen", "Other"]),
+      ...contactPreferenceFields(),
+      t("Tell Us About Your Property Needs")
+    ]} storageKey="dmci_contact_requests" submitLabel="Submit Consultation Request" initialValues={initialValues} required={["fullName", "concernType", "contactMethod"]} inquiryType="General Inquiry" projectCatalog={projects} />
   </FormShell>;
 }
 

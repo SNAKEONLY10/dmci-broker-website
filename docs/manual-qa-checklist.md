@@ -1,5 +1,12 @@
 # Manual QA Checklist
 
+## Lead Field Coverage
+
+- Verify optional Nationality, Best Time to Contact, and How Did You Hear About Us fields on buyer forms.
+- Verify Email and Mobile requires both contact details; other methods accept either phone or email.
+- Verify resale cards open Contact with the project and Resale Inquiry preselected.
+- Confirm broker emails show request-specific details plus any optional buyer context provided.
+
 Use this checklist after `npm run qa:production` passes and after every production redeploy.
 
 ## Public Route Checks

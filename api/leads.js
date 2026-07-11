@@ -151,6 +151,9 @@ function normalizeLead(payload) {
     phone: clean(payload.phone || payload.contactNumber, 60),
     email: clean(payload.email, 160),
     preferredContactMethod: clean(payload.preferredContactMethod || payload.contactMethod, 80),
+    nationality: clean(payload.nationality, 80),
+    bestTimeToContact: clean(payload.bestTimeToContact || payload.bestContactTime, 80),
+    leadSource: clean(payload.leadSource || payload.howDidYouHear, 120),
     projectInterestedIn: clean(payload.projectInterestedIn || payload.project, 160),
     cityLocation: clean(payload.cityLocation || payload.location, 160),
     inquiryType: clean(payload.inquiryType, 80),
@@ -175,6 +178,10 @@ function normalizeLead(payload) {
   if (!lead.phone && !lead.email) {
     errors.contactNumber = "Provide a phone number or email address.";
     errors.email = "Provide an email address or phone number.";
+  }
+  if (lead.preferredContactMethod.toLowerCase().includes("email and mobile")) {
+    if (!lead.phone) errors.contactNumber = "Add a mobile number for Email and Mobile follow-up.";
+    if (!lead.email) errors.email = "Add an email address for Email and Mobile follow-up.";
   }
   const kind = inquiryKind(lead.inquiryType);
   if ((kind === "computation" || kind === "availability") && !lead.projectInterestedIn && !lead.cityLocation) {
@@ -309,6 +316,9 @@ function formatLeadText(lead) {
     `Interested project: ${lead.projectInterestedIn || "Not provided"}`,
     `City/location: ${lead.cityLocation || "Not provided"}`,
     `Preferred contact method: ${lead.preferredContactMethod || "Not provided"}`,
+    `Best time to contact: ${lead.bestTimeToContact || "Not provided"}`,
+    `Nationality: ${lead.nationality || "Not provided"}`,
+    `Lead source: ${lead.leadSource || "Not provided"}`,
     `Source page: ${lead.sourcePage || lead.sourceUrl || "Not provided"}`,
     "",
     "Recommended follow-up",
@@ -800,6 +810,7 @@ function footerBlock() {
 
 function contactTone(key) {
   const tones = {
+    combined: { color: "#0F6B4B", icon: "&#10003;" },
     email: { color: "#2B6CB0", icon: "&#9993;" },
     call: { color: "#2F855A", icon: "&#9742;" },
     viber: { color: "#7360F2", icon: "&#9993;" },
@@ -812,6 +823,11 @@ function contactTone(key) {
 function buildRequestRows(lead) {
   const raw = lead.rawFields || {};
   const type = inquiryKind(lead.inquiryType);
+  const profileRows = [
+    ["Nationality", lead.nationality || raw.nationality],
+    ["Best time to contact", lead.bestTimeToContact || raw.bestTimeToContact],
+    ["Lead source", lead.leadSource || raw.leadSource]
+  ];
   const rowsByType = {
     viewing: [
       ["Viewing type", raw.viewingType],
@@ -847,7 +863,7 @@ function buildRequestRows(lead) {
     ]
   };
 
-  const rows = uniqueRows((rowsByType[type] || rowsByType.general).map(([label, value]) => [label, cleanDetail(value)]));
+  const rows = uniqueRows([...profileRows, ...(rowsByType[type] || rowsByType.general)].map(([label, value]) => [label, cleanDetail(value)]));
   if (rows.length) return rows;
 
   const skipped = new Set([
@@ -857,6 +873,9 @@ function buildRequestRows(lead) {
     "location",
     "project",
     "contactMethod",
+    "nationality",
+    "bestTimeToContact",
+    "leadSource",
     "message",
     "consent",
     "website"
@@ -895,6 +914,9 @@ function labelForRawField(key) {
     budgetRange: "Budget range",
     buyerType: "Buyer type",
     concernType: "Inquiry type",
+    nationality: "Nationality",
+    bestTimeToContact: "Best time to contact",
+    leadSource: "Lead source",
     unitType: "Unit type"
   };
   return labels[key] || titleCase(String(key).replace(/([a-z])([A-Z])/g, "$1 $2"));
@@ -933,6 +955,21 @@ function contactMethodPlan(lead) {
     accent: "#0f4d78",
     note: ""
   };
+
+  if (key === "combined") {
+    return {
+      ...common,
+      label: "Email and mobile preferred",
+      title: "Send details by email, then confirm by mobile.",
+      text: missingEmail || missingPhone
+        ? "One requested contact channel is missing. Use the available channel and confirm the other contact detail."
+        : "Send documents or detailed figures by email, then use the mobile number for a short confirmation.",
+      note: missingEmail || missingPhone ? "The buyer selected Email and Mobile, but one contact detail is missing." : "",
+      background: "#edf7f2",
+      border: "#cfe7db",
+      accent: "#0f6b4b"
+    };
+  }
 
   if (key === "email") {
     return {
@@ -1006,6 +1043,7 @@ function contactMethodPlan(lead) {
 
 function contactMethodKey(value) {
   const method = String(value || "").toLowerCase();
+  if (method.includes("email and mobile")) return "combined";
   if (method.includes("viber")) return "viber";
   if (method.includes("email")) return "email";
   if (method.includes("sms") || method.includes("text")) return "sms";

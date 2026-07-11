@@ -1,5 +1,7 @@
 # Email Production Setup
 
+Lead notifications include the reference ID, inquiry category, project, town/city, buyer contact details, optional nationality, preferred contact method, best contact time, optional lead source, request-specific details, message, source route, consent, and buyer-safe confirmation disclaimer. When a buyer provides an email address, it remains the Reply-To address.
+
 This site sends lead notifications from Vercel serverless functions. The frontend must never contain API keys or private sender settings.
 
 ## Active Endpoints

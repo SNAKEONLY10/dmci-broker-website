@@ -1,5 +1,13 @@
 # Release Notes
 
+## July 11, 2026 - Broker Inquiry Flow Alignment
+
+- Added optional nationality, best contact time, and lead source fields without expanding the minimum submission requirements.
+- Added buyer-relevant sales, resale, leasing, rent-to-own, reservation, computation, availability, and viewing categories.
+- Added an Email and Mobile preference with matching frontend and API validation.
+- Updated resale inquiry links to preselect the project and resale category.
+- Added the new buyer context to HTML and plain-text broker email notifications.
+
 ## July 10, 2026 - Final Launch Hardening
 
 ### Improved

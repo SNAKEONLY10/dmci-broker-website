@@ -1,5 +1,8 @@
 # DMCI Broker Website Production Launch Checklist
 
+- [ ] Confirm optional nationality, best contact time, and lead source values appear correctly in live lead emails.
+- [ ] Confirm Email and Mobile inquiries require both channels before submission.
+
 This checklist is for the personal DMCI broker / buyer-assistance website for Maria Luisa Corral. It is not an official DMCI corporate website. Pricing, promos, availability, turnover dates, payment terms, and unit details must remain subject to final confirmation.
 
 Last hardening update: July 10, 2026.

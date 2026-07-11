@@ -14,6 +14,9 @@ const defaults = {
   budgetRange: "",
   purpose: "",
   contactMethod: "",
+  nationality: "Filipino",
+  bestTimeToContact: "",
+  leadSource: "",
   message: "",
   consent: false,
   website: ""
@@ -317,6 +320,10 @@ function validateForm(values, required, fields = [], inquiryType = "") {
     nextErrors.contactNumber = "Provide a phone number or email address.";
     nextErrors.email = "Provide an email address or phone number.";
   }
+  if (String(values.contactMethod || "").toLowerCase().includes("email and mobile")) {
+    if (!hasPhone) nextErrors.contactNumber = "Add a mobile number for Email and Mobile follow-up.";
+    if (!hasEmail) nextErrors.email = "Add an email address for Email and Mobile follow-up.";
+  }
   if ((kind === "computation" || kind === "availability") && !hasProjectOrLocation) {
     nextErrors.project = "Choose a project or city/location.";
     nextErrors.location = "Choose a city/location or project.";
@@ -442,6 +449,9 @@ function buildLeadPayload(values, inquiryType, fieldNames) {
     email: values.email,
     contactMethod: values.contactMethod,
     preferredContactMethod: values.contactMethod,
+    nationality: values.nationality,
+    bestTimeToContact: values.bestTimeToContact,
+    leadSource: values.leadSource,
     project: values.project,
     preferredProject: values.preferredProject || values.project,
     projectInterestedIn: values.project,
@@ -614,6 +624,11 @@ function ContactMethodGuide({ method, hasPhone, hasEmail }) {
 function contactMethodGuide(method, hasPhone, hasEmail) {
   const key = contactMethodKey(method);
   const guides = {
+    combined: {
+      key: "combined",
+      title: hasPhone && hasEmail ? "Luisa can follow up by email and mobile." : "Add both email and mobile details.",
+      text: "Documents can be sent by email, with quick confirmations handled by call, SMS, or Viber."
+    },
     call: {
       key: "call",
       title: hasPhone ? "Luisa will call this number first." : "Add a mobile number for a call request.",
@@ -645,6 +660,7 @@ function contactMethodGuide(method, hasPhone, hasEmail) {
 
 function contactMethodKey(value) {
   const method = String(value || "").toLowerCase();
+  if (method.includes("email and mobile")) return "combined";
   if (method.includes("viber")) return "viber";
   if (method.includes("email")) return "email";
   if (method.includes("sms") || method.includes("text")) return "sms";
@@ -655,7 +671,7 @@ function contactMethodKey(value) {
 function placeholderFor(field) {
   const placeholders = {
     fullName: "Your full name",
-    contactNumber: "09XX XXX XXXX",
+    contactNumber: "09XXXXXXXXX or +639XXXXXXXXX",
     email: "name@email.com",
     message: "Preferred unit, budget, schedule, or questions.",
     preferredDate: "Select preferred date",

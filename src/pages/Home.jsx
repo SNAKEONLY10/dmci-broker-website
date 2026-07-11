@@ -25,7 +25,7 @@ const validPrimaryBuyerGoals = new Set(primaryBuyerGoals.map((goal) => goal.valu
 
 const computationFields = [
   { name: "fullName", label: "Full Name" },
-  { name: "contactNumber", label: "Mobile / Viber", type: "tel" },
+  { name: "contactNumber", label: "Mobile / Viber", type: "tel", helper: "Example: 09XXXXXXXXX or +639XXXXXXXXX" },
   { name: "email", label: "Email Address", type: "email" },
   { name: "location", label: "City / Location", options: locations.map((item) => item.name), helper: "This narrows Interested Project to the selected city." },
   { name: "project", label: "Interested Project", options: projects.map((item) => item.name) },
@@ -41,7 +41,10 @@ const computationFields = [
       { value: "Rental", label: "For Rental Potential" }
     ]
   },
-  { name: "contactMethod", label: "Preferred Contact Method", options: ["Call", "Viber", "Email", "SMS"] },
+  { name: "nationality", label: "Nationality", options: ["Filipino", "Dual citizen", "Other"] },
+  { name: "contactMethod", label: "Preferred Contact Method", options: ["Email and Mobile", "Call", "Viber", "Email", "SMS"] },
+  { name: "bestTimeToContact", label: "Best Time to Contact", options: ["Anytime", "Morning", "Afternoon", "Evening"] },
+  { name: "leadSource", label: "How Did You Hear About Us?", options: ["Facebook", "Google", "TikTok", "Instagram", "Referral", "Website", "Viber", "Other"] },
   { name: "message", label: "Message", type: "textarea", full: true }
 ];
 
