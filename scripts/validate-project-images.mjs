@@ -2,6 +2,7 @@ import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { projects } from "../src/data/projects.js";
+import { getResponsiveImage } from "../src/utils/responsiveImages.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -33,6 +34,7 @@ const failures = [];
 const checkedPaths = new Set();
 let checkedAssets = 0;
 let checkedResponsiveVariants = 0;
+const checkedGeneratedVariants = new Set();
 
 for (const project of projects) {
   if (project.assetStatus === "complete") {
@@ -45,6 +47,7 @@ for (const project of projects) {
   for (const assetPath of collectAssetPaths(project)) {
     checkPublicPath(assetPath, project.name);
     checkResponsiveVariants(assetPath, project.name);
+    checkGeneratedCardVariants(assetPath, project.name);
   }
 }
 
@@ -56,6 +59,7 @@ if (failures.length) {
 
 console.log(`Image QA passed for ${projects.length} projects.`);
 console.log(`Checked ${checkedAssets} unique asset files and ${checkedResponsiveVariants} responsive WebP variants.`);
+console.log(`Verified ${checkedGeneratedVariants.size} runtime-generated card image URLs.`);
 
 function collectAssetPaths(value, paths = new Set()) {
   if (!value) return paths;
@@ -102,6 +106,22 @@ function checkResponsiveVariants(assetPath, context) {
     checkedResponsiveVariants += 1;
     if (!existsSync(diskPath)) {
       failures.push(`${context}: missing responsive variant ${variantPath}`);
+    }
+  }
+}
+
+function checkGeneratedCardVariants(assetPath, context) {
+  const responsive = getResponsiveImage(assetPath, "card");
+  if (!responsive?.srcSet) return;
+
+  for (const candidate of responsive.srcSet.split(",")) {
+    const variantPath = candidate.trim().split(/\s+/)[0];
+    if (!variantPath || checkedGeneratedVariants.has(variantPath)) continue;
+    checkedGeneratedVariants.add(variantPath);
+
+    const diskPath = path.join(publicDir, variantPath.replace(/^\//, ""));
+    if (!existsSync(diskPath)) {
+      failures.push(`${context}: card srcSet generates missing ${variantPath}`);
     }
   }
 }

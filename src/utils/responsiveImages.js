@@ -46,6 +46,7 @@ export function getResponsiveImage(src, variant = "card") {
 
   const [, slug, fileName] = match;
   if (!optimizedProjectSlugs.has(slug)) return null;
+  if (/^(logo|brochure)$/i.test(fileName) || /-\d+$/.test(fileName)) return null;
 
   const normalizedVariant = normalizeResponsiveVariant(fileName, variant);
   const widths = widthMap[normalizedVariant] || widthMap.gallery;
@@ -58,9 +59,13 @@ export function getResponsiveImage(src, variant = "card") {
 }
 
 function normalizeResponsiveVariant(fileName, variant) {
-  if (variant === "card") return "thumbnail";
-
   const normalizedFileName = fileName.toLowerCase();
+  if (variant === "card") {
+    if (normalizedFileName === "thumbnail") return "thumbnail";
+    if (normalizedFileName === "hero") return "hero";
+    return "gallery";
+  }
+
   if (variant === "hero" && normalizedFileName !== "hero") {
     return normalizedFileName === "thumbnail" ? "thumbnail" : "gallery";
   }
