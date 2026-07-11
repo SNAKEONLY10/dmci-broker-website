@@ -399,27 +399,20 @@ function withContextualOptions(field, values, projectCatalog) {
   }
 
   const matchingProjects = projectCatalog.filter((project) => normalizeLocation(project.location) === normalizeLocation(values.location));
-  const otherProjects = projectCatalog.filter((project) => normalizeLocation(project.location) !== normalizeLocation(values.location));
-  const optionGroups = [
-    { label: `${values.location} Projects`, options: matchingProjects.map((project) => project.name) },
-    {
-      label: "Other approved projects - change city first",
-      options: otherProjects.map((project) => ({
-        value: project.name,
-        label: `${project.name} - ${project.location}`,
-        disabled: true
-      }))
-    }
-  ].filter((group) => group.options.length);
   const projectCount = matchingProjects.length;
+  const matchingOptions = matchingProjects.map((project) => project.name);
+  const optionGroups = projectCount ? [{
+    label: `${values.location} projects (${projectCount})`,
+    options: matchingOptions
+  }] : undefined;
 
   return {
     ...field,
-    options: matchingProjects.length ? matchingProjects.map((project) => project.name) : field.options,
-    optionGroups: matchingProjects.length ? optionGroups : undefined,
+    options: matchingOptions,
+    optionGroups,
     placeholder: `Select ${values.location} project`,
-    helper: matchingProjects.length
-      ? `Showing ${projectCount} ${values.location} project${projectCount === 1 ? "" : "s"}. Change City / Location to update this shortlist.`
+    helper: projectCount
+      ? `${projectCount} project${projectCount === 1 ? "" : "s"} available in ${values.location}. Change City / Location to view another area.`
       : `No project is tagged under ${values.location} yet. You can still ask Luisa for nearby options.`
   };
 }
