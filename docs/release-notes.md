@@ -1,5 +1,18 @@
 # Release Notes
 
+## July 12, 2026 - Inclusive Buyer Form Polish
+
+- Replaced sample-number-heavy phone placeholders with a concise Phone Number field and overseas country-code guidance.
+- Grouped contact inquiries into buying, property services, existing buyer support, and other concerns.
+- Separated preferred project location from the buyer's optional current city/country.
+- Added inclusive nationality and buyer-profile choices for local, overseas, first-time, investor, and existing DMCI buyers.
+- Replaced vague budget tiers with clear PHP ranges and aligned payment/timeline wording across forms.
+- Added Philippine-time labels to contact windows for overseas buyers.
+- Added contextual guidance for Viber, email, leasing, rent-to-own, and official Customer Care concerns.
+- Enforced contact-channel matching in the browser and API: email needs an email address; Call, Viber, and SMS need a phone number.
+- Added current city/country to broker email summaries when the buyer provides it.
+- Removed mobile text truncation from form page introductions and added quiet section dividers for easier scanning.
+
 ## July 11, 2026 - Broker Inquiry Flow Alignment
 
 - Added optional nationality, best contact time, and lead source fields without expanding the minimum submission requirements.

@@ -14,7 +14,8 @@ const defaults = {
   budgetRange: "",
   purpose: "",
   contactMethod: "",
-  nationality: "Filipino",
+  nationality: "",
+  currentLocation: "",
   bestTimeToContact: "",
   leadSource: "",
   message: "",
@@ -48,7 +49,7 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
       ? `${selectedProject.name} is listed under ${selectedProject.location}.`
       : `${selectedProject.name} is connected to ${selectedProject.location}.`,
     text: projectLocationMismatch
-      ? `You selected ${values.location}. You can keep it for comparison, but Luisa will confirm the correct project location before preparing computation.`
+      ? `You selected ${values.location}. You can keep it for comparison, but Luisa will confirm the correct project location before preparing your request.`
       : "The city and project now match for a cleaner computation request."
   } : null;
 
@@ -210,11 +211,12 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
         </div>
         {displayFields.map((field) => (
           <Fragment key={field.name}>
+            {field.section && <h3 className="form-section-label full"><span>{field.section}</span></h3>}
             <Field field={field} value={values[field.name] || ""} onChange={update} error={errors[field.name]} required={requiredSet.has(field.name)} />
             {field.name === "project" && selectedProject && (
               <SelectedProjectPreview project={selectedProject} mismatch={projectLocationMismatch} />
             )}
-            {field.name === "project" && projectLocationFeedback && (
+            {field.name === "project" && projectLocationFeedback && projectLocationMismatch && (
               <ProjectLocationNotice
                 feedback={projectLocationFeedback}
                 mismatch={projectLocationMismatch}
@@ -222,9 +224,10 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
                 onClearProject={clearSelectedProject}
               />
             )}
-            {field.name === "contactMethod" && (
+            {field.name === "contactMethod" && values.contactMethod && (
               <ContactMethodGuide method={values.contactMethod} hasPhone={Boolean(values.contactNumber)} hasEmail={Boolean(values.email)} />
             )}
+            {field.name === "concernType" && values.concernType && <InquiryTypeGuide type={values.concernType} />}
           </Fragment>
         ))}
         <label className="consent full" htmlFor="field-consent">
@@ -237,12 +240,12 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
             aria-invalid={Boolean(errors.consent)}
             aria-describedby={errors.consent ? "field-consent-error" : undefined}
           />
-          <span>I agree to be contacted regarding my DMCI inquiry. Project details, pricing, promos, and availability are subject to confirmation.</span>
+          <span>I agree that Luisa may contact me about this inquiry. Prices, promos, terms, and availability will be confirmed before any reservation.</span>
         </label>
-        <p className="form-note full">Your inquiry details are used for DMCI Homes buyer assistance and contact follow-up. See the <a href="/privacy-policy">Privacy Policy</a>.</p>
+        <p className="form-note full">Your details are used only to respond to this inquiry. See the <a href="/privacy-policy">Privacy Policy</a>.</p>
         {errors.consent && <small id="field-consent-error" className="error full">{errors.consent}</small>}
       </div>
-      <p className="form-trust-note">Luisa reviews each inquiry before sharing project references, computations, or viewing guidance. Final pricing, promos, and availability are confirmed through authorized sales channels.</p>
+      <p className="form-trust-note">Luisa reviews each request personally and follows up through your selected contact method.</p>
       {notice && notice.type === "success" && submittedLead ? (
         <LeadSuccessPanel info={submittedLead} onSubmitAnother={submitAnotherInquiry} />
       ) : notice && (
@@ -320,18 +323,23 @@ function validateForm(values, required, fields = [], inquiryType = "") {
     nextErrors.contactNumber = "Provide a phone number or email address.";
     nextErrors.email = "Provide an email address or phone number.";
   }
-  if (String(values.contactMethod || "").toLowerCase().includes("email and mobile")) {
+  const contactKey = contactMethodKey(values.contactMethod);
+  if (contactKey === "combined") {
     if (!hasPhone) nextErrors.contactNumber = "Add a mobile number for Email and Mobile follow-up.";
     if (!hasEmail) nextErrors.email = "Add an email address for Email and Mobile follow-up.";
+  } else if (["call", "viber", "sms"].includes(contactKey) && !hasPhone) {
+    nextErrors.contactNumber = `Add a phone number for ${values.contactMethod} follow-up.`;
+  } else if (contactKey === "email" && !hasEmail) {
+    nextErrors.email = "Add an email address for email follow-up.";
   }
   if ((kind === "computation" || kind === "availability") && !hasProjectOrLocation) {
-    nextErrors.project = "Choose a project or city/location.";
-    nextErrors.location = "Choose a city/location or project.";
+    nextErrors.project = "Choose a project or project location.";
+    nextErrors.location = "Choose a project location or project.";
   }
   if (kind === "viewing") {
     if (!hasProjectOrLocation) {
-      nextErrors.project = "Choose a project or city/location for the viewing request.";
-      nextErrors.location = "Choose a city/location or project for the viewing request.";
+      nextErrors.project = "Choose a project or project location for the viewing request.";
+      nextErrors.location = "Choose a project location or project for the viewing request.";
     }
     if (!String(values.preferredDate || "").trim()) {
       nextErrors.preferredDate = "Choose a preferred viewing date.";
@@ -394,7 +402,7 @@ function withContextualOptions(field, values, projectCatalog) {
   if (!values.location) {
     return {
       ...field,
-      helper: field.helper || "Choose a City / Location first to narrow this list, or open it now to view all approved projects."
+      helper: field.helper || "Choose a Project Location first to narrow this list, or open it now to view all approved projects."
     };
   }
 
@@ -412,7 +420,7 @@ function withContextualOptions(field, values, projectCatalog) {
     optionGroups,
     placeholder: `Select ${values.location} project`,
     helper: projectCount
-      ? `${projectCount} project${projectCount === 1 ? "" : "s"} available in ${values.location}. Change City / Location to view another area.`
+      ? `${projectCount} project${projectCount === 1 ? "" : "s"} available in ${values.location}. Change Project Location to view another area.`
       : `No project is tagged under ${values.location} yet. You can still ask Luisa for nearby options.`
   };
 }
@@ -443,6 +451,8 @@ function buildLeadPayload(values, inquiryType, fieldNames) {
     contactMethod: values.contactMethod,
     preferredContactMethod: values.contactMethod,
     nationality: values.nationality,
+    currentLocation: values.currentLocation,
+    buyerLocation: values.currentLocation,
     bestTimeToContact: values.bestTimeToContact,
     leadSource: values.leadSource,
     project: values.project,
@@ -492,6 +502,8 @@ function Field({ field, value, onChange, error, required }) {
     value,
     onChange,
     placeholder: field.placeholder || placeholderFor(field),
+    autoComplete: field.autoComplete,
+    inputMode: field.inputMode,
     required,
     "aria-invalid": Boolean(error),
     "aria-describedby": describedBy
@@ -614,6 +626,27 @@ function ContactMethodGuide({ method, hasPhone, hasEmail }) {
   );
 }
 
+function InquiryTypeGuide({ type }) {
+  const normalized = String(type || "").toLowerCase();
+  if (normalized.includes("customer care") || normalized.includes("existing buyer")) {
+    return (
+      <div className="inquiry-type-guide full" role="status">
+        <strong>Existing account support</strong>
+        <p>Luisa can help identify the next step. Account, billing, turnover, warranty, and after-sales requests may need official DMCI Homes Customer Care confirmation.</p>
+      </div>
+    );
+  }
+  if (normalized.includes("leasing") || normalized.includes("rent to own")) {
+    return (
+      <div className="inquiry-type-guide full" role="status">
+        <strong>Leasing or rent-to-own guidance</strong>
+        <p>Luisa can discuss suitable options; current program eligibility and leasing terms will be confirmed through the appropriate DMCI Homes channel.</p>
+      </div>
+    );
+  }
+  return null;
+}
+
 function contactMethodGuide(method, hasPhone, hasEmail) {
   const key = contactMethodKey(method);
   const guides = {
@@ -630,7 +663,7 @@ function contactMethodGuide(method, hasPhone, hasEmail) {
     viber: {
       key: "viber",
       title: hasPhone ? "Luisa will message this number on Viber first." : "Add a mobile number for Viber.",
-      text: "Use the same Mobile / Viber field above. No separate Viber link is required."
+      text: "Enter the mobile number linked to Viber in the Phone Number field above."
     },
     email: {
       key: "email",
@@ -663,10 +696,12 @@ function contactMethodKey(value) {
 
 function placeholderFor(field) {
   const placeholders = {
-    fullName: "Your full name",
-    contactNumber: "09XXXXXXXXX or +639XXXXXXXXX",
-    email: "name@email.com",
-    message: "Preferred unit, budget, schedule, or questions.",
+    fullName: "First and last name",
+    contactNumber: "Mobile or landline number",
+    email: "you@example.com",
+    currentLocation: "City and country",
+    nationality: "Select nationality",
+    message: "Share the details Luisa should consider.",
     preferredDate: "Select preferred date",
     preferredTime: "Select preferred time",
     guests: "Number of guests"

@@ -152,6 +152,7 @@ function normalizeLead(payload) {
     email: clean(payload.email, 160),
     preferredContactMethod: clean(payload.preferredContactMethod || payload.contactMethod, 80),
     nationality: clean(payload.nationality, 80),
+    buyerLocation: clean(payload.buyerLocation || payload.currentLocation, 160),
     bestTimeToContact: clean(payload.bestTimeToContact || payload.bestContactTime, 80),
     leadSource: clean(payload.leadSource || payload.howDidYouHear, 120),
     projectInterestedIn: clean(payload.projectInterestedIn || payload.project, 160),
@@ -179,19 +180,24 @@ function normalizeLead(payload) {
     errors.contactNumber = "Provide a phone number or email address.";
     errors.email = "Provide an email address or phone number.";
   }
-  if (lead.preferredContactMethod.toLowerCase().includes("email and mobile")) {
+  const contactMethod = lead.preferredContactMethod.toLowerCase();
+  if (contactMethod.includes("email and mobile")) {
     if (!lead.phone) errors.contactNumber = "Add a mobile number for Email and Mobile follow-up.";
     if (!lead.email) errors.email = "Add an email address for Email and Mobile follow-up.";
+  } else if ((contactMethod.includes("call") || contactMethod.includes("viber") || contactMethod.includes("sms") || contactMethod.includes("text")) && !lead.phone) {
+    errors.contactNumber = `Add a phone number for ${lead.preferredContactMethod} follow-up.`;
+  } else if (contactMethod.includes("email") && !lead.email) {
+    errors.email = "Add an email address for email follow-up.";
   }
   const kind = inquiryKind(lead.inquiryType);
   if ((kind === "computation" || kind === "availability") && !lead.projectInterestedIn && !lead.cityLocation) {
-    errors.project = "Choose a project or city/location.";
-    errors.location = "Choose a city/location or project.";
+    errors.project = "Choose a project or project location.";
+    errors.location = "Choose a project location or project.";
   }
   if (kind === "viewing") {
     if (!lead.projectInterestedIn && !lead.cityLocation) {
-      errors.project = "Choose a project or city/location for the viewing request.";
-      errors.location = "Choose a city/location or project for the viewing request.";
+      errors.project = "Choose a project or project location for the viewing request.";
+      errors.location = "Choose a project location or project for the viewing request.";
     }
     if (!clean(lead.rawFields?.preferredDate, 80)) {
       errors.preferredDate = "Choose a preferred viewing date.";
@@ -318,6 +324,7 @@ function formatLeadText(lead) {
     `Preferred contact method: ${lead.preferredContactMethod || "Not provided"}`,
     `Best time to contact: ${lead.bestTimeToContact || "Not provided"}`,
     `Nationality: ${lead.nationality || "Not provided"}`,
+    `Current city/country: ${lead.buyerLocation || "Not provided"}`,
     `Lead source: ${lead.leadSource || "Not provided"}`,
     `Source page: ${lead.sourcePage || lead.sourceUrl || "Not provided"}`,
     "",
@@ -825,6 +832,7 @@ function buildRequestRows(lead) {
   const type = inquiryKind(lead.inquiryType);
   const profileRows = [
     ["Nationality", lead.nationality || raw.nationality],
+    ["Current city/country", lead.buyerLocation || raw.currentLocation],
     ["Best time to contact", lead.bestTimeToContact || raw.bestTimeToContact],
     ["Lead source", lead.leadSource || raw.leadSource]
   ];
@@ -874,6 +882,7 @@ function buildRequestRows(lead) {
     "project",
     "contactMethod",
     "nationality",
+    "currentLocation",
     "bestTimeToContact",
     "leadSource",
     "message",
@@ -915,6 +924,7 @@ function labelForRawField(key) {
     buyerType: "Buyer type",
     concernType: "Inquiry type",
     nationality: "Nationality",
+    currentLocation: "Current city/country",
     bestTimeToContact: "Best time to contact",
     leadSource: "Lead source",
     unitType: "Unit type"

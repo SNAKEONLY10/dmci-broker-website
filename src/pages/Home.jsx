@@ -22,15 +22,16 @@ const primaryBuyerGoals = [
   { value: "Investment", label: "Investment", description: "For rental, resale, or portfolio planning" }
 ];
 const validPrimaryBuyerGoals = new Set(primaryBuyerGoals.map((goal) => goal.value));
+const homeContactTimes = ["Anytime", "Morning (Philippine time)", "Afternoon (Philippine time)", "Evening (Philippine time)"];
 
 const computationFields = [
-  { name: "fullName", label: "Full Name" },
-  { name: "contactNumber", label: "Mobile / Viber", type: "tel", helper: "Example: 09XXXXXXXXX or +639XXXXXXXXX" },
-  { name: "email", label: "Email Address", type: "email" },
-  { name: "location", label: "City / Location", options: locations.map((item) => item.name), helper: "This narrows Interested Project to the selected city." },
-  { name: "project", label: "Interested Project", options: projects.map((item) => item.name) },
+  { name: "fullName", label: "Full Name", section: "Your Details", autoComplete: "name" },
+  { name: "contactNumber", label: "Phone Number", type: "tel", autoComplete: "tel", inputMode: "tel", helper: "Use the number where Luisa can reach you. Include the country code if you are overseas." },
+  { name: "email", label: "Email Address", type: "email", autoComplete: "email" },
+  { name: "location", label: "Project Location", section: "Property Preferences", options: locations.map((item) => item.name), helper: "Select an area to see its approved projects." },
+  { name: "project", label: "Project Interested In", options: projects.map((item) => item.name) },
   { name: "unitType", label: "Unit Type", options: unitTypes },
-  { name: "budgetRange", label: "Budget Range", options: ["Still exploring", "Under PHP 6M", "PHP 6M - 10M", "PHP 10M - 15M", "PHP 15M and above"] },
+  { name: "budgetRange", label: "Budget Range", options: ["Still exploring", "Below PHP 6M", "PHP 6M - 10M", "PHP 10M - 15M", "PHP 15M and above"] },
   {
     name: "purpose",
     label: "Buyer Goal",
@@ -41,11 +42,11 @@ const computationFields = [
       { value: "Rental", label: "For Rental Potential" }
     ]
   },
-  { name: "nationality", label: "Nationality", options: ["Filipino", "Dual citizen", "Other"] },
-  { name: "contactMethod", label: "Preferred Contact Method", options: ["Email and Mobile", "Call", "Viber", "Email", "SMS"] },
-  { name: "bestTimeToContact", label: "Best Time to Contact", options: ["Anytime", "Morning", "Afternoon", "Evening"] },
-  { name: "leadSource", label: "How Did You Hear About Us?", options: ["Facebook", "Google", "TikTok", "Instagram", "Referral", "Website", "Viber", "Other"] },
-  { name: "message", label: "Message", type: "textarea", full: true }
+  { name: "nationality", label: "Nationality", options: ["Filipino", "Dual citizen", "Foreign national", "Prefer not to say"] },
+  { name: "contactMethod", label: "Preferred Contact Method", section: "Contact Preference", options: ["Email and Mobile", "Call", "Viber", "Email", "SMS"], placeholder: "Choose a contact method" },
+  { name: "bestTimeToContact", label: "Best Time to Contact", options: homeContactTimes, placeholder: "Choose a contact time" },
+  { name: "leadSource", label: "How Did You Find This Website?", options: ["Facebook", "Google", "TikTok", "Instagram", "Referral", "Website", "Viber", "Other"], placeholder: "Choose a source" },
+  { name: "message", label: "Additional Details", section: "Message", type: "textarea", full: true, placeholder: "Share your preferred payment term or anything Luisa should consider." }
 ];
 
 export default function Home() {
@@ -193,7 +194,7 @@ export default function Home() {
             fields={computationFields}
             storageKey="dmci_leads"
             submitLabel="Send Computation Request"
-            required={["fullName", "contactNumber", "email", "location", "project", "unitType", "budgetRange", "purpose", "contactMethod", "message"]}
+            required={["fullName", "contactMethod"]}
             inquiryType="Request Computation"
             projectCatalog={projects}
           />

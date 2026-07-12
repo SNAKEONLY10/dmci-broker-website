@@ -2,8 +2,11 @@
 
 ## Lead Field Coverage
 
-- Verify optional Nationality, Best Time to Contact, and How Did You Hear About Us fields on buyer forms.
-- Verify Email and Mobile requires both contact details; other methods accept either phone or email.
+- Verify optional Nationality, Current City / Country, Best Time to Contact, and How Did You Find This Website fields where applicable.
+- Verify Email and Mobile requires both contact details; Email requires email; Call, Viber, and SMS require a phone number.
+- Verify the phone placeholder stays concise and overseas buyers are told to include their country code.
+- Verify Philippine-time contact windows are clear to overseas buyers.
+- Verify Existing Buyer / Customer Care guidance directs account, billing, turnover, warranty, and after-sales matters to official confirmation where needed.
 - Verify resale cards open Contact with the project and Resale Inquiry preselected.
 - Confirm broker emails show request-specific details plus any optional buyer context provided.
 
@@ -68,6 +71,7 @@ Run these on `/request-computation`, `/availability`, `/book-viewing`, and `/con
 - Submit with email only.
 - Submit with both phone and email.
 - Submit selected project and matching city.
+- Confirm Project Location is not confused with the buyer's optional Current City / Country.
 - Change city after selecting a project and confirm the project resets or warns clearly.
 - Book Viewing requires preferred date and time.
 - Submit twice quickly and confirm double submission is blocked while sending.
