@@ -241,7 +241,17 @@ export function resolveSeo(pathname = "/", search = "") {
     if (city) return finalizeMeta({ ...city, canonicalPath: city.path });
   }
 
-  return finalizeMeta({ path: normalizedPath, ...(pageMeta[normalizedPath] || pageMeta["/"]) });
+  const page = pageMeta[normalizedPath];
+  if (page) return finalizeMeta({ path: normalizedPath, ...page });
+
+  return finalizeMeta({
+    path: normalizedPath,
+    h1: "Page not found",
+    title: "Page Not Found | My DMCI Broker",
+    description: "The requested page could not be found. Browse the current DMCI project directory or contact Luisa Corral for buyer assistance.",
+    cta: "/projects",
+    robots: "noindex,follow"
+  });
 }
 
 function finalizeMeta(meta) {

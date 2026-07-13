@@ -22,6 +22,20 @@ Open each route directly, refresh, and click the main CTA:
 - `/projects/one-delta-terraces`
 - `/projects/the-erin-heights`
 - `/projects/cameron-residences`
+- `/projects/the-valeron-tower`
+- `/projects/allegra-garden-place`
+- `/projects/prisma-residences`
+- `/projects/sage-residences`
+- `/projects/kai-garden-residences`
+- `/projects/mulberry-place`
+- `/projects/alder-residences`
+- `/projects/the-aston-place`
+- `/projects/the-camden-place`
+- `/projects/the-atherton`
+- `/projects/calathea-place`
+- `/projects/sonora-garden-residences`
+- `/projects/moncello-crest`
+- `/projects/solmera-coast`
 - `/locations`
 - `/locations/quezon-city`
 - `/availability`
@@ -36,6 +50,7 @@ Open each route directly, refresh, and click the main CTA:
 - `/contact`
 - `/privacy-policy`
 - `/disclaimer`
+- An intentionally unknown URL, which must return the custom 404 page and `noindex,follow` metadata
 
 `/showcase` must remain noindex and must not be linked from public navigation.
 

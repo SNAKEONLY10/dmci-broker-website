@@ -5,12 +5,13 @@
 
 This checklist is for the personal DMCI broker / buyer-assistance website for Maria Luisa Corral. It is not an official DMCI corporate website. Pricing, promos, availability, turnover dates, payment terms, and unit details must remain subject to final confirmation.
 
-Last hardening update: July 10, 2026.
+Last hardening update: July 13, 2026.
 
 ## Current Production-Ready Foundation
 
 - Approved 18-project directory is preserved.
 - Static routes, SEO fallbacks, sitemap, robots, and route inventory are covered by QA commands.
+- Unknown URLs use a generated `404.html` with noindex metadata instead of a soft homepage fallback.
 - Project images are validated by the image QA script.
 - Internal links are validated by the internal link QA script.
 - External links are categorized by the external-link audit.
@@ -24,6 +25,7 @@ Last hardening update: July 10, 2026.
 
 ```bash
 npm run build
+npm run qa:api
 npm run qa:routes
 npm run qa:images
 npm run qa:links
@@ -36,6 +38,15 @@ Full local gate:
 ```bash
 npm run qa:production
 ```
+
+Optional live checks before a launch or major content update:
+
+```bash
+npm run qa:external-links:live
+npm run email:preview
+```
+
+The live-link command checks current HTTPS reachability and may be affected by third-party rate limits. The email preview is written to `dist/email-preview.html` for desktop/mobile visual inspection.
 
 Optional runtime smoke check after a local preview or production deploy:
 

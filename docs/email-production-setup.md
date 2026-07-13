@@ -92,7 +92,7 @@ If Resend is configured but rejects the email, the API returns:
 ```json
 {
   "ok": false,
-  "code": "lead_saved_email_failed"
+  "code": "lead_delivery_failed"
 }
 ```
 
@@ -125,6 +125,17 @@ Reply-to behavior:
 - If the buyer provides an email, Resend uses the buyer email as `reply_to`.
 - If the buyer does not provide an email, Resend falls back to `LEAD_EMAIL_REPLY_TO`.
 - The buyer email is never used as `from`.
+
+## Visual Email Preview
+
+Generate a safe sample of the real broker email without contacting Resend:
+
+```bash
+npm run build
+npm run email:preview
+```
+
+Open `dist/email-preview.html` and inspect it at desktop and mobile widths. The preview uses sample buyer details and a mocked delivery response; it does not send an email.
 
 ## Vercel Dashboard Setup
 

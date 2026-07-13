@@ -86,7 +86,7 @@ export default async function handler(req, res) {
       missingEnv: missingEmailEnv,
       message: missingEmailEnv.length
         ? `Lead delivery is not configured yet. Missing server env vars: ${missingEmailEnv.join(", ")}.`
-        : "Lead delivery is not configured yet. The site can save this inquiry locally for preview testing."
+        : "Lead delivery is not configured yet. No email or webhook provider is available."
     });
     return;
   }
@@ -103,12 +103,12 @@ export default async function handler(req, res) {
     };
     res.status(200).json({
       ok: false,
-      code: "lead_saved_email_failed",
+      code: "lead_delivery_failed",
       deliveryError: {
         code: primaryFailure.code,
         message: primaryFailure.message
       },
-      message: `Your inquiry was saved in this browser, but ${primaryFailure.message}`
+      message: primaryFailure.message
     });
     return;
   }

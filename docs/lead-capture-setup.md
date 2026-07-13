@@ -192,12 +192,12 @@ Expected delivery failure when Resend rejects the request:
 ```json
 {
   "ok": false,
-  "code": "lead_saved_email_failed",
+  "code": "lead_delivery_failed",
   "deliveryError": {
     "code": "resend_domain_not_verified",
     "message": "Email delivery failed: sender domain is not verified."
   },
-  "message": "Your inquiry was saved in this browser, but Email delivery failed: sender domain is not verified."
+  "message": "Email delivery failed: sender domain is not verified."
 }
 ```
 

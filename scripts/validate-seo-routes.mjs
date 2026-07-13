@@ -13,6 +13,7 @@ let robots = "";
 
 await assertFile(path.join(distDir, "sitemap.xml"), "Missing dist/sitemap.xml");
 await assertFile(path.join(distDir, "robots.txt"), "Missing dist/robots.txt");
+await assertFile(path.join(distDir, "404.html"), "Missing dist/404.html");
 assert(projects.length === 18, `Project directory should contain exactly 18 approved projects; found ${projects.length}`);
 
 try {
@@ -48,6 +49,17 @@ if (robots) {
   assert(/Allow:\s*\//i.test(robots), "robots.txt should allow public crawling");
   assert(/Sitemap:\s*https:\/\/dmci-broker-website\.vercel\.app\/sitemap\.xml/i.test(robots), "robots.txt missing sitemap URL");
   assert(!/Disallow:\s*\//i.test(robots), "robots.txt should not disallow the whole site");
+}
+
+try {
+  const notFoundHtml = await readFile(path.join(distDir, "404.html"), "utf8");
+  const notFoundSeo = resolveSeo("/404");
+  assert(notFoundSeo.robots === "noindex,follow", "404 metadata should be noindex,follow");
+  assert(notFoundHtml.includes(`<title>${escapeHtml(notFoundSeo.title)}</title>`), "404 title mismatch/missing");
+  assert(/<meta\s+name="robots"\s+content="noindex,follow"/i.test(notFoundHtml), "404 page should include noindex,follow");
+  assert((notFoundHtml.match(/<h1\b/gi) || []).length === 1, "404 page should have exactly one crawlable h1");
+} catch {
+  // File presence errors are already collected above.
 }
 
 await assertRedirectConfig();
@@ -115,6 +127,8 @@ async function assertRedirectConfig() {
     const match = redirects.find((item) => item.source === redirect.path && item.destination === redirect.destination);
     assert(Boolean(match), `vercel.json missing redirect ${redirect.path} -> ${redirect.destination}`);
   }
+  const catchAllRewrite = (config.rewrites || []).find((item) => item.destination === "/index.html");
+  assert(!catchAllRewrite, "vercel.json should not rewrite unknown routes to index.html; generated routes and 404.html handle static routing");
 }
 
 function assert(condition, message) {

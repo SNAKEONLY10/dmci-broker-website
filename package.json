@@ -13,7 +13,12 @@
     "qa:images": "node scripts/validate-project-images.mjs",
     "qa:links": "node scripts/validate-internal-links.mjs",
     "qa:external-links": "node scripts/audit-external-links.mjs",
-    "qa:production": "npm run build && npm run qa:routes && npm run qa:images && npm run qa:links && npm run qa:external-links && npm run inventory:routes",
+    "qa:external-links:live": "node scripts/check-external-links-live.mjs",
+    "qa:api": "node scripts/test-leads-api.mjs",
+    "qa:production": "npm run build && npm run qa:api && npm run qa:routes && npm run qa:images && npm run qa:links && npm run qa:external-links && npm run inventory:routes",
+    "email:preview": "node scripts/render-lead-email-preview.mjs",
+    "email:qa:check": "node scripts/send-form-qa-emails.mjs check",
+    "email:qa:send": "node scripts/send-form-qa-emails.mjs send",
     "smoke:runtime": "node scripts/smoke-runtime.mjs",
     "preview": "vite preview"
   },

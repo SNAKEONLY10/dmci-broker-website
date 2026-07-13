@@ -104,9 +104,9 @@ export default function ProjectDetail() {
 
       <section className="section project-detail-main">
         <div className="container project-detail-layout">
-          <main className="detail-sections">
+          <div className="detail-sections">
             {isRichProject ? <RichProjectSections project={project} /> : <StandardProjectSections project={project} />}
-          </main>
+          </div>
 
           <LatestDetailsCard project={project} />
         </div>

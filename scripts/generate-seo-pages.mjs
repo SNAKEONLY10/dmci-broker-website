@@ -21,6 +21,14 @@ for (const route of routes) {
   await writeFile(outFile, html);
 }
 
+const notFoundRoute = {
+  path: "/404",
+  h1: "Page not found",
+  title: "Page Not Found | My DMCI Broker",
+  description: "The requested page could not be found. Browse the current DMCI project directory or contact Luisa Corral for buyer assistance."
+};
+await writeFile(path.join(distDir, "404.html"), renderRouteHtml(template, notFoundRoute));
+
 await writeFile(path.join(distDir, "sitemap.xml"), renderSitemap(routes));
 await writeFile(path.join(distDir, "robots.txt"), renderRobots());
 

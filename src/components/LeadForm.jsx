@@ -119,6 +119,7 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
     setSubmittedLead(null);
     if (Object.keys(nextErrors).length) {
       setNotice({ type: "error", text: "Please review the highlighted fields before sending." });
+      focusFirstError(nextErrors);
       return;
     }
 
@@ -127,7 +128,6 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
     const endpoint = isComputationRequest ? "/api/request-computation" : "/api/leads";
     setStatus("submitting");
     setNotice(null);
-    saveSubmission(storageKey, payload);
 
     try {
       const response = await fetch(endpoint, {
@@ -158,7 +158,7 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
       const missingLocalApi = canUseLocalPreview() && !data && (response.status === 404 || contentType.includes("text/html"));
       if (deliveryNotConfigured || missingLocalApi) {
         if (canUseLocalPreview()) {
-          setNotice({ type: "warning", text: previewMessage });
+          setNotice({ type: "warning", text: savePreviewSubmission(storageKey, payload) ? previewMessage : "Preview mode: email/CRM delivery is not connected, and this browser could not save the test inquiry." });
           return;
         }
 
@@ -172,6 +172,7 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
       if (data?.errors) {
         setErrors(data.errors);
         setNotice({ type: "error", text: data?.message || data?.error || "Please review the highlighted fields before sending." });
+        focusFirstError(data.errors);
         return;
       }
       setNotice({ type: "error", text: data?.message || data?.error || sendErrorMessage });
@@ -180,7 +181,7 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
         console.error("Lead form submission failed", error);
       }
       if (canUseLocalPreview()) {
-        setNotice({ type: "warning", text: previewMessage });
+        setNotice({ type: "warning", text: savePreviewSubmission(storageKey, payload) ? previewMessage : "Preview mode: the local API is unavailable, and this browser could not save the test inquiry." });
         return;
       }
       setNotice({ type: "error", text: sendErrorMessage });
@@ -713,4 +714,28 @@ function canUseLocalPreview() {
   if (import.meta.env.DEV) return true;
   if (typeof window === "undefined") return false;
   return ["localhost", "127.0.0.1", "::1"].includes(window.location.hostname);
+}
+
+function savePreviewSubmission(storageKey, payload) {
+  try {
+    saveSubmission(storageKey, payload);
+    return true;
+  } catch (error) {
+    if (import.meta.env.DEV) {
+      console.error("Preview inquiry could not be saved locally", error);
+    }
+    return false;
+  }
+}
+
+function focusFirstError(errors) {
+  if (typeof window === "undefined") return;
+  const firstField = Object.keys(errors || {})[0];
+  if (!firstField) return;
+
+  window.requestAnimationFrame(() => {
+    const field = document.getElementById(`field-${firstField}`);
+    field?.focus({ preventScroll: true });
+    field?.scrollIntoView({ block: "center", behavior: "smooth" });
+  });
 }
