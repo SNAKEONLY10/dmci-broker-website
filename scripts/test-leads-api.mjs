@@ -81,9 +81,18 @@ try {
   const outboundEmail = JSON.parse(emailRequest.options.body);
   assert.equal(outboundEmail.reply_to, "buyer@example.com");
   assert.match(outboundEmail.subject, /The Oriana/);
+  assert.match(outboundEmail.subject, /^Sales inquiry · The Oriana · /);
+  assert.ok(outboundEmail.subject.length <= 92, "Inbox subject should remain compact.");
   assert.match(outboundEmail.text, /<Buyer & Co>/);
   assert.match(outboundEmail.html, /&lt;Buyer &amp; Co&gt;/);
   assert.doesNotMatch(outboundEmail.html, /<Buyer & Co>/);
+  assert.match(outboundEmail.html, /background-color:#F3F4F6/);
+  assert.match(outboundEmail.html, /Recommended follow-up/);
+  assert.match(outboundEmail.html, /View inquiry/);
+  assert.doesNotMatch(outboundEmail.html, /#0D1B2A|Georgia|New buyer inquiry|Open Source Page/);
+  const preheader = outboundEmail.html.match(/<div style="display:none[^>]*>([\s\S]*?)<\/div>/)?.[1] || "";
+  assert.match(preheader, /The Oriana/);
+  assert.doesNotMatch(preheader, /Ref:|Reference:/i);
 
   globalThis.fetch = async () => ({
     ok: false,

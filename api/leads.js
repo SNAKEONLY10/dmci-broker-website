@@ -3,7 +3,7 @@ import { randomUUID } from "node:crypto";
 const messageLimit = 1500;
 const maxPayloadBytes = 24 * 1024;
 const allowedMethods = "POST, OPTIONS";
-const defaultTestSender = "DMCI Leads <onboarding@resend.dev>";
+const defaultTestSender = "Maria Luisa Leads <onboarding@resend.dev>";
 const personalSenderDomains = new Set([
   "gmail.com",
   "googlemail.com",
@@ -267,7 +267,7 @@ async function sendEmail(lead, config) {
       from: config.from,
       to: splitRecipients(config.to),
       reply_to: lead.email || config.replyTo || undefined,
-      subject: `${config.subjectPrefix}: ${titleCase(lead.inquiryType || "Inquiry")}${lead.projectInterestedIn ? ` - ${lead.projectInterestedIn}` : ""}`,
+      subject: formatEmailSubject(lead, config.subjectPrefix),
       text: formatLeadText(lead),
       html: formatLeadHtml(lead)
     })
@@ -300,58 +300,62 @@ async function sendWebhook(lead) {
   }
 }
 
+function formatEmailSubject(lead, subjectPrefix = "") {
+  const label = shortInquiryLabel(lead.inquiryType);
+  const project = lead.projectInterestedIn || "DMCI Homes";
+  const buyer = lead.name || "New buyer";
+  const configuredPrefix = String(subjectPrefix || "").trim();
+  const prefix = /^(dmci broker lead|dmci leads|new lead)$/i.test(configuredPrefix) ? "" : configuredPrefix;
+  const subject = [prefix, label, project, buyer].filter(Boolean).join(" · ");
+  return subject.length > 92 ? `${subject.slice(0, 89).trimEnd()}…` : subject;
+}
+
+function shortInquiryLabel(value) {
+  const type = inquiryKind(value);
+  if (type === "viewing") return "Viewing request";
+  if (type === "availability") return "Availability check";
+  if (type === "computation") return "Computation request";
+  return "Sales inquiry";
+}
+
 function formatLeadText(lead) {
   const followUp = contactMethodPlan(lead);
   const requestRows = buildRequestRows(lead);
   const nextStep = nextStepPlan(lead);
   const quickActions = [
-    lead.phone ? `Call lead: ${telHref(lead.phone)}` : "",
-    lead.email ? `Reply by email: mailto:${lead.email}` : "",
-    safeUrl(lead.sourceUrl) ? `Open source page: ${lead.sourceUrl}` : ""
+    lead.email ? `Email: mailto:${lead.email}` : "",
+    lead.phone ? `Call: ${telHref(lead.phone)}` : "",
+    safeUrl(lead.sourceUrl) ? `Inquiry page: ${lead.sourceUrl}` : ""
   ].filter(Boolean);
 
   return [
-    "New DMCI broker inquiry",
-    "Lead submitted from Maria Luisa Corral's DMCI broker website",
+    `${shortInquiryLabel(lead.inquiryType)} · ${lead.projectInterestedIn || "Project not selected"}`,
     "",
-    `Reference ID: ${lead.referenceId}`,
-    `Submitted at: ${lead.submittedAt}`,
-    "",
-    "Inquiry snapshot",
-    `Inquiry type: ${titleCase(lead.inquiryType || "General Inquiry")}`,
-    `Interested project: ${lead.projectInterestedIn || "Not provided"}`,
-    `City/location: ${lead.cityLocation || "Not provided"}`,
-    `Preferred contact method: ${lead.preferredContactMethod || "Not provided"}`,
-    `Best time to contact: ${lead.bestTimeToContact || "Not provided"}`,
-    `Nationality: ${lead.nationality || "Not provided"}`,
-    `Current city/country: ${lead.buyerLocation || "Not provided"}`,
-    `Lead source: ${lead.leadSource || "Not provided"}`,
-    `Source page: ${lead.sourcePage || lead.sourceUrl || "Not provided"}`,
-    "",
-    "Recommended follow-up",
-    `${followUp.label}: ${followUp.text}`,
-    followUp.note ? `Note: ${followUp.note}` : "",
-    `Before replying: ${nextStep.text}`,
-    "",
-    ...(requestRows.length ? [
-      "Request details",
-      ...requestRows.map(([label, value]) => `${label}: ${value}`),
-      ""
-    ] : []),
-    "Lead information",
-    `Name: ${lead.name}`,
+    `Buyer: ${lead.name}`,
     `Phone / Viber: ${lead.phone || "Not provided"}`,
     `Email: ${lead.email || "Not provided"}`,
-    `Message: ${lead.message || "No message provided."}`,
+    `Preferred contact: ${lead.preferredContactMethod || "Not provided"}`,
+    `Message: ${lead.message || "No buyer message provided."}`,
     "",
-    "Consent and compliance",
+    "Follow-up",
+    `${followUp.title}: ${followUp.text}`,
+    `Verify first: ${nextStep.text}`,
+    ...(requestRows.length ? [
+      "",
+      "Request details",
+      ...requestRows.map(([label, value]) => `${label}: ${value}`),
+    ] : []),
+    "",
+    "Record",
+    `Submitted: ${formatDateTime(lead.submittedAt)}`,
+    `Reference: ${lead.referenceId}`,
+    `Source: ${lead.sourcePage || lead.sourceUrl || "Not provided"}`,
     `Consent checked: ${lead.consent ? "Yes" : "No"}`,
     "Project details, pricing, availability, promos, and terms are subject to confirmation.",
     "",
-    "Quick actions",
+    "Actions",
     ...(quickActions.length ? quickActions : ["No quick action links available."]),
     "",
-    "Broker footer",
     "Maria Luisa Corral",
     "mrcorral@dmcihomes.com",
     "Mobile/Viber: 0998 865 8902",
@@ -367,12 +371,13 @@ function formatLeadHtml(lead) {
   const nextStep = nextStepPlan(lead);
   const logoUrl = `${publicSiteUrl}/assets/img/dmci-broker-mark.png`;
   const requestRows = buildRequestRows(lead);
-  const requestTypeLabel = titleCase(lead.inquiryType || "General Inquiry");
+  const requestTypeLabel = shortInquiryLabel(lead.inquiryType);
   const projectVisual = projectHeaderVisual(lead);
   const actions = buildActionButtons(lead, followUp, sourceUrl);
+  const preheader = `${lead.projectInterestedIn || "DMCI Homes"} · ${lead.name || "New buyer"} · ${followUp.label}`;
   const requestDetailsSection = requestRows.length ? `
                 <tr>
-                  <td class="mp" style="padding:24px 40px 0 40px;">
+                  <td class="mp" style="padding:20px 30px 0 30px;">
                     ${requestDetailsCard(requestRows, requestTypeLabel)}
                   </td>
                 </tr>
@@ -385,121 +390,121 @@ function formatLeadHtml(lead) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>New DMCI broker inquiry</title>
+        <title>${escapeHtml(formatEmailSubject(lead))}</title>
         <style type="text/css">
-          @media only screen and (max-width: 760px) {
+          body, table, td, a { -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
+          table, td { mso-table-lspace:0pt; mso-table-rspace:0pt; }
+          img { -ms-interpolation-mode:bicubic; }
+          @media only screen and (max-width: 640px) {
             .email-body { width: 100% !important; min-width: 0 !important; }
-            .mp { padding-left: 22px !important; padding-right: 22px !important; }
+            .outer-pad { padding:0 !important; }
+            .email-body { border-radius:0 !important; border-left:0 !important; border-right:0 !important; }
+            .mp { padding-left:20px !important; padding-right:20px !important; }
             .mc { text-align: center !important; }
             .sg-cell { display: block !important; width: 100% !important; border-right: none !important; }
-            .sg-cell-bottom { border-top: 1px solid #CBD6E2 !important; }
-            .contact-row { display: block !important; width: 100% !important; padding-bottom: 12px !important; }
-            .dl { width: 40% !important; }
-            .dv { width: 60% !important; }
-            .hero-copy, .hero-art { display: block !important; width: 100% !important; }
-            .hero-art { padding-left: 0 !important; padding-top: 18px !important; }
-            .project-visual-card { width: 100% !important; max-width: 100% !important; }
-            .project-visual-img { width: 100% !important; max-width: 100% !important; height: auto !important; }
+            .sg-cell + .sg-cell { border-top:1px solid #E6E8EB !important; }
+            .contact-row { display:block !important; width:100% !important; border-right:0 !important; }
+            .contact-row-first { border-bottom:1px solid #E6E8EB !important; }
+            .dl { width:38% !important; padding-left:16px !important; padding-right:10px !important; }
+            .dv { width:62% !important; padding-left:10px !important; padding-right:16px !important; }
+            .lead-copy { padding-right:14px !important; }
+            .project-visual-card { width:96px !important; max-width:96px !important; }
+            .project-visual-img { width:96px !important; max-width:96px !important; height:72px !important; }
             .abtn-td { display: block !important; width: 100% !important; padding-left: 0 !important; padding-right: 0 !important; }
+            .footer-col { display:block !important; width:100% !important; text-align:left !important; }
+            .footer-contact { padding-top:6px !important; }
             .hide-mobile { display: none !important; }
+          }
+          @media only screen and (max-width: 420px) {
+            .mp { padding-left:16px !important; padding-right:16px !important; }
+            .brand-role { display:none !important; }
+            .lead-copy, .lead-art { display:block !important; width:100% !important; padding-right:0 !important; }
+            .lead-art { padding-top:14px !important; text-align:left !important; }
+            .project-visual-card { width:100% !important; max-width:100% !important; }
+            .project-visual-img { width:100% !important; max-width:100% !important; height:auto !important; max-height:116px !important; }
+            .meta-cell { display:block !important; width:100% !important; padding:0 0 8px 0 !important; text-align:left !important; }
+            .dl { width:42% !important; }
+            .dv { width:58% !important; }
           }
         </style>
       </head>
-      <body style="margin:0;padding:0;background-color:#D7DFE8;color:#0D1B2A;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,Helvetica,sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
-        <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;font-size:1px;line-height:1px;color:#D7DFE8;">
-          ${escapeHtml(requestTypeLabel)} inquiry for ${escapeHtml(lead.projectInterestedIn || "DMCI Homes")} from ${escapeHtml(lead.name || "a buyer")}. Reply via ${escapeHtml(lead.preferredContactMethod || "preferred channel")}. Ref: ${escapeHtml(lead.referenceId)}
+      <body style="margin:0;padding:0;background-color:#F3F4F6;color:#202124;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,Helvetica,sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
+        <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;font-size:1px;line-height:1px;color:#F3F4F6;">
+          ${escapeHtml(preheader)}&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;
         </div>
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;background-color:#D7DFE8;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;background-color:#F3F4F6;">
           <tr>
-            <td align="center" style="padding:32px 12px;">
-              <table role="presentation" class="email-body" width="720" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:720px;min-width:720px;background-color:#FFFFFF;border-radius:8px;border-collapse:separate;border-spacing:0;border:1px solid #B9C7D6;box-shadow:0 16px 42px rgba(10,22,40,0.16);overflow:hidden;">
+            <td class="outer-pad" align="center" style="padding:28px 12px;">
+              <table role="presentation" class="email-body" width="640" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:640px;background-color:#FFFFFF;border-radius:16px;border-collapse:separate;border-spacing:0;border:1px solid #E0E2E5;box-shadow:0 8px 24px rgba(32,33,36,0.08);overflow:hidden;">
                 <tr>
-                  <td style="background-color:#0D1B2A;padding:0;border-radius:8px 8px 0 0;">
-                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                      <tr><td style="height:4px;background-color:#C8A951;font-size:0;line-height:0;">&nbsp;</td></tr>
-                    </table>
+                  <td style="height:4px;background-color:#B88A2B;font-size:0;line-height:0;border-radius:16px 16px 0 0;">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td class="mp" style="padding:18px 30px 16px 30px;border-bottom:1px solid #ECEDEF;">
                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                       <tr>
-                        <td class="mp" style="padding:30px 40px 0 40px;">
-                          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                            <tr>
-                              <td style="vertical-align:top;">
-                                <div style="font-family:Georgia,'Times New Roman',Times,serif;font-size:19px;color:#FFFFFF;letter-spacing:0.3px;line-height:1.3;">Maria Luisa Corral</div>
-                                <div style="font-size:10px;color:#C8A951;letter-spacing:2.3px;text-transform:uppercase;padding-top:5px;line-height:1.4;">Sales Director | DMCI Homes</div>
-                              </td>
-                              <td align="right" style="width:58px;vertical-align:top;">
-                                <img src="${logoUrl}" width="48" height="48" alt="DMCI broker logo" style="display:block;width:48px;height:48px;border-radius:12px;background:#FFFFFF;border:1px solid rgba(200,169,81,0.72);">
-                              </td>
-                            </tr>
-                          </table>
+                        <td width="46" style="width:46px;vertical-align:middle;">
+                          <img src="${logoUrl}" width="40" height="40" alt="Maria Luisa Corral" style="display:block;width:40px;height:40px;border-radius:10px;background:#FFFFFF;border:1px solid #E3D5B1;">
+                        </td>
+                        <td style="vertical-align:middle;padding-left:10px;">
+                          <div style="font-size:15px;font-weight:750;color:#202124;line-height:1.3;">Maria Luisa Corral</div>
+                          <div class="brand-role" style="font-size:11px;color:#6B7078;letter-spacing:.7px;text-transform:uppercase;padding-top:3px;line-height:1.35;">Sales Director · DMCI Homes</div>
+                        </td>
+                        <td align="right" style="vertical-align:middle;">
+                          <span style="display:inline-block;padding:5px 9px;border-radius:999px;background-color:#F5F0E4;color:#7A5A18;font-size:10px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;line-height:1;">New lead</span>
                         </td>
                       </tr>
-                      <tr>
-                        <td class="mp" style="padding:26px 40px 0 40px;">
-                          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                            <tr>
-                              <td class="hero-copy" width="${projectVisual ? "58%" : "100%"}" style="vertical-align:top;">
-                                <div style="font-size:28px;font-weight:700;color:#FFFFFF;line-height:1.22;">New buyer inquiry</div>
-                                <div style="font-size:15px;color:#E5ECF3;line-height:1.65;padding-top:10px;max-width:520px;">Review the buyer details, verify the project information, then reply through the requested channel.</div>
-                              </td>
-                              ${projectVisual ? `<td class="hero-art" width="42%" align="right" style="vertical-align:top;padding-left:24px;">${projectVisual}</td>` : ""}
-                            </tr>
-                          </table>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="mp" style="padding:18px 40px 28px 40px;">
-                          <div style="font-size:13px;color:#E5ECF3;line-height:1.9;">
-                            Submitted ${escapeHtml(submittedLabel)}<br>
-                            <span style="color:#C8A951;font-family:'Courier New',Courier,monospace;font-size:10.5px;letter-spacing:1.1px;">REF: ${escapeHtml(lead.referenceId)}</span>
-                          </div>
-                        </td>
-                      </tr>
-                    </table>
-                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                      <tr><td style="height:3px;background-color:#C8A951;font-size:0;line-height:0;">&nbsp;</td></tr>
                     </table>
                   </td>
                 </tr>
                 <tr>
-                  <td class="mp" style="padding:28px 40px 0 40px;">
-                    ${sectionLabel("Inquiry Snapshot")}
-                    ${inquirySnapshot(lead)}
+                  <td class="mp" style="padding:24px 30px 0 30px;">
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td class="lead-copy" width="${projectVisual ? "72%" : "100%"}" style="vertical-align:top;padding-right:${projectVisual ? "18px" : "0"};">
+                          <div style="font-size:11px;font-weight:800;color:#8A681F;letter-spacing:1px;text-transform:uppercase;line-height:1.4;">${escapeHtml(requestTypeLabel)}</div>
+                          <div style="font-size:27px;font-weight:750;color:#202124;line-height:1.2;padding-top:5px;letter-spacing:-.35px;">${escapeHtml(lead.name)}</div>
+                          <div style="font-size:14px;color:#5F6368;line-height:1.5;padding-top:7px;">${escapeHtml(lead.projectInterestedIn || "No project selected")} <span style="color:#B7B9BD;">·</span> ${escapeHtml(lead.cityLocation || "Location not provided")}</div>
+                        </td>
+                        ${projectVisual ? `<td class="lead-art" width="28%" align="right" style="vertical-align:top;">${projectVisual}</td>` : ""}
+                      </tr>
+                    </table>
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:16px;border-top:1px solid #ECEDEF;">
+                      <tr>
+                        <td class="meta-cell" width="60%" style="padding-top:11px;font-size:11px;color:#757980;line-height:1.5;">Submitted ${escapeHtml(submittedLabel)}</td>
+                        <td class="meta-cell" width="40%" align="right" style="padding-top:11px;font-size:10px;color:#8A8E94;font-family:'SFMono-Regular',Consolas,'Liberation Mono',monospace;line-height:1.5;">${escapeHtml(lead.referenceId)}</td>
+                      </tr>
+                    </table>
                   </td>
                 </tr>
                 <tr>
-                  <td class="mp" style="padding:24px 40px 0 40px;">
-                    ${followUpCard(followUp)}
-                    ${nextStepCard(nextStep)}
-                  </td>
-                </tr>
-                <tr>
-                  <td class="mp" style="padding:24px 40px 0 40px;">
+                  <td class="mp" style="padding:20px 30px 0 30px;">
                     ${buyerContactBlock(lead)}
                   </td>
                 </tr>
                 <tr>
-                  <td class="mp" style="padding:24px 40px 0 40px;">
-                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                      <tr><td style="height:1px;background-color:#E8EBF0;font-size:0;line-height:0;">&nbsp;</td></tr>
-                    </table>
+                  <td class="mp" style="padding:16px 30px 0 30px;">
+                    ${actions || '<span style="color:#5F6368;font-size:14px;">No action links available.</span>'}
+                  </td>
+                </tr>
+                <tr>
+                  <td class="mp" style="padding:20px 30px 0 30px;">
+                    ${inquirySnapshot(lead)}
+                  </td>
+                </tr>
+                <tr>
+                  <td class="mp" style="padding:16px 30px 0 30px;">
+                    ${followUpCard(followUp, nextStep)}
                   </td>
                 </tr>
                 ${requestDetailsSection}
                 <tr>
-                  <td class="mp" style="padding:20px 40px 0 40px;">
+                  <td class="mp" style="padding:18px 30px 24px 30px;">
                     ${consentBlock(lead)}
                   </td>
                 </tr>
                 <tr>
-                  <td class="mp" style="padding:24px 40px 32px 40px;">
-                    ${sectionLabel("Quick Actions")}
-                    ${actions || '<span style="color:#34465A;font-size:15px;font-weight:700;">No quick action links available.</span>'}
-                    ${followUp.note ? `<p style="margin:10px 0 0;color:#34465A;font-size:14px;line-height:1.65;">${escapeHtml(followUp.note)}</p>` : ""}
-                  </td>
-                </tr>
-                <tr>
-                  <td style="background-color:#0D1B2A;padding:0;border-radius:0 0 8px 8px;">
+                  <td style="background-color:#F8F8F7;padding:0;border-top:1px solid #E6E7E9;border-radius:0 0 16px 16px;">
                     ${footerBlock()}
                   </td>
                 </tr>
@@ -516,7 +521,7 @@ function sectionLabel(label) {
   return `
     <table role="presentation" cellpadding="0" cellspacing="0" border="0">
       <tr>
-        <td style="font-size:13px;font-weight:850;color:#34465A;letter-spacing:1.35px;text-transform:uppercase;padding-bottom:12px;">${escapeHtml(label)}</td>
+        <td style="font-size:11px;font-weight:800;color:#74787F;letter-spacing:.9px;text-transform:uppercase;padding-bottom:9px;">${escapeHtml(label)}</td>
       </tr>
     </table>
   `;
@@ -530,19 +535,18 @@ function projectHeaderVisual(lead) {
   const caption = lead.cityLocation || visual.location || "DMCI Homes";
 
   return `
-    <table role="presentation" class="project-visual-card" width="238" cellpadding="0" cellspacing="0" border="0" style="width:238px;max-width:238px;background-color:#071421;border:1px solid rgba(229,236,243,0.22);border-radius:12px;overflow:hidden;">
+    <table role="presentation" class="project-visual-card" width="132" cellpadding="0" cellspacing="0" border="0" style="width:132px;max-width:132px;background-color:#F8F8F7;border:1px solid #E2E3E5;border-radius:10px;overflow:hidden;">
       <tr>
         <td style="padding:0;">
           <a href="${escapeAttribute(visual.pageUrl)}" target="_blank" style="text-decoration:none;border:0;display:block;">
-            <img class="project-visual-img" src="${escapeAttribute(visual.imageUrl)}" width="238" alt="${escapeAttribute(alt)}" style="display:block;width:238px;max-width:238px;height:auto;border:0;line-height:0;">
+            <img class="project-visual-img" src="${escapeAttribute(visual.imageUrl)}" width="132" height="82" alt="${escapeAttribute(alt)}" style="display:block;width:132px;max-width:132px;height:82px;object-fit:cover;border:0;line-height:0;">
           </a>
         </td>
       </tr>
       <tr>
-        <td style="padding:11px 13px 13px 13px;background-color:#071421;">
-          <div style="font-size:10px;color:#C8A951;letter-spacing:1.35px;text-transform:uppercase;font-weight:850;line-height:1.3;">Selected Project</div>
-          <div style="font-size:16px;color:#FFFFFF;font-weight:800;line-height:1.35;padding-top:4px;">${escapeHtml(visual.name)}</div>
-          <div style="font-size:12px;color:#C8D4E0;line-height:1.45;padding-top:2px;">${escapeHtml(caption)}</div>
+        <td style="padding:8px 10px 9px 10px;background-color:#F8F8F7;">
+          <div style="font-size:10px;color:#4F5358;font-weight:700;line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escapeHtml(visual.name)}</div>
+          <div style="font-size:9px;color:#8A8E94;line-height:1.4;padding-top:1px;">${escapeHtml(caption)}</div>
         </td>
       </tr>
     </table>
@@ -582,24 +586,18 @@ function inquirySnapshot(lead) {
   const project = lead.projectInterestedIn || "No project selected";
   const method = lead.preferredContactMethod || "No method selected";
   const location = lead.cityLocation || "Not provided";
-  const source = lead.sourcePage || lead.sourceUrl || "Not provided";
   const methodTone = contactTone(contactMethodKey(method));
 
   return `
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#EFF4F8;border-radius:6px;border:1px solid #B8C6D6;overflow:hidden;">
+    ${sectionLabel("Inquiry summary")}
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#FAFAF9;border-radius:10px;border:1px solid #E2E3E5;overflow:hidden;">
       <tr>
         ${snapshotCell("Inquiry Type", inquiry, true)}
         ${snapshotCell("Project", project)}
       </tr>
       <tr>
         ${snapshotCell("Location", location, true, true)}
-        ${snapshotCell("Reply Via", `<span style="color:${methodTone.color};">&#9679;</span>&nbsp;<span style="color:#0D1B2A;">${escapeHtml(method)}</span>`, false, true, true)}
-      </tr>
-      <tr>
-        <td colspan="2" style="padding:17px 22px;border-top:1px solid #B8C6D6;vertical-align:top;">
-          <span style="font-size:12px;color:#3C4E62;text-transform:uppercase;letter-spacing:.85px;font-weight:850;display:block;margin-bottom:6px;">Source Page</span>
-          <span style="font-family:'Courier New',Courier,monospace;font-size:14px;color:#142A40;font-weight:700;line-height:1.55;word-break:break-word;">${escapeHtml(source)}</span>
-        </td>
+        ${snapshotCell("Reply Via", `<span style="color:${methodTone.color};">&#9679;</span>&nbsp;<span style="color:#202124;">${escapeHtml(method)}</span>`, false, true, true)}
       </tr>
     </table>
   `;
@@ -607,9 +605,9 @@ function inquirySnapshot(lead) {
 
 function snapshotCell(label, value, rightBorder = false, topBorder = false, allowHtml = false) {
   return `
-    <td class="sg-cell${topBorder ? " sg-cell-bottom" : ""}" width="50%" style="padding:17px 22px;${rightBorder ? "border-right:1px solid #B8C6D6;" : ""}${topBorder ? "border-top:1px solid #B8C6D6;" : ""}vertical-align:top;">
-      <span style="font-size:12px;color:#3C4E62;text-transform:uppercase;letter-spacing:.85px;font-weight:850;display:block;margin-bottom:6px;">${escapeHtml(label)}</span>
-      <span style="font-size:16px;color:#071D33;font-weight:800;line-height:1.45;word-break:break-word;">${allowHtml ? value : escapeHtml(value)}</span>
+    <td class="sg-cell${topBorder ? " sg-cell-bottom" : ""}" width="50%" style="padding:13px 16px;${rightBorder ? "border-right:1px solid #E6E8EB;" : ""}${topBorder ? "border-top:1px solid #E6E8EB;" : ""}vertical-align:top;">
+      <span style="font-size:10px;color:#85898F;text-transform:uppercase;letter-spacing:.65px;font-weight:800;display:block;margin-bottom:4px;">${escapeHtml(label)}</span>
+      <span style="font-size:14px;color:#202124;font-weight:700;line-height:1.4;word-break:break-word;">${allowHtml ? value : escapeHtml(value)}</span>
     </td>
   `;
 }
@@ -618,25 +616,33 @@ function buyerContactBlock(lead) {
   const phone = lead.phone || "Not provided";
   const email = lead.email || "Not provided";
   const message = lead.message || "No buyer message provided.";
+  const phoneValue = lead.phone
+    ? `<a href="${escapeAttribute(telHref(lead.phone))}" style="font-size:14px;color:#202124;font-weight:750;line-height:1.4;word-break:break-word;text-decoration:none;">${escapeHtml(phone)}</a>`
+    : `<span style="font-size:14px;color:#74787F;font-weight:700;line-height:1.4;">${escapeHtml(phone)}</span>`;
+  const emailValue = lead.email
+    ? `<a href="mailto:${escapeAttribute(lead.email)}" style="font-size:14px;color:#4F6282;font-weight:750;line-height:1.4;word-break:break-word;text-decoration:none;">${escapeHtml(email)}</a>`
+    : `<span style="font-size:14px;color:#74787F;font-weight:700;line-height:1.4;">${escapeHtml(email)}</span>`;
 
   return `
-    ${sectionLabel("Buyer Contact")}
-    <div style="font-size:24px;color:#071D33;font-weight:800;line-height:1.3;padding-bottom:16px;">${escapeHtml(lead.name)}</div>
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+    ${sectionLabel("Contact details")}
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #E2E3E5;border-radius:10px;overflow:hidden;">
       <tr>
-        <td class="contact-row" width="50%" style="padding-bottom:4px;padding-right:12px;vertical-align:top;">
-          <span style="font-size:12px;color:#3C4E62;text-transform:uppercase;letter-spacing:.85px;font-weight:850;display:block;margin-bottom:5px;">Phone / Viber</span>
-          <span style="font-size:16px;color:#071D33;font-weight:800;line-height:1.45;word-break:break-word;">${escapeHtml(phone)}</span>
+        <td class="contact-row contact-row-first" width="50%" style="padding:13px 16px;vertical-align:top;border-right:1px solid #E6E8EB;">
+          <span style="font-size:10px;color:#85898F;text-transform:uppercase;letter-spacing:.65px;font-weight:800;display:block;margin-bottom:4px;">Phone / Viber</span>
+          ${phoneValue}
         </td>
-        <td class="contact-row" width="50%" style="padding-bottom:4px;vertical-align:top;">
-          <span style="font-size:12px;color:#3C4E62;text-transform:uppercase;letter-spacing:.85px;font-weight:850;display:block;margin-bottom:5px;">Email</span>
-          <span style="font-size:16px;color:#0B5D9E;font-weight:800;line-height:1.45;word-break:break-word;">${escapeHtml(email)}</span>
+        <td class="contact-row" width="50%" style="padding:13px 16px;vertical-align:top;">
+          <span style="font-size:10px;color:#85898F;text-transform:uppercase;letter-spacing:.65px;font-weight:800;display:block;margin-bottom:4px;">Email</span>
+          ${emailValue}
         </td>
       </tr>
     </table>
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:18px;background-color:#F6F8FA;border-radius:6px;border:1px solid #B8C6D6;border-left:5px solid #C8A951;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:10px;background-color:#FBF8F1;border-radius:10px;border:1px solid #E6D8B5;">
       <tr>
-        <td style="padding:18px 20px;font-size:16px;color:#142A40;line-height:1.7;">${escapeHtml(message).replace(/\n/g, "<br>")}</td>
+        <td style="padding:13px 16px;">
+          <div style="font-size:10px;color:#8A681F;text-transform:uppercase;letter-spacing:.65px;font-weight:800;padding-bottom:5px;">Buyer message</div>
+          <div style="font-size:14px;color:#34373B;line-height:1.55;">${escapeHtml(message).replace(/\n/g, "<br>")}</div>
+        </td>
       </tr>
     </table>
   `;
@@ -644,11 +650,11 @@ function buyerContactBlock(lead) {
 
 function requestDetailsCard(rows, typeLabel) {
   return `
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #B8C6D6;border-radius:6px;overflow:hidden;">
+    ${sectionLabel("Request details")}
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #E2E3E5;border-radius:10px;overflow:hidden;">
       <tr>
-        <td style="background-color:#EAF0F6;padding:15px 22px;border-bottom:1px solid #B8C6D6;">
-          <span style="font-size:13px;font-weight:850;color:#34465A;letter-spacing:1.35px;text-transform:uppercase;">Request Details</span>
-          <span style="font-size:12px;color:#4A5E73;letter-spacing:.8px;text-transform:uppercase;margin-left:10px;font-weight:800;">${escapeHtml(typeLabel)}</span>
+        <td style="background-color:#FAFAF9;padding:10px 16px;border-bottom:1px solid #E6E8EB;">
+          <span style="font-size:10px;color:#85898F;letter-spacing:.65px;text-transform:uppercase;font-weight:800;">${escapeHtml(typeLabel)}</span>
         </td>
       </tr>
       <tr>
@@ -663,45 +669,31 @@ function requestDetailsCard(rows, typeLabel) {
 }
 
 function detailRow(label, value, last = false) {
-  const border = last ? "" : "border-bottom:1px solid #DDE5EE;";
+  const border = last ? "" : "border-bottom:1px solid #ECEDEF;";
   return `
     <tr>
-      <td class="dl" width="40%" style="padding:15px 22px;font-size:12px;color:#34465A;text-transform:uppercase;letter-spacing:.55px;font-weight:850;${border}background-color:#F5F8FB;vertical-align:top;">${escapeHtml(label)}</td>
-      <td class="dv" width="60%" style="padding:15px 22px;font-size:16px;color:#071D33;font-weight:800;line-height:1.5;${border}vertical-align:top;word-break:break-word;">${escapeHtml(value)}</td>
+      <td class="dl" width="40%" style="padding:11px 16px;font-size:10px;color:#74787F;text-transform:uppercase;letter-spacing:.5px;font-weight:800;${border}background-color:#FAFAF9;vertical-align:top;">${escapeHtml(label)}</td>
+      <td class="dv" width="60%" style="padding:11px 16px;font-size:13px;color:#202124;font-weight:700;line-height:1.45;${border}vertical-align:top;word-break:break-word;">${escapeHtml(value)}</td>
     </tr>
   `;
 }
 
-function followUpCard(plan) {
+function followUpCard(plan, nextStep) {
   const tone = contactTone(plan.key);
   return `
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#FFF7DE;border-radius:6px;border:1px solid #CDB772;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#F5F8F6;border-radius:10px;border:1px solid #D7E5DC;">
       <tr>
-        <td width="4" style="background-color:#C8A951;border-radius:6px 0 0 6px;font-size:0;line-height:0;">&nbsp;</td>
-        <td style="padding:22px 26px;">
+        <td width="4" style="background-color:${tone.color};border-radius:10px 0 0 10px;font-size:0;line-height:0;">&nbsp;</td>
+        <td style="padding:14px 16px;">
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-            <tr><td style="font-size:13px;font-weight:850;color:#76520F;letter-spacing:1.35px;text-transform:uppercase;padding-bottom:14px;border-bottom:1px solid #D9C47F;">Recommended Follow-up</td></tr>
-          </table>
-          <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:14px;">
             <tr>
-              <td width="36" height="36" style="background-color:${tone.color};border-radius:50%;text-align:center;vertical-align:middle;font-size:16px;color:#FFFFFF;line-height:36px;">${tone.icon}</td>
-              <td style="padding-left:14px;font-size:18px;color:#071D33;font-weight:800;line-height:1.4;">${escapeHtml(plan.title)}</td>
+              <td style="font-size:11px;color:#5B7564;text-transform:uppercase;letter-spacing:.7px;font-weight:800;line-height:1.4;">Recommended follow-up</td>
+              <td align="right" style="font-size:12px;color:${tone.color};font-weight:800;line-height:1.4;">${tone.icon}&nbsp; ${escapeHtml(plan.title)}</td>
             </tr>
           </table>
-          <p style="margin:12px 0 0;color:#142A40;font-size:16px;line-height:1.7;">${escapeHtml(plan.text)}</p>
-        </td>
-      </tr>
-    </table>
-  `;
-}
-
-function nextStepCard(plan) {
-  return `
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:14px;background-color:#F6F8FA;border:1px solid #B8C6D6;border-radius:6px;">
-      <tr>
-        <td style="padding:16px 20px;">
-          <div style="font-size:13px;color:#34465A;text-transform:uppercase;letter-spacing:1.15px;font-weight:850;padding-bottom:8px;">Before replying, verify</div>
-          <div style="font-size:15px;color:#142A40;line-height:1.7;">${escapeHtml(plan.text)}</div>
+          <p style="margin:8px 0 0;color:#343A36;font-size:13px;line-height:1.55;">${escapeHtml(plan.text)}</p>
+          <p style="margin:7px 0 0;padding-top:7px;border-top:1px solid #DFE9E2;color:#68706B;font-size:12px;line-height:1.5;"><strong style="color:#4E5751;">Verify:</strong> ${escapeHtml(nextStep.text)}</p>
+          ${plan.note ? `<p style="margin:5px 0 0;color:#747B76;font-size:11px;line-height:1.45;">${escapeHtml(plan.note)}</p>` : ""}
         </td>
       </tr>
     </table>
@@ -710,10 +702,15 @@ function nextStepCard(plan) {
 
 function consentBlock(lead) {
   return `
-    <div style="font-size:15px;color:#34465A;line-height:1.75;">
-      <span style="color:#1F7A4D;font-weight:800;">&#10003; Consent checked: ${lead.consent ? "Yes" : "No"}</span><br>
-      Project details, pricing, availability, promos, and terms are subject to confirmation.
-    </div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #ECEDEF;">
+      <tr>
+        <td style="padding-top:14px;font-size:11px;color:#7A7E84;line-height:1.55;">
+          <span style="color:#2E7650;font-weight:800;">&#10003; Consent ${lead.consent ? "confirmed" : "not confirmed"}</span>
+          <span style="color:#C7C9CC;">&nbsp;·&nbsp;</span>
+          Pricing, availability, promos, and terms require confirmation.
+        </td>
+      </tr>
+    </table>
   `;
 }
 
@@ -724,9 +721,9 @@ function buildActionButtons(lead, followUp, sourceUrl) {
   const primary = preferredAction(lead, followUp, { tel, sms, email });
   const secondary = [];
 
-  if (email && primary?.href !== email) secondary.push({ href: email, label: "Reply by Email", icon: "&#9993;" });
-  if (tel && primary?.href !== tel) secondary.push({ href: tel, label: followUp.key === "sms" ? "Call if Urgent" : "Call Lead", icon: "&#9742;" });
-  if (sourceUrl) secondary.push({ href: sourceUrl, label: "Open Source Page", icon: "&#8599;" });
+  if (email && primary?.href !== email) secondary.push({ href: email, label: "Email buyer", icon: "&#9993;" });
+  if (tel && primary?.href !== tel) secondary.push({ href: tel, label: followUp.key === "sms" ? "Call buyer" : "Call buyer", icon: "&#9742;" });
+  if (sourceUrl) secondary.push({ href: sourceUrl, label: "View inquiry", icon: "&#8599;" });
 
   if (!primary && !secondary.length) return "";
 
@@ -739,27 +736,26 @@ function buildActionButtons(lead, followUp, sourceUrl) {
 }
 
 function preferredAction(lead, followUp, links) {
-  if (followUp.key === "email" && links.email) return { href: links.email, label: "Reply by Email", icon: "&#9993;" };
-  if (followUp.key === "call" && links.tel) return { href: links.tel, label: "Call Lead", icon: "&#9742;" };
-  if (followUp.key === "viber" && links.tel) return { href: links.tel, label: "Use Phone / Viber Number", icon: "&#9742;" };
+  if (followUp.key === "email" && links.email) return { href: links.email, label: "Email buyer", icon: "&#9993;" };
+  if (followUp.key === "call" && links.tel) return { href: links.tel, label: "Call buyer", icon: "&#9742;" };
+  if (followUp.key === "viber" && links.tel) return { href: links.tel, label: "Open phone / Viber", icon: "&#9742;" };
   if (followUp.key === "sms" && links.sms) return { href: links.sms, label: "Send SMS", icon: "&#9993;" };
-  if (links.email) return { href: links.email, label: "Reply by Email", icon: "&#9993;" };
-  if (links.tel) return { href: links.tel, label: "Call Lead", icon: "&#9742;" };
+  if (links.email) return { href: links.email, label: "Email buyer", icon: "&#9993;" };
+  if (links.tel) return { href: links.tel, label: "Call buyer", icon: "&#9742;" };
   return null;
 }
 
 function primaryActionButton(action) {
   return `
     <tr>
-      <td style="padding-bottom:10px;">
+      <td style="padding-bottom:8px;">
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
           <tr>
-            <td align="center" style="background-color:#C8A951;border-radius:6px;border:1px solid #A98524;">
-              <a href="${escapeAttribute(action.href)}" target="_blank" style="display:block;padding:17px 24px;font-size:16px;font-weight:850;color:#071D33;text-decoration:none;letter-spacing:.15px;">${action.icon}&nbsp;&nbsp;${escapeHtml(action.label)}</a>
+            <td align="center" style="background-color:#B88A2B;border-radius:9px;border:1px solid #A77B22;">
+              <a href="${escapeAttribute(action.href)}" target="_blank" style="display:block;padding:12px 18px;font-size:14px;font-weight:800;color:#FFFFFF;text-decoration:none;letter-spacing:.05px;">${action.icon}&nbsp;&nbsp;${escapeHtml(action.label)}</a>
             </td>
           </tr>
         </table>
-        <div style="text-align:center;padding-top:7px;font-size:11px;color:#8A6719;letter-spacing:1.25px;text-transform:uppercase;font-weight:850;">Preferred Action</div>
       </td>
     </tr>
   `;
@@ -770,8 +766,8 @@ function secondaryActionsGrid(actions) {
     <td class="abtn-td" width="50%" style="padding:0 5px 8px 5px;vertical-align:top;">
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td align="center" style="background-color:#F7F9FB;border:1px solid #B8C6D6;border-radius:6px;">
-            <a href="${escapeAttribute(action.href)}" target="_blank" style="display:block;padding:14px 16px;font-size:15px;font-weight:800;color:#071D33;text-decoration:none;">${action.icon}&nbsp;&nbsp;${escapeHtml(action.label)}</a>
+          <td align="center" style="background-color:#FFFFFF;border:1px solid #D7D9DC;border-radius:9px;">
+            <a href="${escapeAttribute(action.href)}" target="_blank" style="display:block;padding:10px 12px;font-size:13px;font-weight:750;color:#34373B;text-decoration:none;">${action.icon}&nbsp;&nbsp;${escapeHtml(action.label)}</a>
           </td>
         </tr>
       </table>
@@ -797,18 +793,20 @@ function secondaryActionsGrid(actions) {
 function footerBlock() {
   return `
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-      <tr><td style="height:3px;background-color:#C8A951;font-size:0;line-height:0;">&nbsp;</td></tr>
-    </table>
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
       <tr>
-        <td class="mp mc" style="padding:28px 40px 32px 40px;">
-          <div style="font-family:Georgia,'Times New Roman',Times,serif;font-size:18px;color:#FFFFFF;padding-bottom:14px;line-height:1.3;">Maria Luisa Corral</div>
-          <div style="font-size:14px;color:#D8E1EA;line-height:2;">
-            <a href="mailto:mrcorral@dmcihomes.com" style="color:#C8A951;text-decoration:none;">mrcorral@dmcihomes.com</a><br>
-            Mobile/Viber: <span style="color:#FFFFFF;">0998 865 8902</span><br>
-            Office: <span style="color:#FFFFFF;">02 8888 7777</span> local 5860<br>
-            <span style="color:#D8E1EA;font-size:13px;">PRC License No. 0003253</span>
-          </div>
+        <td class="mp" style="padding:17px 30px 19px 30px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td class="footer-col" width="48%" style="vertical-align:top;">
+                <div style="font-size:13px;font-weight:750;color:#42454A;line-height:1.4;">Maria Luisa Corral</div>
+                <div style="font-size:11px;color:#7A7E84;line-height:1.65;padding-top:2px;">Sales Director · DMCI Homes · PRC 0003253</div>
+              </td>
+              <td class="footer-col footer-contact" width="52%" align="right" style="vertical-align:top;font-size:11px;color:#696D73;line-height:1.65;">
+                <a href="mailto:mrcorral@dmcihomes.com" style="color:#5B6577;text-decoration:none;">mrcorral@dmcihomes.com</a><br>
+                0998 865 8902 · (02) 8888 7777 loc. 5860
+              </td>
+            </tr>
+          </table>
         </td>
       </tr>
     </table>
