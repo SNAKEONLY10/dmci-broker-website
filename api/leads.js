@@ -347,7 +347,7 @@ function formatLeadText(lead) {
     ] : []),
     "",
     "Record",
-    `Submitted: ${formatDateTime(lead.submittedAt)}`,
+    `Submitted: ${formatDateTime(lead.submittedAt)} PHT (Manila time)`,
     `Reference: ${lead.referenceId}`,
     `Source: ${lead.sourcePage || lead.sourceUrl || "Not provided"}`,
     `Consent checked: ${lead.consent ? "Yes" : "No"}`,
@@ -365,7 +365,7 @@ function formatLeadText(lead) {
 }
 
 function formatLeadHtml(lead) {
-  const submittedLabel = formatDateTime(lead.submittedAt);
+  const submittedLabel = `${formatDateTime(lead.submittedAt)} PHT`;
   const sourceUrl = safeUrl(lead.sourceUrl);
   const followUp = contactMethodPlan(lead);
   const nextStep = nextStepPlan(lead);
@@ -392,7 +392,7 @@ function formatLeadHtml(lead) {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>${escapeHtml(formatEmailSubject(lead))}</title>
         <style type="text/css">
-          body, table, td, a { -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
+          body, table, td, a { font-family:'Segoe UI Variable Text','Segoe UI Variable',Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
           table, td { mso-table-lspace:0pt; mso-table-rspace:0pt; }
           img { -ms-interpolation-mode:bicubic; }
           @media only screen and (max-width: 640px) {
@@ -428,14 +428,14 @@ function formatLeadHtml(lead) {
           }
         </style>
       </head>
-      <body style="margin:0;padding:0;background-color:#F3F4F6;color:#202124;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,Helvetica,sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
+      <body style="margin:0;padding:0;background-color:#F3F4F6;color:#17191C;font-family:'Segoe UI Variable Text','Segoe UI Variable',Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;">
         <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;font-size:1px;line-height:1px;color:#F3F4F6;">
           ${escapeHtml(preheader)}&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;
         </div>
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;background-color:#F3F4F6;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;background-color:#F3F4F6;font-family:'Segoe UI Variable Text','Segoe UI Variable',Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
           <tr>
             <td class="outer-pad" align="center" style="padding:28px 12px;">
-              <table role="presentation" class="email-body" width="640" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:640px;background-color:#FFFFFF;border-radius:16px;border-collapse:separate;border-spacing:0;border:1px solid #E0E2E5;box-shadow:0 8px 24px rgba(32,33,36,0.08);overflow:hidden;">
+              <table role="presentation" class="email-body" width="640" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:640px;background-color:#FFFFFF;border-radius:16px;border-collapse:separate;border-spacing:0;border:1px solid #DDE0E4;box-shadow:0 8px 24px rgba(26,29,33,0.09);overflow:hidden;font-family:'Segoe UI Variable Text','Segoe UI Variable',Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
                 <tr>
                   <td style="height:4px;background-color:#B88A2B;font-size:0;line-height:0;border-radius:16px 16px 0 0;">&nbsp;</td>
                 </tr>
@@ -447,8 +447,8 @@ function formatLeadHtml(lead) {
                           <img src="${logoUrl}" width="40" height="40" alt="Maria Luisa Corral" style="display:block;width:40px;height:40px;border-radius:10px;background:#FFFFFF;border:1px solid #E3D5B1;">
                         </td>
                         <td style="vertical-align:middle;padding-left:10px;">
-                          <div style="font-size:15px;font-weight:750;color:#202124;line-height:1.3;">Maria Luisa Corral</div>
-                          <div class="brand-role" style="font-size:11px;color:#6B7078;letter-spacing:.7px;text-transform:uppercase;padding-top:3px;line-height:1.35;">Sales Director · DMCI Homes</div>
+                          <div style="font-size:15px;font-weight:700;color:#1B1E22;line-height:1.3;letter-spacing:-.08px;">Maria Luisa Corral</div>
+                          <div class="brand-role" style="font-size:11px;color:#59616C;letter-spacing:.62px;text-transform:uppercase;padding-top:3px;line-height:1.35;font-weight:600;">Sales Director · DMCI Homes</div>
                         </td>
                         <td align="right" style="vertical-align:middle;">
                           <span style="display:inline-block;padding:5px 9px;border-radius:999px;background-color:#F5F0E4;color:#7A5A18;font-size:10px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;line-height:1;">New lead</span>
@@ -463,16 +463,16 @@ function formatLeadHtml(lead) {
                       <tr>
                         <td class="lead-copy" width="${projectVisual ? "72%" : "100%"}" style="vertical-align:top;padding-right:${projectVisual ? "18px" : "0"};">
                           <div style="font-size:11px;font-weight:800;color:#8A681F;letter-spacing:1px;text-transform:uppercase;line-height:1.4;">${escapeHtml(requestTypeLabel)}</div>
-                          <div style="font-size:27px;font-weight:750;color:#202124;line-height:1.2;padding-top:5px;letter-spacing:-.35px;">${escapeHtml(lead.name)}</div>
-                          <div style="font-size:14px;color:#5F6368;line-height:1.5;padding-top:7px;">${escapeHtml(lead.projectInterestedIn || "No project selected")} <span style="color:#B7B9BD;">·</span> ${escapeHtml(lead.cityLocation || "Location not provided")}</div>
+                          <div style="font-size:26px;font-weight:700;color:#17191C;line-height:1.2;padding-top:5px;letter-spacing:-.28px;">${escapeHtml(lead.name)}</div>
+                          <div style="font-size:14px;color:#4B535E;line-height:1.5;padding-top:7px;font-weight:500;">${escapeHtml(lead.projectInterestedIn || "No project selected")} <span style="color:#9CA2AA;">·</span> ${escapeHtml(lead.cityLocation || "Location not provided")}</div>
                         </td>
                         ${projectVisual ? `<td class="lead-art" width="28%" align="right" style="vertical-align:top;">${projectVisual}</td>` : ""}
                       </tr>
                     </table>
                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:16px;border-top:1px solid #ECEDEF;">
                       <tr>
-                        <td class="meta-cell" width="60%" style="padding-top:11px;font-size:11px;color:#757980;line-height:1.5;">Submitted ${escapeHtml(submittedLabel)}</td>
-                        <td class="meta-cell" width="40%" align="right" style="padding-top:11px;font-size:10px;color:#8A8E94;font-family:'SFMono-Regular',Consolas,'Liberation Mono',monospace;line-height:1.5;">${escapeHtml(lead.referenceId)}</td>
+                        <td class="meta-cell" width="60%" style="padding-top:11px;font-size:12px;color:#59616C;line-height:1.5;font-weight:500;">Submitted ${escapeHtml(submittedLabel)}</td>
+                        <td class="meta-cell" width="40%" align="right" style="padding-top:11px;font-size:10px;color:#747C87;font-family:'SFMono-Regular',Consolas,'Liberation Mono',monospace;line-height:1.5;">${escapeHtml(lead.referenceId)}</td>
                       </tr>
                     </table>
                   </td>
@@ -484,7 +484,7 @@ function formatLeadHtml(lead) {
                 </tr>
                 <tr>
                   <td class="mp" style="padding:16px 30px 0 30px;">
-                    ${actions || '<span style="color:#5F6368;font-size:14px;">No action links available.</span>'}
+                    ${actions || '<span style="color:#4B535E;font-size:14px;">No action links available.</span>'}
                   </td>
                 </tr>
                 <tr>
@@ -521,7 +521,7 @@ function sectionLabel(label) {
   return `
     <table role="presentation" cellpadding="0" cellspacing="0" border="0">
       <tr>
-        <td style="font-size:11px;font-weight:800;color:#74787F;letter-spacing:.9px;text-transform:uppercase;padding-bottom:9px;">${escapeHtml(label)}</td>
+        <td style="font-size:11px;font-weight:750;color:#5F6772;letter-spacing:.82px;text-transform:uppercase;padding-bottom:9px;">${escapeHtml(label)}</td>
       </tr>
     </table>
   `;
@@ -545,8 +545,8 @@ function projectHeaderVisual(lead) {
       </tr>
       <tr>
         <td style="padding:8px 10px 9px 10px;background-color:#F8F8F7;">
-          <div style="font-size:10px;color:#4F5358;font-weight:700;line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escapeHtml(visual.name)}</div>
-          <div style="font-size:9px;color:#8A8E94;line-height:1.4;padding-top:1px;">${escapeHtml(caption)}</div>
+          <div style="font-size:11px;color:#343A42;font-weight:700;line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escapeHtml(visual.name)}</div>
+          <div style="font-size:10px;color:#68717C;line-height:1.4;padding-top:1px;font-weight:500;">${escapeHtml(caption)}</div>
         </td>
       </tr>
     </table>
@@ -597,7 +597,7 @@ function inquirySnapshot(lead) {
       </tr>
       <tr>
         ${snapshotCell("Location", location, true, true)}
-        ${snapshotCell("Reply Via", `<span style="color:${methodTone.color};">&#9679;</span>&nbsp;<span style="color:#202124;">${escapeHtml(method)}</span>`, false, true, true)}
+        ${snapshotCell("Reply Via", `<span style="color:${methodTone.color};">&#9679;</span>&nbsp;<span style="color:#1F2328;">${escapeHtml(method)}</span>`, false, true, true)}
       </tr>
     </table>
   `;
@@ -606,8 +606,8 @@ function inquirySnapshot(lead) {
 function snapshotCell(label, value, rightBorder = false, topBorder = false, allowHtml = false) {
   return `
     <td class="sg-cell${topBorder ? " sg-cell-bottom" : ""}" width="50%" style="padding:13px 16px;${rightBorder ? "border-right:1px solid #E6E8EB;" : ""}${topBorder ? "border-top:1px solid #E6E8EB;" : ""}vertical-align:top;">
-      <span style="font-size:10px;color:#85898F;text-transform:uppercase;letter-spacing:.65px;font-weight:800;display:block;margin-bottom:4px;">${escapeHtml(label)}</span>
-      <span style="font-size:14px;color:#202124;font-weight:700;line-height:1.4;word-break:break-word;">${allowHtml ? value : escapeHtml(value)}</span>
+      <span style="font-size:11px;color:#69717C;text-transform:uppercase;letter-spacing:.58px;font-weight:750;display:block;margin-bottom:4px;">${escapeHtml(label)}</span>
+      <span style="font-size:14px;color:#1F2328;font-weight:650;line-height:1.45;word-break:break-word;">${allowHtml ? value : escapeHtml(value)}</span>
     </td>
   `;
 }
@@ -617,22 +617,22 @@ function buyerContactBlock(lead) {
   const email = lead.email || "Not provided";
   const message = lead.message || "No buyer message provided.";
   const phoneValue = lead.phone
-    ? `<a href="${escapeAttribute(telHref(lead.phone))}" style="font-size:14px;color:#202124;font-weight:750;line-height:1.4;word-break:break-word;text-decoration:none;">${escapeHtml(phone)}</a>`
-    : `<span style="font-size:14px;color:#74787F;font-weight:700;line-height:1.4;">${escapeHtml(phone)}</span>`;
+    ? `<a href="${escapeAttribute(telHref(lead.phone))}" style="font-size:14px;color:#1F2328;font-weight:650;line-height:1.45;word-break:break-word;text-decoration:none;">${escapeHtml(phone)}</a>`
+    : `<span style="font-size:14px;color:#5F6772;font-weight:600;line-height:1.45;">${escapeHtml(phone)}</span>`;
   const emailValue = lead.email
-    ? `<a href="mailto:${escapeAttribute(lead.email)}" style="font-size:14px;color:#4F6282;font-weight:750;line-height:1.4;word-break:break-word;text-decoration:none;">${escapeHtml(email)}</a>`
-    : `<span style="font-size:14px;color:#74787F;font-weight:700;line-height:1.4;">${escapeHtml(email)}</span>`;
+    ? `<a href="mailto:${escapeAttribute(lead.email)}" style="font-size:14px;color:#425A78;font-weight:650;line-height:1.45;word-break:break-word;text-decoration:none;">${escapeHtml(email)}</a>`
+    : `<span style="font-size:14px;color:#5F6772;font-weight:600;line-height:1.45;">${escapeHtml(email)}</span>`;
 
   return `
     ${sectionLabel("Contact details")}
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #E2E3E5;border-radius:10px;overflow:hidden;">
       <tr>
         <td class="contact-row contact-row-first" width="50%" style="padding:13px 16px;vertical-align:top;border-right:1px solid #E6E8EB;">
-          <span style="font-size:10px;color:#85898F;text-transform:uppercase;letter-spacing:.65px;font-weight:800;display:block;margin-bottom:4px;">Phone / Viber</span>
+          <span style="font-size:11px;color:#69717C;text-transform:uppercase;letter-spacing:.58px;font-weight:750;display:block;margin-bottom:4px;">Phone / Viber</span>
           ${phoneValue}
         </td>
         <td class="contact-row" width="50%" style="padding:13px 16px;vertical-align:top;">
-          <span style="font-size:10px;color:#85898F;text-transform:uppercase;letter-spacing:.65px;font-weight:800;display:block;margin-bottom:4px;">Email</span>
+          <span style="font-size:11px;color:#69717C;text-transform:uppercase;letter-spacing:.58px;font-weight:750;display:block;margin-bottom:4px;">Email</span>
           ${emailValue}
         </td>
       </tr>
@@ -641,7 +641,7 @@ function buyerContactBlock(lead) {
       <tr>
         <td style="padding:13px 16px;">
           <div style="font-size:10px;color:#8A681F;text-transform:uppercase;letter-spacing:.65px;font-weight:800;padding-bottom:5px;">Buyer message</div>
-          <div style="font-size:14px;color:#34373B;line-height:1.55;">${escapeHtml(message).replace(/\n/g, "<br>")}</div>
+          <div style="font-size:14px;color:#292E34;line-height:1.58;font-weight:500;">${escapeHtml(message).replace(/\n/g, "<br>")}</div>
         </td>
       </tr>
     </table>
@@ -654,7 +654,7 @@ function requestDetailsCard(rows, typeLabel) {
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #E2E3E5;border-radius:10px;overflow:hidden;">
       <tr>
         <td style="background-color:#FAFAF9;padding:10px 16px;border-bottom:1px solid #E6E8EB;">
-          <span style="font-size:10px;color:#85898F;letter-spacing:.65px;text-transform:uppercase;font-weight:800;">${escapeHtml(typeLabel)}</span>
+          <span style="font-size:11px;color:#69717C;letter-spacing:.58px;text-transform:uppercase;font-weight:750;">${escapeHtml(typeLabel)}</span>
         </td>
       </tr>
       <tr>
@@ -672,8 +672,8 @@ function detailRow(label, value, last = false) {
   const border = last ? "" : "border-bottom:1px solid #ECEDEF;";
   return `
     <tr>
-      <td class="dl" width="40%" style="padding:11px 16px;font-size:10px;color:#74787F;text-transform:uppercase;letter-spacing:.5px;font-weight:800;${border}background-color:#FAFAF9;vertical-align:top;">${escapeHtml(label)}</td>
-      <td class="dv" width="60%" style="padding:11px 16px;font-size:13px;color:#202124;font-weight:700;line-height:1.45;${border}vertical-align:top;word-break:break-word;">${escapeHtml(value)}</td>
+      <td class="dl" width="40%" style="padding:11px 16px;font-size:11px;color:#626B76;text-transform:uppercase;letter-spacing:.46px;font-weight:750;${border}background-color:#FAFAF9;vertical-align:top;">${escapeHtml(label)}</td>
+      <td class="dv" width="60%" style="padding:11px 16px;font-size:14px;color:#1F2328;font-weight:650;line-height:1.45;${border}vertical-align:top;word-break:break-word;">${escapeHtml(value)}</td>
     </tr>
   `;
 }
@@ -691,9 +691,9 @@ function followUpCard(plan, nextStep) {
               <td align="right" style="font-size:12px;color:${tone.color};font-weight:800;line-height:1.4;">${tone.icon}&nbsp; ${escapeHtml(plan.title)}</td>
             </tr>
           </table>
-          <p style="margin:8px 0 0;color:#343A36;font-size:13px;line-height:1.55;">${escapeHtml(plan.text)}</p>
-          <p style="margin:7px 0 0;padding-top:7px;border-top:1px solid #DFE9E2;color:#68706B;font-size:12px;line-height:1.5;"><strong style="color:#4E5751;">Verify:</strong> ${escapeHtml(nextStep.text)}</p>
-          ${plan.note ? `<p style="margin:5px 0 0;color:#747B76;font-size:11px;line-height:1.45;">${escapeHtml(plan.note)}</p>` : ""}
+          <p style="margin:8px 0 0;color:#2E3430;font-size:14px;line-height:1.58;font-weight:500;">${escapeHtml(plan.text)}</p>
+          <p style="margin:7px 0 0;padding-top:7px;border-top:1px solid #DFE9E2;color:#59625C;font-size:12px;line-height:1.55;"><strong style="color:#414A44;">Verify:</strong> ${escapeHtml(nextStep.text)}</p>
+          ${plan.note ? `<p style="margin:5px 0 0;color:#656E68;font-size:12px;line-height:1.5;">${escapeHtml(plan.note)}</p>` : ""}
         </td>
       </tr>
     </table>
@@ -767,7 +767,7 @@ function secondaryActionsGrid(actions) {
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td align="center" style="background-color:#FFFFFF;border:1px solid #D7D9DC;border-radius:9px;">
-            <a href="${escapeAttribute(action.href)}" target="_blank" style="display:block;padding:10px 12px;font-size:13px;font-weight:750;color:#34373B;text-decoration:none;">${action.icon}&nbsp;&nbsp;${escapeHtml(action.label)}</a>
+            <a href="${escapeAttribute(action.href)}" target="_blank" style="display:block;padding:10px 12px;font-size:13px;font-weight:700;color:#2D3238;text-decoration:none;">${action.icon}&nbsp;&nbsp;${escapeHtml(action.label)}</a>
           </td>
         </tr>
       </table>
@@ -798,11 +798,11 @@ function footerBlock() {
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
             <tr>
               <td class="footer-col" width="48%" style="vertical-align:top;">
-                <div style="font-size:13px;font-weight:750;color:#42454A;line-height:1.4;">Maria Luisa Corral</div>
-                <div style="font-size:11px;color:#7A7E84;line-height:1.65;padding-top:2px;">Sales Director · DMCI Homes · PRC 0003253</div>
+                <div style="font-size:13px;font-weight:700;color:#30353B;line-height:1.4;">Maria Luisa Corral</div>
+                <div style="font-size:11px;color:#626A75;line-height:1.65;padding-top:2px;font-weight:500;">Sales Director · DMCI Homes · PRC 0003253</div>
               </td>
-              <td class="footer-col footer-contact" width="52%" align="right" style="vertical-align:top;font-size:11px;color:#696D73;line-height:1.65;">
-                <a href="mailto:mrcorral@dmcihomes.com" style="color:#5B6577;text-decoration:none;">mrcorral@dmcihomes.com</a><br>
+              <td class="footer-col footer-contact" width="52%" align="right" style="vertical-align:top;font-size:11px;color:#59616C;line-height:1.65;font-weight:500;">
+                <a href="mailto:mrcorral@dmcihomes.com" style="color:#45566F;text-decoration:none;font-weight:600;">mrcorral@dmcihomes.com</a><br>
                 0998 865 8902 · (02) 8888 7777 loc. 5860
               </td>
             </tr>

@@ -87,6 +87,9 @@ try {
   assert.match(outboundEmail.html, /&lt;Buyer &amp; Co&gt;/);
   assert.doesNotMatch(outboundEmail.html, /<Buyer & Co>/);
   assert.match(outboundEmail.html, /background-color:#F3F4F6/);
+  assert.match(outboundEmail.html, /Segoe UI Variable Text/);
+  assert.match(outboundEmail.html, /color:#17191C/);
+  assert.match(outboundEmail.html, /PHT/);
   assert.match(outboundEmail.html, /Recommended follow-up/);
   assert.match(outboundEmail.html, /View inquiry/);
   assert.doesNotMatch(outboundEmail.html, /#0D1B2A|Georgia|New buyer inquiry|Open Source Page/);

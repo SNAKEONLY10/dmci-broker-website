@@ -208,6 +208,11 @@ function validatePreview(variant, preview) {
       !preview.html.includes('@media only screen and (max-width: 420px)')) {
     throw new Error(`${variant.label} is missing the responsive email breakpoints.`);
   }
+  if (!preview.html.includes("Segoe UI Variable Text") ||
+      !preview.html.includes("color:#17191C") ||
+      !preview.html.includes("PHT")) {
+    throw new Error(`${variant.label} is missing the approved typography, contrast, or Manila timezone label.`);
+  }
   if (/#0D1B2A|Georgia|New buyer inquiry|Open Source Page/.test(preview.html)) {
     throw new Error(`${variant.label} still contains the retired dark-theme email design.`);
   }
