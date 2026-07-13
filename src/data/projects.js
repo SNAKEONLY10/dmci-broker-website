@@ -65,7 +65,7 @@ const baseProjects = [
     amenities: ["Basketball Court/Playcourt", "Sky Promenade", "Amenity Core", "Sky Patio", "Picnic Area", "Coworking Space", "Kiddie Pool", "Lap Pool", "Leisure Pool", "Sky Bridge", "24-hour Security", "Alfresco"],
     buildingFeatures: ["24-hour Security", "Sky Promenade", "Sky Patio", "Sky Bridge", "Amenity Core", "Building and parking details for confirmation"],
     nearbyLandmarks: ["LRT-2 Anonas Station (250 m)", "Gateway Mall (1.7 km)", "Ateneo de Manila University (2.0 km)", "World Citi Medical Center (500 m)", "Araneta Center (2.6 km)", "Eastwood City (3.9 km)"],
-    sourceUrl: "https://www.dmcihomes.com/the-oriana",
+    sourceUrl: "",
     locationMapImage: "/assets/projects/the-oriana/location-map.jpg",
     mapCoordinates: [14.628392, 121.068418],
     mapZoom: 16,
@@ -253,7 +253,7 @@ const baseProjects = [
     amenities: ["24-hour Security", "Children's Playground", "Convenience Store", "Entertainment Room", "Fitness Gym", "Game Area", "Gazebo/ Cabana", "Jogging/ Biking Path", "Kiddie Pool", "Landscaped Gardens", "Skydeck Pool", "Laundry Station"],
     buildingFeatures: ["57 storeys", "6 basement parking levels", "4 podium levels", "Amenity floor on 6th floor", "Roof deck amenities", "51 residential floors"],
     nearbyLandmarks: ["Fisher Mall (850 m)", "Providence Hospital (650 m)", "MRT Quezon Avenue Station (1.5 km)", "Solaire North (2.2 km)", "Trinoma (3.0 km)", "SM North EDSA (3.3 km)"],
-    sourceUrl: "https://www.dmcihomes.com/one-delta-terraces",
+    sourceUrl: "",
     locationMapImage: "/assets/projects/one-delta-terraces/location-map.jpg",
     mapCoordinates: [14.637997, 121.026696],
     mapZoom: 16,
@@ -426,7 +426,7 @@ const baseProjects = [
     amenities: ["24-hour Security", "Shooting Court", "Children's Playground", "Convenience Store", "Entertainment Room", "Fitness Gym", "Game Room", "Gazebo/ Cabana", "Grill Pits", "Jogging/ Biking Path", "Kiddie Pool", "Landscaped Gardens"],
     buildingFeatures: ["24-hour Security", "Shared activity rooms", "Convenience Store", "Landscaped amenity areas", "Building and turnover details for confirmation"],
     nearbyLandmarks: ["Commonwealth Ave. corridor", "Tandang Sora Ave. access", "Matandang Balara, Quezon City", "CBD and transport access for buyer verification"],
-    sourceUrl: "https://www.dmcihomes.com/the-erin-heights",
+    sourceUrl: "",
     ...theErinHeightsDetails
   },
   {
@@ -453,7 +453,7 @@ const baseProjects = [
     amenities: ["24-hour Security", "Arrival Court", "Children's Playground", "Convenience Store", "Entertainment Room", "Fitness Gym", "Game Area", "Gazebo/ Cabana", "Kiddie Pool", "Landscaped Gardens", "Lap Pool", "Laundry Station"],
     buildingFeatures: ["24-hour Security", "Arrival Court", "Laundry Station", "Convenience Store", "Shared activity rooms", "Building and parking details for confirmation"],
     nearbyLandmarks: ["Roosevelt Ave. corridor", "Brgy. Mariblo, Quezon City", "Retail and neighborhood services for confirmation", "Site viewing route for buyer verification"],
-    sourceUrl: "https://www.dmcihomes.com/cameron-residences",
+    sourceUrl: "",
     ...cameronResidencesDetails
   },
   {
@@ -481,7 +481,7 @@ const baseProjects = [
     amenities: ["24-hour Security", "Basketball Court/Playcourt", "Children's Playground", "Convenience Store", "Entertainment Room", "Fitness Gym", "Function Hall", "Game Area", "Gazebo/ Cabana", "Grill Pits", "Jogging/ Biking Path", "Kiddie Pool"],
     buildingFeatures: ["24-hour Security", "Function Hall", "Convenience Store", "Shared recreation rooms", "Amenity and parking details for confirmation"],
     nearbyLandmarks: ["C-5 corridor", "Brgy. Ugong, Pasig City", "Ortigas and BGC access references for confirmation", "P.E. Antonio St. site approach"],
-    sourceUrl: "https://www.dmcihomes.com/the-valeron-tower",
+    sourceUrl: "",
     ...valeronTowerDetails
   },
   {
@@ -508,7 +508,7 @@ const baseProjects = [
     amenities: ["24-hour Security", "Arrival Court", "Covered Multipurpose Court", "Children's Play Area", "Convenience Store", "Entertainment Room", "Fitness Gym", "Function Hall", "Game Area", "Gazebo/ Cabana", "Grill Pits", "Jogging Path"],
     buildingFeatures: ["24-hour Security", "Arrival Court", "Covered Multipurpose Court", "Function Hall", "Convenience Store", "Building and turnover details for confirmation"],
     nearbyLandmarks: ["Pasig Boulevard corridor", "Brgy. Bagong Ilog, Pasig City", "Nearby city access for confirmation", "Site viewing route for buyer verification"],
-    sourceUrl: "https://www.dmcihomes.com/allegra-garden-place",
+    sourceUrl: "",
     ...allegraGardenPlaceDetails
   },
   {
@@ -535,7 +535,7 @@ const baseProjects = [
     amenities: ["Children's Playground", "24-hour Security", "Drop-Off Area", "Basketball Court/Playcourt", "Convenience Store", "Audio-Visual Room", "Fitness Gym", "Function Hall", "Game Room", "Gazebo/ Cabana", "Jogging/ Biking Path", "Kiddie Pool"],
     buildingFeatures: ["24-hour Security", "Drop-Off Area", "Audio-Visual Room", "Function Hall", "Convenience Store", "Building and parking details for confirmation"],
     nearbyLandmarks: ["Pasig Boulevard corridor", "Brgy. Bagong Ilog, Pasig City", "BGC and Ortigas access references for confirmation", "Nearby transport and daily services for buyer verification"],
-    sourceUrl: "https://www.dmcihomes.com/prisma-residences",
+    sourceUrl: "",
     ...prismaResidencesDetails
   },
   {
@@ -562,7 +562,7 @@ const baseProjects = [
     amenities: ["Main Entrance Gate", "Leisure Pool", "Kiddie Pool", "Play Area", "Drop-Off Area", "Reception Lobby", "Fire Alarm & Automatic Sprinkler System", "Fire Cabinets", "Fire Exit", "Garbage Rooms", "Landscaped Atriums", "Sky Patio (Lumiventt Technology)"],
     buildingFeatures: ["Reception Lobby", "Main Entrance Gate", "Drop-Off Area", "Fire Alarm & Automatic Sprinkler System", "Fire Cabinets", "Fire Exit", "Garbage Rooms", "Sky Patio (Lumiventt Technology)"],
     nearbyLandmarks: ["Domingo M. Guevara St.", "Sinag St.", "Mauway, Mandaluyong City", "Central Metro Manila access for buyer verification"],
-    sourceUrl: "https://www.dmcihomes.com/sage-residences",
+    sourceUrl: "",
     ...sageResidencesDetails
   },
   {
@@ -589,7 +589,7 @@ const baseProjects = [
     amenities: ["24-hour Security", "Arrival Court", "Multi-Purpose Court", "Children's Playground", "Fitness Gym", "Function Hall", "Game Room", "Gazebo/ Cabana", "Grill Pits", "Jogging/ Biking Path", "Kiddie Pool", "Koi Pond"],
     buildingFeatures: ["24-hour Security", "Arrival Court", "Multi-Purpose Court", "Function Hall", "Koi Pond amenity area", "Building and parking details for confirmation"],
     nearbyLandmarks: ["M. Vicente St.", "Mandaluyong City", "Metro Manila access references for confirmation", "Site viewing route for buyer verification"],
-    sourceUrl: "https://www.dmcihomes.com/kai-garden-residences",
+    sourceUrl: "",
     ...kaiGardenResidencesDetails
   },
   {
@@ -625,7 +625,7 @@ const baseProjects = [
     amenities: ["Lap Pool", "Kiddie Pool", "Play Area", "Picnic Area", "Sky Promenade", "Sky Patio", "Jogging Path", "Landscaped Garden", "Sky Lounge", "Fitness Center", "Function Room", "Barbecue Areas", "Convenience Store", "Laundry Station"],
     buildingFeatures: ["Phase 2 Shantung: High Rise", "Phase 2 Taffeta: High Rise", "Phase 2 Paisley: Mid Rise", "Phase 2 Zephyr: Mid Rise", "Mid Rise: 6 Levels", "High Rise: 18 Levels", "Lumiventt natural lighting and ventilation references"],
     nearbyLandmarks: ["McKinley Hill (4 km / 15 mins)", "St. Luke's BGC (5.4 km / 15 mins)", "International School Manila (6.1 km / 15 mins)", "SM Aura (3.5 km / 10 mins)", "NAIA Terminal 3 (10.5 km / 20 mins)"],
-    sourceUrl: "https://www.dmci-online.com/mulberry-place-dmci-taguig/",
+    sourceUrl: "",
     mapCoordinates: [14.5213, 121.0614],
     mapZoom: 15,
     mapPinNote: "Map pin is approximate and for reference only.",
@@ -686,10 +686,10 @@ const baseProjects = [
     videoTourTitle: "AVP and Virtual Tour",
     videoTourCopy: "Official AVP and virtual tour references are loaded lazily so the page stays fast. Use external tour links only as buyer references and confirm current approved materials with Luisa.",
     videoTourEmbedUrl: "https://www.youtube.com/embed/voLKgWQalo4?rel=0",
-    videoTourUrl: "https://www.dmci-online.com/virtual-community-tour/?option=MLP",
+    videoTourUrl: "",
     videoTourLinks: [
-      { label: "Open Mulberry 360 Virtual Tour", url: "https://www.dmci-online.com/virtual-community-tour/?option=MLP", variant: "secondary" },
-      { label: "Open Acacia Estates Tour", url: "https://www.dmci-online.com/virtual-community-tour/?option=Acacia", variant: "ghost" }
+      { label: "Open Mulberry 360 Virtual Tour", url: "", variant: "secondary" },
+      { label: "Open Acacia Estates Tour", url: "", variant: "ghost" }
     ],
     videoTourNote: "AVP and virtual tour links are subject to final confirmation.",
     amenityGroups: [
@@ -813,7 +813,7 @@ const baseProjects = [
     amenities: ["Open Lounge", "Co-working Space", "Game Room", "Fitness Gym", "Entertainment Room", "Snack Bar", "Sky Lounge", "Lap Pool", "Kiddie Pool", "Leisure Pool", "Jogging Path", "Children's Play Area", "Sky Promenade", "Linear Park", "Picnic Area"],
     buildingFeatures: ["4 Buildings", "18 Storeys", "1,515 Units", "1,217 Parking Slots", "Card-operated laundry", "Convenience Store", "Water Station", "Guarded gate and entrance", "24-hour roving personnel", "Taxi call-in service"],
     nearbyLandmarks: ["SM Savemore (500 m / 3 mins)", "Grace Mall (1.5 km / 5 mins)", "Vista Mall (3.3 km / 8 mins)", "SM Aura (3.8 km / 8 mins)", "Venice Grand Canal Mall (4.1 km / 10 mins)", "Market! Market! (4.6 km / 11 mins)", "International School Manila (6.1 km / 12 mins)"],
-    sourceUrl: "https://www.dmci-online.com/alder-residences-dmci-taguig/",
+    sourceUrl: "",
     locationMapImage: "/assets/projects/alder-residences/location-map.jpg",
     mapCoordinates: [14.5199, 121.0627],
     mapZoom: 15,
@@ -873,10 +873,10 @@ const baseProjects = [
     videoTourTitle: "AVP and 360 Virtual Tour",
     videoTourCopy: "Official AVP and virtual tour references are loaded lazily so the page stays fast. Use external tour links only as buyer references and confirm current approved materials with Luisa.",
     videoTourEmbedUrl: "https://www.youtube.com/embed/DDIe8FhqZdU?rel=0",
-    videoTourUrl: "https://www.dmci-online.com/virtual-community-tour/?option=ALD",
+    videoTourUrl: "",
     videoTourLinks: [
-      { label: "Open Alder 360 Virtual Tour", url: "https://www.dmci-online.com/virtual-community-tour/?option=ALD", variant: "secondary" },
-      { label: "Open Acacia Estates Tour", url: "https://www.dmci-online.com/virtual-community-tour/?option=Acacia", variant: "ghost" }
+      { label: "Open Alder 360 Virtual Tour", url: "", variant: "secondary" },
+      { label: "Open Acacia Estates Tour", url: "", variant: "ghost" }
     ],
     videoTourNote: "AVP and virtual tour links are subject to final confirmation.",
     amenityGroups: [
@@ -983,7 +983,7 @@ const baseProjects = [
     amenities: ["24-hour Security", "Convenience Store", "Fitness Gym", "Game Area", "Gazebo/ Cabana", "Kiddie Pool", "Lap Pool", "Laundry Station", "Lounge Pool", "Lounge Area", "Main Entrance Gate", "Perimeter Fence"],
     buildingFeatures: ["24-hour Security", "Main Entrance Gate", "Perimeter Fence", "Laundry Station", "Convenience Store", "Building and parking details for confirmation"],
     nearbyLandmarks: ["Dominga St.", "Pasay City", "Nearby city services and transport for confirmation", "Site viewing route for buyer verification"],
-    sourceUrl: "https://www.dmcihomes.com/the-aston-place",
+    sourceUrl: "",
     ...theAstonPlaceDetails
   },
   {
@@ -1011,7 +1011,7 @@ const baseProjects = [
     amenities: ["Reception Lobby", "Lounge Area", "Snack Bar", "Elevator Lobby", "Sky Deck Pool", "Sky Promenade", "Sky Lounge", "24-hour Security", "Alfresco", "All-Day Dining Restaurant", "Amenity Core", "Arrival Court"],
     buildingFeatures: ["Reception Lobby", "Elevator Lobby", "Sky Promenade", "Sky Lounge", "24-hour Security", "Arrival Court"],
     nearbyLandmarks: ["Dominga St.", "Malate, Manila", "Nearby city services and institutions for confirmation", "Site viewing route for buyer verification"],
-    sourceUrl: "https://www.dmcihomes.com/the-camden-place",
+    sourceUrl: "",
     ...theCamdenPlaceDetails
   },
   {
@@ -1038,7 +1038,7 @@ const baseProjects = [
     amenities: ["Multi-Purpose Court", "Entrance Gate", "Lap Pool", "Leisure Pool", "Open Lawn/Picnic Grove", "Play Area", "Perimeter Fence", "24-hour Security", "Badminton Court", "Convenience Store", "Entertainment Room", "Fitness Gym"],
     buildingFeatures: ["24-hour Security", "Entrance Gate", "Perimeter Fence", "Multi-Purpose Court", "Convenience Store", "Building and parking details for confirmation"],
     nearbyLandmarks: ["Dr. A. Santos Ave.", "Para\u00f1aque City", "Southern Metro Manila access for confirmation", "Nearby services and viewing route for buyer verification"],
-    sourceUrl: "https://www.dmcihomes.com/the-atherton",
+    sourceUrl: "",
     ...theAthertonDetails
   },
   {
@@ -1065,7 +1065,7 @@ const baseProjects = [
     amenities: ["24-hour Security", "Multi-Purpose Court", "Play Area", "Convenience Store", "Fitness Gym", "Game Room", "Gazebo/ Cabana", "Kiddie Pool", "Landscaped Gardens", "Lap Pool", "Lounge Pool", "Lounge Area"],
     buildingFeatures: ["24-hour Security", "Multi-Purpose Court", "Convenience Store", "Landscaped Gardens", "Shared recreation rooms", "Building and parking details for confirmation"],
     nearbyLandmarks: ["Dr. A. Santos Ave.", "Para\u00f1aque City", "Nearby services and transport for confirmation", "Site viewing route for buyer verification"],
-    sourceUrl: "https://www.dmcihomes.com/calathea-place",
+    sourceUrl: "",
     ...calatheaPlaceDetails
   },
   {
@@ -1092,7 +1092,7 @@ const baseProjects = [
     amenities: ["24-hour Security", "Basketball Court/Playcourt", "Children's Play Area", "Convenience Store", "Entertainment Room", "Fitness Gym", "Function Hall", "Game Area", "Gazebo/ Cabana", "Grill Pits", "Jogging/ Biking Path", "Kiddie Pool"],
     buildingFeatures: ["24-hour Security", "Function Hall", "Convenience Store", "Shared recreation rooms", "Building and parking details for confirmation"],
     nearbyLandmarks: ["Alabang-Zapote Road", "Talon Tres, Las Pinas", "Southern Metro Manila access for confirmation", "Nearby daily services for buyer verification"],
-    sourceUrl: "https://www.dmcihomes.com/sonora-garden-residences",
+    sourceUrl: "",
     ...sonoraGardenResidencesDetails
   },
   {
@@ -1119,7 +1119,7 @@ const baseProjects = [
     amenities: ["24-hour Security", "Arrival Court", "Basketball Court/Playcourt", "Business Center", "Children's Play Area", "Children's Recreation Space / Daycare", "Entertainment Room", "Fire Pit", "Fitness Gym", "Game Room", "Gazebo/ Cabana", "Jacuzzi"],
     buildingFeatures: ["24-hour Security", "Arrival Court", "Business Center", "Children's Recreation Space / Daycare", "Fire Pit", "Building and turnover details for confirmation"],
     nearbyLandmarks: ["Sitio Bato", "Brgy. Poblacion, Tuba, Benguet", "Baguio/Benguet access for confirmation", "Mountain leisure setting for buyer verification"],
-    sourceUrl: "https://www.dmcihomes.com/moncello-crest",
+    sourceUrl: "",
     ...moncelloCrestDetails
   },
   {
@@ -1146,7 +1146,7 @@ const baseProjects = [
     amenities: ["Sky Lounge", "Snack Bar", "Sky Deck", "Beach Dining Area", "Roof Deck Pool", "Lap Pool", "Infinity Pool", "Kiddie Pool", "Pool Pavilion", "Lounge Area", "Main Entrance Gate", "Pool Deck"],
     buildingFeatures: ["Main Entrance Gate", "Sky Lounge", "Sky Deck", "Beach Dining Area", "Pool Pavilion", "Building and turnover details for confirmation"],
     nearbyLandmarks: ["Brgy. Calubcub II", "Brgy. Subukin", "San Juan, Batangas", "Coastal leisure access for buyer verification"],
-    sourceUrl: "https://www.dmcihomes.com/solmera-coast",
+    sourceUrl: "",
     ...solmeraCoastDetails
   }
 ];
@@ -1267,7 +1267,234 @@ function withProjectFallbacks(project, index) {
   };
 }
 
-export const projects = baseProjects.map(withProjectFallbacks);
+const officialProjectSnapshots = {
+  "the-oriana": {
+    status: "Ready for Occupancy",
+    priceRangeLabel: "₱4,678,000 - ₱10,369,000",
+    unitTypes: ["Studio", "1 BR", "2 BR"],
+    landArea: "9,314 sqm.",
+    architecturalTheme: "Modern Tropical",
+    address: "Aurora Blvd, Project 4, Quezon City",
+    youtubeId: "iRCL-SM7Ktg"
+  },
+  "one-delta-terraces": {
+    status: "New",
+    priceRangeLabel: "₱6,953,000 - ₱22,147,000",
+    unitTypes: ["Studio", "2 BR", "3 BR"],
+    architecturalTheme: "Asian Contemporary",
+    address: "Quezon Avenue, Quezon City, Metro Manila"
+  },
+  "the-erin-heights": {
+    status: "Under Construction",
+    priceRangeLabel: "₱4,930,000 - ₱30,140,000",
+    unitTypes: ["Studio", "2 BR", "3 BR"],
+    landArea: "6,103 sqm.",
+    architecturalTheme: "Modern Tropical",
+    address: "Commonwealth Avenue corner Tandang Sora Avenue, Matandang Balara, Quezon City",
+    youtubeId: "5CXZ6iiv5QA"
+  },
+  "cameron-residences": {
+    status: "Ready for Occupancy",
+    priceRangeLabel: "₱5,171,000 - ₱12,603,000",
+    unitTypes: ["1 BR", "2 BR", "3 BR"],
+    landArea: "3,479 sqm.",
+    architecturalTheme: "Modern Tropical",
+    address: "Mapalad Street, Brgy. Mariblo, Roosevelt Avenue, Quezon City",
+    youtubeId: "p8BK6I6GDf0"
+  },
+  "the-valeron-tower": {
+    status: "New",
+    priceRangeLabel: "₱6,975,000 - ₱18,014,000",
+    unitTypes: ["Studio", "1 BR", "2 BR", "3 BR"],
+    landArea: "8,390 sqm.",
+    architecturalTheme: "Modern Artisanal",
+    address: "C-5 corner P.E. Antonio Street, Ugong, Pasig City",
+    youtubeId: "DaHnqCseG1s"
+  },
+  "allegra-garden-place": {
+    status: "Under Construction",
+    priceRangeLabel: "₱4,958,000 - ₱13,889,000",
+    unitTypes: ["Studio", "1 BR", "2 BR", "3 BR"],
+    landArea: "12,676 sqm.",
+    architecturalTheme: "Modern with Moroccan Inspiration",
+    address: "Pasig Boulevard, Bagong Ilog, Pasig City",
+    youtubeId: "raCcLavx5us"
+  },
+  "prisma-residences": {
+    status: "Ready for Occupancy",
+    priceRangeLabel: "₱4,701,000 - ₱12,542,000",
+    unitTypes: ["1 BR", "2 BR", "3 BR"],
+    landArea: "20,380 sqm.",
+    architecturalTheme: "Modern Tropical",
+    address: "Pasig Boulevard, Bagong Ilog, Pasig City",
+    youtubeId: "Qa6JosbEFi8"
+  },
+  "sage-residences": {
+    status: "Under Construction",
+    priceRangeLabel: "₱6,513,000 - ₱16,077,000",
+    unitTypes: ["Studio", "1 BR", "2 BR", "3 BR"],
+    landArea: "5,995 sqm.",
+    architecturalTheme: "Modern Tropical",
+    address: "Domingo M. Guevara and Sinag Streets, Mauway, Mandaluyong City",
+    youtubeId: "O_BPKmONDkw"
+  },
+  "kai-garden-residences": {
+    status: "Ready for Occupancy",
+    priceRangeLabel: "₱5,472,000 - ₱14,834,000",
+    unitTypes: ["1 BR", "2 BR", "3 BR"],
+    landArea: "17,082 sqm.",
+    architecturalTheme: "Japanese-Inspired",
+    address: "M. Vicente Street, Mandaluyong City",
+    youtubeId: "wbhQrfJApSw"
+  },
+  "mulberry-place": {
+    status: "Ready for Occupancy",
+    priceRangeLabel: "₱7,822,000 - ₱26,361,000",
+    unitTypes: ["2 BR", "3 BR", "4 BR"],
+    landArea: "36,474 sqm.",
+    architecturalTheme: "Asian Tropical",
+    address: "Acacia Estates, Taguig City",
+    youtubeId: "5_jb7qfpM9I"
+  },
+  "alder-residences": {
+    status: "Ready for Occupancy",
+    priceRangeLabel: "₱8,994,000 - ₱21,178,000",
+    unitTypes: ["2 BR", "3 BR", "4 BR"],
+    landArea: "28,607 sqm.",
+    architecturalTheme: "Modern Artisanal",
+    address: "Banyan Road, Acacia Estates, Taguig City",
+    youtubeId: "Uae1IjKfLY0"
+  },
+  "the-aston-place": {
+    status: "Ready for Occupancy",
+    priceRangeLabel: "₱6,391,000 - ₱14,429,000",
+    unitTypes: ["1 BR", "2 BR", "3 BR"],
+    landArea: "5,993 sqm.",
+    architecturalTheme: "Modern",
+    address: "Dominga Street, Pasay City"
+  },
+  "the-camden-place": {
+    status: "Under Construction",
+    priceRangeLabel: "₱5,143,800 - ₱9,918,800",
+    unitTypes: ["Studio", "1 BR", "2 BR"],
+    landArea: "2,382 sqm.",
+    architecturalTheme: "Modern Contemporary",
+    address: "Dominga Street, Malate, Manila",
+    youtubeId: "5sHTpdMwkTc"
+  },
+  "the-atherton": {
+    status: "Ready for Occupancy",
+    priceRangeLabel: "₱4,237,000 - ₱8,374,000",
+    unitTypes: ["1 BR", "2 BR"],
+    landArea: "17,623 sqm.",
+    architecturalTheme: "Modern Tropical",
+    address: "Dr. A. Santos Avenue, Parañaque City",
+    youtubeId: "p0wxndMBuLs"
+  },
+  "calathea-place": {
+    status: "Ready for Occupancy",
+    priceRangeLabel: "₱4,232,000 - ₱5,527,000",
+    unitTypes: ["1 BR", "2 BR"],
+    landArea: "15,414 sqm.",
+    architecturalTheme: "Modern Tropical",
+    address: "Dr. A. Santos Avenue, Parañaque City",
+    youtubeId: "dJVi8Hp9j2Y"
+  },
+  "sonora-garden-residences": {
+    status: "Ready for Occupancy",
+    priceRangeLabel: "₱4,556,000 - ₱11,208,000",
+    unitTypes: ["1 BR", "2 BR", "3 BR"],
+    landArea: "14,492 sqm.",
+    architecturalTheme: "Modern Contemporary",
+    address: "Alabang-Zapote Road, Talon Tres, Las Piñas City",
+    youtubeId: "7II8QCsZTNw"
+  },
+  "moncello-crest": {
+    status: "New",
+    priceRangeLabel: "₱8,050,000 - ₱18,270,000",
+    unitTypes: ["Studio", "1 BR", "2 BR"],
+    landArea: "40,768 sqm.",
+    architecturalTheme: "Modern Filipino",
+    address: "Sitio Bato via Bontiway, Poblacion, Tuba, Benguet",
+    youtubeId: "ZunigkMvfsw"
+  },
+  "solmera-coast": {
+    status: "Under Construction",
+    priceRangeLabel: "₱6,621,000 - ₱20,004,000",
+    unitTypes: ["Studio", "1 BR", "2 BR"],
+    landArea: "75,367 sqm.",
+    architecturalTheme: "Asian Tropical",
+    address: "Brgy. Calubcub II and Brgy. Subukin, San Juan, Batangas",
+    youtubeId: "7NaVqLDqrM8"
+  }
+};
+
+function withAuditedProjectSnapshot(project) {
+  const snapshot = officialProjectSnapshots[project.slug];
+  if (!snapshot) return project;
+
+  const hasVideo = Boolean(snapshot.youtubeId);
+  const videoUrl = hasVideo ? `https://www.youtube.com/watch?v=${snapshot.youtubeId}` : "";
+  const videoEmbedUrl = hasVideo ? `https://www.youtube-nocookie.com/embed/${snapshot.youtubeId}?rel=0` : "";
+
+  return {
+    ...project,
+    ...snapshot,
+    sourceUrl: "",
+    referenceUrl: "",
+    lastVerified: "2026-07-13",
+    priceSourceNote: "Project-page snapshot checked July 13, 2026. Ask Luisa to confirm the live unit, promo, and computation before deciding.",
+    officialSnapshot: {
+      checkedAt: "July 13, 2026",
+      status: snapshot.status,
+      priceRange: snapshot.priceRangeLabel,
+      unitTypes: snapshot.unitTypes,
+      landArea: snapshot.landArea || project.landArea,
+      architecturalTheme: snapshot.architecturalTheme,
+      address: snapshot.address
+    },
+    newsMedia: [
+      {
+        title: "Latest project verification",
+        label: "Ask Luisa to reconfirm current inventory, promos, turnover notes, and approved presentation materials.",
+        url: ""
+      },
+      {
+        title: "Buyer-specific computation",
+        label: "Request a computation matched to your preferred unit, payment term, and buying timeline.",
+        url: ""
+      }
+    ],
+    videoTourTitle: hasVideo ? `${project.name} Video Presentation` : "Request the Approved Project Presentation",
+    videoTourCopy: hasVideo
+      ? "Play the project AVP directly here. For current availability and buyer-specific details, continue with Maria Luisa through this website."
+      : "A verified YouTube AVP is not currently published for this project. Request the latest approved presentation directly from Maria Luisa.",
+    videoTourNote: hasVideo
+      ? "The embedded player is the only external project-media destination shown on this page."
+      : "No third-party property page or unverified walkthrough is linked.",
+    videoTourUrl: videoUrl,
+    videoTourEmbedUrl: videoEmbedUrl,
+    videoTourLinks: hasVideo
+      ? [{ label: "Watch on YouTube", url: videoUrl, variant: "secondary" }]
+      : [],
+    audioVisualPresentation: project.audioVisualPresentation ? {
+      ...project.audioVisualPresentation,
+      text: "Play the project AVP directly here, then request current buyer-specific details from Maria Luisa through this website.",
+      url: videoUrl,
+      embedUrl: videoEmbedUrl,
+      label: "Watch on YouTube",
+      links: hasVideo ? [{ label: "Watch on YouTube", url: videoUrl, variant: "secondary" }] : []
+    } : project.audioVisualPresentation,
+    virtualTour: project.virtualTour ? {
+      ...project.virtualTour,
+      text: "Request the latest approved virtual presentation directly from Maria Luisa without leaving this website.",
+      url: "",
+      links: []
+    } : project.virtualTour
+  };
+}
+
+export const projects = baseProjects.map(withProjectFallbacks).map(withAuditedProjectSnapshot);
 
 function uniqueValues(items) {
   return [...new Set(items.filter(Boolean))];

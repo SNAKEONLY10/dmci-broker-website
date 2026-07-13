@@ -1,9 +1,12 @@
 import { readdir, readFile, stat } from "node:fs/promises";
 import path from "node:path";
+import { projects } from "../src/data/projects.js";
 
 const root = path.resolve(".");
-const sourceEntries = ["src", "api", "index.html", "public/robots.txt"];
+const sourceEntries = ["src/components", "src/pages", "src/styles", "src/App.jsx", "src/main.jsx", "api", "index.html", "public/robots.txt"];
 const urls = new Set();
+
+collectUrls(JSON.stringify(projects));
 
 for (const entry of sourceEntries) {
   await collectEntry(path.join(root, entry));
@@ -63,6 +66,10 @@ async function collectEntry(entry) {
 
   if (!/\.(?:jsx?|tsx?|css|html|txt)$/i.test(entry)) return;
   const source = await readFile(entry, "utf8");
+  collectUrls(source);
+}
+
+function collectUrls(source) {
   const matches = source.match(/\bhttps:\/\/[^\s"'`<>\\]+/gi) || [];
   matches
     .map((url) => url.replace(/[),.;]+$/g, ""))

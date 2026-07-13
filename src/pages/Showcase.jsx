@@ -232,7 +232,7 @@ export default function Showcase() {
       <ShowcaseSection eyebrow="Assets" title="Google Drive Asset Plan">
         <div className="content-panel">
           <p>The Google Drive Marketing Materials folder is confirmed. Official photos and videos from this folder can be used after selecting approved assets. Images should be compressed and web-optimized before final use. Large videos should not be committed directly to the repo; use thumbnails and external links or hosted video.</p>
-          <p><strong>Confirmed folder:</strong> <a href="https://drive.google.com/drive/folders/19CWq_YMieSFTOx9dpPIsE-dN75yUxoPr" target="_blank" rel="noopener">Marketing Materials</a></p>
+          <p><strong>Confirmed assets:</strong> Approved marketing materials are prepared locally for the website review.</p>
           <div className="asset-pipeline" aria-label="Asset pipeline">
             {assetPipeline.map((step) => <span key={step}>{step}</span>)}
           </div>

@@ -150,7 +150,7 @@ function Footer() {
         </div>
         <div className="footer-links">
           <h4>Trust & Legal</h4>
-          <a href={contact.officialDmciWebsite} target="_blank" rel="noopener noreferrer">DMCI Homes Website</a>
+          <NavLink to="/about">About Maria Luisa</NavLink>
           <NavLink to="/privacy-policy">Privacy Policy</NavLink>
           <NavLink to="/disclaimer">Disclaimer</NavLink>
         </div>

@@ -11,8 +11,8 @@ export const oneDeltaTerracesDetails = {
   detailTitle: "One Delta Terraces DMCI Quezon City",
   heroHeadline: "One Delta Terraces by DMCI Homes",
   tagline: "Modern contemporary high-rise living at West Avenue corner Quezon Avenue",
-  referenceUrl: "https://www.dmci-online.com/one-delta-terraces-dmci-quezon-city/",
-  sourceUrl: "https://www.dmci-online.com/one-delta-terraces-dmci-quezon-city/",
+  referenceUrl: "",
+  sourceUrl: "",
   logoImage: oneDeltaAsset("logo.png"),
   image: oneDeltaAsset("hero.jpg"),
   thumbnail: oneDeltaAsset("thumbnail.jpg"),
@@ -151,9 +151,9 @@ export const oneDeltaTerracesDetails = {
   videoTourEmbedUrl: "https://www.youtube.com/embed/m3LkY82XjKI",
   videoTourLinks: [
     { label: "Watch AVP on YouTube", url: "https://www.youtube.com/watch?v=m3LkY82XjKI", variant: "secondary" },
-    { label: "Open 360 Tour", url: "https://dmcihomes.viewin360.co/share/collection/7Dg66?logo=bWVkaWEvMTUwOTU1LzY4YTUtYTNhYi0xMmU5LTk3NTYucG5n&info=0&logosize=200&fs=1&vr=1&sd=1&gyro=0&initload=0&thumbs=1", variant: "ghost" },
-    { label: "Open 2BR 360 Tour", url: "https://dmcihomes.viewin360.co/share/collection/7D9sf?logo=bWVkaWEvMTUwOTU1LzY2YzQtMDkwMy02ZjlmLWIzNTkucG5n&info=0&logosize=200&fs=1&vr=1&sd=1&gyro=0&initload=0&thumbs=1", variant: "ghost" },
-    { label: "Drive AVP Backup", url: "https://drive.google.com/file/d/1LqAlOjQWcdb7-VQt_wHzduXpKkMWoP1W/view", variant: "ghost" }
+    { label: "Open 360 Tour", url: "", variant: "ghost" },
+    { label: "Open 2BR 360 Tour", url: "", variant: "ghost" },
+    { label: "Drive AVP Backup", url: "", variant: "ghost" }
   ],
   videoTourNote: "Large Drive videos are linked instead of auto-loaded so the page stays fast on mobile.",
   amenityGroups: [

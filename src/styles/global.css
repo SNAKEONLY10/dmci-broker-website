@@ -2475,6 +2475,107 @@ textarea {
   font-weight: 750;
 }
 
+.audited-project-snapshot {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid rgba(25, 117, 76, 0.2);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 96% 8%, rgba(201, 162, 74, 0.16), transparent 28%),
+    linear-gradient(145deg, #f4fbf7, #ffffff);
+  box-shadow: 0 16px 42px rgba(14, 39, 66, 0.07);
+}
+
+.audited-snapshot-heading {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px 14px;
+  align-items: baseline;
+}
+
+.audited-snapshot-heading span {
+  color: #176d4c;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.audited-snapshot-heading strong {
+  color: var(--navy);
+  font-size: 0.8rem;
+}
+
+.audited-snapshot-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.audited-snapshot-grid > div {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  padding: 11px;
+  border: 1px solid rgba(15, 39, 66, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.audited-snapshot-grid strong {
+  color: #66788a;
+  font-size: 0.64rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.audited-snapshot-grid span {
+  color: var(--navy);
+  font-size: 0.82rem;
+  font-weight: 850;
+  line-height: 1.3;
+}
+
+.audited-project-snapshot > p {
+  margin: 0;
+  color: #536a5f;
+  font-size: 0.84rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+@media (max-width: 760px) {
+  .audited-project-snapshot {
+    gap: 10px;
+    padding: 13px;
+    border-radius: 15px;
+  }
+
+  .audited-snapshot-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px;
+  }
+
+  .audited-snapshot-grid > div {
+    padding: 9px;
+  }
+
+  .audited-project-snapshot .compact-cta-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px;
+  }
+
+  .audited-project-snapshot .btn {
+    min-height: 42px;
+    padding: 8px;
+    font-size: 0.7rem;
+    text-align: center;
+  }
+}
+
 .rich-fact-grid,
 .pricing-card-grid,
 .grouped-list-grid,
@@ -3577,6 +3678,18 @@ textarea {
 .field textarea[aria-invalid="true"] {
   border-color: #d92d20;
   background: #fffafa;
+}
+
+.field input,
+.field select,
+.field textarea,
+.consent input {
+  scroll-margin-top: 96px;
+}
+
+.field.has-error > label,
+.consent:has(input[aria-invalid="true"]) {
+  color: #9f1c12;
 }
 
 .field-helper {
@@ -5767,19 +5880,42 @@ textarea {
 
 @media (max-width: 390px) {
   .form-card-compact .form-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px;
   }
 
   .form-card-compact .field.compact {
-    grid-column: 1 / -1;
+    grid-column: auto;
   }
 
   .form-card-compact .field {
-    gap: 5px;
+    gap: 3px;
+  }
+
+  .form-card-compact .field label {
+    font-size: 0.76rem;
+    line-height: 1.2;
+  }
+
+  .form-card-compact .field input,
+  .form-card-compact .field select {
+    min-height: 40px;
+    padding: 7px 8px;
+    font-size: 0.82rem;
   }
 
   .form-card-compact .field textarea {
-    min-height: 86px;
+    min-height: 74px;
+  }
+
+  .form-card-compact .field-contactNumber .field-helper {
+    display: none;
+  }
+
+  .form-card-compact .field-helper,
+  .form-card-compact .error {
+    font-size: 0.66rem;
+    line-height: 1.28;
   }
 
   .form-card-compact .selected-project-preview {
@@ -5828,8 +5964,8 @@ textarea {
   }
 
   .form-card-compact .form-submit {
-    min-height: 52px;
-    padding: 12px 15px;
+    min-height: 48px;
+    padding: 10px 13px;
     white-space: normal;
   }
 }
@@ -5868,16 +6004,26 @@ textarea {
   }
 
   .form-shell-content .section-header {
-    margin-bottom: 14px;
+    margin-bottom: 10px;
   }
 
   .form-shell-content .section-header h1,
   .form-shell-content .section-header h2 {
-    font-size: clamp(1.9rem, 8vw, 2.28rem);
+    font-size: clamp(1.7rem, 7.4vw, 2.05rem);
+    line-height: 1.02;
+  }
+
+  .form-shell-content .section-header p {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 0.84rem;
+    line-height: 1.4;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
   }
 
   .form-card-compact {
-    padding: 14px;
+    padding: 12px;
   }
 
   .form-card-compact .form-intro {
@@ -5889,7 +6035,7 @@ textarea {
   }
 
   .form-card-compact .form-grid {
-    gap: 9px;
+    gap: 8px;
   }
 
   .form-card-compact .field input,

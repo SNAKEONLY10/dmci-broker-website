@@ -8,7 +8,6 @@ export const contact = {
   officeAddress: "Confirmed during inquiry",
   businessHours: "By appointment",
   viber: "viber://chat?number=%2B639988658902",
-  officialDmciWebsite: "https://www.dmcihomes.com/",
   brand: "My DMCI Broker",
   brokerName: "Maria Luisa Corral",
   displayName: "Luisa Corral",

@@ -105,6 +105,7 @@ export default function ProjectDetail() {
       <section className="section project-detail-main">
         <div className="container project-detail-layout">
           <div className="detail-sections">
+            <AuditedProjectSnapshot project={project} />
             {isRichProject ? <RichProjectSections project={project} /> : <StandardProjectSections project={project} />}
           </div>
 
@@ -207,7 +208,7 @@ function ProjectHero({ project, isRichProject }) {
           </div>
           <div className="hero-actions">
             {heroActions.map((action) => (
-              <Button key={action.label} to={action.to} href={action.href} variant={action.variant || "primary"}>{action.label}</Button>
+              <Button key={action.label} to={safeInternalPath(action.to) || projectInquiryPath("/contact", project, "Other")} variant={action.variant || "primary"}>{action.label}</Button>
             ))}
           </div>
         </article>
@@ -636,13 +637,13 @@ function OrianaProjectSections({ project }) {
         <Gallery project={project} />
       </DetailSection>
 
-      <DetailSection id="news-media" eyebrow="Sources" title="Project Updates and Reference Links">
+      <DetailSection id="news-media" eyebrow="Buyer Updates" title="Broker-Managed Project Updates">
         <div className="premium-card-grid">
           {project.newsMedia.map((item) => (
             <article className="info-card" key={item.title}>
               <h3>{item.title}</h3>
               <p>{item.label}</p>
-              {item.url && <Button href={item.url} target="_blank" rel="noreferrer" variant="secondary">Open Source</Button>}
+              <Button to={projectInquiryPath("/contact", project, "Project update")} variant="secondary">Ask Luisa for Update</Button>
             </article>
           ))}
         </div>
@@ -736,13 +737,13 @@ function StandardProjectSections({ project }) {
         <Gallery project={project} />
       </DetailSection>
 
-      <DetailSection id="news-media" eyebrow="News & Media" title="Project Updates and Reference Links">
+      <DetailSection id="news-media" eyebrow="Buyer Updates" title="Broker-Managed Project Updates">
         <div className="premium-card-grid">
           {project.newsMedia.map((item) => (
             <article className="info-card" key={item.title}>
               <h3>{item.title}</h3>
               <p>{item.label}</p>
-              {item.url && <Button href={item.url} target="_blank" rel="noreferrer" variant="secondary">Open Source</Button>}
+              <Button to={projectInquiryPath("/contact", project, "Project update")} variant="secondary">Ask Luisa for Update</Button>
             </article>
           ))}
         </div>
@@ -1048,9 +1049,12 @@ function ImageLightbox({ image, onClose }) {
 }
 
 function VideoTourBlock({ project }) {
+  const hasYouTubeEmbed = isYouTubeUrl(project.videoTourEmbedUrl);
+  const hasYouTubeLink = isYouTubeUrl(project.videoTourUrl) || project.videoTourLinks?.some((item) => isYouTubeUrl(item.url));
+
   return (
     <div className="video-tour-card" data-reveal="section">
-      {project.videoTourEmbedUrl ? (
+      {hasYouTubeEmbed ? (
         <MediaEmbed title={`${project.name} video presentation`} src={project.videoTourEmbedUrl} />
       ) : (
         <ImagePlaceholder src={project.videoTourImage} label={`${project.name} virtual tour`} compact variant="gallery" />
@@ -1059,7 +1063,7 @@ function VideoTourBlock({ project }) {
         <strong>{project.videoTourTitle || "Virtual tour link available upon request"}</strong>
         <p>{project.videoTourCopy || "Large videos are not loaded directly here so the website stays fast on mobile. Ask Luisa for the latest approved tour link or project presentation."}</p>
         {project.videoTourNote && <p className="safety-note">{project.videoTourNote}</p>}
-        {project.videoTourUrl ? (
+        {hasYouTubeLink ? (
           <MediaLinks
             links={project.videoTourLinks}
             fallback={{ label: "Open Virtual Tour", url: project.videoTourUrl, variant: "secondary" }}
@@ -1073,24 +1077,24 @@ function VideoTourBlock({ project }) {
 }
 
 function MediaEmbed({ title, src }) {
+  if (!isYouTubeUrl(src)) return null;
+
   return (
-    <DeferredFrame
-      className="media-embed-frame"
-      title={title}
-      src={src}
-      eyebrow="Video presentation"
-      actionLabel="Load video"
-      description="YouTube loads only when selected so project pages stay faster on mobile."
-      iframeProps={{
-        allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
-        allowFullScreen: true
-      }}
-    />
+    <div className="media-embed-frame is-ready">
+      <iframe
+        title={title}
+        src={src}
+        loading="lazy"
+        referrerPolicy="strict-origin-when-cross-origin"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+      />
+    </div>
   );
 }
 
 function MediaLinks({ links, fallback }) {
-  const items = links?.length ? links : (fallback?.url ? [fallback] : []);
+  const items = (links?.length ? links : (fallback?.url ? [fallback] : [])).filter((item) => isYouTubeUrl(item.url));
   if (!items.length) return null;
 
   return (
@@ -1196,4 +1200,44 @@ function isDisplayValue(value) {
   if (value == null) return false;
   const normalized = String(value).trim().toLowerCase();
   return normalized !== "" && normalized !== "for confirmation" && normalized !== "undefined" && normalized !== "null";
+}
+
+function AuditedProjectSnapshot({ project }) {
+  const snapshot = project.officialSnapshot;
+  if (!snapshot) return null;
+
+  return (
+    <aside className="audited-project-snapshot" aria-label={`${project.name} latest verified project snapshot`}>
+      <div className="audited-snapshot-heading">
+        <span>Latest verified snapshot</span>
+        <strong>Checked {snapshot.checkedAt}</strong>
+      </div>
+      <div className="audited-snapshot-grid">
+        <Spec label="Status" value={snapshot.status} />
+        <Spec label="Price range" value={snapshot.priceRange} />
+        <Spec label="Unit types" value={snapshot.unitTypes.join(", ")} />
+        <Spec label="Land area" value={snapshot.landArea} />
+      </div>
+      <p>Live inventory and buyer-specific computations can change. Confirm them with Maria Luisa here before any reservation decision.</p>
+      <div className="compact-cta-row">
+        <Button to={projectInquiryPath("/request-computation", project, "Computation")}>Request Current Computation</Button>
+        <Button to={projectInquiryPath("/availability", project, "Availability")} variant="secondary">Confirm Availability</Button>
+      </div>
+    </aside>
+  );
+}
+
+function isYouTubeUrl(value) {
+  if (!value) return false;
+  try {
+    const hostname = new URL(value).hostname.replace(/^www\./, "").toLowerCase();
+    return ["youtube.com", "youtu.be", "youtube-nocookie.com"].includes(hostname);
+  } catch {
+    return false;
+  }
+}
+
+function safeInternalPath(value) {
+  const path = String(value || "").trim();
+  return path.startsWith("/") && !path.startsWith("//") ? path : "";
 }

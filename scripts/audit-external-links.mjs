@@ -9,7 +9,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 const docsDir = path.join(root, "docs");
 const reportPath = path.join(docsDir, "external-link-audit.md");
-const sourceRoots = ["src", "api", "index.html", "public/robots.txt"]
+const sourceRoots = ["src/components", "src/pages", "src/styles", "src/App.jsx", "src/main.jsx", "api", "index.html", "public/robots.txt"]
   .map((entry) => path.join(root, entry))
   .filter((entry) => exists(entry));
 
@@ -179,12 +179,9 @@ function buildReport(rows, categories) {
     })
     .join("\n\n");
   const manualRows = [
-    ["Official DMCI links", "Open each official DMCI/dmci-online reference from project detail pages.", "Desktop and mobile browser"],
     ["Google Maps direction links", "Click Get Directions and confirm the pin/search lands on the intended project or city area.", "Manual browser test"],
     ["Google Maps embedded maps", "Click to load the map, then zoom and pan once.", "Manual browser test"],
     ["YouTube AVP links", "Click to load/play and confirm no unavailable/private video message appears.", "Manual browser test"],
-    ["Google Drive links", "Open in an incognito window and confirm buyer-safe access permissions.", "Manual owner test"],
-    ["Virtual tour links", "Open the 360/tour link and confirm it is public, fast enough, and project-matched.", "Manual browser test"],
     ["Telephone links", "Tap Call on a real phone and confirm the dialer opens the correct number.", "Manual phone test required"],
     ["Mail links", "Tap Email and confirm the mail client opens the broker address.", "Manual device test"],
     ["Viber links", "Tap Viber on a phone with Viber installed and confirm it opens the broker number.", "Manual phone test required"]
@@ -208,7 +205,9 @@ ${summaryRows}
 
 ## Notes
 
-- Official DMCI, Google Maps, YouTube, Google Drive, and virtual-tour links are categorized for manual browser checks.
+- Runtime project exports and customer-facing UI are scanned. Archived source references that are normalized out before rendering are intentionally excluded.
+- Customer-facing project media is YouTube-only. DMCI Homes, DMCI Online, Drive, 360-tour, and third-party property-page redirects are blocked by the project link-policy QA.
+- Google Maps and YouTube links are categorized for manual browser checks.
 - Tel, mailto, sms, and Viber links depend on the buyer's device and installed apps.
 - This audit fails only for malformed links or insecure non-local http links.
 

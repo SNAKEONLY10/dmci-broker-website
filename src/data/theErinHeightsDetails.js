@@ -11,7 +11,7 @@ export const theErinHeightsDetails = {
   detailTitle: "The Erin Heights DMCI Quezon City",
   heroHeadline: "Welcome to The Erin Heights",
   tagline: "Modern tropical high-rise living at Commonwealth Avenue corner Tandang Sora Avenue",
-  referenceUrl: "https://www.dmci-online.com/the-erin-heights-dmci-quezon-city/",
+  referenceUrl: "",
   logoImage: erinAsset("logo.png"),
   image: erinAsset("hero.jpg"),
   thumbnail: erinAsset("thumbnail.jpg"),
@@ -134,9 +134,9 @@ export const theErinHeightsDetails = {
   videoTourEmbedUrl: "https://www.youtube.com/embed/D3ffIj6QMV8",
   videoTourLinks: [
     { label: "Watch AVP on YouTube", url: "https://www.youtube.com/watch?v=D3ffIj6QMV8", variant: "secondary" },
-    { label: "Drive TOD AVP Backup", url: "https://drive.google.com/file/d/1y8bWiYgWHBtEp3xzRFM2XJ4ysvTSxx9k/view", variant: "ghost" },
-    { label: "Drive Project AVP", url: "https://drive.google.com/file/d/1ARveq6JormcUZGQRLLd6oZAup-O_1XmX/view", variant: "ghost" },
-    { label: "Water Recycling Video", url: "https://drive.google.com/file/d/14cs7m6M9RjVWuGOgTgdQR_9SaVFGKZos/view", variant: "ghost" }
+    { label: "Drive TOD AVP Backup", url: "", variant: "ghost" },
+    { label: "Drive Project AVP", url: "", variant: "ghost" },
+    { label: "Water Recycling Video", url: "", variant: "ghost" }
   ],
   videoTourNote: "Large Drive videos are linked instead of auto-loaded so the page stays fast on mobile.",
   amenityGroups: [
@@ -282,12 +282,12 @@ export const theErinHeightsDetails = {
     {
       title: "Official DMCI Homes project page",
       label: "Review official DMCI Homes project reference",
-      url: "https://www.dmcihomes.com/the-erin-heights"
+      url: ""
     },
     {
       title: "Supplied The Erin Heights reference copy",
       label: "Reference content used for page details, pricing tables, sample computation, and reservation guidance",
-      url: "https://www.dmci-online.com/the-erin-heights-dmci-quezon-city/"
+      url: ""
     }
   ]
 };

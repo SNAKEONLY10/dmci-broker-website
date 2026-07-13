@@ -30,8 +30,8 @@ export const valeronTowerDetails = {
   detailTitle: "Valeron Tower DMCI Pasig City",
   heroHeadline: "Valeron Tower by DMCI Homes",
   tagline: "Modern artisanal high-rise living at the gateway of the C-5 Ortigas Corridor",
-  referenceUrl: "https://www.dmci-online.com/valeron-tower-dmci-pasig-city/",
-  sourceUrl: "https://www.dmci-online.com/valeron-tower-dmci-pasig-city/",
+  referenceUrl: "",
+  sourceUrl: "",
   logoImage: pasigAsset("the-valeron-tower", "logo.png"),
   image: pasigAsset("the-valeron-tower", "hero.jpg"),
   thumbnail: pasigAsset("the-valeron-tower", "thumbnail.jpg"),
@@ -164,7 +164,7 @@ export const valeronTowerDetails = {
   videoTourEmbedUrl: "https://www.youtube.com/embed/eRDLUXEDfAk",
   videoTourLinks: [
     { label: "Watch AVP on YouTube", url: "https://www.youtube.com/watch?v=eRDLUXEDfAk", variant: "secondary" },
-    { label: "Open 360 Tour", url: "https://dmcihomes.viewin360.co/share/collection/7XzCD?logo=bWVkaWEvMTUwOTU1LzY1OTYtNjA3NC02NDgxLWYxMzYucG5n&info=0&logosize=200&fs=0&vr=1&sd=1&gyro=0&initload=0&autopalt=1&thumbs=1", variant: "ghost" }
+    { label: "Open 360 Tour", url: "", variant: "ghost" }
   ],
   videoTourNote: "Large tour media is linked on demand so the page stays fast on mobile.",
   amenityGroups: [
@@ -266,8 +266,8 @@ export const allegraGardenPlaceDetails = {
   detailTitle: "Allegra Garden Place Pasig City",
   heroHeadline: "Allegra Garden Place by DMCI Homes",
   tagline: "Modern Moroccan-inspired high-rise living along Pasig Boulevard",
-  referenceUrl: "https://www.dmci-online.com/allegra-garden-place-pasig/",
-  sourceUrl: "https://www.dmci-online.com/allegra-garden-place-pasig/",
+  referenceUrl: "",
+  sourceUrl: "",
   logoImage: pasigAsset("allegra-garden-place", "logo.jpg"),
   image: pasigAsset("allegra-garden-place", "hero.jpg"),
   thumbnail: pasigAsset("allegra-garden-place", "thumbnail.jpg"),
@@ -389,7 +389,7 @@ export const allegraGardenPlaceDetails = {
   videoTourEmbedUrl: "https://www.youtube.com/embed/oBzOVj3qXv4",
   videoTourLinks: [
     { label: "Watch AVP on YouTube", url: "https://www.youtube.com/watch?v=oBzOVj3qXv4", variant: "secondary" },
-    { label: "Open 360 Tour", url: "https://dmcihomes.viewin360.co/share/collection/792MF?logo=bWVkaWEvMTUwOTU1LzYwMjAtZGVhNC1jZjA2LTc0MzYucG5n&info=0&logosize=200&fs=1&vr=1&sd=1&initload=0&thumbs=1", variant: "ghost" }
+    { label: "Open 360 Tour", url: "", variant: "ghost" }
   ],
   videoTourNote: "Large tour media is linked instead of auto-loaded so the page stays fast on mobile.",
   amenityGroups: [
@@ -494,8 +494,8 @@ export const prismaResidencesDetails = {
   detailTitle: "Prisma Residences DMCI Pasig",
   heroHeadline: "Prisma Residences by DMCI Homes",
   tagline: "Ready-for-occupancy modern tropical living along Pasig Boulevard",
-  referenceUrl: "https://www.dmci-online.com/prisma-residences-dmci-pasig/",
-  sourceUrl: "https://www.dmci-online.com/prisma-residences-dmci-pasig/",
+  referenceUrl: "",
+  sourceUrl: "",
   logoImage: pasigAsset("prisma-residences", "logo.jpg"),
   image: pasigAsset("prisma-residences", "hero.jpg"),
   thumbnail: pasigAsset("prisma-residences", "thumbnail.jpg"),
@@ -617,9 +617,9 @@ export const prismaResidencesDetails = {
   videoTourEmbedUrl: "https://www.youtube.com/embed/J4DKUxkPkKk",
   videoTourLinks: [
     { label: "Watch AVP on YouTube", url: "https://www.youtube.com/watch?v=J4DKUxkPkKk", variant: "secondary" },
-    { label: "Open Property 360 Tour", url: "https://dmcihomes.viewin360.co/share/collection/7vkjm?logo=bWVkaWEvMTUwOTU1LzYyOTUtYTQ2Ni1jM2U2LTkzNzUucG5n&info=0&logosize=200&fs=1&vr=0&sd=1&gyro=0&thumbs=1&keys=0", variant: "ghost" },
-    { label: "Open 2BR 360 Tour", url: "https://dmcihomes.viewin360.co/share/collection/7vkdw?logo=bWVkaWEvMTUwOTU1LzYyOTUtYTQ2Ni1jM2U2LTkzNzUucG5n&info=0&fs=1&vr=1&sd=1&gyro=0&initload=0&thumbs=1&keys=0", variant: "ghost" },
-    { label: "Open 3BR 360 Tour", url: "https://dmcihomes.viewin360.co/share/collection/7vknn?logo=bWVkaWEvMTUwOTU1LzYyOTUtYTQ2Ni1jM2U2LTkzNzUucG5n&info=0&fs=1&vr=1&sd=1&gyro=0&initload=0&thumbs=1&keys=0", variant: "ghost" }
+    { label: "Open Property 360 Tour", url: "", variant: "ghost" },
+    { label: "Open 2BR 360 Tour", url: "", variant: "ghost" },
+    { label: "Open 3BR 360 Tour", url: "", variant: "ghost" }
   ],
   videoTourNote: "Large 360 tours are linked instead of auto-loaded so mobile performance stays light.",
   amenityGroups: [

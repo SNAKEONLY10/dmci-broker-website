@@ -11,8 +11,8 @@ export const cameronResidencesDetails = {
   detailTitle: "Cameron Residences in Quezon City",
   heroHeadline: "Cameron Residences by DMCI Homes",
   tagline: "Ready-for-occupancy modern tropical living in San Francisco del Monte, Quezon City",
-  referenceUrl: "https://www.dmci-online.com/cameron-residences-quezon-city/",
-  sourceUrl: "https://www.dmci-online.com/cameron-residences-quezon-city/",
+  referenceUrl: "",
+  sourceUrl: "",
   logoImage: cameronAsset("logo.png"),
   image: cameronAsset("hero.jpg"),
   thumbnail: cameronAsset("thumbnail.jpg"),
@@ -142,7 +142,7 @@ export const cameronResidencesDetails = {
   videoTourEmbedUrl: "https://www.youtube.com/embed/05wObUYI310",
   videoTourLinks: [
     { label: "Watch AVP on YouTube", url: "https://www.youtube.com/watch?v=05wObUYI310", variant: "secondary" },
-    { label: "DMCI Virtual Tour Guide", url: "https://www.dmci-online.com/buyers-guide/dmci-homes-virtual-tour-units/", variant: "ghost" }
+    { label: "DMCI Virtual Tour Guide", url: "", variant: "ghost" }
   ],
   videoTourNote: "No Cameron-specific 360 tour link was found in the available CAR Drive folder or the official Cameron page during this update.",
   amenityGroups: [

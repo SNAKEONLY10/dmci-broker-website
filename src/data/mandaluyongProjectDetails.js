@@ -30,8 +30,8 @@ export const sageResidencesDetails = {
   detailTitle: "Sage Residences DMCI Mandaluyong City",
   heroHeadline: "Sage Residences by DMCI Homes",
   tagline: "A wise home choice in the center of Mandaluyong, Ortigas, Makati, and BGC routes",
-  referenceUrl: "https://www.dmci-online.com/sage-residences-mandaluyong/",
-  sourceUrl: "https://www.dmci-online.com/sage-residences-mandaluyong/",
+  referenceUrl: "",
+  sourceUrl: "",
   logoImage: mandaluyongAsset("sage-residences", "logo.png"),
   image: mandaluyongAsset("sage-residences", "hero.jpg"),
   thumbnail: mandaluyongAsset("sage-residences", "thumbnail.jpg"),
@@ -182,7 +182,7 @@ export const sageResidencesDetails = {
   videoTourEmbedUrl: "https://www.youtube.com/embed/RRLGJTOJ48k",
   videoTourLinks: [
     { label: "Watch AVP on YouTube", url: "https://www.youtube.com/watch?v=RRLGJTOJ48k", variant: "secondary" },
-    { label: "Open 360 Tour", url: "https://dmcihomes.viewin360.co/share/collection/794vs?logo=bWVkaWEvMTUwOTU1LzYzMWQtODdkYi0zODg3LTM5NjkucG5n&info=0&logosize=200&fs=1&vr=0&sd=1&gyro=0&thumbs=1&keys=0", variant: "ghost" }
+    { label: "Open 360 Tour", url: "", variant: "ghost" }
   ],
   videoTourNote: "Large tour media is linked instead of auto-loaded so the page stays fast on mobile.",
   amenityGroups: [
@@ -293,8 +293,8 @@ export const kaiGardenResidencesDetails = {
   detailTitle: "Kai Garden Residences DMCI Mandaluyong",
   heroHeadline: "Kai Garden Residences by DMCI Homes",
   tagline: "Japanese-inspired ready-for-occupancy living near Boni Avenue and Mandaluyong business routes",
-  referenceUrl: "https://www.dmci-online.com/kai-garden-residences-mandaluyong/",
-  sourceUrl: "https://www.dmci-online.com/kai-garden-residences-mandaluyong/",
+  referenceUrl: "",
+  sourceUrl: "",
   logoImage: mandaluyongAsset("kai-garden-residences", "logo.png"),
   image: mandaluyongAsset("kai-garden-residences", "hero.jpg"),
   thumbnail: mandaluyongAsset("kai-garden-residences", "thumbnail.jpg"),

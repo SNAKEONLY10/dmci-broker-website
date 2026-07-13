@@ -11,7 +11,7 @@ export const theOrianaDetails = {
   detailTitle: "The Oriana DMCI Quezon City",
   heroHeadline: "The Oriana by DMCI: Urban Elegance in the Heart of Quezon City",
   tagline: "Modern tropical high-rise living along Aurora Boulevard, Quezon City",
-  referenceUrl: "https://www.dmci-online.com/the-oriana-dmci-quezon-city/",
+  referenceUrl: "",
   logoImage: orianaAsset("logo.png"),
   image: orianaAsset("hero.jpg"),
   thumbnail: orianaAsset("thumbnail.jpg"),
@@ -131,9 +131,9 @@ export const theOrianaDetails = {
     label: "Open The Oriana AVP",
     links: [
       { label: "Watch on YouTube", url: "https://www.youtube.com/watch?v=IF99Kg2xu1I", variant: "secondary" },
-      { label: "Drive AVP Backup", url: "https://drive.google.com/file/d/1MRzWddRZdWK9z1zENevxVtDQUyuaboVk/view", variant: "ghost" },
-      { label: "TOD AVP Part 1", url: "https://drive.google.com/file/d/13yqG73S9dtdDp2U2KymJ27OyOKDCDclA/view", variant: "ghost" },
-      { label: "TOD AVP Part 2", url: "https://drive.google.com/file/d/16_8Hd_G4BZTLaqRAPz6jeNvcQOGMXuU1/view", variant: "ghost" }
+      { label: "Drive AVP Backup", url: "", variant: "ghost" },
+      { label: "TOD AVP Part 1", url: "", variant: "ghost" },
+      { label: "TOD AVP Part 2", url: "", variant: "ghost" }
     ]
   },
   locationDetails: {
@@ -175,10 +175,10 @@ export const theOrianaDetails = {
     text:
       "Step inside The Oriana with our interactive 360 Virtual Tour, exploring the property from every angle at home. Additionally, this immersive experience showcases our sophisticated spaces and comprehensive amenities, offering a detailed view of our luxurious development.",
     image: orianaAsset("community-tour-poster.png"),
-    url: "https://www.dmci-online.com/virtual-community-tour/?option=ORI",
+    url: "",
     label: "VIRTUAL TOUR",
     links: [
-      { label: "Open 360 Virtual Tour", url: "https://www.dmci-online.com/virtual-community-tour/?option=ORI", variant: "secondary" },
+      { label: "Open 360 Virtual Tour", url: "", variant: "secondary" },
       { label: "Watch AVP on YouTube", url: "https://www.youtube.com/watch?v=IF99Kg2xu1I", variant: "ghost" }
     ]
   },
@@ -375,12 +375,12 @@ export const theOrianaDetails = {
     {
       title: "Official DMCI Homes project page",
       label: "Review official DMCI Homes project reference",
-      url: "https://www.dmcihomes.com/the-oriana"
+      url: ""
     },
     {
       title: "Supplied The Oriana reference page",
       label: "Reference page used for full project content, media labels, AVP, virtual tour, and pricing tables",
-      url: "https://www.dmci-online.com/the-oriana-dmci-quezon-city/"
+      url: ""
     }
   ]
 };

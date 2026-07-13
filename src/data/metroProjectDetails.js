@@ -43,8 +43,8 @@ export const theCamdenPlaceDetails = {
   detailTitle: "The Camden Place DMCI Manila",
   heroHeadline: "The Camden Place by DMCI Homes",
   tagline: "Modern contemporary city living on Dominga Street in Malate, Manila",
-  referenceUrl: "https://www.dmci-online.com/the-camden-place-manila/",
-  sourceUrl: "https://www.dmci-online.com/the-camden-place-manila/",
+  referenceUrl: "",
+  sourceUrl: "",
   logoImage: metroAsset("the-camden-place", "logo.png"),
   image: metroAsset("the-camden-place", "hero.jpg"),
   thumbnail: metroAsset("the-camden-place", "thumbnail.jpg"),
@@ -276,8 +276,8 @@ export const theAstonPlaceDetails = {
   detailTitle: "The Aston Place DMCI Pasay",
   heroHeadline: "The Aston Place by DMCI Homes",
   tagline: "Sophisticated RFO city living on Dominga Street in Pasay",
-  referenceUrl: "https://www.dmci-online.com/aston-place-dmci-pasay/",
-  sourceUrl: "https://www.dmci-online.com/aston-place-dmci-pasay/",
+  referenceUrl: "",
+  sourceUrl: "",
   logoImage: metroAsset("the-aston-place", "logo.png"),
   image: metroAsset("the-aston-place", "hero.jpg"),
   thumbnail: metroAsset("the-aston-place", "thumbnail.jpg"),
@@ -507,8 +507,8 @@ export const sonoraGardenResidencesDetails = {
   detailTitle: "Sonora Garden Residences Las Pinas",
   heroHeadline: "Sonora Garden Residences by DMCI Homes",
   tagline: "Resort-inspired Las Pinas living along Alabang-Zapote Road",
-  referenceUrl: "https://www.dmci-online.com/sonora-garden-residences/",
-  sourceUrl: "https://www.dmci-online.com/sonora-garden-residences/",
+  referenceUrl: "",
+  sourceUrl: "",
   logoImage: metroAsset("sonora-garden-residences", "logo.png"),
   image: metroAsset("sonora-garden-residences", "hero.jpg"),
   thumbnail: metroAsset("sonora-garden-residences", "thumbnail.jpg"),
@@ -645,7 +645,7 @@ export const sonoraGardenResidencesDetails = {
   videoTourEmbedUrl: "https://www.youtube.com/embed/YB1T5evkmSY",
   videoTourLinks: [
     { label: "Watch AVP on YouTube", url: "https://www.youtube.com/watch?v=YB1T5evkmSY", variant: "secondary" },
-    { label: "Open Virtual Tour", url: "https://www.dmci-online.com/virtual-community-tour/?option=SON", variant: "ghost" }
+    { label: "Open Virtual Tour", url: "", variant: "ghost" }
   ],
   videoTourNote: "Large tour media is linked instead of auto-loaded so the page stays fast on mobile.",
   amenityGroups: [

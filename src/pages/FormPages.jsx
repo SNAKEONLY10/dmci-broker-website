@@ -31,9 +31,9 @@ const phoneField = () => ({ ...f("contactNumber", "Phone Number", "tel"), autoCo
 const emailField = () => ({ ...f("email", "Email Address", "email"), autoComplete: "email" });
 const nationalityField = () => s("nationality", "Nationality", nationalityOptions);
 const contactPreferenceFields = () => [
-  { ...s("contactMethod", "Preferred Contact Method", contactMethodOptions), section: "Contact Preference", placeholder: "Choose a contact method" },
-  { ...s("bestTimeToContact", "Best Time to Contact", bestTimeOptions), placeholder: "Choose a contact time" },
-  { ...s("leadSource", "How Did You Find This Website?", leadSourceOptions), placeholder: "Choose a source" }
+  { ...s("contactMethod", "Preferred Contact Method", contactMethodOptions), compact: true, section: "Contact Preference", placeholder: "Choose a contact method" },
+  { ...s("bestTimeToContact", "Best Time to Contact", bestTimeOptions), compact: true, placeholder: "Choose a contact time" },
+  { ...s("leadSource", "How Did You Find This Website?", leadSourceOptions), compact: true, placeholder: "Choose a source" }
 ];
 
 export function Availability() {
@@ -49,14 +49,14 @@ export function Availability() {
     }}
   >
     <DemoForm title="Check Availability with Luisa" fields={[
-      { ...fullNameField(), section: "Your Details" }, phoneField(), emailField(),
+      { ...fullNameField(), mobileFull: true, section: "Your Details" }, { ...phoneField(), compact: true }, { ...emailField(), compact: true },
       { ...s("location", "Project Location", locationOptions), section: "Property Preferences", helper: "Select an area to see its approved projects." },
-      s("project", "Project Interested In", projectOptions), s("unitType", "Unit Type", unitTypes),
-      f("preferredSize", "Preferred Floor or Size"), s("budgetRange", "Budget Range", budgetOptions),
-      s("paymentOption", "Payment Preference", paymentOptions), s("urgency", "Purchase Timeline", ["Just researching", "Within 1-3 months", "Within 3-6 months", "Ready once details are confirmed"]),
-      nationalityField(), ...contactPreferenceFields(),
+      s("project", "Project Interested In", projectOptions), { ...s("unitType", "Unit Type", unitTypes), compact: true },
+      { ...f("preferredSize", "Preferred Floor or Size"), compact: true }, { ...s("budgetRange", "Budget Range", budgetOptions), compact: true },
+      { ...s("paymentOption", "Payment Preference", paymentOptions), compact: true }, { ...s("urgency", "Purchase Timeline", ["Just researching", "Within 1-3 months", "Within 3-6 months", "Ready once details are confirmed"]), compact: true },
+      { ...nationalityField(), compact: true }, ...contactPreferenceFields(),
       { ...t("Additional Details"), section: "Message", placeholder: "Share a preferred floor, unit size, move-in timing, or question." }
-    ]} storageKey="dmci_availability_requests" submitLabel="Check Availability with Luisa" initialValues={initialValues} required={["fullName", "contactMethod"]} inquiryType="Check Availability" projectCatalog={projects} />
+    ]} storageKey="dmci_availability_requests" submitLabel="Check Availability with Luisa" initialValues={initialValues} required={["fullName", "contactMethod"]} inquiryType="Check Availability" projectCatalog={projects} compact />
   </FormShell>;
 }
 
@@ -154,13 +154,13 @@ export function Contact() {
     <DemoForm title="Buyer Inquiry Details" fields={[
       { ...s("concernType", "Inquiry Type", inquiryTypes), section: "Inquiry", placeholder: "Choose an inquiry type", optionGroups: inquiryTypeGroups },
       s("location", "Preferred Project Location", locationOptions), s("project", "Project Interested In", projectOptions),
-      { ...fullNameField(), section: "Your Details" }, phoneField(), emailField(),
-      { ...s("buyerType", "Buyer Profile", buyerProfileOptions), placeholder: "Choose a profile" },
-      nationalityField(),
-      { ...f("currentLocation", "Current City / Country"), autoComplete: "address-level2", placeholder: "City and country" },
+      { ...fullNameField(), mobileFull: true, section: "Your Details" }, { ...phoneField(), compact: true }, { ...emailField(), compact: true },
+      { ...s("buyerType", "Buyer Profile", buyerProfileOptions), compact: true, placeholder: "Choose a profile" },
+      { ...nationalityField(), compact: true },
+      { ...f("currentLocation", "Current City / Country"), compact: true, autoComplete: "address-level2", placeholder: "City and country" },
       ...contactPreferenceFields(),
       { ...t("How Can Luisa Help?"), section: "Message", placeholder: "Tell Luisa what you are looking for or what support you need." }
-    ]} storageKey="dmci_contact_requests" submitLabel="Submit Consultation Request" initialValues={initialValues} required={["fullName", "concernType", "contactMethod"]} inquiryType="General Inquiry" projectCatalog={projects} />
+    ]} storageKey="dmci_contact_requests" submitLabel="Submit Consultation Request" initialValues={initialValues} required={["fullName", "concernType", "contactMethod"]} inquiryType="General Inquiry" projectCatalog={projects} compact />
   </FormShell>;
 }
 

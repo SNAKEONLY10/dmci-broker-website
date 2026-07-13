@@ -1,4 +1,4 @@
-import { Fragment, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import { contact } from "../data/contact";
 import { saveSubmission, validateRequired } from "../utils/storage";
 import { Button } from "./Button";
@@ -34,6 +34,8 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
   const [notice, setNotice] = useState(null);
   const [status, setStatus] = useState("idle");
   const [submittedLead, setSubmittedLead] = useState(null);
+  const [errorFocusRequest, setErrorFocusRequest] = useState({ name: "", requestId: 0 });
+  const formRef = useRef(null);
   const requiredSet = new Set(required);
   const allFields = useMemo(() => fields.map((field) => field.name), [fields]);
   const fieldByName = useMemo(() => new Map(fields.map((field) => [field.name, field])), [fields]);
@@ -52,6 +54,47 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
       ? `You selected ${values.location}. You can keep it for comparison, but Luisa will confirm the correct project location before preparing your request.`
       : "The city and project now match for a cleaner computation request."
   } : null;
+
+  useEffect(() => {
+    if (!errorFocusRequest.name || typeof window === "undefined") return undefined;
+
+    let secondFrame = 0;
+    const firstFrame = window.requestAnimationFrame(() => {
+      secondFrame = window.requestAnimationFrame(() => {
+        const field = formRef.current?.querySelector(`#field-${errorFocusRequest.name}`);
+        if (!field) return;
+
+        const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+        field.scrollIntoView({ block: "start", behavior: reduceMotion ? "auto" : "smooth" });
+        field.focus({ preventScroll: true });
+        field.closest(".field, .consent")?.animate?.(
+          [
+            { boxShadow: "0 0 0 0 rgba(217, 45, 32, 0)" },
+            { boxShadow: "0 0 0 5px rgba(217, 45, 32, 0.18)" },
+            { boxShadow: "0 0 0 0 rgba(217, 45, 32, 0)" }
+          ],
+          { duration: reduceMotion ? 1 : 1050, easing: "ease-out" }
+        );
+      });
+    });
+
+    return () => {
+      window.cancelAnimationFrame(firstFrame);
+      if (secondFrame) window.cancelAnimationFrame(secondFrame);
+    };
+  }, [errorFocusRequest]);
+
+  function moveToFirstError(errorMap) {
+    const order = [...new Set([...allFields, ...(allFields.includes("fullName") ? [] : ["fullName"]), "consent"])];
+    const name = order.find((fieldName) => errorMap?.[fieldName]) || Object.keys(errorMap || {})[0];
+    if (!name) return null;
+
+    setErrorFocusRequest((current) => ({ name, requestId: current.requestId + 1 }));
+    return {
+      name,
+      label: fieldByName.get(name)?.label || (name === "consent" ? "Consent" : "required field")
+    };
+  }
 
   function commitValues(nextValues) {
     setValues(nextValues);
@@ -118,8 +161,9 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
     setErrors(nextErrors);
     setSubmittedLead(null);
     if (Object.keys(nextErrors).length) {
-      setNotice({ type: "error", text: "Please review the highlighted fields before sending." });
-      focusFirstError(nextErrors);
+      const firstError = moveToFirstError(nextErrors);
+      const count = Object.values(nextErrors).filter(Boolean).length;
+      setNotice({ type: "error", text: `${count} field${count === 1 ? "" : "s"} need attention. Moving you to ${firstError?.label || "the first required field"}.` });
       return;
     }
 
@@ -171,8 +215,8 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
 
       if (data?.errors) {
         setErrors(data.errors);
-        setNotice({ type: "error", text: data?.message || data?.error || "Please review the highlighted fields before sending." });
-        focusFirstError(data.errors);
+        const firstError = moveToFirstError(data.errors);
+        setNotice({ type: "error", text: data?.message || data?.error || `Please review ${firstError?.label || "the highlighted field"}.` });
         return;
       }
       setNotice({ type: "error", text: data?.message || data?.error || sendErrorMessage });
@@ -199,7 +243,7 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
   }
 
   return (
-    <form className={`form-card ${compact ? "form-card-compact" : ""}`} onSubmit={submit} noValidate aria-busy={status === "submitting"}>
+    <form ref={formRef} className={`form-card ${compact ? "form-card-compact" : ""}`} onSubmit={submit} noValidate aria-busy={status === "submitting"}>
       <div className="form-intro">
         <span className="eyebrow">Buyer Inquiry</span>
         <h2>{title}</h2>
@@ -213,7 +257,7 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
         {displayFields.map((field) => (
           <Fragment key={field.name}>
             {field.section && <h3 className="form-section-label full"><span>{field.section}</span></h3>}
-            <Field field={field} value={values[field.name] || ""} onChange={update} error={errors[field.name]} required={requiredSet.has(field.name)} />
+            <Field field={field} value={values[field.name] || ""} onChange={update} error={errors[field.name]} required={requiredSet.has(field.name)} dense={compact} />
             {field.name === "project" && selectedProject && (
               <SelectedProjectPreview project={selectedProject} mismatch={projectLocationMismatch} />
             )}
@@ -489,7 +533,7 @@ async function safeJson(response) {
   }
 }
 
-function Field({ field, value, onChange, error, required }) {
+function Field({ field, value, onChange, error, required, dense = false }) {
   const id = `field-${field.name}`;
   const errorId = `${id}-error`;
   const helperId = `${id}-helper`;
@@ -518,10 +562,10 @@ function Field({ field, value, onChange, error, required }) {
     onKeyDown: blockInvalidNumberKeys
   } : {};
   return (
-    <div className={`field ${field.full ? "full" : ""} ${field.compact ? "compact" : ""} ${field.mobileFull ? "mobile-full" : ""}`}>
+    <div className={`field field-${field.name} ${field.full ? "full" : ""} ${field.compact ? "compact" : ""} ${field.mobileFull ? "mobile-full" : ""} ${error ? "has-error" : ""}`}>
       <label htmlFor={id}>{field.label}{required && <span className="required-mark"> Required</span>}</label>
       {field.type === "textarea" ? (
-        <textarea {...shared} rows="5" maxLength={messageLimit} />
+        <textarea {...shared} rows={dense ? 3 : 5} maxLength={messageLimit} />
       ) : field.options ? (
         <select {...shared}>
           <option value="">{field.placeholder || `Select ${field.label}`}</option>
@@ -726,16 +770,4 @@ function savePreviewSubmission(storageKey, payload) {
     }
     return false;
   }
-}
-
-function focusFirstError(errors) {
-  if (typeof window === "undefined") return;
-  const firstField = Object.keys(errors || {})[0];
-  if (!firstField) return;
-
-  window.requestAnimationFrame(() => {
-    const field = document.getElementById(`field-${firstField}`);
-    field?.focus({ preventScroll: true });
-    field?.scrollIntoView({ block: "center", behavior: "smooth" });
-  });
 }

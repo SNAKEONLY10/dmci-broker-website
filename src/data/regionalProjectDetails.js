@@ -50,8 +50,8 @@ export const theAthertonDetails = {
   detailTitle: "The Atherton DMCI Para\u00f1aque",
   heroHeadline: "The Atherton by DMCI Homes",
   tagline: "Ready-for-occupancy modern tropical living along Dr. A. Santos Avenue",
-  referenceUrl: "https://www.dmci-online.com/atherton-dmci-sucat-paranaque/",
-  sourceUrl: "https://www.dmci-online.com/atherton-dmci-sucat-paranaque/",
+  referenceUrl: "",
+  sourceUrl: "",
   logoImage: regionalAsset("the-atherton", "logo.png"),
   image: regionalAsset("the-atherton", "hero.jpg"),
   thumbnail: regionalAsset("the-atherton", "thumbnail.jpg"),
@@ -178,10 +178,10 @@ export const theAthertonDetails = {
   videoTourTitle: "Official Presentation Visuals",
   videoTourCopy: "The current official source page provides project images, maps, plans, and a generic DMCI 360 guide. Ask Luisa for the latest approved Atherton AVP if a fresh link is needed for presentation.",
   videoTourImage: regionalAsset("the-atherton", "lounge-pool.jpg"),
-  videoTourUrl: "https://www.dmci-online.com/buyers-guide/dmci-homes-virtual-tour-units/",
+  videoTourUrl: "",
   videoTourLinks: [
-    { label: "Open DMCI 360 Guide", url: "https://www.dmci-online.com/buyers-guide/dmci-homes-virtual-tour-units/", variant: "secondary" },
-    { label: "Open Official Source", url: "https://www.dmci-online.com/atherton-dmci-sucat-paranaque/", variant: "ghost" }
+    { label: "Open DMCI 360 Guide", url: "", variant: "secondary" },
+    { label: "Open Official Source", url: "", variant: "ghost" }
   ],
   videoTourNote: "No project-specific public YouTube iframe was found on the official Atherton page during this update.",
   amenityGroups: [
@@ -286,8 +286,8 @@ export const calatheaPlaceDetails = {
   detailTitle: "Calathea Place DMCI Para\u00f1aque City",
   heroHeadline: "Calathea Place by DMCI Homes",
   tagline: "Ready-for-occupancy modern tropical mid-rise living along Dr. A. Santos Avenue",
-  referenceUrl: "https://www.dmci-online.com/calathea-place-paranaque-city/",
-  sourceUrl: "https://www.dmci-online.com/calathea-place-paranaque-city/",
+  referenceUrl: "",
+  sourceUrl: "",
   logoImage: regionalAsset("calathea-place", "logo.jpg"),
   image: regionalAsset("calathea-place", "hero.jpg"),
   thumbnail: regionalAsset("calathea-place", "thumbnail.jpg"),
@@ -416,10 +416,10 @@ export const calatheaPlaceDetails = {
   videoTourTitle: "Virtual Community Tour",
   videoTourCopy: "Open the official Calathea Place virtual community tour when buyers want to explore the community online.",
   videoTourImage: regionalAsset("calathea-place", "lounge-pool.jpg"),
-  videoTourUrl: "https://www.dmci-online.com/virtual-community-tour/?option=CLP",
+  videoTourUrl: "",
   videoTourLinks: [
-    { label: "Open Virtual Tour", url: "https://www.dmci-online.com/virtual-community-tour/?option=CLP", variant: "secondary" },
-    { label: "Open Official Source", url: "https://www.dmci-online.com/calathea-place-paranaque-city/", variant: "ghost" }
+    { label: "Open Virtual Tour", url: "", variant: "secondary" },
+    { label: "Open Official Source", url: "", variant: "ghost" }
   ],
   videoTourNote: "No project-specific public YouTube iframe was found on the official Calathea page during this update.",
   amenityGroups: [
@@ -535,8 +535,8 @@ export const moncelloCrestDetails = {
   detailTitle: "Moncello Crest DMCI Tuba Benguet",
   heroHeadline: "Moncello Crest by DMCI Homes",
   tagline: "Eco-agricultural mountain resort condotel living near Baguio",
-  referenceUrl: "https://www.dmci-online.com/moncello-crest-tuba-benguet-baguio/",
-  sourceUrl: "https://www.dmci-online.com/moncello-crest-tuba-benguet-baguio/",
+  referenceUrl: "",
+  sourceUrl: "",
   logoImage: regionalAsset("moncello-crest", "logo.png"),
   image: regionalAsset("moncello-crest", "hero.jpg"),
   thumbnail: regionalAsset("moncello-crest", "thumbnail.jpg"),
@@ -685,7 +685,7 @@ export const moncelloCrestDetails = {
   videoTourEmbedUrl: "https://www.youtube.com/embed/rMI-beJXoTU",
   videoTourLinks: [
     { label: "Watch AVP on YouTube", url: "https://www.youtube.com/watch?v=rMI-beJXoTU", variant: "secondary" },
-    { label: "Open Virtual Tour", url: "https://www.dmci-online.com/virtual-community-tour/?option=MCC", variant: "ghost" }
+    { label: "Open Virtual Tour", url: "", variant: "ghost" }
   ],
   videoTourNote: "Large media is embedded lightly so the page stays usable on mobile.",
   amenityGroups: [
@@ -803,8 +803,8 @@ export const solmeraCoastDetails = {
   detailTitle: "Solmera Coast DMCI Batangas City",
   heroHeadline: "Solmera Coast by DMCI Homes",
   tagline: "Beach park condotel and coastal leisure living in San Juan, Batangas",
-  referenceUrl: "https://www.dmci-online.com/solmera-coast-dmci-batangas-city/",
-  sourceUrl: "https://www.dmci-online.com/solmera-coast-dmci-batangas-city/",
+  referenceUrl: "",
+  sourceUrl: "",
   logoImage: regionalAsset("solmera-coast", "logo.png"),
   image: regionalAsset("solmera-coast", "hero.jpg"),
   thumbnail: regionalAsset("solmera-coast", "thumbnail.jpg"),
@@ -955,7 +955,7 @@ export const solmeraCoastDetails = {
   videoTourEmbedUrl: "https://www.youtube.com/embed/eZFZzBVUYKM",
   videoTourLinks: [
     { label: "Watch AVP on YouTube", url: "https://www.youtube.com/watch?v=eZFZzBVUYKM", variant: "secondary" },
-    { label: "Open Virtual Tour", url: "https://www.dmci-online.com/virtual-community-tour/?option=SLC", variant: "ghost" }
+    { label: "Open Virtual Tour", url: "", variant: "ghost" }
   ],
   videoTourNote: "Large media is embedded lightly so the page stays usable on mobile.",
   amenityGroups: [
