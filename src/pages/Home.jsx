@@ -442,7 +442,7 @@ function PreviewSections() {
       </section>
       <section className="section">
         <div className="container">
-          <SectionHeader eyebrow="Promos & Updates" title="Current offers and payment terms" text="Luisa will confirm the applicable promo for your preferred unit." />
+          <SectionHeader eyebrow="Promos & Payment Terms" title="Understand the offer before you compare" text="Review dated references, then ask Luisa to confirm the term that applies to your preferred unit." />
           <div className="card-grid">{promos.map((promo) => <PromoCard key={promo.id} promo={promo} />)}</div>
         </div>
       </section>

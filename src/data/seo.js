@@ -140,10 +140,10 @@ const pageMeta = {
     cta: "/contact"
   },
   "/promos": {
-    h1: "Current DMCI Promo Details for Confirmation",
-    title: "DMCI Promo and Payment Term Updates | Confirm with Luisa Corral",
+    h1: "DMCI Promo and Payment Term Guide",
+    title: "DMCI Promo References and Payment Terms | Luisa Corral",
     description:
-      "Review DMCI promo references and request latest confirmation before making a buyer decision. Promos, terms, and availability may change.",
+      "Compare dated DMCI project promo references, payment structures, eligibility checks, and unit-specific computation requirements with Luisa Corral.",
     cta: "/request-computation"
   },
   "/resale-units": {

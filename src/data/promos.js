@@ -1,27 +1,35 @@
 export const promos = [
   {
     id: 1,
-    type: "Latest promos",
-    title: "Ask for current project promos",
-    summary: "Promo details vary per project and must be verified before discussion."
+    type: "Dated references",
+    title: "Review current project terms",
+    summary: "See which approved project records include dated down payment or bank-linked references.",
+    to: "/promos#current-references",
+    cta: "Review References"
   },
   {
     id: 2,
-    type: "Payment term updates",
-    title: "Compare available payment terms",
-    summary: "Payment terms may change without prior notice and require confirmation."
+    type: "Unit-specific review",
+    title: "Request a complete computation",
+    summary: "Compare the contract price, down payment, fees, balance, and due dates for one exact unit.",
+    to: "/request-computation",
+    cta: "Request Computation"
   },
   {
     id: 3,
-    type: "New project launches",
-    title: "New launch inquiry assistance",
-    summary: "Get guided recommendations when a new project fits your location and budget."
+    type: "Financing conditions",
+    title: "Understand bank-linked offers",
+    summary: "Check lender eligibility, approval requirements, and the remaining financing balance before deciding.",
+    to: "/promos#program-types",
+    cta: "Compare Program Types"
   },
   {
     id: 4,
-    type: "RFO availability alerts",
-    title: "Ready unit availability check",
-    summary: "RFO and re-opened unit availability must be verified before reservation."
+    type: "RFO and re-opened units",
+    title: "Confirm the unit before the offer",
+    summary: "A payment term only matters when the preferred unit is still available and eligible.",
+    to: "/availability",
+    cta: "Check Availability"
   }
 ];
 

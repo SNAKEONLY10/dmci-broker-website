@@ -17,8 +17,7 @@ export function PromoCard({ promo }) {
       <span className="mini">{promo.type}</span>
       <h3>{promo.title}</h3>
       <p>{promo.summary}</p>
-      <small>Promo details subject to confirmation.</small>
-      <Button to="/contact" variant="ghost">Ask if this applies</Button>
+      <Button to={promo.to || "/promos"} variant="ghost">{promo.cta || "Review Details"}</Button>
     </article>
   );
 }

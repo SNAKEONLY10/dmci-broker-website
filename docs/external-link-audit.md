@@ -1,6 +1,6 @@
 # External Link Audit
 
-Generated: 2026-07-16T13:48:42.585Z
+Generated: 2026-07-16T14:56:41.679Z
 
 Mode: static source/data scan. This report does not make network requests, so CI stays stable. Device links such as tel, mailto, sms, and viber are reported but not treated as failures.
 
@@ -15,7 +15,7 @@ Production canonical: https://dmci-broker-website.vercel.app
 | Device link - viber | 1 |
 | Frontend dependency | 1 |
 | Google Maps | 54 |
-| Official DMCI link | 1 |
+| Official DMCI link | 3 |
 | Production canonical | 4 |
 | Server delivery API | 1 |
 | YouTube | 32 |
@@ -128,6 +128,8 @@ Production canonical: https://dmci-broker-website.vercel.app
 | URL | Source references |
 | --- | --- |
 | https://www.dmcihomes.com/guides/buyers-guide | src/pages/BuyersGuide.jsx |
+| https://www.dmcihomes.com/whats-new/news/rent-to-own-vs-early-move-in-know-the-difference-before-you-commit | src/pages/Promos.jsx |
+| https://www.dmcihomes.com/whats-new/promos | src/pages/Promos.jsx |
 
 ## Production canonical
 

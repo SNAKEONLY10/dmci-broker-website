@@ -170,6 +170,7 @@ function useInquiryDefaults() {
   const locationParam = searchParams.get("location") || "";
   const purposeParam = normalizePurpose(searchParams.get("purpose") || "");
   const inquiryType = normalizeInquiryType(searchParams.get("inquiryType") || "");
+  const messageParam = (searchParams.get("message") || "").slice(0, 1500);
   const matchedProject = projects.find((project) => (
     project.name.toLowerCase() === projectParam.toLowerCase() ||
     project.slug.toLowerCase() === projectParam.toLowerCase()
@@ -181,7 +182,8 @@ function useInquiryDefaults() {
     purpose: purposeParam,
     buyerType: purposeParam === "Investment" ? "Property investor" : purposeParam === "Own Use" ? "Homebuyer / end-user" : "",
     inquiryType,
-    concernType: inquiryType
+    concernType: inquiryType,
+    message: messageParam
   };
 }
 

@@ -83,7 +83,7 @@ async function verifyUrl(url) {
   for (let attempt = 0; attempt < 3; attempt += 1) {
     try {
       let response = await fetchWithTimeout(probeUrl, { method: "HEAD" });
-      if ([400, 404, 405, 410].includes(response.status)) {
+      if ([400, 404, 405, 410].includes(response.status) || response.status >= 500) {
         response = await fetchWithTimeout(probeUrl, {
           method: "GET",
           headers: { Range: "bytes=0-2047" }
