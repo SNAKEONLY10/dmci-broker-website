@@ -91,7 +91,7 @@ const pageMeta = {
     cta: "/contact"
   },
   "/locations": {
-    h1: "Explore DMCI Projects by Location",
+    h1: "Choose the Area That Works for Real Life",
     title: "DMCI Projects by City | Quezon City, Pasig, Taguig, Para\u00f1aque & More",
     description:
       "Browse DMCI project pages by city and area, including Quezon City, Pasig, Mandaluyong, Taguig, Manila, Pasay, Para\u00f1aque, Las Pi\u00f1as, Baguio, and Batangas.",
@@ -126,14 +126,14 @@ const pageMeta = {
     cta: "/request-computation"
   },
   "/reservation-requirements": {
-    h1: "DMCI Reservation Requirements Guide",
+    h1: "Verify First. Pay Through the Right Channel.",
     title: "DMCI Reservation Requirements | Buyer Checklist | Luisa Corral",
     description:
       "Prepare a buyer-safe reservation checklist for DMCI inquiries. Confirm exact requirements, payment channels, and documents before paying any reservation fee.",
     cta: "/contact"
   },
   "/virtual-tours": {
-    h1: "DMCI Virtual Tours and Project Media",
+    h1: "Preview the Project, Then Verify the Details",
     title: "DMCI Virtual Tours and AVP Links | Luisa Corral",
     description:
       "Review available DMCI project AVP and virtual tour references. Request approved media links and current presentation materials from Luisa Corral.",
@@ -147,10 +147,10 @@ const pageMeta = {
     cta: "/request-computation"
   },
   "/resale-units": {
-    h1: "DMCI Resale and Re-opened Unit Inquiries",
+    h1: "Verify the Unit Before Treating It as Available",
     title: "DMCI Resale and Re-opened Units | Availability Inquiry",
     description:
-      "Ask about resale or re-opened DMCI unit references. Availability, pricing, and terms must be verified before discussion.",
+      "Understand resale and re-opened unit verification, choose an approved project, and request a documented inquiry without assuming live inventory.",
     cta: "/availability"
   },
   "/about": {

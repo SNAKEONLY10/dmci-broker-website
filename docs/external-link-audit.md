@@ -1,6 +1,6 @@
 # External Link Audit
 
-Generated: 2026-07-16T14:56:41.679Z
+Generated: 2026-07-16T15:35:54.234Z
 
 Mode: static source/data scan. This report does not make network requests, so CI stays stable. Device links such as tel, mailto, sms, and viber are reported but not treated as failures.
 
