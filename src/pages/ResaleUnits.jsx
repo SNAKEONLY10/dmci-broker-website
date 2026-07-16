@@ -32,13 +32,13 @@ const resalePaths = [
     icon: KeyRound,
     label: "Re-opened unit",
     title: "A unit returned to current project inventory",
-    text: "Availability, eligibility, price, applicable term, condition, and reservation process must be confirmed through the authorized sales channel."
+    text: "Luisa will check whether the unit has returned to current DMCI Homes inventory and confirm its price, term, condition, and reservation process."
   }
 ];
 
 const verificationSteps = [
   [SearchCheck, "Identify the exact property", "Confirm the project, building, unit number, floor, size, parking, and current occupancy or turnover status."],
-  [BadgeCheck, "Verify who may offer it", "Confirm the owner, authorized representative, or current developer inventory status before discussing payment."],
+  [BadgeCheck, "Verify who may offer it", "Confirm the owner, authorized representative, or current DMCI Homes inventory status before discussing payment."],
   [FileSearch, "Review documents and account status", "Check the applicable title, contract, payment, association, tax, financing, and transfer records with qualified parties."],
   [Scale, "Compare the complete cost", "Include the agreed price, unpaid balance, taxes, transfer expenses, fees, financing, and timing in the review."],
   [ShieldCheck, "Use a documented transaction process", "Do not release money until the authority, documents, conditions, and verified payment instructions are clear."]
@@ -49,7 +49,7 @@ const diligenceItems = [
   "Exact unit, parking, inclusions, and current condition",
   "Ownership, contract, payment, and encumbrance status",
   "Association dues, utilities, taxes, and other unsettled amounts",
-  "Transfer, cancellation, assignment, or developer approval requirements",
+  "Transfer, cancellation, assignment, or DMCI Homes approval requirements",
   "Complete price, fees, due dates, financing, and payment instructions"
 ];
 
@@ -203,7 +203,7 @@ export default function ResaleUnits() {
             <span className="eyebrow">Before Commitment</span>
             <h2>Build a complete due-diligence file.</h2>
             <p>
-              The exact legal, tax, developer, financing, and transfer requirements depend on the property
+              The exact legal, tax, DMCI Homes, financing, and transfer requirements depend on the property
               and transaction. Engage qualified professionals where necessary.
             </p>
             <Button to="/contact?inquiryType=Resale%20Inquiry">Discuss a Resale Inquiry</Button>

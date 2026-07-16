@@ -280,7 +280,7 @@ function RichProjectSections({ project }) {
             <div className="mini-stat-grid">
               {(project.siteDevelopment?.keyStats || []).map((item) => <Spec key={item.label} label={item.label} value={item.value} />)}
             </div>
-            <p className="safety-note">Site development, tower details, and final project materials must be confirmed through Luisa or official project channels.</p>
+            <p className="safety-note">Ask Luisa to confirm site-development and tower details that affect your preferred unit.</p>
           </div>
         </div>
       </DetailSection>
@@ -428,7 +428,7 @@ function RichProjectSections({ project }) {
           </article>
           <article className="unit-holding-card">
             <h3>Before paying reservation</h3>
-            <p>{project.reservationNote || "Confirm computation, availability, payment method, and official requirements with Luisa before making any reservation decision."}</p>
+            <p>{project.reservationNote || "Ask Luisa to confirm the computation, availability, payment method, and reservation requirements before proceeding."}</p>
           </article>
         </div>
       </DetailSection>
@@ -685,7 +685,7 @@ function StandardProjectSections({ project }) {
           <ImagePlaceholder src={project.siteProgressImage} label={`${project.name} site progress`} compact variant="siteProgress" />
           <div>
             <p>{project.siteProgressStatus}</p>
-            <p className="safety-note">Site progress information should be confirmed through official DMCI channels or Luisa.</p>
+            <p className="safety-note">Ask Luisa to confirm the latest site progress update before using it for a decision.</p>
           </div>
         </div>
       </DetailSection>

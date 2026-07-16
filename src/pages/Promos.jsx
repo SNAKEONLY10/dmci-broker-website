@@ -94,15 +94,38 @@ const programTypes = [
   {
     icon: House,
     title: "HomeReady rent-to-own",
-    text: "This is a separate lease-to-own program for participating completed properties. Project participation, lease terms, credited payments, and purchase eligibility require official confirmation."
+    text: "This begins as a lease with an option to buy later. Ask Luisa which completed properties participate and how the lease, purchase option, and credited payments work for the selected unit."
   }
+];
+
+const agreementComparison = [
+  {
+    icon: FileCheck2,
+    label: "Purchase commitment first",
+    title: "Early move-in",
+    text: "The buyer enters the purchase process before moving in. The Contract to Sell, down payment schedule, financing balance, and other purchase obligations apply even though occupancy starts earlier."
+  },
+  {
+    icon: House,
+    label: "Lease first, option to buy",
+    title: "HomeReady rent-to-own",
+    text: "The buyer starts with a lease and receives an option to purchase later. Participating properties, lease credits, purchase price protection, deadlines, and exit terms must be reviewed for the exact offer."
+  }
+];
+
+const agreementQuestions = [
+  "Which agreement will I sign first?",
+  "Am I already committed to buy when I move in?",
+  "Which payments may be credited toward the purchase?",
+  "What happens if I do not continue with the purchase?",
+  "Which project, unit, and offer period are currently eligible?"
 ];
 
 const promoFaqs = [
   {
     question: "Are the promo references on this page guaranteed?",
     answer:
-      "No. They are dated references from the approved project records on this website. Luisa must confirm the selected unit, applicable term, deadline, and official computation before you rely on an offer."
+      "No. They are dated references from the approved projects on this website. Luisa will confirm the selected unit, current term, deadline, and unit-specific computation before you rely on an offer."
   },
   {
     question: "Why can two units in the same project have different terms?",
@@ -122,7 +145,7 @@ const promoFaqs = [
   {
     question: "What happens when a reference date has passed?",
     answer:
-      "Treat the reference as expired unless Luisa receives a current authorized computation confirming an extension or replacement offer."
+      "Treat the reference as expired unless Luisa confirms a current computation with an extension or replacement offer."
   }
 ];
 
@@ -182,6 +205,7 @@ export default function Promos() {
             <a href="#project-terms">Project Terms</a>
             <a href="#compare-terms">What to Compare</a>
             <a href="#program-types">Program Types</a>
+            <a href="#rent-to-own-guide">Rent-to-Own Guide</a>
             <a href="#promo-questions">FAQs</a>
           </div>
         </div>
@@ -192,7 +216,7 @@ export default function Promos() {
           <SectionHeader
             eyebrow="Website Reference Library"
             title="Start with the date, then verify the unit."
-            text="These groups summarize the dated terms found in the current 18-project website records. They are not live inventory or guaranteed offers."
+            text="These groups organize the dated terms shown across the 18 approved projects. Luisa will verify the exact unit and current offer before you rely on a reference."
           />
           <div className="promo-reference-grid">
             {referenceGroups.map((group) => {
@@ -236,7 +260,7 @@ export default function Promos() {
             <span className="eyebrow">Project Term Finder</span>
             <h2>Review the reference attached to your project.</h2>
             <p>
-              Choose one approved project to see the payment-term cards currently published on its detail page.
+              Choose one approved project to review the payment-term references currently shown for it.
             </p>
             <label htmlFor="promo-project-select">Approved project</label>
             <select
@@ -355,13 +379,43 @@ export default function Promos() {
             <p>
               <strong>Rent-to-own and early move-in are not the same.</strong> Ask which agreement applies, when ownership documents are signed, what payments are credited, and what happens if you do not proceed.
             </p>
-            <a
-              href="https://www.dmcihomes.com/whats-new/news/rent-to-own-vs-early-move-in-know-the-difference-before-you-commit"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Read the official explainer <ArrowRight size={15} aria-hidden="true" />
+            <a href="#rent-to-own-guide">
+              Compare the two options <ArrowRight size={15} aria-hidden="true" />
             </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="section promo-agreement-guide" id="rent-to-own-guide">
+        <div className="container">
+          <div className="promos-section-heading" data-reveal="text-group">
+            <span className="eyebrow">Before You Choose</span>
+            <h2>Early move-in and rent-to-own begin with different agreements.</h2>
+            <p>Focus on the contract you sign first, when the purchase commitment begins, and how each payment is treated.</p>
+          </div>
+          <div className="promo-agreement-grid">
+            {agreementComparison.map(({ icon: Icon, label, title, text }) => (
+              <article key={title} data-reveal="card">
+                <div className="promo-agreement-heading">
+                  <span><Icon size={23} aria-hidden="true" /></span>
+                  <small>{label}</small>
+                </div>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+          <div className="promo-agreement-checklist" data-reveal="section">
+            <div>
+              <span className="eyebrow">Ask Before Signing</span>
+              <h3>Five questions that clarify the commitment.</h3>
+            </div>
+            <ul>
+              {agreementQuestions.map((question) => (
+                <li key={question}><Check size={16} aria-hidden="true" /> {question}</li>
+              ))}
+            </ul>
+            <Button to="/contact?inquiryType=Rent%20to%20Own%20Inquiry">Ask Luisa About Rent-to-Own</Button>
           </div>
         </div>
       </section>
@@ -400,10 +454,10 @@ export default function Promos() {
 
       <section className="promos-source-note">
         <div className="container">
-          <DisclaimerBanner text="Promo references, payment terms, discounts, eligible units, bank approvals, and validity dates may change. Confirm the exact unit and authorized computation before paying any reservation fee." />
+          <DisclaimerBanner text="Promo references, payment terms, discounts, eligible units, bank approvals, and validity dates may change. Ask Luisa to confirm the exact unit and current computation before paying any reservation fee." />
           <p>
-            This is a broker-assisted reference page, not the official DMCI Homes corporate promo portal. For developer announcements, review the{" "}
-            <a href="https://www.dmcihomes.com/whats-new/promos" target="_blank" rel="noreferrer">official DMCI Homes promos page</a>.
+            Need the current offer for one unit? Send Luisa the project, unit type, and payment preference so she can confirm the applicable term, deadline, and eligibility.
+            {" "}<Link to="/request-computation">Request a current computation</Link>.
           </p>
         </div>
       </section>

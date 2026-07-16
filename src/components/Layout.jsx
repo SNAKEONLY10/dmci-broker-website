@@ -123,8 +123,8 @@ function Footer() {
               <p>{contact.role}<br />{contact.license}</p>
             </div>
           </div>
-          <p>Personal buyer assistance for DMCI Homes inquiries, computations, availability checks, site viewings, and reservation guidance.</p>
-          <p className="footer-note">Buyer assistance site. Final project details must be confirmed with authorized sales channels.</p>
+          <p>Direct assistance from project shortlisting and computation review to site viewing and reservation preparation.</p>
+          <p className="footer-note">Luisa confirms current unit details and the correct DMCI Homes reservation process before any commitment.</p>
         </div>
         <div className="footer-links">
           <h4>Buyer Tools</h4>
@@ -149,7 +149,7 @@ function Footer() {
           ))}
         </div>
         <div className="footer-links">
-          <h4>Trust & Legal</h4>
+          <h4>About & Buyer Safety</h4>
           <NavLink to="/about">About Maria Luisa</NavLink>
           <NavLink to="/privacy-policy">Privacy Policy</NavLink>
           <NavLink to="/disclaimer">Disclaimer</NavLink>

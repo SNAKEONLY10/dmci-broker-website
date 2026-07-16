@@ -55,8 +55,8 @@ export const buyerJourneySteps = [
     text: "Confirm availability, floor, orientation, layout, parking needs, and target turnover."
   },
   {
-    title: "Reserve through official channels",
-    text: "Review the forms and payment instructions, then keep the official receipt and copies."
+    title: "Use verified reservation instructions",
+    text: "Review the forms and DMCI Homes payment instructions with Luisa, then keep the receipt and complete copies."
   }
 ];
 
@@ -143,7 +143,7 @@ export const paymentOptions = [
   {
     id: "in-house",
     title: "In-house financing",
-    bestFor: "Buyers comparing developer-provided terms when available for the selected unit.",
+    bestFor: "Buyers comparing current DMCI Homes terms available for the selected unit.",
     review: ["Required down payment", "Term and interest assumptions", "Post-dated check or payment requirements"],
     confirm: "Availability and terms vary by project, unit, and buyer evaluation."
   }
@@ -168,10 +168,10 @@ export const buyerFaqs = [
   },
   {
     question: "Where should I pay a reservation fee?",
-    answer: "Pay only through the official channel stated in the verified reservation instructions. Confirm the beneficiary details and keep the official receipt and submitted forms."
+    answer: "Use only the payment instructions Luisa confirms for the selected reservation. Check the beneficiary details, then keep the official receipt and submitted forms."
   },
   {
     question: "Does this website replace DMCI Homes Customer Care?",
-    answer: "No. This is Maria Luisa Corral's broker-assisted buyer website. Existing account, billing, turnover, warranty, and after-sales concerns may need the appropriate official DMCI Homes channel."
+    answer: "No. This is Maria Luisa Corral's personal broker website for sales and buyer guidance. Luisa can review an existing account, billing, turnover, warranty, or after-sales concern and help route it to the appropriate DMCI Homes team."
   }
 ];

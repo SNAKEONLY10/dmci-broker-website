@@ -131,7 +131,7 @@ export const theOrianaDetails = {
     label: "Open The Oriana AVP",
     links: [
       { label: "Watch on YouTube", url: "https://www.youtube.com/watch?v=IF99Kg2xu1I", variant: "secondary" },
-      { label: "Drive AVP Backup", url: "", variant: "ghost" },
+    { label: "Request the Latest AVP", url: "", variant: "ghost" },
       { label: "TOD AVP Part 1", url: "", variant: "ghost" },
       { label: "TOD AVP Part 2", url: "", variant: "ghost" }
     ]
@@ -278,12 +278,12 @@ export const theOrianaDetails = {
   floorPlansDescription:
     "The floor plans at The Oriana are designed to maximize space and comfort. The units range from studio to 3-bedroom configurations, catering to different family sizes and lifestyle preferences. Each floor plan emphasizes natural light and ventilation, ensuring a pleasant living experience.",
   floorPlans: [
-    { title: "ATRIUM FLOOR", text: "Atrium-level planning reference for buyer review.", src: orianaAsset("floorplan-north-typical.jpg") },
-    { title: "1ST LEVEL ABOVE ATRIUM", text: "North Tower 2F availability-plan reference from the Drive materials.", src: orianaAsset("floorplan-1st-level.jpg") },
-    { title: "2ND LEVEL ABOVE ATRIUM", text: "North Tower 3F availability-plan reference from the Drive materials.", src: orianaAsset("floorplan-2nd-level.jpg") },
-    { title: "3RD-5TH LEVELS ABOVE ATRIUM", text: "North Tower typical availability-plan reference from the Drive materials.", src: orianaAsset("floorplan-3rd-5th-levels.jpg") },
-    { title: "North Building Floor Plans", text: "North Tower floor plan references are available in the official presentation set.", src: orianaAsset("floorplan-north-typical.jpg") },
-    { title: "South Building Floor Plans", text: "South Tower preview reference from the Drive materials. Request the official layout sheet before buyer presentation.", src: orianaAsset("floorplan-south-tower.png") }
+    { title: "ATRIUM FLOOR", text: "Use the atrium-level plan to compare unit positions and shared spaces.", src: orianaAsset("floorplan-north-typical.jpg") },
+    { title: "1ST LEVEL ABOVE ATRIUM", text: "North Tower second-floor availability-plan reference.", src: orianaAsset("floorplan-1st-level.jpg") },
+    { title: "2ND LEVEL ABOVE ATRIUM", text: "North Tower third-floor availability-plan reference.", src: orianaAsset("floorplan-2nd-level.jpg") },
+    { title: "3RD-5TH LEVELS ABOVE ATRIUM", text: "North Tower typical-floor availability-plan reference.", src: orianaAsset("floorplan-3rd-5th-levels.jpg") },
+    { title: "North Building Floor Plans", text: "North Tower floor-plan references for shortlisting.", src: orianaAsset("floorplan-north-typical.jpg") },
+    { title: "South Building Floor Plans", text: "South Tower floor-plan preview. Ask Luisa for the current layout sheet for an exact unit.", src: orianaAsset("floorplan-south-tower.png") }
   ],
   paymentTerms: {
     title: "Payment Terms: Flexible Options at The Oriana",
@@ -373,8 +373,8 @@ export const theOrianaDetails = {
   ],
   newsMedia: [
     {
-      title: "Official DMCI Homes project page",
-      label: "Review official DMCI Homes project reference",
+      title: "Current project information",
+      label: "Ask Luisa to confirm the latest project details",
       url: ""
     },
     {

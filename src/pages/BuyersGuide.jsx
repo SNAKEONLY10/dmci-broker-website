@@ -366,10 +366,10 @@ export default function BuyersGuide() {
 
       <section className="buyer-guide-source-note">
         <div className="container">
-          <DisclaimerBanner text="Requirements, availability, prices, promos, payment terms, and procedures may change by project, unit, buyer profile, and current developer policy. Confirm the final details before reservation." />
+          <DisclaimerBanner text="Requirements, availability, prices, promos, payment terms, and procedures may change by project, unit, and buyer profile. Luisa will confirm the final details before reservation." />
           <p>
-            For developer policies and post-sale account procedures, refer to the{
-            } <a href="https://www.dmcihomes.com/guides/buyers-guide" target="_blank" rel="noreferrer">official DMCI Homes Buyer&apos;s Guide</a>.
+            Need a buyer-specific document list or help with an existing account concern? Luisa can confirm the next requirement or help route the concern to the appropriate DMCI Homes team.
+            {" "}<Link to="/contact?inquiryType=Existing%20Buyer%20%2F%20Customer%20Care%20Concern">Ask Luisa for guidance</Link>.
           </p>
         </div>
       </section>

@@ -29,7 +29,7 @@ const commonOtherAmenities = [
 const commonBuildingFeatures = [
   "24-hour security and managed common areas",
   "Lobby, circulation, parking, utilities, and tower details for final confirmation",
-  "Ask Luisa for the latest official project presentation"
+  "Ask Luisa for the latest project presentation"
 ];
 
 const commonPurposes = ["Own Use", "Investment", "Family"];
@@ -86,7 +86,7 @@ const baseProjects = [
       { type: "1BR", floorArea: "29.00 - 35.50 sqm", range: "4.9M - 7.0M", monthlyDp: "12% DP: 15.5k - 22.5k /mo", status: "Available", note: "Reference only" },
       { type: "2BR", floorArea: "54.50 - 81.50 sqm", range: "7.2M - 9.9M", monthlyDp: "12% DP: 23.3k - 32.1k /mo", status: "Available", note: "Reference only" }
     ],
-    summaryPricingNote: "Do not present these ranges as guaranteed current prices. Ask Luisa for latest inventory and computation before buyer presentation.",
+    summaryPricingNote: "Use these ranges only for shortlisting. Ask Luisa for current availability and a unit-specific computation before deciding.",
     introParagraphs: [
       "The Oriana is a DMCI Homes high-rise residential condominium along Aurora Boulevard in Quezon City, planned as a two-tower modern tropical development.",
       "Its location places residents near Anonas, Katipunan, Araneta City, schools, hospitals, malls, and rail access, making it practical for end-use and investment shortlisting."
@@ -114,11 +114,11 @@ const baseProjects = [
       ]
     },
     viewHighlights: [
-      { title: "Audio Visual Presentation", text: "Official DMCI AVP reference is available and should be loaded only after buyer action." },
+      { title: "Audio Visual Presentation", text: "Play the project presentation when you are ready to review the community, amenities, and location." },
       { title: "360 Virtual Tour", text: "Virtual tour link should be requested from Luisa if no current public approved link is available." }
     ],
     videoTourTitle: "Audio Visual Presentation and 360 Virtual Tour",
-    videoTourCopy: "Official AVP/virtual tour materials are available by request. Large video embeds are not auto-loaded so the page stays fast on mobile.",
+    videoTourCopy: "Play the project presentation here, or ask Luisa for the latest virtual-tour link when you want a more detailed walkthrough.",
     videoTourUrl: "https://www.youtube.com/watch?v=iRCL-SM7Ktg",
     videoEmbed: {
       type: "youtube",
@@ -160,7 +160,7 @@ const baseProjects = [
       { title: "3-Bedroom Tandem Units", description: "Tandem configurations combine adjacent 2BR units, subject to availability and deadlines per floor/building.", layouts: ["3BR B (113 SQM)", "3BR A (123 SQM)"], rows: [] }
     ],
     floorPlansTitle: "Floor Plans and Unit Layouts",
-    floorPlansDescription: "Request official layout sheets for specific unit cuts before buyer presentation.",
+    floorPlansDescription: "Ask Luisa for the current layout sheet before relying on a specific unit cut.",
     floorPlans: [
       { title: "Studio A (30 SQM)", text: "The Oriana South Tower Studio" },
       { title: "1BR Layouts", text: "1BR A, B, C, D, E, and F layouts from 29 sqm to 35.5 sqm." },
@@ -220,7 +220,7 @@ const baseProjects = [
       "PDCs / Post-Dated Checks or Auto Debit Arrangement",
       "International remittance/bills payment options subject to confirmation"
     ],
-    reservationNote: "Do not send payment without official confirmation and verified payment instructions from Luisa/DMCI.",
+    reservationNote: "Do not send payment until Luisa confirms the unit, current computation, and DMCI Homes payment instructions.",
     ...theOrianaDetails
   },
   {
@@ -302,11 +302,11 @@ const baseProjects = [
       ]
     },
     viewHighlights: [
-      { title: "Audio Visual Presentation", text: "No public official/static AVP URL was found in the available materials. Request the approved AVP link from Luisa." },
+      { title: "Audio Visual Presentation", text: "Ask Luisa for the latest project AVP when you would like a guided video introduction." },
       { title: "Virtual 360-Degree Tour", text: "Experience One Delta Terraces through an approved tour link when available; request the current link from Luisa." }
     ],
     videoTourTitle: "AVP and 360 Virtual Tour Available Upon Request",
-    videoTourCopy: "Large AVP/360 media is not auto-loaded. Ask Luisa for the approved current video or tour link.",
+    videoTourCopy: "Ask Luisa for the latest AVP or 360 tour link when you would like a guided walkthrough.",
     videoTourNote: "AVP and virtual tour available upon request.",
     videoRequestCtas: ["AVP available upon request", "Virtual tour available upon request"],
     amenityGroups: [
@@ -314,7 +314,7 @@ const baseProjects = [
       { group: "Amenity Floor, 6th Floor", items: ["Game Area", "Play Area", "Outdoor Fitness Area", "Fitness Gym", "Entertainment Room", "Kiddie Pool", "Leisure Pool"] },
       { group: "Roof Deck", items: ["Sky Promenade", "Open Sky Lounge", "Snack Bar", "Lap Pool with Lounge Pool"] }
     ],
-    amenityNote: "Amenities are distributed across several building levels and must be verified against final official materials.",
+    amenityNote: "Amenities are distributed across several building levels. Ask Luisa to confirm the current amenity plan and access rules.",
     unitIntro: "One Delta Terraces offers studio, 2-bedroom, and 3-bedroom units for different lifestyles and household sizes.",
     unitSections: [
       { title: "Studio Units", description: "Compact yet functional living spaces for singles or young professionals.", layouts: ["28.50 sqm", "29.00 sqm", "29.50 sqm", "30.00 sqm", "31.50 sqm", "32.00 sqm", "36.00 sqm", "37.00 sqm"], rows: [
@@ -352,7 +352,7 @@ const baseProjects = [
       ] }
     ],
     floorPlansTitle: "Floor Plans",
-    floorPlansDescription: "Request official layout sheets and floor plans before buyer presentation.",
+    floorPlansDescription: "Ask Luisa for the current layout sheet and building floor plan before choosing a unit.",
     floorPlans: [
       { title: "Studio Layout", text: "One Delta Terraces DMCI Studio" },
       { title: "2 Bedroom Layout", text: "One Delta Terraces DMCI 2 Bedroom" },
@@ -399,7 +399,7 @@ const baseProjects = [
       "Preferred Mode of Payment",
       "Post-dated checks / PDCs or auto-debit arrangement with partnered banks"
     ],
-    reservationNote: "Confirm computation, availability, payment method, and official requirements with Luisa before making any reservation decision.",
+    reservationNote: "Ask Luisa to confirm the computation, availability, payment method, and reservation requirements before proceeding.",
     ...oneDeltaTerracesDetails
   },
   {
@@ -443,7 +443,7 @@ const baseProjects = [
     address: "Mapalad St. Brgy. Mariblo, Roosevelt Ave., Quezon City",
     unitTypes: ["1BR", "2BR", "3BR"],
     assetStatus: "official-assets-needed",
-    overview: "Cameron Residences is a ready-for-occupancy DMCI Homes high-rise condominium in Quezon City, presented for young families and professionals looking for an urban residential address. Details remain reference-only until confirmed by Luisa and official DMCI Homes materials.",
+    overview: "Cameron Residences is a ready-for-occupancy DMCI Homes high-rise condominium in Quezon City for families and professionals seeking an established urban address. Ask Luisa to confirm the unit, current price, and availability that fit your plan.",
     aboutLocation: "The official address is Mapalad St., Brgy. Mariblo, Roosevelt Ave., Quezon City. Nearby services, routes, and travel times should be confirmed before a site viewing or reservation decision.",
     highlights: [
       "Ready-for-occupancy DMCI Homes high-rise condominium in Quezon City",
@@ -498,7 +498,7 @@ const baseProjects = [
     address: "Pasig Boulevard, Brgy. Bagong Ilog, Pasig City",
     unitTypes: ["Studio", "1BR", "2BR", "3BR"],
     assetStatus: "official-assets-needed",
-    overview: "Allegra Garden Place is a DMCI Homes high-rise condominium in Pasig City with a Modern with Moroccan Inspiration theme. It remains listed here for reference only until the latest unit availability, computation, and official presentation are confirmed.",
+    overview: "Allegra Garden Place is a DMCI Homes high-rise condominium in Pasig City with a modern Moroccan-inspired theme. Ask Luisa to confirm the latest unit availability, computation, and presentation for your preferred layout.",
     aboutLocation: "The official address is Pasig Boulevard, Brgy. Bagong Ilog. Buyers can compare this Pasig Boulevard location with nearby work, school, retail, and transport needs after confirming current routes.",
     highlights: [
       "Under-construction DMCI Homes high-rise condominium in Pasig City",
@@ -526,7 +526,7 @@ const baseProjects = [
     unitTypes: ["1BR", "2BR", "3BR"],
     assetStatus: "official-assets-needed",
     overview: "Prisma Residences is a ready-for-occupancy DMCI Homes high-rise condominium along Pasig Boulevard, positioned by DMCI Homes for access to key CBDs such as BGC and Ortigas. Computations, availability, and promos must be confirmed before any reservation decision.",
-    aboutLocation: "The official address is Pasig Boulevard, Brgy. Bagong Ilog. DMCI Homes highlights access to BGC and Ortigas; buyers should confirm current routes, drive times, and site viewing logistics.",
+    aboutLocation: "Prisma Residences is along Pasig Boulevard, Brgy. Bagong Ilog, with access toward BGC and Ortigas. Use the map to compare travel routes, then ask Luisa to confirm the viewing entrance and schedule.",
     highlights: [
       "Ready-for-occupancy DMCI Homes high-rise condominium in Pasig City",
       "Modern Tropical architectural theme",
@@ -579,7 +579,7 @@ const baseProjects = [
     address: "M. Vicente St. Mandaluyong City",
     unitTypes: ["1BR", "2BR", "3BR"],
     assetStatus: "official-assets-needed",
-    overview: "Kai Garden Residences is a ready-for-occupancy DMCI Homes high-rise condominium in Mandaluyong with a Japanese-inspired residential theme. Buyers should request the latest computation, available units, and official presentation materials before proceeding.",
+    overview: "Kai Garden Residences is a ready-for-occupancy DMCI Homes high-rise condominium in Mandaluyong with a Japanese-inspired residential theme. Ask Luisa for current available units, a unit-specific computation, and the latest project presentation.",
     aboutLocation: "The official address is M. Vicente St., Mandaluyong City. DMCI Homes presents the project as a tranquil home setting within the metro; site access and nearby destinations should be confirmed with current maps.",
     highlights: [
       "Ready-for-occupancy DMCI Homes high-rise condominium in Mandaluyong City",
@@ -648,7 +648,7 @@ const baseProjects = [
     summaryPricingNote: "Displayed ranges are not guaranteed current prices. Ask Luisa for latest availability, promos, and computation.",
     introParagraphs: [
       "Mulberry Place Phase 2 is a DMCI Homes development in Acacia Estates, Taguig City, designed with Asian Tropical inspiration and a community layout that blends nature with urban convenience.",
-      "The page uses the supplied reference content for buyer shortlisting while keeping all prices, terms, promos, and inventory subject to Luisa/DMCI confirmation."
+      "Use the project details for shortlisting, then ask Luisa to confirm current prices, terms, promos, and inventory."
     ],
     locationDetails: {
       title: "Strategic Location of Mulberry Place Phase 2",
@@ -679,12 +679,12 @@ const baseProjects = [
       ]
     },
     viewHighlights: [
-      { title: "Audio Visual Presentation", text: "AVP is referenced in the supplied material; request the approved current AVP link from Luisa before sharing." },
-      { title: "Virtual Tour of Acacia Estates", text: "A community tour reference is available from DMCI Online. Confirm the current approved tour link before sending to buyers." },
-      { title: "360 Virtual Tour", text: "Use as an external reference only; large tour media is not auto-loaded on this page." }
+      { title: "Audio Visual Presentation", text: "Ask Luisa for the latest project AVP when you would like a guided video introduction." },
+      { title: "Virtual Tour of Acacia Estates", text: "Open the community tour for a broader view of Acacia Estates, or ask Luisa for the latest tour link." },
+      { title: "360 Virtual Tour", text: "Open the tour when you want a closer look at the community and shared spaces." }
     ],
     videoTourTitle: "AVP and Virtual Tour",
-    videoTourCopy: "Official AVP and virtual tour references are loaded lazily so the page stays fast. Use external tour links only as buyer references and confirm current approved materials with Luisa.",
+    videoTourCopy: "Play the project AVP or open the virtual tour for a closer look. Ask Luisa if you need the latest presentation for a specific building or unit type.",
     videoTourEmbedUrl: "https://www.youtube.com/embed/voLKgWQalo4?rel=0",
     videoTourUrl: "",
     videoTourLinks: [
@@ -724,7 +724,7 @@ const baseProjects = [
       ] }
     ],
     floorPlansTitle: "Floor Plans at Mulberry Place Phase 2",
-    floorPlansDescription: "Request official layout sheets and building floor plans before buyer presentation.",
+    floorPlansDescription: "Ask Luisa for the current layout sheet and building floor plan before choosing a unit.",
     floorPlans: [
       { title: "2 Bedroom F", text: "Mulberry Place 2 two-bedroom layout F.", src: "/assets/projects/mulberry-place-2/floorplan-2br-f.jpg" },
       { title: "2 Bedroom A", text: "Mulberry Place 2 two-bedroom layout A.", src: "/assets/projects/mulberry-place-2/floorplan-2br-a.jpg" },
@@ -780,7 +780,7 @@ const baseProjects = [
       "Proof of billing address after initial reservation",
       "Official payment instructions must be verified before sending payment"
     ],
-    reservationNote: "Do not send payment without official confirmation and verified payment instructions from Luisa/DMCI."
+    reservationNote: "Do not send payment until Luisa confirms the unit, current computation, and DMCI Homes payment instructions."
   },
   {
     slug: "alder-residences",
@@ -800,14 +800,14 @@ const baseProjects = [
     contentStatus: "full customer-ready detail added",
     targetRfo: "Andea June 2024; Manzuria September 2024; Oregon March 2025; Sylvan December 2025",
     tagline: "Resort-inspired high-rise living in Acacia Estates, Taguig",
-    priceRangeLabel: "2BR from 9.3M; 3BR and 4BR sold out in supplied reference",
+    priceRangeLabel: "2BR from 9.3M; 3BR and 4BR currently marked sold out",
     priceSourceNote: "Prices, promos, availability, terms, turnover dates, and computations are subject to final confirmation with Luisa/DMCI Homes. Displayed figures are for reference only and may change without prior notice.",
     overview: "Alder Residences is a resort-inspired high-rise condominium along Banyan Road in Acacia Estates, Taguig City. It features four 18-storey buildings, Modern Artisanal design, a broad amenity mix, and current supplied inventory focused on 2BR units.",
     aboutLocation: "The official address is Banyan Road, Acacia Estates, Taguig City, with access to C5 Road, BGC, Makati, SM Aura, Bonifacio High Street, Market! Market!, schools, and daily retail destinations.",
     highlights: [
       "Ready-for-occupancy DMCI Homes high-rise condominium in Taguig City",
       "Modern Artisanal architectural theme",
-      "2BR units available in supplied reference; 3BR and 4BR sold out / waitlist",
+      "2BR units shown as available; 3BR and 4BR currently sold out / waitlist",
       "Four 18-storey buildings: Andea, Manzuria, Oregon, and Sylvan"
     ],
     amenities: ["Open Lounge", "Co-working Space", "Game Room", "Fitness Gym", "Entertainment Room", "Snack Bar", "Sky Lounge", "Lap Pool", "Kiddie Pool", "Leisure Pool", "Jogging Path", "Children's Play Area", "Sky Promenade", "Linear Park", "Picnic Area"],
@@ -866,12 +866,12 @@ const baseProjects = [
       ]
     },
     viewHighlights: [
-      { title: "Audio Visual Presentation", text: "AVP is referenced in the supplied material; request the approved current AVP link from Luisa before sharing." },
-      { title: "Virtual Tour of Acacia Estates", text: "A community tour reference is available from DMCI Online. Confirm the current approved tour link before sending to buyers." },
-      { title: "360 Virtual Tour of Alder Residences", text: "Use as an external reference only; large tour media is not auto-loaded on this page." }
+      { title: "Audio Visual Presentation", text: "Ask Luisa for the latest project AVP when you would like a guided video introduction." },
+      { title: "Virtual Tour of Acacia Estates", text: "Open the community tour for a broader view of Acacia Estates, or ask Luisa for the latest tour link." },
+      { title: "360 Virtual Tour of Alder Residences", text: "Open the tour when you want a closer look at the community and shared spaces." }
     ],
     videoTourTitle: "AVP and 360 Virtual Tour",
-    videoTourCopy: "Official AVP and virtual tour references are loaded lazily so the page stays fast. Use external tour links only as buyer references and confirm current approved materials with Luisa.",
+    videoTourCopy: "Play the project AVP or open the virtual tour for a closer look. Ask Luisa if you need the latest presentation for a specific building or unit type.",
     videoTourEmbedUrl: "https://www.youtube.com/embed/DDIe8FhqZdU?rel=0",
     videoTourUrl: "",
     videoTourLinks: [
@@ -885,7 +885,7 @@ const baseProjects = [
       { group: "Facilities and PMO Services", items: ["Card-operated laundry", "Convenience Store", "Water Station", "Guarded gate and entrance", "24-hour roving personnel", "Maintenance of landscaped areas", "Taxi call-in service"] }
     ],
     amenityNote: "Amenity availability, final design, and operating rules are subject to DMCI Homes confirmation.",
-    unitIntro: "Alder Residences currently shows available 2BR options in the supplied reference. 3BR and 4BR are marked sold out, with waitlist messaging for reopening units.",
+    unitIntro: "Alder Residences currently shows available 2BR options. The 3BR and 4BR references are marked sold out, with waitlist inquiries available for re-opening units.",
     unitSections: [
       { title: "2-Bedroom Units", description: "Well-appointed units for small families or working professionals.", layouts: ["64.50 sqm", "67.00 sqm", "70.50 sqm", "71.50 sqm"], rows: [
         { layout: "2BR", floorArea: "64.50 sqm", priceRange: "9.3M - 10.0M", status: "Few left", monthlyDp: "36.2k - 39.1k /mo" },
@@ -893,15 +893,15 @@ const baseProjects = [
         { layout: "2BR", floorArea: "70.50 sqm", priceRange: "10.2M - 10.7M", status: "Few left", monthlyDp: "40.1k - 42.0k /mo" },
         { layout: "2BR", floorArea: "71.50 sqm", priceRange: "10.4M", status: "Few left", monthlyDp: "41.0k /mo" }
       ] },
-      { title: "3-Bedroom Units", description: "Spacious units ranging from 70.00 to 121.00 sqm in the supplied reference.", layouts: ["3BR A", "3BR B", "3BR C", "3BR D"], rows: [
+      { title: "3-Bedroom Units", description: "Spacious layout references ranging from 70.00 to 121.00 sqm.", layouts: ["3BR A", "3BR B", "3BR C", "3BR D"], rows: [
         { layout: "3BR", floorArea: "70.00 - 121.00 sqm", priceRange: "Sold out", status: "Waitlist", monthlyDp: "Message Luisa for reopening units" }
       ] },
-      { title: "4-Bedroom Units", description: "Larger family layouts in the supplied reference.", layouts: ["4BR A"], rows: [
+      { title: "4-Bedroom Units", description: "Larger family layout reference.", layouts: ["4BR A"], rows: [
         { layout: "4BR", floorArea: "For confirmation", priceRange: "Sold out", status: "Waitlist", monthlyDp: "Message Luisa for reopening units" }
       ] }
     ],
     floorPlansTitle: "Floor Plans at Alder Residences",
-    floorPlansDescription: "Request official layout sheets and building floor plans before buyer presentation.",
+    floorPlansDescription: "Ask Luisa for the current layout sheet and building floor plan before choosing a unit.",
     floorPlans: [
       { title: "2BR A", text: "Alder Residences two-bedroom layout A.", src: "/assets/projects/alder-residences/floorplan-2br-a.jpg" },
       { title: "2BR B", text: "Alder Residences two-bedroom layout B.", src: "/assets/projects/alder-residences/floorplan-2br-b.jpg" },
@@ -956,7 +956,7 @@ const baseProjects = [
       "Parking Reservation Fee: PHP 10,000, if applicable",
       "Proof of billing and payment method requirements to be confirmed before reservation"
     ],
-    reservationNote: "Confirm computation, availability, payment method, and official requirements with Luisa before making any reservation decision."
+    reservationNote: "Ask Luisa to confirm the computation, availability, payment method, and reservation requirements before proceeding."
   },
   {
     slug: "the-aston-place",
@@ -974,7 +974,7 @@ const baseProjects = [
     purposeTags: ["Own Use", "Investment", "Rental"],
     assetStatus: "official-assets-needed",
     overview: "The Aston Place is a ready-for-occupancy DMCI Homes high-rise condominium on Dominga St. in Pasay City, positioned for a balanced city lifestyle. Pricing, promos, availability, payment terms, and turnover references remain subject to final confirmation.",
-    aboutLocation: "The official address is Dominga St., Pasay City. Buyers should verify nearby access, travel times, and viewing schedule with Luisa and current official materials.",
+    aboutLocation: "The Aston Place is along Dominga St., Pasay City. Use the map for route planning, then ask Luisa to confirm the viewing entrance and schedule.",
     highlights: [
       "Ready-for-occupancy DMCI Homes high-rise condominium in Pasay City",
       "Modern architectural theme",
@@ -1002,7 +1002,7 @@ const baseProjects = [
     purposeTags: ["Own Use", "Investment", "Rental"],
     assetStatus: "official-assets-needed",
     overview: "The Camden Place is a DMCI Homes high-rise condominium in Malate, Manila. It is included here as an approved priority project with final prices, payment terms, availability, and turnover details to be confirmed before buyer decisions.",
-    aboutLocation: "The official address is Dominga St., Malate, Manila. Buyers should confirm routes, nearby services, and viewing access with the latest official project materials.",
+    aboutLocation: "The Camden Place is along Dominga St., Malate, Manila. Use the map for route planning, then ask Luisa to confirm the viewing entrance and meeting instructions.",
     highlights: [
       "Under-construction DMCI Homes high-rise condominium in Manila",
       "Modern Contemporary architectural theme",
@@ -1028,7 +1028,7 @@ const baseProjects = [
     address: "Dr. A. Santos Ave., Para\u00f1aque City",
     unitTypes: ["1BR", "2BR"],
     assetStatus: "official-assets-needed",
-    overview: "The Atherton is a ready-for-occupancy DMCI Homes high-rise condominium along Dr. A. Santos Ave. in Para\u00f1aque City, presented for contemporary living in the south. Buyers should request the latest computation, available units, and official materials before proceeding.",
+    overview: "The Atherton is a ready-for-occupancy DMCI Homes high-rise condominium along Dr. A. Santos Ave. in Para\u00f1aque City for contemporary living in the south. Ask Luisa for current available units, a unit-specific computation, and the latest project presentation.",
     aboutLocation: "The official address is Dr. A. Santos Ave., Para\u00f1aque City. Nearby access, road conditions, and travel times should be confirmed during project shortlisting.",
     highlights: [
       "Ready-for-occupancy DMCI Homes high-rise condominium in Para\u00f1aque City",
@@ -1083,7 +1083,7 @@ const baseProjects = [
     unitTypes: ["2BR", "3BR"],
     assetStatus: "official-assets-needed",
     overview: "Sonora Garden Residences is a ready-for-occupancy DMCI Homes condominium community along Alabang-Zapote Road in Las Pi\u00f1as City, positioned for harmonious residential living. All computations, availability, and unit details should be confirmed before deciding.",
-    aboutLocation: "The official address is Alabang-Zapote Road, Talon Tres, Las Pinas. Buyers should confirm exact access, road conditions, and nearby destinations with current maps and official materials.",
+    aboutLocation: "Sonora Garden Residences is along Alabang-Zapote Road, Talon Tres, Las Pinas. Use the map to compare access, then confirm viewing instructions with Luisa.",
     highlights: [
       "Ready-for-occupancy DMCI Homes condominium community in Las Pi\u00f1as City",
       "Modern Contemporary architectural theme",
@@ -1136,7 +1136,7 @@ const baseProjects = [
     address: "Brgy. Calubcub II and Brgy. Subukin, San Juan, Batangas",
     unitTypes: ["Studio", "1BR", "2BR"],
     assetStatus: "complete",
-    overview: "Solmera Coast is a DMCI Homes leisure residence in San Juan, Batangas, presented as a coastal condo-home getaway from the city. This page is for safe buyer shortlisting only; latest computation, availability, payment terms, and official materials must be confirmed.",
+    overview: "Solmera Coast is a DMCI Homes leisure residence in San Juan, Batangas for buyers comparing a coastal condo-home getaway. Ask Luisa to confirm the available unit, payment terms, rental-pool scope, and current computation.",
     aboutLocation: "The official address is Brgy. Calubcub II and Brgy. Subukin, San Juan, Batangas. Buyers should confirm road access, beach/community rules, travel times, and viewing arrangements before deciding.",
     highlights: [
       "Under-construction DMCI Homes leisure residence in San Juan, Batangas",
@@ -1169,20 +1169,20 @@ function inventory(unitTypes) {
 }
 
 function projectOverview(project) {
-  return `${project.name} is an approved priority DMCI Homes listing for Luisa Corral's buyer assistance website. This page is for safe project shortlisting only. Request the latest computation, confirmed unit availability, current promos, payment terms, and official presentation materials before making any reservation decision.`;
+  return `${project.name} is one of the 18 DMCI Homes projects supported through Luisa Corral's personal broker website. Use this page to shortlist the project, then ask Luisa to confirm the preferred unit, current computation, availability, promo, payment terms, and reservation steps.`;
 }
 
 function projectHighlights(project) {
   return [
     `${project.status} ${project.developmentType} in ${project.city}`,
-    `${project.architecturalTheme} reference theme from official project materials`,
+    `${project.architecturalTheme} architectural theme`,
     `${project.unitTypes.join(", ")} options, subject to latest availability`
   ];
 }
 
 function whyInvest(project) {
   return [
-    `Official DMCI Homes source page identifies ${project.name} as a ${project.developmentType} in ${project.city}.`,
+    `${project.name} is presented as a ${project.developmentType} in ${project.city}.`,
     `Location reference: ${project.address}. Confirm routes, landmarks, and travel times before deciding.`,
     "Unit options, payment terms, promos, inventory, and turnover details must be confirmed through Luisa before reservation.",
     "This website keeps the project as reference-only buyer assistance, not a final offer or live inventory sheet."
@@ -1217,16 +1217,16 @@ function withProjectFallbacks(project, index) {
     priceSourceNote: "Updated computation, promos, payment terms, unit availability, and final pricing must be confirmed with Luisa before deciding.",
     overview: project.overview || projectOverview(project),
     description: project.description || project.overview || projectOverview(project),
-    aboutLocation: project.aboutLocation || `${project.city} is included for buyer comparison. Nearby access, travel time, and exact landmarks should be confirmed through current maps and official project materials.`,
+    aboutLocation: project.aboutLocation || `${project.city} is included for buyer comparison. Use the current map to review access and travel time, then ask Luisa to confirm viewing instructions.`,
     highlights: project.highlights || projectHighlights({ ...project, unitTypes }),
     whyInvest: project.whyInvest || whyInvest(project),
     amenities: project.amenities || [],
     otherAmenities: project.otherAmenities || commonOtherAmenities,
     buildingFeatures: project.buildingFeatures || commonBuildingFeatures,
     nearbyLandmarks: project.nearbyLandmarks || ["Location access for confirmation", "Nearby services for confirmation", "Transport access for buyer verification"],
-    siteProgressStatus: "Site progress information should be confirmed through official DMCI Homes channels or Luisa.",
-    masterPlanNotes: "Master plan visuals and final unit details can be added once approved official project materials are selected.",
-    themeDescription: `${project.architecturalTheme} is used as a reference label from the official DMCI Homes project page. Final architectural details must be confirmed through official project materials.`,
+    siteProgressStatus: "Ask Luisa to confirm the latest site progress update before using it for a decision.",
+    masterPlanNotes: "Review the available master plan for project orientation. Luisa can confirm details that affect a specific building or unit.",
+    themeDescription: `${project.architecturalTheme} is the project's architectural theme. Ask Luisa for the current project presentation if a design detail affects your decision.`,
     buildings: [
       {
         name: `${project.name} building details`,
@@ -1238,8 +1238,8 @@ function withProjectFallbacks(project, index) {
     unitInventoryPreview: inventory(unitTypes),
     newsMedia: [
       {
-        title: "Official DMCI Homes project page",
-        label: "Review official project reference",
+        title: "Current project information",
+        label: "Ask Luisa for current project details",
         url: project.sourceUrl
       },
       {
@@ -1471,7 +1471,7 @@ function withAuditedProjectSnapshot(project) {
       : "A verified YouTube AVP is not currently published for this project. Request the latest approved presentation directly from Maria Luisa.",
     videoTourNote: hasVideo
       ? "The embedded player is the only external project-media destination shown on this page."
-      : "No third-party property page or unverified walkthrough is linked.",
+      : "Ask Luisa for the latest approved presentation if you would like a guided walkthrough.",
     videoTourUrl: videoUrl,
     videoTourEmbedUrl: videoEmbedUrl,
     videoTourLinks: hasVideo

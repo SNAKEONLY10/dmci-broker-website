@@ -105,13 +105,13 @@ export const oneDeltaTerracesDetails = {
     { type: "3BR", floorArea: "85.50 - 95.50 sqm", range: "17.4M - 21.7M", monthlyDp: "12% DP: 51.4k - 64.5k /mo", status: "Available", note: "Reference only" }
   ],
   summaryPricingNote:
-    "Use these as guide ranges only. Request Luisa's latest availability sheet and official computation before buyer presentation or reservation.",
+    "Use these ranges only for shortlisting. Ask Luisa for current availability and a unit-specific computation before deciding or reserving.",
   locationDetails: {
     title: "Prime Location of One Delta Terraces",
     text:
       "One Delta Terraces is located at West Avenue corner Quezon Avenue in Quezon City, placing residents near business districts, schools, hospitals, retail centers, and transit options.",
     exactAddress: "West Avenue corner Quezon Avenue, Quezon City",
-    note: "Distances and travel times are reference points and should be confirmed through current maps and official project materials.",
+    note: "Distances and travel times are planning references. Check the current route before a site visit.",
     mapTitle: "One Delta Terraces on Google Maps",
     mapText: "Use the map to zoom, inspect nearby roads, and open live directions before scheduling a site viewing.",
     mapUrl: "https://www.google.com/maps/search/?api=1&query=One%20Delta%20Terraces%20West%20Avenue%20corner%20Quezon%20Avenue%20Quezon%20City",
@@ -145,7 +145,7 @@ export const oneDeltaTerracesDetails = {
   ],
   videoTourTitle: "Audio Visual Presentation and 360 Virtual Tour",
   videoTourCopy:
-    "Watch the lightweight YouTube AVP preview, then open the official 360 tour links or Drive AVP backup only when needed.",
+    "Watch the project AVP, then open a 360 tour when you want a more detailed walkthrough.",
   videoTourImage: oneDeltaAsset("sky-deck-pool.jpg"),
   videoTourUrl: "https://www.youtube.com/watch?v=m3LkY82XjKI",
   videoTourEmbedUrl: "https://www.youtube.com/embed/m3LkY82XjKI",
@@ -153,9 +153,9 @@ export const oneDeltaTerracesDetails = {
     { label: "Watch AVP on YouTube", url: "https://www.youtube.com/watch?v=m3LkY82XjKI", variant: "secondary" },
     { label: "Open 360 Tour", url: "", variant: "ghost" },
     { label: "Open 2BR 360 Tour", url: "", variant: "ghost" },
-    { label: "Drive AVP Backup", url: "", variant: "ghost" }
+    { label: "Request the Latest AVP", url: "", variant: "ghost" }
   ],
-  videoTourNote: "Large Drive videos are linked instead of auto-loaded so the page stays fast on mobile.",
+  videoTourNote: "Choose Play or Open Tour when you are ready to review the presentation.",
   amenityGroups: [
     { group: "Ground Floor", items: ["Reception Lobby", "Open Lounge", "Utility Area", "Commercial Area"] },
     { group: "Amenity Floor, 6th Floor", items: ["Game Area", "Play Area", "Outdoor Fitness Area", "Fitness Gym", "Entertainment Room", "Kiddie Pool", "Leisure Pool"] },
@@ -164,7 +164,7 @@ export const oneDeltaTerracesDetails = {
   amenityNote:
     "Amenities are distributed across several building levels. Final amenity names, opening schedules, design, and operating rules are subject to DMCI Homes confirmation.",
   unitIntro:
-    "One Delta Terraces offers studio, two-bedroom, and three-bedroom units. Each unit type is presented for shortlisting only; current availability and official computations must be checked with Luisa.",
+    "One Delta Terraces offers studio, two-bedroom, and three-bedroom units. Use the layouts for shortlisting, then ask Luisa to confirm current availability and the unit-specific computation.",
   unitSections: [
     {
       title: "Studio Units",
@@ -217,14 +217,14 @@ export const oneDeltaTerracesDetails = {
   ],
   floorPlansTitle: "Floor Plans and Unit Layouts",
   floorPlansDescription:
-    "One Delta Terraces includes unit layout references and building floor plans for buyer shortlisting. Request the official layout sheet for the exact unit cut before buyer presentation.",
+    "One Delta Terraces includes unit layouts and building floor plans for shortlisting. Ask Luisa for the current layout sheet for the exact unit cut.",
   floorPlans: [
     { title: "Studio Layout", text: "Studio layout reference for One Delta Terraces.", src: oneDeltaAsset("floorplan-studio.jpg") },
     { title: "2BR Layout", text: "Two-bedroom layout reference for One Delta Terraces.", src: oneDeltaAsset("floorplan-2br.jpg") },
     { title: "3BR Layout", text: "Three-bedroom layout reference for One Delta Terraces.", src: oneDeltaAsset("floorplan-3br.jpg") },
     { title: "Typical Floor Plan", text: "Typical tower floor plan reference.", src: oneDeltaAsset("floorplan-typical.jpg") },
     { title: "Atrium Floor Plan", text: "Atrium level planning reference.", src: oneDeltaAsset("floorplan-atrium.jpg") },
-    { title: "Delta Building Floor Plans", text: "Building floor plan reference for buyer review.", src: oneDeltaAsset("floorplan-building.jpg") }
+    { title: "Delta Building Floor Plans", text: "Use the building floor plan to compare levels and unit positions.", src: oneDeltaAsset("floorplan-building.jpg") }
   ],
   paymentTerms: {
     title: "Payment Terms and Sample Computation",
@@ -300,5 +300,5 @@ export const oneDeltaTerracesDetails = {
     "Post-dated checks / PDCs or auto-debit arrangement with partnered banks"
   ],
   reservationNote:
-    "Confirm computation, availability, payment method, and official requirements with Luisa before making any reservation decision."
+    "Ask Luisa to confirm the computation, availability, payment method, and reservation requirements before proceeding."
 };

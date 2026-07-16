@@ -119,7 +119,7 @@ export const theAthertonDetails = {
     "RFO timing lets buyers inspect the community and move faster compared with long pre-selling timelines, subject to current unit availability.",
     "Dr. A. Santos Avenue gives practical access to SM BF Para\u00f1aque, Sucat retail centers, hospitals, schools, Skyway/Sucat routes, Alabang, Makati, and BGC access corridors.",
     "The amenity plan includes lap pool, lounge pool, kiddie pool, sunken garden, jogging path, roof garden, fitness gym, game area, AV room, badminton court, and sky lounge.",
-    "Official DMCI Online images, location map, site development plan, floor plans, payment samples, and Google Maps embed are wired for buyer review."
+    "Review the project images, location map, site development plan, floor plans, and payment examples in one place."
   ],
   projectFacts: [
     { label: "Location", value: "Dr. A. Santos Avenue, Para\u00f1aque City" },
@@ -137,7 +137,7 @@ export const theAthertonDetails = {
     { type: "3BR / 4BR Tandem", floorArea: "For waitlist", range: "Sold out", monthlyDp: "-", status: "Sold out", note: "Message Luisa for reopening units" }
   ],
   summaryPricingNote:
-    "Use these guide figures only for shortlisting. Request Luisa's current availability sheet and official computation before buyer presentation or reservation.",
+    "Use these figures only for shortlisting. Ask Luisa for current availability and a unit-specific computation before deciding or reserving.",
   locationDetails: {
     title: "Prime Location of The Atherton",
     text:
@@ -172,32 +172,32 @@ export const theAthertonDetails = {
     ]
   },
   viewHighlights: [
-    { title: "Official Visuals", text: "Official DMCI Online project visuals are compressed locally for fast review on mobile and desktop." },
-    { title: "Map and Site Plan", text: "The official Google Maps embed, location map, and site development plan are wired for buyer route checks and project orientation." }
+    { title: "Project Visuals", text: "Review the project images comfortably on mobile, tablet, or desktop." },
+    { title: "Map and Site Plan", text: "Use the map, location image, and site development plan to understand access and project orientation." }
   ],
-  videoTourTitle: "Official Presentation Visuals",
-  videoTourCopy: "The current official source page provides project images, maps, plans, and a generic DMCI 360 guide. Ask Luisa for the latest approved Atherton AVP if a fresh link is needed for presentation.",
+  videoTourTitle: "Project Presentation Visuals",
+  videoTourCopy: "Review the Atherton images, maps, and plans here. Ask Luisa for the latest project AVP or guided walkthrough link when needed.",
   videoTourImage: regionalAsset("the-atherton", "lounge-pool.jpg"),
   videoTourUrl: "",
   videoTourLinks: [
     { label: "Open DMCI 360 Guide", url: "", variant: "secondary" },
-    { label: "Open Official Source", url: "", variant: "ghost" }
+    { label: "Ask Luisa for the Latest AVP", url: "", variant: "ghost" }
   ],
-  videoTourNote: "No project-specific public YouTube iframe was found on the official Atherton page during this update.",
+  videoTourNote: "A project-specific video is available by request when Luisa has a current presentation link.",
   amenityGroups: [
     { group: "Outdoor Amenities", items: ["Lap pool", "Leisure pool", "Kiddie pool", "Play area", "Picnic area", "Activity lawn", "Basketball court", "Gazebo", "Jogging path", "Roof garden"] },
     { group: "Indoor Amenities", items: ["Lounge areas", "Fitness gym", "Game area", "Audio visual room", "Badminton court", "Sky lounge", "Extended sky patio", "Snack bar and kitchen"] },
     { group: "Convenience Facilities", items: ["Convenience store", "Water refilling station", "Laundry station", "Mail area"] },
     { group: "Building Features", items: ["Lumiventt technology", "Landscaped garden atriums", "Full back-up power", "Provision for CCTV", "Fire detection, alarm, and suppression system"] }
   ],
-  amenityNote: "Final amenity operations, schedules, and access rules must be confirmed through Luisa or the official project presentation.",
+  amenityNote: "Ask Luisa to confirm current amenity operations, schedules, and access rules.",
   unitIntro:
     "The Atherton guide material includes 1BR, 2BR, and tandem unit references. Current active guide inventory is 1BR, while 2BR and tandem units are marked sold out and should be handled through waitlist or reopening checks.",
   unitSections: [
     { title: "1 Bedroom Units", description: "Compact RFO layouts for end-users or investors looking for a Para\u00f1aque address.", layouts: ["29.00 sqm"], rows: [
       { layout: "1BR", floorArea: "29.00 sqm", priceRange: "4.7M", status: "Few left", monthlyDp: "5% DP: 17.1k /mo" }
     ] },
-    { title: "2 Bedroom Units", description: "Two-bedroom layouts are shown as reference plans but are currently marked sold out in the supplied material.", layouts: ["2BR A", "2BR B", "2BR C", "2BR D", "2BR E"], rows: [
+    { title: "2 Bedroom Units", description: "Two-bedroom layouts remain available for comparison but are currently marked sold out.", layouts: ["2BR A", "2BR B", "2BR C", "2BR D", "2BR E"], rows: [
       { layout: "2BR", floorArea: "For confirmation", priceRange: "Sold out", status: "Waitlist", monthlyDp: "Ask Luisa" }
     ] },
     { title: "Tandem Units", description: "Larger tandem layouts are shown as reference plans and should be checked through reopening/waitlist.", layouts: ["3BR Tandem A", "4BR Tandem B"], rows: [
@@ -205,7 +205,7 @@ export const theAthertonDetails = {
     ] }
   ],
   floorPlansTitle: "The Atherton Floor Plans",
-  floorPlansDescription: "Use these official layout images as references only. Request the official layout sheet for the exact unit before buyer presentation.",
+  floorPlansDescription: "Use these layouts for shortlisting, then ask Luisa for the current sheet for the exact unit.",
   floorPlans: [
     { title: "1BR Layout A", text: "One-bedroom unit layout reference.", src: regionalAsset("the-atherton", "floorplan-1br-a.jpg") },
     { title: "2BR Layout A", text: "Two-bedroom layout reference for waitlist/reopening checks.", src: regionalAsset("the-atherton", "floorplan-2br-a.jpg") },
@@ -270,7 +270,7 @@ export const theAthertonDetails = {
   unitHoldingPortal: {
     title: "Unit Holding Portal for The Atherton",
     text: "The Atherton uses a unit holding portal so buyers can register, review current inventory, and temporarily hold a unit before reservation.",
-    steps: ["Register online", "Check latest availability and computation", "Temporarily hold a selected unit for free", "Proceed to reservation only after official confirmation"],
+    steps: ["Register online", "Check current availability and computation", "Temporarily hold a selected unit", "Proceed after Luisa confirms the reservation requirements"],
     notes: unitHoldingNotes
   },
   reservationRequirements: commonReservationRequirements,
@@ -357,7 +357,7 @@ export const calatheaPlaceDetails = {
     "RFO status lets buyers evaluate the actual community, travel routes, and unit options before proceeding.",
     "Dr. A. Santos Avenue connects buyers to SM City BF Para\u00f1aque, Walter Mart Sucat, Sucat Skyway Exit, NAIA, schools, hospitals, and southern Metro Manila destinations.",
     "The mid-rise format and amenity set suit buyers who want a calmer neighborhood feel with pools, lounge spaces, fitness, game room, landscaped gardens, and sports areas.",
-    "Official DMCI Online images, Google Maps embed, virtual tour link, floor plans, and payment samples are wired for buyer review."
+    "Review the project images, location map, virtual tour, floor plans, and payment examples in one place."
   ],
   projectFacts: [
     { label: "Location", value: "Dr. A. Santos Avenue, Para\u00f1aque City" },
@@ -375,7 +375,7 @@ export const calatheaPlaceDetails = {
     { type: "Tandem", floorArea: "For waitlist", range: "Sold out", monthlyDp: "-", status: "Waitlist", note: "Layout reference only" }
   ],
   summaryPricingNote:
-    "Use these guide figures only for shortlisting. Request Luisa's latest availability sheet and official computation before buyer presentation or reservation.",
+    "Use these figures only for shortlisting. Ask Luisa for current availability and a unit-specific computation before deciding or reserving.",
   locationDetails: {
     title: "Prime Location of Calathea Place",
     text:
@@ -411,24 +411,24 @@ export const calatheaPlaceDetails = {
   },
   viewHighlights: [
     { title: "Virtual Community Tour", text: "The official Calathea Place virtual community tour link is available from DMCI Online." },
-    { title: "Official Visuals", text: "Project maps, amenity images, unit plans, and building plans are compressed locally for fast buyer browsing." }
+    { title: "Project Visuals", text: "Review the maps, amenities, unit plans, and building plans comfortably on any device." }
   ],
   videoTourTitle: "Virtual Community Tour",
-  videoTourCopy: "Open the official Calathea Place virtual community tour when buyers want to explore the community online.",
+  videoTourCopy: "Open the Calathea Place virtual community tour when you want to explore the community online.",
   videoTourImage: regionalAsset("calathea-place", "lounge-pool.jpg"),
   videoTourUrl: "",
   videoTourLinks: [
     { label: "Open Virtual Tour", url: "", variant: "secondary" },
-    { label: "Open Official Source", url: "", variant: "ghost" }
+    { label: "Ask Luisa for the Latest AVP", url: "", variant: "ghost" }
   ],
-  videoTourNote: "No project-specific public YouTube iframe was found on the official Calathea page during this update.",
+  videoTourNote: "A project-specific video is available by request when Luisa has a current presentation link.",
   amenityGroups: [
     { group: "Outdoor Amenities", items: ["Lap pool", "Kiddie pool", "Leisure pool", "Landscaped gardens", "Jogging / biking path", "Gazebo / cabana", "Playground", "Picnic area"] },
     { group: "Indoor Amenities", items: ["Fitness gym", "Function hall", "Game room", "Multi-purpose area"] },
     { group: "Facilities", items: ["Reception lobby", "Convenience store", "Laundry station", "Water station", "Mailbox area"] },
     { group: "Building and Security", items: ["Guarded entrance with 24-hour security", "WiFi access in common areas", "Provision for CCTV cameras", "Fire alarm and sprinkler system"] }
   ],
-  amenityNote: "Final amenities, operating rules, and access schedules must be confirmed through Luisa or the official project presentation.",
+  amenityNote: "Ask Luisa to confirm current amenities, operating rules, and access schedules.",
   unitIntro:
     "Calathea Place includes 1BR, 2BR, and tandem layout references. Current active guide inventory is 1BR, with 2BR and tandem units handled through reopening/waitlist confirmation.",
   unitSections: [
@@ -436,7 +436,7 @@ export const calatheaPlaceDetails = {
       { layout: "1BR", floorArea: "28.50 sqm", priceRange: "4.2M", status: "Few left", monthlyDp: "5% DP: 15.1k /mo" },
       { layout: "1BR", floorArea: "31.00 sqm", priceRange: "4.5M - 4.6M", status: "Few left", monthlyDp: "5% DP: 16.4k - 16.5k /mo" }
     ] },
-    { title: "2 Bedroom Units", description: "Two-bedroom layouts are shown for reference and are currently marked sold out in the supplied material.", layouts: ["2BR A", "2BR B", "2BR C", "2BR D", "2BR E", "2BR F"], rows: [
+    { title: "2 Bedroom Units", description: "Two-bedroom layouts remain available for comparison but are currently marked sold out.", layouts: ["2BR A", "2BR B", "2BR C", "2BR D", "2BR E", "2BR F"], rows: [
       { layout: "2BR", floorArea: "For confirmation", priceRange: "Sold out", status: "Waitlist", monthlyDp: "Ask Luisa" }
     ] },
     { title: "Tandem Units", description: "Tandem layouts are shown for larger household references and reopening checks.", layouts: ["2BR with Den", "3BR Tandem A", "3BR Tandem B"], rows: [
@@ -444,7 +444,7 @@ export const calatheaPlaceDetails = {
     ] }
   ],
   floorPlansTitle: "Calathea Place Floor Plans",
-  floorPlansDescription: "Use these official layout images as references only. Request the official layout sheet for the exact unit before buyer presentation.",
+  floorPlansDescription: "Use these layouts for shortlisting, then ask Luisa for the current sheet for the exact unit.",
   floorPlans: [
     { title: "1BR Layout A", text: "One-bedroom layout reference.", src: regionalAsset("calathea-place", "floorplan-1br-a.jpg") },
     { title: "1BR Layout B", text: "One-bedroom layout reference.", src: regionalAsset("calathea-place", "floorplan-1br-b.jpg") },
@@ -519,7 +519,7 @@ export const calatheaPlaceDetails = {
   unitHoldingPortal: {
     title: "Unit Holding Portal and Reopen Unit Queuing for Calathea Place",
     text: "Calathea Place uses a unit holding portal so buyers can register, review current availability, temporarily hold a unit, and queue for reopen units if a desired cut is sold out.",
-    steps: ["Register online", "Review latest availability and computation", "Temporarily hold a selected unit", "Queue for reopen units when applicable", "Complete reservation only after official confirmation"],
+    steps: ["Register online", "Review current availability and computation", "Temporarily hold a selected unit", "Join the queue for re-opened units when applicable", "Proceed after Luisa confirms the reservation requirements"],
     notes: unitHoldingNotes
   },
   reservationRequirements: commonReservationRequirements,
@@ -622,7 +622,7 @@ export const moncelloCrestDetails = {
     "Mountain leisure positioning near Baguio attractions gives Moncello Crest a distinct use case for personal stays, hospitality exposure, and long-term leisure demand.",
     "The project includes a mandatory individual rental pool program for condotel units, professionally managed by DMCI-PDI Hotels subject to final program terms.",
     "Fully furnished deliverable references include bedroom furniture, living essentials, terrace furniture, lighting, and bathroom accessories.",
-    "Official DMCI Online AVP, 360 tour, map, amenity visuals, rental pool slides, and layout images are wired for buyer review."
+    "Review the project AVP, 360 tour, map, amenity visuals, rental-pool information, and layouts in one place."
   ],
   projectFacts: [
     { label: "Location", value: "Sitio Bato via Bontiway, Brgy. Poblacion, Tuba, Benguet" },
@@ -640,7 +640,7 @@ export const moncelloCrestDetails = {
     { type: "2BR", floorArea: "69.00 - 91.50 sqm", range: "14.3M - 18.1M", monthlyDp: "15% DP: 57.1k - 92.9k /mo", status: "Available", note: "Reference only" }
   ],
   summaryPricingNote:
-    "Use these guide figures only for shortlisting. Request Luisa's current availability sheet and official computation before buyer presentation or reservation.",
+    "Use these figures only for shortlisting. Ask Luisa for current availability and a unit-specific computation before deciding or reserving.",
   locationDetails: {
     title: "Project Location and Accessibility",
     text:
@@ -687,14 +687,14 @@ export const moncelloCrestDetails = {
     { label: "Watch AVP on YouTube", url: "https://www.youtube.com/watch?v=rMI-beJXoTU", variant: "secondary" },
     { label: "Open Virtual Tour", url: "", variant: "ghost" }
   ],
-  videoTourNote: "Large media is embedded lightly so the page stays usable on mobile.",
+  videoTourNote: "Choose Play or Open Tour when you are ready for a more detailed walkthrough.",
   amenityGroups: [
     { group: "Indoor Amenities", items: ["Restaurant building", "Game room", "KTV rooms", "Wellness spa", "Fitness gym", "Daycare center", "Clinic"] },
     { group: "Outdoor Leisure", items: ["Children's play area", "Tree houses", "Elevated boardwalks", "Outdoor jacuzzi", "Fire pits", "Water garden", "Viewing deck", "Basketball court"] },
     { group: "Mountain Lifestyle", items: ["Sky promenade", "Sky patio", "Balcony view areas", "Roof deck spaces", "Deck gardens"] },
     { group: "Condotel Support", items: ["Professionally managed hospitality operations", "Rental pool program references", "Common area management", "Buyer assistance through Luisa"] }
   ],
-  amenityNote: "Final amenity operations, rental pool rules, complimentary-night use, and access schedules must be confirmed through Luisa or the official project presentation.",
+  amenityNote: "Ask Luisa to confirm current amenity operations, rental-pool rules, complimentary-night use, and access schedules.",
   rentalPoolProgram: {
     title: "Individual Rental Pool Program",
     intro: "Moncello Crest includes an individual rental pool program reference for condotel units, professionally managed by DMCI-PDI Hotels and designed to distribute revenue based on pooled hotel operations.",
@@ -726,7 +726,7 @@ export const moncelloCrestDetails = {
     ] }
   ],
   floorPlansTitle: "Moncello Crest Floor Plans",
-  floorPlansDescription: "Use these official layout images as references only. Request the official layout sheet for the exact unit before buyer presentation.",
+  floorPlansDescription: "Use these layouts for shortlisting, then ask Luisa for the current sheet for the exact unit.",
   floorPlans: [
     { title: "Studio Layout A", text: "Studio layout reference.", src: regionalAsset("moncello-crest", "floorplan-studio-a.png") },
     { title: "Studio Layout B", text: "Studio layout reference.", src: regionalAsset("moncello-crest", "floorplan-studio-b.jpg") },
@@ -787,7 +787,7 @@ export const moncelloCrestDetails = {
   unitHoldingPortal: {
     title: "Unit Holding Portal and Reopen Unit Queuing for Moncello Crest",
     text: "Moncello Crest uses a unit holding portal so buyers can register, review current availability, temporarily hold a unit, and queue for reopen units when applicable.",
-    steps: ["Register online", "Review latest inventory and computation", "Temporarily hold a selected unit for free", "Queue for reopen units if needed", "Proceed only after official confirmation"],
+    steps: ["Register online", "Review current inventory and computation", "Temporarily hold a selected unit", "Join the queue for re-opened units if needed", "Proceed after Luisa confirms the reservation requirements"],
     notes: unitHoldingNotes
   },
   reservationRequirements: commonReservationRequirements,
@@ -881,7 +881,7 @@ export const solmeraCoastDetails = {
     "Solmera Coast by DMCI Homes is a beach park condotel and coastal leisure community in San Juan, Batangas. It is positioned for buyers who want a beach-oriented residence or investment reference with condotel operations, Asian Tropical architecture, extensive pool amenities, dining spaces, and access to Laiya/San Juan tourism.",
   introParagraphs: [
     "Solmera Coast brings DMCI's leisure residence format into San Juan, Batangas with five mid-rise buildings, a beach park setting, studio to two-bedroom units, and resort-style amenity zones.",
-    "The supplied reference includes individual rental pool program details for condotel buildings, official AVP, official virtual tour, Google Maps embed, unit ranges, floor plans, and payment samples."
+    "Review the condotel rental-pool information, project AVP, virtual tour, map, unit ranges, floor plans, and payment examples in one place."
   ],
   highlights: [
     "Beach park condotel complex in San Juan, Batangas",
@@ -892,7 +892,7 @@ export const solmeraCoastDetails = {
     "San Juan, Batangas is known for beach tourism, Laiya access, marine activities, resort stays, and leisure travel from Metro Manila.",
     "The project combines personal beach use with condotel investment references through a professionally managed rental pool program for selected buildings.",
     "Amenity programming includes infinity pool, kiddie pool, lap pool, roof deck pool, sky lounge, restaurants, beach dining, snack bar, open lounge, convention center, welcome pavilion, and multi-purpose lawn.",
-    "Official DMCI Online AVP, virtual tour, maps, location images, floor plans, amenity visuals, and payment samples are wired for buyer review."
+    "Review the project AVP, virtual tour, maps, floor plans, amenity visuals, and payment examples in one place."
   ],
   projectFacts: [
     { label: "Location", value: "Barangay Subukin and Barangay Calubcub II, San Juan, Batangas" },
@@ -910,7 +910,7 @@ export const solmeraCoastDetails = {
     { type: "2BR", floorArea: "63.00 - 92.00 sqm", range: "12.2M - 19.3M", monthlyDp: "15% DP: 120.0k - 476.4k /mo", status: "Available", note: "Reference only" }
   ],
   summaryPricingNote:
-    "Use these guide figures only for shortlisting. Request Luisa's current availability sheet and official computation before buyer presentation or reservation.",
+    "Use these figures only for shortlisting. Ask Luisa for current availability and a unit-specific computation before deciding or reserving.",
   locationDetails: {
     title: "Project Location of Solmera Coast",
     text:
@@ -957,21 +957,21 @@ export const solmeraCoastDetails = {
     { label: "Watch AVP on YouTube", url: "https://www.youtube.com/watch?v=eZFZzBVUYKM", variant: "secondary" },
     { label: "Open Virtual Tour", url: "", variant: "ghost" }
   ],
-  videoTourNote: "Large media is embedded lightly so the page stays usable on mobile.",
+  videoTourNote: "Choose Play or Open Tour when you are ready for a more detailed walkthrough.",
   amenityGroups: [
     { group: "Pool and Beach Amenities", items: ["Infinity pool", "Kiddie pool", "Lap pool", "Leisure pool", "Roof deck pool", "Pool pavilion", "Beach dining area"] },
     { group: "Lifestyle and Dining", items: ["Sky lounge", "Game area", "Restaurants", "Snack bar", "Open lounge", "Sky promenade", "Convention center", "Welcome pavilion"] },
     { group: "Outdoor Spaces", items: ["Multi-purpose lawn", "Activity lawn", "Balcony view areas", "Drop-off area", "Beach park open spaces"] },
     { group: "Condotel Support", items: ["Professionally managed hospitality operations", "Rental pool program references", "Personal use and complimentary room-night references subject to confirmation"] }
   ],
-  amenityNote: "Final amenity operations, rental pool rules, complimentary-night use, personal-use rules, and access schedules must be confirmed through Luisa or the official project presentation.",
+  amenityNote: "Ask Luisa to confirm current amenity operations, rental-pool rules, complimentary-night use, personal-use rules, and access schedules.",
   rentalPoolProgram: {
     title: "Individual Rental Pool Program",
     intro: "Solmera Coast includes an individual rental pool program reference for selected condotel buildings, intended to support passive-income potential through pooled hotel operations managed by DMCI PDI Hotels.",
     cards: [
       { title: "Program Scope", items: ["Rental pool program references apply to selected condotel buildings such as Matahari, Kartika, Bumi, and Nusa, subject to final documents.", "Independent short-term leases by unit owners are not permitted under the supplied program reference.", "Asri is listed as a residential building in the supplied RFO table."] },
       { title: "Revenue Sharing", items: ["Owners receive a share of gross room revenue generated from the entire hotel operation, not just their individual unit.", "Professional management covers marketing, guest services, operations, and maintenance.", "Income depends on occupancy, rates, expenses, taxes, and final program rules."] },
-      { title: "Owner Perks", items: ["Complimentary room-night references are included in the supplied material.", "Use may apply to Solmera Coast or exchange stays at other DMCI Homes leisure properties, subject to confirmation.", "Owners can use the property personally under final program-use rules."] }
+      { title: "Owner Perks", items: ["Complimentary room-night references are included in the current program guide.", "Use may apply to Solmera Coast or exchange stays at other DMCI Homes leisure properties, subject to confirmation.", "Owners can use the property personally under final program-use rules."] }
     ],
     warning: "Rental income projections are not guaranteed. Ask Luisa for the latest official rental pool documents, tax treatment, and program mechanics before buyer decisions."
   },
@@ -998,7 +998,7 @@ export const solmeraCoastDetails = {
     ] }
   ],
   floorPlansTitle: "Solmera Coast Floor Plans",
-  floorPlansDescription: "Use these official layout images as references only. Request the official layout sheet for the exact unit before buyer presentation.",
+  floorPlansDescription: "Use these layouts for shortlisting, then ask Luisa for the current sheet for the exact unit.",
   floorPlans: [
     { title: "Studio Layout A", text: "Studio layout reference.", src: regionalAsset("solmera-coast", "floorplan-studio-a.jpg") },
     { title: "Studio Layout B", text: "Studio layout reference.", src: regionalAsset("solmera-coast", "floorplan-studio-b.jpg") },
@@ -1068,7 +1068,7 @@ export const solmeraCoastDetails = {
   unitHoldingPortal: {
     title: "Solmera Coast Unit Holding Portal",
     text: "Solmera Coast uses a unit holding portal so buyers can register, review inventory, and temporarily hold a preferred unit before deciding.",
-    steps: ["Register online", "Review latest inventory and computation", "Temporarily hold a preferred unit", "Confirm condotel/residential classification and rental pool scope", "Proceed to reservation only after official confirmation"],
+    steps: ["Register online", "Review current inventory and computation", "Temporarily hold a preferred unit", "Confirm the condotel or residential classification and rental-pool scope", "Proceed after Luisa confirms the reservation requirements"],
     notes: unitHoldingNotes
   },
   reservationRequirements: commonReservationRequirements,

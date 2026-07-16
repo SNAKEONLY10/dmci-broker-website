@@ -56,7 +56,7 @@ export default function CityProjects() {
           <article className="info-card" data-reveal="card">
             <span className="mini">Unit Types</span>
             <strong>{unitTypes.length ? unitTypes.join(", ") : "Request latest details"}</strong>
-            <p>Final unit availability, sizes, and prices must be verified before buyer presentation.</p>
+            <p>Ask Luisa to confirm the current unit availability, size, and price before deciding.</p>
           </article>
           <article className="info-card" data-reveal="card">
             <span className="mini">Status</span>

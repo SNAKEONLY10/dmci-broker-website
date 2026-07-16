@@ -178,7 +178,7 @@ const pageMeta = {
     h1: "Website Disclaimer",
     title: "Disclaimer | My DMCI Broker | Luisa Corral",
     description:
-      "Read the buyer assistance disclaimer for DMCI project details, pricing, availability, promos, payment terms, and official confirmation requirements.",
+      "Read how Maria Luisa confirms DMCI project details, pricing, availability, promos, payment terms, and reservation instructions.",
     cta: "/contact"
   },
   "/showcase": {

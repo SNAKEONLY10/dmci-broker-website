@@ -89,13 +89,13 @@ export const theErinHeightsDetails = {
     { type: "3BR", floorArea: "76.50 - 183.00 sqm", range: "11.3M - 28.2M", monthlyDp: "12% DP: 33.0k - 83.9k /mo", status: "Available", note: "Reference only" }
   ],
   summaryPricingNote:
-    "Use these as guide ranges only. Request Luisa's latest availability sheet and official computation before buyer presentation or reservation.",
+    "Use these ranges only for shortlisting. Ask Luisa for current availability and a unit-specific computation before deciding or reserving.",
   locationDetails: {
     title: "Prime Location of The Erin Heights",
     text:
       "The Erin Heights is located at Commonwealth Avenue corner Tandang Sora Avenue in Quezon City, a practical address for buyers who want access to major roads, MRT-7 Tandang Sora Station, universities, hospitals, shopping centers, and business hubs.",
     exactAddress: "Commonwealth Ave. corner Tandang Sora Ave., Quezon City",
-    note: "Distances and travel times are reference points and should be confirmed through current maps and official project materials.",
+    note: "Distances and travel times are planning references. Check the current route before a site visit.",
     mapTitle: "The Erin Heights on Google Maps",
     mapText: "Use the map to zoom, inspect nearby roads, and open live directions before scheduling a site viewing.",
     mapUrl: "https://www.google.com/maps/search/?api=1&query=The%20Erin%20Heights%20Commonwealth%20Avenue%20corner%20Tandang%20Sora%20Avenue%20Quezon%20City",
@@ -128,17 +128,17 @@ export const theErinHeightsDetails = {
   ],
   videoTourTitle: "Audio Visual Presentation and Virtual Community Tour",
   videoTourCopy:
-    "Watch the lightweight YouTube AVP preview, then use the Drive backup links only when the full approved MP4 presentation is needed.",
+    "Watch the project AVP, then ask Luisa for the latest full presentation if you need a more detailed review.",
   videoTourImage: erinAsset("tour-poster.jpg"),
   videoTourUrl: "https://www.youtube.com/watch?v=D3ffIj6QMV8",
   videoTourEmbedUrl: "https://www.youtube.com/embed/D3ffIj6QMV8",
   videoTourLinks: [
     { label: "Watch AVP on YouTube", url: "https://www.youtube.com/watch?v=D3ffIj6QMV8", variant: "secondary" },
-    { label: "Drive TOD AVP Backup", url: "", variant: "ghost" },
-    { label: "Drive Project AVP", url: "", variant: "ghost" },
+    { label: "Request Transit-Oriented Development AVP", url: "", variant: "ghost" },
+    { label: "Request Full Project AVP", url: "", variant: "ghost" },
     { label: "Water Recycling Video", url: "", variant: "ghost" }
   ],
-  videoTourNote: "Large Drive videos are linked instead of auto-loaded so the page stays fast on mobile.",
+  videoTourNote: "Choose Play when you are ready, or ask Luisa for the full presentation link.",
   amenityGroups: [
     { group: "Recreational Facilities", items: ["Snack Bar", "Game Area", "Fitness Gym", "Entertainment Room", "Shooting Court", "Feature Garden", "Leisure Pool", "Sky Lounge", "Sky Deck Pool", "Children's Play Area"] },
     { group: "Convenience Facilities", items: ["Co-working Space", "Convenience Store", "Card Operated Laundry", "Water Refilling Station"] },
@@ -147,7 +147,7 @@ export const theErinHeightsDetails = {
   amenityNote:
     "Amenity names, final design, availability, and operating rules are subject to DMCI Homes confirmation.",
   unitIntro:
-    "The Erin Heights offers studio, two-bedroom, and three-bedroom units for different lifestyle needs. Each unit type is presented for shortlisting only; current availability and official computations must be checked with Luisa.",
+    "The Erin Heights offers studio, two-bedroom, and three-bedroom units for different lifestyle needs. Use the layouts for shortlisting, then ask Luisa to confirm current availability and the unit-specific computation.",
   unitSections: [
     {
       title: "Studio Units",
@@ -198,15 +198,15 @@ export const theErinHeightsDetails = {
   floorPlansDescription:
     "The Erin Heights uses Lumiventt design principles to support natural light and airflow through atriums and sky patios. Request the official layout sheet for any specific unit cut before presenting it to a buyer.",
   floorPlans: [
-    { title: "Studio Layouts", text: "Studio layout references A through J are available in the supplied material.", src: erinAsset("floorplan-studio-a.jpg") },
-    { title: "2BR Layouts", text: "2BR layout references A through S are available in the supplied material.", src: erinAsset("floorplan-2br-a.jpg") },
-    { title: "3BR Layouts", text: "3BR layout references A through F are available in the supplied material.", src: erinAsset("floorplan-3br-a.jpg") },
-    { title: "Erin Building Floor Plans", text: "Building floor plan references should be requested from Luisa before buyer presentation.", src: erinAsset("floorplan-2f-level.jpg") }
+    { title: "Studio Layouts", text: "Compare studio layout references A through J.", src: erinAsset("floorplan-studio-a.jpg") },
+    { title: "2BR Layouts", text: "Compare 2BR layout references A through S.", src: erinAsset("floorplan-2br-a.jpg") },
+    { title: "3BR Layouts", text: "Compare 3BR layout references A through F.", src: erinAsset("floorplan-3br-a.jpg") },
+    { title: "Erin Building Floor Plans", text: "Ask Luisa for the current building floor plan when comparing an exact unit.", src: erinAsset("floorplan-2f-level.jpg") }
   ],
   paymentTerms: {
     title: "Payment Options and Sample Computations",
     text:
-      "The Erin Heights offers flexible payment terms. The supplied reference includes a 12% down payment promo with the down payment spread over 40 months, and the balance through bank financing. All computations, promo mechanics, and financing options must be confirmed with Luisa/DMCI.",
+      "The current reference includes a 12% down payment option spread over 40 months, with the balance through bank financing. Ask Luisa to confirm the exact computation, promo mechanics, eligible unit, and financing route.",
     rfoSchedule: [{ label: "Target RFO", value: "October 2027" }],
     sampleComputation: [
       { label: "Sample Unit", value: "C- Erin 506" },
@@ -280,8 +280,8 @@ export const theErinHeightsDetails = {
     "Confirm unit availability, computation, payment method, and official reservation instructions with Luisa before sending any payment.",
   newsMedia: [
     {
-      title: "Official DMCI Homes project page",
-      label: "Review official DMCI Homes project reference",
+      title: "Current project information",
+      label: "Ask Luisa to confirm the latest project details",
       url: ""
     },
     {

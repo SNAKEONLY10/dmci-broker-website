@@ -23,7 +23,7 @@ const defaults = {
   website: ""
 };
 
-const previewMessage = "Preview mode: this test inquiry stayed in this browser. Email/CRM delivery is not connected yet.";
+const previewMessage = "Online delivery is not available in this test session. Your entries were kept on this device so you can review them, but Luisa has not received the inquiry. Please contact her directly to continue.";
 const deliveredMessage = "Your inquiry has been submitted. Luisa or her team will contact you after details are confirmed.";
 const sendErrorMessage = "We could not send your inquiry right now. Please try again or contact Luisa directly.";
 const messageLimit = 1500;
@@ -202,13 +202,13 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
       const missingLocalApi = canUseLocalPreview() && !data && (response.status === 404 || contentType.includes("text/html"));
       if (deliveryNotConfigured || missingLocalApi) {
         if (canUseLocalPreview()) {
-          setNotice({ type: "warning", text: savePreviewSubmission(storageKey, payload) ? previewMessage : "Preview mode: email/CRM delivery is not connected, and this browser could not save the test inquiry." });
+          setNotice({ type: "warning", text: savePreviewSubmission(storageKey, payload) ? previewMessage : "Online delivery is not available in this test session, and your entries could not be kept on this device. Please contact Luisa directly to continue." });
           return;
         }
 
         setNotice({
           type: "error",
-          text: data?.message || "Email/CRM delivery is not configured yet. Please contact Luisa directly or try again later."
+          text: data?.message || "Online inquiry delivery is not available right now. Please contact Luisa directly or try again later."
         });
         return;
       }
@@ -225,7 +225,7 @@ export function DemoForm({ title, subtitle, fields, storageKey, submitLabel, ini
         console.error("Lead form submission failed", error);
       }
       if (canUseLocalPreview()) {
-        setNotice({ type: "warning", text: savePreviewSubmission(storageKey, payload) ? previewMessage : "Preview mode: the local API is unavailable, and this browser could not save the test inquiry." });
+        setNotice({ type: "warning", text: savePreviewSubmission(storageKey, payload) ? previewMessage : "Online delivery is not available in this test session, and your entries could not be kept on this device. Please contact Luisa directly to continue." });
         return;
       }
       setNotice({ type: "error", text: sendErrorMessage });
@@ -677,7 +677,7 @@ function InquiryTypeGuide({ type }) {
     return (
       <div className="inquiry-type-guide full" role="status">
         <strong>Existing account support</strong>
-        <p>Luisa can help identify the next step. Account, billing, turnover, warranty, and after-sales requests may need official DMCI Homes Customer Care confirmation.</p>
+        <p>Luisa will review your concern and help route it. Account, billing, turnover, warranty, and after-sales requests may be coordinated with the appropriate DMCI Homes Customer Care team.</p>
       </div>
     );
   }

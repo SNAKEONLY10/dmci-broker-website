@@ -386,7 +386,7 @@ function HomeFAQ() {
     },
     {
       question: "Can I reserve a unit online?",
-      answer: "Luisa will first confirm availability and the official computation, then guide you through DMCI Homes' authorized reservation process."
+      answer: "Luisa will first confirm the unit availability and current computation, then guide you through the applicable DMCI Homes reservation process."
     },
     {
       question: "Can Luisa help me compare projects?",

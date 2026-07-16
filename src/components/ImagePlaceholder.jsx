@@ -45,7 +45,7 @@ export function ImagePlaceholder({ label = "Property preview", src, compact = fa
         <i />
       </div>
       <span>{label}</span>
-      <small>{variant === "hero" ? "Official visuals available upon request" : "Approved visual available upon request"}</small>
+      <small>{variant === "hero" ? "Ask Luisa for the latest project visual" : "Project visual available from Luisa"}</small>
     </div>
   );
 }

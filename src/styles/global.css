@@ -8990,6 +8990,105 @@ textarea {
   text-underline-offset: 3px;
 }
 
+.promo-agreement-guide {
+  background: var(--white);
+}
+
+.promo-agreement-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 30px;
+}
+
+.promo-agreement-grid article {
+  min-width: 0;
+  border: 1px solid rgba(15, 39, 66, 0.12);
+  border-radius: 8px;
+  padding: clamp(22px, 3vw, 34px);
+  background: #f8fbfd;
+}
+
+.promo-agreement-grid article:last-child {
+  border-top-color: rgba(201, 162, 74, 0.62);
+  background: #fffaf0;
+}
+
+.promo-agreement-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.promo-agreement-heading > span {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #eaf3f7;
+  color: #174d75;
+}
+
+.promo-agreement-heading small {
+  color: #7b611f;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.promo-agreement-grid h3 {
+  margin-top: 18px;
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+}
+
+.promo-agreement-grid p {
+  margin-top: 10px;
+  color: #52677a;
+  line-height: 1.7;
+}
+
+.promo-agreement-checklist {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.72fr) minmax(320px, 1.28fr) auto;
+  align-items: center;
+  gap: 28px;
+  margin-top: 18px;
+  border-left: 4px solid #c9a24a;
+  padding: 22px 24px;
+  background: #f4f8fa;
+}
+
+.promo-agreement-checklist h3 {
+  margin-top: 5px;
+  font-size: 1.35rem;
+}
+
+.promo-agreement-checklist ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.promo-agreement-checklist li {
+  display: flex;
+  gap: 9px;
+  color: #455d71;
+  font-size: 0.84rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.promo-agreement-checklist li svg {
+  flex: 0 0 auto;
+  margin-top: 2px;
+  color: #1d6e53;
+}
+
 .promo-faq-layout {
   display: grid;
   grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);
@@ -9133,10 +9232,19 @@ textarea {
     grid-template-columns: 1fr 320px;
     gap: 36px;
   }
+
+  .promo-agreement-checklist {
+    grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr);
+  }
+
+  .promo-agreement-checklist .btn {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
 }
 
 @media (max-width: 760px) {
-  .promos-page :is(#current-references, #project-terms, #compare-terms, #program-types, #promo-questions) {
+  .promos-page :is(#current-references, #project-terms, #compare-terms, #program-types, #rent-to-own-guide, #promo-questions) {
     scroll-margin-top: 118px;
   }
 
@@ -9210,9 +9318,16 @@ textarea {
   .promo-reference-grid,
   .promo-project-layout,
   .promo-program-grid,
+  .promo-agreement-grid,
+  .promo-agreement-checklist,
   .promo-faq-layout,
   .promos-final-cta-inner {
     grid-template-columns: 1fr;
+  }
+
+  .promo-agreement-checklist {
+    gap: 18px;
+    padding: 20px;
   }
 
   .promo-reference-card:last-child {

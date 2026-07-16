@@ -132,15 +132,15 @@ export default function About() {
           <div className="about-scope-main" data-reveal="section">
             <ShieldCheck size={30} aria-hidden="true" />
             <span className="eyebrow">Professional Scope</span>
-            <h2>Broker assistance, with the right boundaries.</h2>
+            <h2>Direct broker guidance, with clear responsibilities.</h2>
             <p>
-              This website supports buyer inquiries and sales coordination. It does not replace official
-              DMCI Homes Customer Care, a live inventory system, bank approval, legal advice, or final developer documentation.
+              Luisa handles project inquiries and sales coordination. Existing account support, final bank decisions,
+              legal advice, and formal DMCI Homes documents remain with the responsible institution or team.
             </p>
             <ul>
-              <li><Check size={16} aria-hidden="true" /> Prices, promos, terms, and availability are confirmed for the exact unit.</li>
-              <li><Check size={16} aria-hidden="true" /> Reservation payments follow verified official instructions.</li>
-              <li><Check size={16} aria-hidden="true" /> Existing account, billing, turnover, warranty, or after-sales matters may require official Customer Care.</li>
+              <li><Check size={16} aria-hidden="true" /> Luisa confirms prices, promos, terms, and availability for the exact unit.</li>
+              <li><Check size={16} aria-hidden="true" /> Reservation payments follow verified DMCI Homes instructions.</li>
+              <li><Check size={16} aria-hidden="true" /> Luisa can help route account, billing, turnover, warranty, or after-sales concerns to the appropriate team.</li>
             </ul>
           </div>
           <aside className="about-contact-panel" data-reveal="section">

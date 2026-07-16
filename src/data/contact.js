@@ -15,5 +15,5 @@ export const contact = {
   prcLicense: "0003253",
   license: "Real Estate Broker PRC License No. 0003253",
   disclaimer:
-    "Buyer assistance is provided through an independent broker/agent. Final project details, availability, pricing, promos, and terms are confirmed through the developer and authorized sales channels."
+    "Work directly with Maria Luisa Corral for licensed broker assistance. She will confirm the selected unit's current availability, price, promo, payment terms, and reservation steps before you decide."
 };

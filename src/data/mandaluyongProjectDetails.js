@@ -118,7 +118,7 @@ export const sageResidencesDetails = {
     "Central Mandaluyong location close to MRT Boni, Greenfield District, SM Megamall, Shangri-La Plaza, Ortigas CBD, Makati CBD, BGC, and Rockwell.",
     "Strong open-space and amenity plan including leisure pool, kiddie pool, roof deck pool, sky lounge, fitness gym, open lounge, picnic area, and shooting court.",
     "Broad unit range gives options for end-use, investment, young professionals, couples, and families.",
-    "Official YouTube AVP, Google Maps embed, and Drive-verified 360 property tour are wired for buyer review."
+    "Review the project AVP, location map, and 360 property tour in one place."
   ],
   projectFacts: [
     { label: "Location", value: "Domingo M. Guevarra and Sinag Streets, Mauway, Mandaluyong City" },
@@ -137,7 +137,7 @@ export const sageResidencesDetails = {
     { type: "3BR", floorArea: "78.00 sqm", range: "12.6M - 12.9M", monthlyDp: "12% DP: 37.0k - 38.0k /mo", status: "Limited", note: "Reference only" }
   ],
   summaryPricingNote:
-    "Use these guide ranges only for shortlisting. Request Luisa's current availability sheet and official computation before presentation or reservation.",
+    "Use these ranges only for shortlisting. Ask Luisa for current availability and a unit-specific computation before deciding or reserving.",
   locationDetails: {
     title: "Location of Sage Residences",
     text:
@@ -173,7 +173,7 @@ export const sageResidencesDetails = {
   },
   viewHighlights: [
     { title: "Audio Visual Presentation", text: "Use the official Sage Residences AVP as a fast visual introduction to the project, location, and lifestyle plan." },
-    { title: "360 Property Tour", text: "A Drive-verified ViewIn360 property tour is linked on demand so buyers can explore the community without loading heavy media by default." }
+    { title: "360 Property Tour", text: "Open the 360 tour when you want to explore the community in more detail." }
   ],
   videoTourTitle: "Audio Visual Presentation and 360 Property Tour",
   videoTourCopy: "Watch the YouTube AVP preview, then open the verified Sage Residences 360 tour link only when needed.",
@@ -184,16 +184,16 @@ export const sageResidencesDetails = {
     { label: "Watch AVP on YouTube", url: "https://www.youtube.com/watch?v=RRLGJTOJ48k", variant: "secondary" },
     { label: "Open 360 Tour", url: "", variant: "ghost" }
   ],
-  videoTourNote: "Large tour media is linked instead of auto-loaded so the page stays fast on mobile.",
+  videoTourNote: "Choose Open 360 Tour when you are ready for a more detailed walkthrough.",
   amenityGroups: [
     { group: "Pool and Outdoor Recreation", items: ["Leisure Pool", "Kiddie Pool", "Roof Deck Pool", "Picnic Area", "Open Lawn / Open Lounge", "Sky Promenade"] },
     { group: "Fitness and Activity", items: ["Fitness Gym", "Shooting Court", "Children's Play Area", "Entertainment Room"] },
     { group: "Lounges and Common Areas", items: ["Sky Lounge", "Sky Lounge Bar Area", "GF Bar Area", "Reception", "Elevator Lobby", "Open Lounge"] },
     { group: "Convenience and Services", items: ["Guarded gate and entrance", "Managed common areas", "PMO support", "Buyer assistance through Luisa"] }
   ],
-  amenityNote: "Final amenities, operations, and access rules must be confirmed through Luisa or the official project presentation.",
+  amenityNote: "Ask Luisa to confirm current amenities, operations, and access rules.",
   unitIntro:
-    "Sage Residences offers studio, 1BR, 2BR, and 3BR guide references. Exact inventory, floor level, view, computation, and promos must be confirmed before buyer presentation.",
+    "Sage Residences offers studio, 1BR, 2BR, and 3BR layout references. Ask Luisa to confirm the exact inventory, floor, view, computation, and promo.",
   unitSections: [
     { title: "Studio Units", description: "Compact layouts for buyers who want a central Mandaluyong address with efficient living space.", layouts: ["31.00 sqm", "31.50 sqm", "33.50 sqm"], rows: [
       { layout: "Studio", floorArea: "31.00 sqm", priceRange: "6.8M - 7.8M", status: "Available", monthlyDp: "19.6k - 22.7k /mo" },
@@ -219,7 +219,7 @@ export const sageResidencesDetails = {
     ] }
   ],
   floorPlansTitle: "Sage Residences Floor Plans and Unit Layouts",
-  floorPlansDescription: "Use these as layout references only. Request the official layout sheet for the exact unit before buyer presentation.",
+  floorPlansDescription: "Use these layouts for shortlisting, then ask Luisa for the current sheet for the exact unit.",
   floorPlans: [
     { title: "Studio Layout A", text: "Studio layout reference from the official Sage material.", src: mandaluyongAsset("sage-residences", "floorplan-studio-a.jpg") },
     { title: "1BR Layout A", text: "One-bedroom layout reference.", src: mandaluyongAsset("sage-residences", "floorplan-1br-a.jpg") },
@@ -278,11 +278,11 @@ export const sageResidencesDetails = {
   unitHoldingPortal: {
     title: "Unit Holding Portal for Sage Residences",
     text: "Sage Residences uses a unit holding portal so prospective buyers can register, review current inventory, and temporarily hold a selected unit before final reservation.",
-    steps: ["Register online", "Review latest availability and computation", "Temporarily hold a selected unit", "Complete reservation only after official confirmation"],
+    steps: ["Register online", "Review current availability and computation", "Temporarily hold a selected unit", "Proceed after Luisa confirms the reservation requirements"],
     notes: unitHoldingNotes
   },
   reservationRequirements: commonReservationRequirements,
-  reservationNote: "Confirm computation, availability, payment method, promo coverage, and official requirements with Luisa before making any reservation decision."
+  reservationNote: "Ask Luisa to confirm the computation, availability, payment method, promo coverage, and reservation requirements before proceeding."
 };
 
 export const kaiGardenResidencesDetails = {
@@ -359,7 +359,7 @@ export const kaiGardenResidencesDetails = {
     "RFO/staged-turnover Mandaluyong option near Boni Avenue, Shaw, Pioneer, Ortigas, Rockwell, Makati, and daily retail routes.",
     "Japanese-inspired design, landscaped open spaces, pools, basketball court, play areas, picnic spots, jogging path, and outdoor fitness areas.",
     "Current guide references show limited 1BR and 2BR inventory, with 3BR sold out / waitlist subject to reopening.",
-    "Official YouTube AVP and exact Google Maps embed are wired; no verified Kai-specific 360 link was found in the available Drive folder or official page during this update."
+    "The Kai Garden Residences AVP and location map are available here. Ask Luisa for the latest 360 tour if one is available."
   ],
   projectFacts: [
     { label: "Location", value: "M. Vicente St. near Boni Ave., Mandaluyong City" },
@@ -377,7 +377,7 @@ export const kaiGardenResidencesDetails = {
     { type: "3BR", floorArea: "For waitlist", range: "Sold out", monthlyDp: "-", status: "Sold out", note: "Message Luisa for reopening units" }
   ],
   summaryPricingNote:
-    "Use these guide ranges only. Request the latest remaining inventory, rent-to-own notes, and official computation before buyer presentation.",
+    "Use these ranges only for shortlisting. Ask Luisa for remaining inventory, current rent-to-own details, and a unit-specific computation.",
   locationDetails: {
     title: "Prime Location of Kai Garden Residences",
     text:
@@ -413,26 +413,26 @@ export const kaiGardenResidencesDetails = {
   },
   viewHighlights: [
     { title: "Audio Visual Presentation", text: "Use the official YouTube AVP as a quick project introduction for buyers comparing RFO Mandaluyong options." },
-    { title: "Official Visuals", text: "Official page images and Drive logo assets are compressed locally for fast buyer browsing." }
+    { title: "Project Visuals", text: "Review the community images and project branding in a format suited to mobile and desktop browsing." }
   ],
   videoTourTitle: "Audio Visual Presentation",
-  videoTourCopy: "Watch the official YouTube AVP preview. No verified Kai-specific 360 tour link was found in the available KGR Drive folder or official page during this update.",
+  videoTourCopy: "Watch the Kai Garden Residences AVP, then ask Luisa for the latest 360 tour if you would like a more detailed walkthrough.",
   videoTourImage: mandaluyongAsset("kai-garden-residences", "hero.jpg"),
   videoTourUrl: "https://www.youtube.com/watch?v=rZJdHyCzUS8",
   videoTourEmbedUrl: "https://www.youtube.com/embed/rZJdHyCzUS8",
   videoTourLinks: [
     { label: "Watch AVP on YouTube", url: "https://www.youtube.com/watch?v=rZJdHyCzUS8", variant: "secondary" }
   ],
-  videoTourNote: "Large videos are linked or embedded lightly so the page stays fast on mobile.",
+  videoTourNote: "Choose Play when you are ready to view the project presentation.",
   amenityGroups: [
     { group: "Pools and Garden Spaces", items: ["Lap Pools", "Kiddie Pool", "Landscaped Gardens", "Picnic Spots", "Japanese-inspired outdoor spaces"] },
     { group: "Sports and Active Lifestyle", items: ["Basketball Court", "Jogging Path", "Outdoor Fitness Area", "Play Areas"] },
     { group: "Community and Convenience", items: ["Amenity Levels", "Basement Parking", "Common activity areas", "Managed shared spaces"] },
     { group: "Turnover Finish References", items: ["Vinyl plank references", "Ceramic tile references", "Granite countertop references", "Doors, windows, and ceiling finish references"] }
   ],
-  amenityNote: "Final amenity access, turnover finish details, and house rules must be confirmed through Luisa or official project channels.",
+  amenityNote: "Ask Luisa to confirm current amenity access, turnover finishes, and house rules.",
   unitIntro:
-    "Kai Garden Residences offers 1BR, 2BR, and 3BR references, with 3BR currently marked sold out in the supplied material. Ask Luisa for remaining inventory and reopening/waitlist updates.",
+    "Kai Garden Residences offers 1BR, 2BR, and 3BR references, with 3BR currently marked sold out. Ask Luisa for remaining inventory and re-opening or waitlist updates.",
   unitSections: [
     { title: "1 Bedroom Units", description: "One-bedroom guide references for singles, couples, or investors seeking an RFO Mandaluyong option.", layouts: ["36.00 sqm"], rows: [
       { layout: "1BR", floorArea: "36.00 sqm", priceRange: "6.1M", status: "Few left", monthlyDp: "5% DP: 22.9k /mo" }
@@ -440,13 +440,13 @@ export const kaiGardenResidencesDetails = {
     { title: "2 Bedroom Units", description: "Two-bedroom guide references for small families or buyers needing more flexible living space.", layouts: ["53.50 sqm"], rows: [
       { layout: "2BR", floorArea: "53.50 sqm", priceRange: "9.3M", status: "Few left", monthlyDp: "5% DP: 36.3k /mo" }
     ] },
-    { title: "3 Bedroom and Tandem References", description: "Three-bedroom inventory is marked sold out in the supplied reference. Tandem layout is shown for reference only.", layouts: ["3BR", "Tandem"], rows: [
+    { title: "3 Bedroom and Tandem References", description: "Three-bedroom inventory is currently marked sold out. The tandem layout remains available for comparison.", layouts: ["3BR", "Tandem"], rows: [
       { layout: "3BR", floorArea: "For confirmation", priceRange: "Sold out", status: "Waitlist", monthlyDp: "Ask Luisa" },
       { layout: "Tandem", floorArea: "For confirmation", priceRange: "Request latest", status: "For confirmation", monthlyDp: "Ask Luisa" }
     ] }
   ],
   floorPlansTitle: "Kai Garden Residences Floor Plans",
-  floorPlansDescription: "Use these as layout references only. Request the official layout sheet for the exact unit before buyer presentation.",
+  floorPlansDescription: "Use these layouts for shortlisting, then ask Luisa for the current sheet for the exact unit.",
   floorPlans: [
     { title: "1BR Layout A", text: "One-bedroom unit layout reference.", src: mandaluyongAsset("kai-garden-residences", "floorplan-1br-a.jpg") },
     { title: "1BR Layout B", text: "One-bedroom alternate layout reference.", src: mandaluyongAsset("kai-garden-residences", "floorplan-1br-b.jpg") },
@@ -462,7 +462,7 @@ export const kaiGardenResidencesDetails = {
   ],
   paymentTerms: {
     title: "Payment Terms and Sample Computation",
-    text: "The supplied reference includes 5% DP Chinabank promo and 12% DP promo references. Final availability, promo scope, rent-to-own notes, and financing approval must be confirmed.",
+    text: "The current references include a 5% Chinabank-linked option and a 12% down payment option. Ask Luisa to confirm availability, promo scope, rent-to-own details, and financing eligibility.",
     rfoSchedule: [
       { label: "Sugi", value: "Jan 2023" },
       { label: "Icho", value: "Jan 2024" },
@@ -514,9 +514,9 @@ export const kaiGardenResidencesDetails = {
   unitHoldingPortal: {
     title: "Unit Holding Portal for Kai Garden Residences",
     text: "Kai Garden Residences uses a unit holding portal so prospective buyers can register, review current inventory, and temporarily hold a selected unit before reservation.",
-    steps: ["Register online", "Review the latest availability and computation", "Temporarily hold a selected unit", "Proceed only after official computation and requirements are confirmed"],
+    steps: ["Register online", "Review current availability and computation", "Temporarily hold a selected unit", "Proceed after Luisa confirms the reservation requirements"],
     notes: unitHoldingNotes
   },
   reservationRequirements: commonReservationRequirements,
-  reservationNote: "Confirm computation, remaining inventory, rent-to-own terms, payment method, promo coverage, and official requirements with Luisa before reservation."
+  reservationNote: "Ask Luisa to confirm the computation, remaining inventory, rent-to-own terms, payment method, promo coverage, and reservation requirements."
 };

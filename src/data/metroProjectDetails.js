@@ -109,7 +109,7 @@ export const theCamdenPlaceDetails = {
     "Malate location gives quick access to schools, transport, malls, hospitals, and business districts that matter for students, professionals, and rental-driven buyers.",
     "Compact unit cuts and rent-to-own guide references make it suitable for investors looking for manageable city inventory, subject to final availability.",
     "Amenity program includes rooftop pool, sky deck, sky lounge, game area, lounges, co-working, convenience facilities, and managed building services.",
-    "Official DMCI Online visuals, YouTube AVP, Google Maps embed, unit layouts, and payment references are wired for buyer review."
+    "Review the project visuals, AVP, map, unit layouts, and payment examples in one place."
   ],
   projectFacts: [
     { label: "Location", value: "Dominga Street, Malate, Manila" },
@@ -127,7 +127,7 @@ export const theCamdenPlaceDetails = {
     { type: "2BR", floorArea: "For waitlist", range: "Sold out", monthlyDp: "-", status: "Sold out", note: "Message Luisa for reopening units" }
   ],
   summaryPricingNote:
-    "Use these ranges only as a shortlist guide. Request Luisa's latest availability sheet and official computation before presentation or reservation.",
+    "Use these ranges only for shortlisting. Ask Luisa for current availability and a unit-specific computation before deciding or reserving.",
   locationDetails: {
     title: "Prime Location of The Camden Place",
     text:
@@ -152,7 +152,7 @@ export const theCamdenPlaceDetails = {
     title: "Site Development Plan of The Camden Place",
     paragraphs: [
       "The Camden Place is planned as a one-tower high-rise development with amenities arranged for compact urban living.",
-      "The official visuals highlight a rooftop pool and leisure deck, sky lounge areas, ground-floor lounges, and practical building services for residents."
+      "The project visuals highlight a rooftop pool and leisure deck, sky lounge areas, ground-floor lounges, and practical building services for residents."
     ],
     keyStats: [
       { label: "Tower", value: "1 high-rise tower" },
@@ -163,7 +163,7 @@ export const theCamdenPlaceDetails = {
   },
   viewHighlights: [
     { title: "Audio Visual Presentation", text: "Use the official embedded AVP as a guided visual introduction to The Camden Place." },
-    { title: "Official Visuals", text: "Location, amenity, site development, and floor-plan visuals are compressed locally for faster buyer browsing." }
+    { title: "Project Visuals", text: "Review the location, amenities, site development plan, and floor plans in one place." }
   ],
   videoTourTitle: "Audio Visual Presentation",
   videoTourCopy: "Watch the official The Camden Place AVP preview, then request the latest approved presentation and computation from Luisa.",
@@ -173,31 +173,31 @@ export const theCamdenPlaceDetails = {
   videoTourLinks: [
     { label: "Watch AVP on YouTube", url: "https://www.youtube.com/watch?v=C4M2T9cc5tI", variant: "secondary" }
   ],
-  videoTourNote: "Large media is embedded lightly so the page stays usable on mobile.",
+  videoTourNote: "Choose Play when you are ready to view the project presentation.",
   amenityGroups: [
     { group: "Roof Deck and Leisure", items: ["Sky Deck Pool", "Sky Lounge", "Sky Promenade", "Rooftop leisure deck"] },
     { group: "Indoor Lifestyle", items: ["Entertainment Room", "Game Area", "Fitness Gym", "Open Lounge", "Ground Floor Lounge", "Snack Bar"] },
     { group: "Convenience", items: ["Co-working Space", "Convenience Store", "Water Station", "Card-operated Laundry", "High-speed internet in common areas"] },
     { group: "Building and PMO Services", items: ["Pedestrian RFID proximity access", "Guarded gate and entrance", "24-hour roving personnel", "Taxi call-in service", "Utilities application and payment assistance"] }
   ],
-  amenityNote: "Final amenity operations, schedules, and access rules must be confirmed through Luisa or official project channels.",
+  amenityNote: "Ask Luisa to confirm current amenity operations, schedules, and access rules.",
   unitIntro:
-    "The Camden Place offers studio, 1BR, and 2BR guide references. Current supplied material marks studio units as active guide inventory and 1BR/2BR as sold out, subject to reopening or waitlist confirmation.",
+    "The Camden Place offers studio, 1BR, and 2BR layout references. Studios are currently shown in the guide inventory, while 1BR and 2BR are marked sold out subject to re-opening or waitlist confirmation.",
   unitSections: [
     { title: "Studio Units", description: "Compact city layouts for singles, couples, students, and investors who want a Malate address.", layouts: ["24.00 sqm", "25.00 sqm", "26.00 sqm"], rows: [
       { layout: "Studio", floorArea: "24.00 sqm", priceRange: "5.2M - 5.3M", status: "Few left", monthlyDp: "19.1k - 19.4k /mo" },
       { layout: "Studio", floorArea: "25.00 sqm", priceRange: "5.4M - 5.5M", status: "Available", monthlyDp: "19.9k - 20.4k /mo" },
       { layout: "Studio", floorArea: "26.00 sqm", priceRange: "5.6M - 5.7M", status: "Limited", monthlyDp: "20.9k - 21.2k /mo" }
     ] },
-    { title: "1 Bedroom Units", description: "One-bedroom references are currently marked sold out in the supplied material.", layouts: ["1BR A", "1BR B", "1BR C"], rows: [
+    { title: "1 Bedroom Units", description: "One-bedroom references are currently marked sold out.", layouts: ["1BR A", "1BR B", "1BR C"], rows: [
       { layout: "1BR", floorArea: "For confirmation", priceRange: "Sold out", status: "Waitlist", monthlyDp: "Ask Luisa" }
     ] },
-    { title: "2 Bedroom Units", description: "Two-bedroom references are currently marked sold out in the supplied material.", layouts: ["2BR A", "2BR B"], rows: [
+    { title: "2 Bedroom Units", description: "Two-bedroom references are currently marked sold out.", layouts: ["2BR A", "2BR B"], rows: [
       { layout: "2BR", floorArea: "For confirmation", priceRange: "Sold out", status: "Waitlist", monthlyDp: "Ask Luisa" }
     ] }
   ],
   floorPlansTitle: "The Camden Place Floor Plans",
-  floorPlansDescription: "Use these as layout references only. Request the official layout sheet for the exact unit before buyer presentation.",
+  floorPlansDescription: "Use these layouts for shortlisting, then ask Luisa for the current sheet for the exact unit.",
   floorPlans: [
     { title: "Studio Layout A", text: "Studio unit layout reference.", src: metroAsset("the-camden-place", "floorplan-studio-a.jpg") },
     { title: "Studio Layout B", text: "Studio unit layout reference.", src: metroAsset("the-camden-place", "floorplan-studio-b.jpg") },
@@ -212,7 +212,7 @@ export const theCamdenPlaceDetails = {
   ],
   paymentTerms: {
     title: "Payment Terms and Sample Computation",
-    text: "The supplied reference includes 5% DP Chinabank promo and 12% DP promo options. Final promo eligibility, inventory, and financing approval must be confirmed.",
+    text: "The current references include a 5% Chinabank-linked option and a 12% down payment option. Ask Luisa to confirm promo eligibility, inventory, and financing approval.",
     sampleComputation: [
       { label: "Sample Unit", value: "C-Camden 1702" },
       { label: "Type", value: "Studio" },
@@ -257,7 +257,7 @@ export const theCamdenPlaceDetails = {
   unitHoldingPortal: {
     title: "Unit Holding Portal for The Camden Place",
     text: "The Camden Place uses a unit holding portal so prospective buyers can register, review current inventory, and temporarily hold a selected unit before final reservation.",
-    steps: ["Register online", "Review latest availability and computation", "Temporarily hold a selected unit", "Complete reservation only after official confirmation"],
+    steps: ["Register online", "Review current availability and computation", "Temporarily hold a selected unit", "Proceed after Luisa confirms the reservation requirements"],
     notes: unitHoldingNotes
   },
   reservationRequirements: [
@@ -265,7 +265,7 @@ export const theCamdenPlaceDetails = {
     "Signed computation sheet",
     "Marriage Certificate, if applicable"
   ],
-  reservationNote: "Confirm computation, remaining studio inventory, waitlist status for 1BR/2BR, payment method, promo coverage, and official requirements with Luisa before reservation."
+  reservationNote: "Ask Luisa to confirm the computation, remaining studio inventory, 1BR/2BR waitlist status, payment method, promo coverage, and reservation requirements."
 };
 
 export const theAstonPlaceDetails = {
@@ -342,7 +342,7 @@ export const theAstonPlaceDetails = {
     "RFO/staged-turnover Pasay option with quick access to Manila, Makati, Bay City, MOA, transport terminals, schools, and hospitals.",
     "Limited guide inventory focuses on 1BR units, useful for investors and end-users who want a move-in-timed city address.",
     "Amenity plan includes lap pool, leisure pool, kiddie pool, landscaped atrium, sky promenade, fitness gym, entertainment room, snack bar, and reception lounge.",
-    "Official DMCI Online visuals and Google Maps embed are wired; no verified official Aston YouTube AVP was found on the official page during this update."
+    "Project visuals and the location map are available here. Ask Luisa for the latest Aston Place video presentation if you would like one."
   ],
   projectFacts: [
     { label: "Location", value: "Brgy. 45, Dominga Street, Pasay City" },
@@ -360,7 +360,7 @@ export const theAstonPlaceDetails = {
     { type: "3BR", floorArea: "For waitlist", range: "Sold out", monthlyDp: "-", status: "Sold out", note: "Message Luisa for reopening units" }
   ],
   summaryPricingNote:
-    "Request current remaining inventory and official computation before buyer presentation. Sold-out unit types may change if reopening inventory appears.",
+    "Ask Luisa for current remaining inventory and a unit-specific computation. A sold-out unit type may return if inventory reopens.",
   locationDetails: {
     title: "Prime Location of The Aston Place",
     text:
@@ -395,11 +395,11 @@ export const theAstonPlaceDetails = {
     ]
   },
   viewHighlights: [
-    { title: "Approved Visuals", text: "Use official project renderings, site plan, amenity images, and layout sheets for buyer review." },
-    { title: "AVP Status", text: "No verified official Aston YouTube embed was found on the official project page during this update; request the latest approved AVP from Luisa if needed." }
+    { title: "Project Visuals", text: "Review the renderings, site plan, amenity images, and layout references in one place." },
+    { title: "Video Presentation", text: "Ask Luisa for the latest Aston Place AVP or guided walkthrough link when you want a video review." }
   ],
   videoTourTitle: "Approved Visual Presentation on Request",
-  videoTourCopy: "The official Aston page did not expose a verified YouTube AVP during this update. Use the official project visuals here and ask Luisa for the latest approved AVP or walkthrough link.",
+  videoTourCopy: "Review the project visuals here, then ask Luisa for the latest Aston Place AVP or walkthrough link if you would like a video presentation.",
   videoTourImage: metroAsset("the-aston-place", "amenity-core.jpg"),
   videoTourUrl: "",
   videoTourLinks: [],
@@ -409,22 +409,22 @@ export const theAstonPlaceDetails = {
     { group: "Indoor Amenities", items: ["Fitness Gym", "Entertainment Room", "Reception Lounge", "Snack Bar", "Lounge Area"] },
     { group: "Convenience and Building Services", items: ["Convenience Store", "Laundry Station", "Water Refilling Station", "Provision for CCTV in strategic areas", "24-hour security"] }
   ],
-  amenityNote: "Final amenity availability, operations, and access rules must be confirmed through Luisa or official project channels.",
+  amenityNote: "Ask Luisa to confirm current amenity availability, operations, and access rules.",
   unitIntro:
-    "The Aston Place offers 1BR, 2BR, and 3BR references. Current supplied material shows limited 1BR guide inventory and 2BR/3BR as sold out.",
+    "The Aston Place offers 1BR, 2BR, and 3BR references. Current guide inventory shows limited 1BR options, while 2BR and 3BR are marked sold out.",
   unitSections: [
     { title: "1 Bedroom Units", description: "One-bedroom guide references for buyers looking for a Pasay RFO/staged-turnover option.", layouts: ["1BR A", "1BR B", "1BR C"], rows: [
       { layout: "1BR", floorArea: "41.50 sqm", priceRange: "8.1M", status: "Few left", monthlyDp: "31.2k /mo" }
     ] },
-    { title: "2 Bedroom Units", description: "Two-bedroom references are currently marked sold out in the supplied material.", layouts: ["2BR D", "2BR E", "2BR F", "2BR G", "2BR H", "2BR I"], rows: [
+    { title: "2 Bedroom Units", description: "Two-bedroom references are currently marked sold out.", layouts: ["2BR D", "2BR E", "2BR F", "2BR G", "2BR H", "2BR I"], rows: [
       { layout: "2BR", floorArea: "For confirmation", priceRange: "Sold out", status: "Waitlist", monthlyDp: "Ask Luisa" }
     ] },
-    { title: "3 Bedroom Units", description: "Three-bedroom references are currently marked sold out in the supplied material.", layouts: ["3BR J"], rows: [
+    { title: "3 Bedroom Units", description: "Three-bedroom references are currently marked sold out.", layouts: ["3BR J"], rows: [
       { layout: "3BR", floorArea: "For confirmation", priceRange: "Sold out", status: "Waitlist", monthlyDp: "Ask Luisa" }
     ] }
   ],
   floorPlansTitle: "The Aston Place Floor Plans",
-  floorPlansDescription: "Use these as layout references only. Request the official layout sheet for the exact unit before buyer presentation.",
+  floorPlansDescription: "Use these layouts for shortlisting, then ask Luisa for the current sheet for the exact unit.",
   floorPlans: [
     { title: "1BR Layout A", text: "One-bedroom layout reference.", src: metroAsset("the-aston-place", "floorplan-1br-a.jpg") },
     { title: "1BR Layout B", text: "One-bedroom layout reference.", src: metroAsset("the-aston-place", "floorplan-1br-b.jpg") },
@@ -441,7 +441,7 @@ export const theAstonPlaceDetails = {
   ],
   paymentTerms: {
     title: "Payment Terms and Sample Computation",
-    text: "The supplied reference includes 5% DP Chinabank promo and 12% DP promo options. Final promo eligibility, inventory, and financing approval must be confirmed.",
+    text: "The current references include a 5% Chinabank-linked option and a 12% down payment option. Ask Luisa to confirm promo eligibility, inventory, and financing approval.",
     rfoSchedule: [
       { label: "39th to PH Floor", value: "March 2024" },
       { label: "29th to 38th Floor", value: "July 2024" },
@@ -479,7 +479,7 @@ export const theAstonPlaceDetails = {
       { label: "Closing Fee", value: "832,769.70" },
       { label: "Total Balance + Closing Fee", value: "8,367,352.70" }
     ],
-    importantNotes: ["Sample Computation Only / Subject to Confirmation", "Promo terms and availability can change without prior notice.", "Rent-to-own and bank financing notes must be confirmed before buyer presentation."],
+    importantNotes: ["Sample computation only", "Promo terms and availability can change.", "Ask Luisa to confirm the rent-to-own or bank financing details for the selected unit."],
     promoCards: [
       { title: "5% DP Chinabank Promo", items: ["5% down payment", "2.0% special discount on DP promo term", "Down payment over 12 fixed months", "Promo ends November 30, 2026", "Scope: All Units"] },
       { title: "12% DP Promo", items: ["12% down payment", "Down payment over 40 fixed months", "Promo ends July 31, 2026", "Scope: All Units"] }
@@ -492,11 +492,11 @@ export const theAstonPlaceDetails = {
   unitHoldingPortal: {
     title: "Unit Holding Portal for The Aston Place",
     text: "The Aston Place uses a unit holding portal so prospective buyers can register, review current inventory, and temporarily hold a selected unit before final reservation.",
-    steps: ["Register online", "Review latest availability and computation", "Temporarily hold a selected unit", "Proceed only after official computation and requirements are confirmed"],
+    steps: ["Register online", "Review current availability and computation", "Temporarily hold a selected unit", "Proceed after Luisa confirms the reservation requirements"],
     notes: unitHoldingNotes
   },
   reservationRequirements: commonReservationRequirements,
-  reservationNote: "Confirm computation, remaining 1BR inventory, waitlist status for 2BR/3BR, rent-to-own terms, payment method, promo coverage, and official requirements with Luisa before reservation."
+  reservationNote: "Ask Luisa to confirm the computation, remaining 1BR inventory, 2BR/3BR waitlist status, rent-to-own terms, payment method, promo coverage, and reservation requirements."
 };
 
 export const sonoraGardenResidencesDetails = {
@@ -577,13 +577,13 @@ export const sonoraGardenResidencesDetails = {
   highlights: [
     "3 buildings: Cadence, Liran, and Stellan",
     "1,949 units with 1BR, 2BR, 3BR, and tandem references",
-    "Official YouTube AVP, Google Maps embed, and official virtual community tour link wired"
+    "Project AVP, location map, and virtual community tour available"
   ],
   whyInvest: [
     "Southern Metro Manila location along Alabang-Zapote Road near SM Southmall, Alabang Town Center, schools, hospitals, and daily retail routes.",
     "Resort-inspired amenities include lap pool, kiddie pool, lounge pool, covered multipurpose court, jogging path, play areas, sky lounge, function hall, and landscaped gardens.",
     "Unit mix gives options for end-use, growing families, and investment buyers, from 1BR to larger tandem references.",
-    "Official DMCI Online visuals, YouTube AVP, Google Maps embed, and Sonora virtual-tour link are wired for buyer review."
+    "Review the project visuals, AVP, location map, and virtual community tour in one place."
   ],
   projectFacts: [
     { label: "Location", value: "Alabang-Zapote Road, Talon Uno, Las Pinas" },
@@ -601,7 +601,7 @@ export const sonoraGardenResidencesDetails = {
     { type: "3BR", floorArea: "81.50 sqm", range: "9.5M - 10.6M", monthlyDp: "5% DP: 37.0k - 41.7k /mo", status: "Few left", note: "Reference only" }
   ],
   summaryPricingNote:
-    "Use these guide ranges only. Request the latest remaining inventory, rent-to-own notes, and official computation before buyer presentation.",
+    "Use these ranges only for shortlisting. Ask Luisa for remaining inventory, current rent-to-own details, and a unit-specific computation.",
   locationDetails: {
     title: "Prime Location of Sonora Garden Residences",
     text:
@@ -636,7 +636,7 @@ export const sonoraGardenResidencesDetails = {
   },
   viewHighlights: [
     { title: "Audio Visual Presentation", text: "Use the official Sonora Garden Residences AVP as a guided project introduction." },
-    { title: "Virtual Community Tour", text: "Open the official Sonora virtual-tour link when buyers want a deeper digital walkthrough." }
+    { title: "Virtual Community Tour", text: "Open the Sonora virtual tour when you want a deeper digital walkthrough." }
   ],
   videoTourTitle: "Audio Visual Presentation and Virtual Community Tour",
   videoTourCopy: "Watch the official YouTube AVP preview, then open the official Sonora virtual community tour link when needed.",
@@ -647,16 +647,16 @@ export const sonoraGardenResidencesDetails = {
     { label: "Watch AVP on YouTube", url: "https://www.youtube.com/watch?v=YB1T5evkmSY", variant: "secondary" },
     { label: "Open Virtual Tour", url: "", variant: "ghost" }
   ],
-  videoTourNote: "Large tour media is linked instead of auto-loaded so the page stays fast on mobile.",
+  videoTourNote: "Choose Open Tour when you are ready for a more detailed walkthrough.",
   amenityGroups: [
     { group: "Pools and Outdoor Recreation", items: ["Lap Pool", "Kiddie Pool", "Lounge Pool", "Leisure Pool", "Pool Deck", "Water Slides", "Jogging Path", "Children's Play Area"] },
     { group: "Sports and Community", items: ["Covered Multipurpose Court", "Basketball Court", "Function Hall", "Entertainment Room", "Game Area", "Open Lawn/Picnic Grove", "Gazebo/Cabana", "Grill Pits"] },
     { group: "Indoor and Sky Amenities", items: ["Fitness Gym", "Reception Lounge", "Snack Bar", "Sky Lounge", "Sky Promenade", "View Deck"] },
     { group: "Convenience and Building Features", items: ["24-hour security", "Convenience Store", "Laundry Station", "Main Entrance Gate", "Perimeter Fence", "Water Station", "WiFi Access", "Standby Electric Generator", "Provision for CCTV Cameras"] }
   ],
-  amenityNote: "Final amenity access, turnover finish details, and house rules must be confirmed through Luisa or official project channels.",
+  amenityNote: "Ask Luisa to confirm current amenity access, turnover finishes, and house rules.",
   unitIntro:
-    "Sonora Garden Residences offers 1BR, 2BR, 3BR, and tandem guide references. Exact inventory, building assignment, floor level, view, computation, and promos must be confirmed before buyer presentation.",
+    "Sonora Garden Residences offers 1BR, 2BR, 3BR, and tandem layout references. Ask Luisa to confirm the exact inventory, building, floor, view, computation, and promo.",
   unitSections: [
     { title: "1 Bedroom Units", description: "One-bedroom references for singles, couples, or investors seeking a compact Las Pinas option with balcony reference.", layouts: ["28.00 sqm"], rows: [
       { layout: "1BR", floorArea: "28.00 sqm", priceRange: "4.6M - 5.2M", status: "Available", monthlyDp: "16.5k - 19.2k /mo" }
@@ -671,7 +671,7 @@ export const sonoraGardenResidencesDetails = {
     ] }
   ],
   floorPlansTitle: "Sonora Garden Residences Floor Plans",
-  floorPlansDescription: "Use these as layout references only. Request the official layout sheet for the exact unit before buyer presentation.",
+  floorPlansDescription: "Use these layouts for shortlisting, then ask Luisa for the current sheet for the exact unit.",
   floorPlans: [
     { title: "1BR Layout A", text: "One-bedroom unit layout reference.", src: metroAsset("sonora-garden-residences", "floorplan-1br-a.jpg") },
     { title: "2BR Layout B", text: "Two-bedroom unit layout reference.", src: metroAsset("sonora-garden-residences", "floorplan-2br-b.jpg") },
@@ -688,7 +688,7 @@ export const sonoraGardenResidencesDetails = {
   ],
   paymentTerms: {
     title: "Payment Terms and Sample Computation",
-    text: "The supplied reference includes 5% DP Chinabank promo and 12% DP promo options. Final promo eligibility, inventory, rent-to-own notes, and financing approval must be confirmed.",
+    text: "The current references include a 5% Chinabank-linked option and a 12% down payment option. Ask Luisa to confirm promo eligibility, inventory, rent-to-own details, and financing approval.",
     rfoSchedule: [
       { label: "Cadence Building", value: "June 2024" },
       { label: "Liran Building", value: "TBA / for confirmation" },
@@ -739,9 +739,9 @@ export const sonoraGardenResidencesDetails = {
   unitHoldingPortal: {
     title: "Unit Holding Portal for Sonora Garden Residences",
     text: "Sonora Garden Residences uses a unit holding portal so prospective buyers can register, review current inventory, and temporarily hold a selected unit before final reservation.",
-    steps: ["Register online", "Review the latest availability and computation", "Temporarily hold a selected unit", "Proceed only after official computation and requirements are confirmed"],
+    steps: ["Register online", "Review current availability and computation", "Temporarily hold a selected unit", "Proceed after Luisa confirms the reservation requirements"],
     notes: unitHoldingNotes
   },
   reservationRequirements: commonReservationRequirements,
-  reservationNote: "Confirm computation, remaining inventory, rent-to-own terms, payment method, promo coverage, building assignment, and official requirements with Luisa before reservation."
+  reservationNote: "Ask Luisa to confirm the computation, remaining inventory, rent-to-own terms, payment method, promo coverage, building assignment, and reservation requirements."
 };

@@ -104,7 +104,7 @@ export const valeronTowerDetails = {
     "Strategic C-5 corner address near Arcovia City, SM Center Pasig, Ortigas Center, and The Medical City.",
     "Modern artisanal architectural theme with several amenity zones and roof deck lifestyle areas.",
     "Broad unit mix allows buyer matching across compact end-use, investment, family, and tandem needs.",
-    "Official YouTube AVP, Google Maps embed, and Drive-backed 360 tour link are wired for buyer review."
+    "Review the project AVP, location map, and 360 tour in one place."
   ],
   projectFacts: [
     { label: "Address", value: "C-5 corner P.E. Antonio St., Brgy. Ugong, Pasig City" },
@@ -122,7 +122,7 @@ export const valeronTowerDetails = {
     { type: "2BR", floorArea: "59.00 - 91.00 sqm", range: "10.9M - 16.2M", monthlyDp: "15% DP: 33.4k - 50.0k /mo", status: "Available", note: "Reference only" },
     { type: "3BR", floorArea: "76.00 - 84.50 sqm", range: "13.7M - 16.8M", monthlyDp: "15% DP: 42.3k - 52.0k /mo", status: "Available", note: "Reference only" }
   ],
-  summaryPricingNote: "Use these as guide ranges only. Request Luisa's latest availability sheet and official computation before buyer presentation or reservation.",
+  summaryPricingNote: "Use these ranges only for shortlisting. Ask Luisa for current availability and a unit-specific computation before deciding or reserving.",
   locationDetails: {
     title: "Prime Location of Valeron Tower",
     text: "Valeron Tower is located at the gateway of the C-5 Ortigas Corridor, near Arcovia City, SM Center Pasig, Ortigas Center, schools, hospitals, and key Pasig routes.",
@@ -155,7 +155,7 @@ export const valeronTowerDetails = {
   },
   viewHighlights: [
     { title: "Audio Visual Presentation", text: "Use the project AVP as a guided visual introduction to the tower, location, and amenity concept." },
-    { title: "360 Property Tour", text: "Open the verified Drive-backed ViewIn360 tour when buyers want a deeper walkthrough." }
+    { title: "360 Property Tour", text: "Open the 360 tour when you want a deeper walkthrough." }
   ],
   videoTourTitle: "Audio Visual Presentation and 360 Property Tour",
   videoTourCopy: "Watch the lightweight YouTube AVP preview, then open the verified 360 tour link only when needed.",
@@ -166,7 +166,7 @@ export const valeronTowerDetails = {
     { label: "Watch AVP on YouTube", url: "https://www.youtube.com/watch?v=eRDLUXEDfAk", variant: "secondary" },
     { label: "Open 360 Tour", url: "", variant: "ghost" }
   ],
-  videoTourNote: "Large tour media is linked on demand so the page stays fast on mobile.",
+  videoTourNote: "Choose Open 360 Tour when you are ready for a more detailed walkthrough.",
   amenityGroups: [
     { group: "Outdoor and Pool Amenities", items: ["Sky Deck Pool", "Leisure Pool", "Kiddie Pool", "Open Lawn", "Children's Play Area", "Sky Promenade"] },
     { group: "Indoor and Lounge Amenities", items: ["GF Reception Lobby", "7th Floor Open Lounge", "Sky Lounge", "Snack Bar", "Fitness Gym", "Entertainment Room"] },
@@ -205,7 +205,7 @@ export const valeronTowerDetails = {
   ],
   paymentTerms: {
     title: "Available Payment Terms and Sample Computation",
-    text: "The supplied reference shows a standard 30% down payment deferred monthly until RFO, with balance through bank financing. No promo was listed in the supplied Valeron reference.",
+    text: "The current Valeron Tower reference shows a standard 30% down payment spread monthly until RFO, with the balance through bank financing. Ask Luisa whether a newer promo applies.",
     rfoSchedule: [{ label: "Target RFO", value: "July 2029" }],
     sampleComputation: [
       { label: "Sample Unit", value: "C-Valeron West 1203B" },
@@ -251,11 +251,11 @@ export const valeronTowerDetails = {
   unitHoldingPortal: {
     title: "Valeron Tower Unit Holding Portal",
     text: "The unit holding portal lets prospective buyers temporarily hold preferred units before proceeding to reservation, subject to the current official process.",
-    steps: ["Register online", "Receive unit holding link by email", "Select up to two units", "Proceed to reservation only after official confirmation"],
+    steps: ["Register online", "Receive the unit-holding link by email", "Select up to two units", "Proceed after Luisa confirms the reservation requirements"],
     notes: unitHoldingNotes
   },
   reservationRequirements: commonReservationRequirements,
-  reservationNote: "Confirm computation, availability, payment method, and official requirements with Luisa before making any reservation decision."
+  reservationNote: "Ask Luisa to confirm the computation, availability, payment method, and reservation requirements before proceeding."
 };
 
 export const allegraGardenPlaceDetails = {
@@ -327,9 +327,9 @@ export const allegraGardenPlaceDetails = {
   ],
   whyInvest: [
     "Pasig Boulevard location near Estancia, Ayala Malls The 30th, SM Megamall, BGC, and Ortigas routes.",
-    "Ready-for-occupancy / near-RFO buyer option with actual and official project visuals.",
+    "Ready-for-occupancy / near-RFO option with project renderings and actual site photos.",
     "Amenities include lap pool, kiddie pool, leisure pool, fitness gym, sky lounge, jogging path, and covered multipurpose court.",
-    "Official YouTube AVP, Google Maps embed, and Drive-backed 360 tour link are available for buyer review."
+    "Review the project AVP, location map, and 360 tour in one place."
   ],
   projectFacts: [
     { label: "Location", value: "Pasig Boulevard, Brgy. Bagong Ilog, Pasig City" },
@@ -352,7 +352,7 @@ export const allegraGardenPlaceDetails = {
     title: "Prime Location of Allegra Garden Place",
     text: "Allegra Garden Place is located along Pasig Boulevard in Brgy. Bagong Ilog, close to commercial hubs, schools, hospitals, BGC, Ortigas, and Makati routes.",
     exactAddress: "Pasig Boulevard, Brgy. Bagong Ilog, Pasig City",
-    note: "Nearby establishments and travel references must be checked with current maps and official materials.",
+    note: "Nearby establishments and travel times are planning references. Check the current route before a site visit.",
     mapTitle: "Allegra Garden Place on Google Maps",
     mapText: "Use the map to zoom, inspect Pasig Boulevard access, and open live directions before scheduling a viewing.",
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Allegra%20Garden%20Place%20Pasig%20Boulevard%20Bagong%20Ilog%20Pasig",
@@ -380,7 +380,7 @@ export const allegraGardenPlaceDetails = {
   },
   viewHighlights: [
     { title: "Audio Visual Presentation", text: "Use the AVP as a quick visual introduction to Allegra Garden Place and its location." },
-    { title: "360 Property Tour", text: "Open the verified Drive-backed ViewIn360 link for a deeper walkthrough." }
+    { title: "360 Property Tour", text: "Open the 360 tour for a deeper walkthrough." }
   ],
   videoTourTitle: "Audio Visual Presentation and 360 Property Tour",
   videoTourCopy: "Watch the YouTube AVP preview, then open the verified 360 property tour link only when needed.",
@@ -391,7 +391,7 @@ export const allegraGardenPlaceDetails = {
     { label: "Watch AVP on YouTube", url: "https://www.youtube.com/watch?v=oBzOVj3qXv4", variant: "secondary" },
     { label: "Open 360 Tour", url: "", variant: "ghost" }
   ],
-  videoTourNote: "Large tour media is linked instead of auto-loaded so the page stays fast on mobile.",
+  videoTourNote: "Choose Open 360 Tour when you are ready for a more detailed walkthrough.",
   amenityGroups: [
     { group: "Indoor Amenities", items: ["Fitness Gym", "Entertainment Room", "Reception Lounge", "Snack Bar", "Covered Multipurpose Court"] },
     { group: "Outdoor Amenities", items: ["Sky Lounge", "Lap Pool", "Kiddie Pool", "Leisure Pool", "Jogging Path", "Children's Play Area", "Sky Promenade"] },
@@ -417,7 +417,7 @@ export const allegraGardenPlaceDetails = {
     ] }
   ],
   floorPlansTitle: "Allegra Garden Place Floor Plans",
-  floorPlansDescription: "Use these unit and building floor plans as references only. Request the exact official layout sheet before buyer presentation.",
+  floorPlansDescription: "Use these unit and building plans for shortlisting, then ask Luisa for the current layout sheet for the exact unit.",
   floorPlans: [
     { title: "Studio Layout", text: "Studio unit layout reference.", src: pasigAsset("allegra-garden-place", "floorplan-studio.jpg") },
     { title: "1BR Layout", text: "1-bedroom layout reference.", src: pasigAsset("allegra-garden-place", "floorplan-1br.jpg") },
@@ -427,7 +427,7 @@ export const allegraGardenPlaceDetails = {
   ],
   paymentTerms: {
     title: "Payment Terms and Sample Computation",
-    text: "The supplied reference includes a 5% DP Chinabank promo and a 12% DP promo. Final terms must be verified before buyer presentation.",
+    text: "The current reference includes a 5% DP Chinabank option and a 12% DP option. Ask Luisa which term applies to the selected unit.",
     rfoSchedule: [
       { label: "Amina Building", value: "July 2024" },
       { label: "Soraya Building", value: "July 2025" }
@@ -483,7 +483,7 @@ export const allegraGardenPlaceDetails = {
     notes: unitHoldingNotes
   },
   reservationRequirements: commonReservationRequirements,
-  reservationNote: "Confirm computation, availability, rent-to-own terms, payment method, and official requirements with Luisa before making any reservation decision."
+  reservationNote: "Ask Luisa to confirm the computation, availability, rent-to-own terms, payment method, and reservation requirements before proceeding."
 };
 
 export const prismaResidencesDetails = {
@@ -546,18 +546,18 @@ export const prismaResidencesDetails = {
   overview: "Prisma Residences by DMCI Homes is a ready-for-occupancy high-rise condominium community along Pasig Boulevard, Brgy. Bagong Ilog, Pasig City. It features Astra, Celeste, and Kiran buildings, modern tropical architecture, extensive amenities, and unit options from 1BR to 3BR with tandem references.",
   introParagraphs: [
     "Prisma Residences offers an RFO Pasig address near BGC and Ortigas routes, with resort-style amenities and completed community references.",
-    "The project includes Astra, Celeste, and Kiran buildings, with official visuals, actual photos, Google Maps embed, YouTube AVP, and multiple ViewIn360 tour links."
+    "The project includes Astra, Celeste, and Kiran buildings, with project visuals, actual photos, a location map, AVP, and multiple 360 tour links."
   ],
   highlights: [
     "Ready-for-occupancy DMCI Homes high-rise community along Pasig Boulevard",
     "Three buildings: Astra, Celeste, and Kiran",
-    "1BR, 2BR, 3BR, and 4BR tandem references with rent-to-own notes in supplied material"
+    "1BR, 2BR, 3BR, and 4BR tandem references with rent-to-own guidance"
   ],
   whyInvest: [
     "RFO Pasig option with actual project photos and full amenity visuals.",
     "Modern tropical planning with Lumiventt-style floor references and multiple buildings.",
     "Near BGC and Ortigas access routes, with daily conveniences along Pasig Boulevard.",
-    "Official YouTube AVP, exact Google Maps embed, and Drive-backed comprehensive/model-unit 360 links are wired."
+    "The project AVP, location map, comprehensive tour, and model-unit 360 links are available here."
   ],
   projectFacts: [
     { label: "Location", value: "Pasig Boulevard, Brgy. Bagong Ilog, Pasig City" },
@@ -621,7 +621,7 @@ export const prismaResidencesDetails = {
     { label: "Open 2BR 360 Tour", url: "", variant: "ghost" },
     { label: "Open 3BR 360 Tour", url: "", variant: "ghost" }
   ],
-  videoTourNote: "Large 360 tours are linked instead of auto-loaded so mobile performance stays light.",
+  videoTourNote: "Choose a 360 tour when you are ready for a more detailed walkthrough.",
   amenityGroups: [
     { group: "Outdoor Amenities", items: ["Lap Pool", "Lounge Pool", "Kiddie Pool", "Playground", "Basketball Court", "Picnic Area", "Garden", "Jogging/Biking Path", "Outdoor Fitness Area"] },
     { group: "Indoor Amenities", items: ["Fitness Gym", "Function Hall", "Sky Lounge", "Game Room", "Music Room", "Audio-Visual Room", "Multi-purpose Court"] },
@@ -645,7 +645,7 @@ export const prismaResidencesDetails = {
     ] }
   ],
   floorPlansTitle: "Prisma Residences Floor Plans",
-  floorPlansDescription: "Use these as layout references only. Request the official layout sheet for the exact unit before buyer presentation.",
+  floorPlansDescription: "Use these layouts for shortlisting, then ask Luisa for the current sheet for the exact unit.",
   floorPlans: [
     { title: "1BR Kiran Layout", text: "1-bedroom Kiran layout reference.", src: pasigAsset("prisma-residences", "floorplan-1br.jpg") },
     { title: "2BR Kiran Layout", text: "2-bedroom Kiran layout reference.", src: pasigAsset("prisma-residences", "floorplan-2br.jpg") },
@@ -657,7 +657,7 @@ export const prismaResidencesDetails = {
   ],
   paymentTerms: {
     title: "Payment Terms and Computations",
-    text: "The supplied reference includes a 5% DP Chinabank promo and a 12% DP promo. Final promo scope, rent-to-own options, and bank approvals must be verified.",
+    text: "The current references include a 5% Chinabank-linked option and a 12% down payment option. Ask Luisa to confirm promo scope, rent-to-own options, and bank eligibility.",
     rfoSchedule: [
       { label: "Astra", value: "Apr 2022" },
       { label: "Celeste", value: "Apr 2023" },
@@ -714,5 +714,5 @@ export const prismaResidencesDetails = {
     notes: unitHoldingNotes
   },
   reservationRequirements: commonReservationRequirements,
-  reservationNote: "Confirm computation, availability, rent-to-own terms, payment method, and official requirements with Luisa before making any reservation decision."
+  reservationNote: "Ask Luisa to confirm the computation, availability, rent-to-own terms, payment method, and reservation requirements before proceeding."
 };

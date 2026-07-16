@@ -71,7 +71,7 @@ export const cameronResidencesDetails = {
   highlights: [
     "Ready-for-occupancy DMCI Homes high-rise condominium in Quezon City",
     "46-floor, single-building development with 720 unit reference",
-    "1BR and 2BR inventory references, with 3BR shown as sold out / waitlist in the supplied material"
+    "1BR and 2BR inventory references, with 3BR currently shown as sold out / waitlist"
   ],
   whyInvest: [
     "RFO Quezon City option with official Cameron Residences project visuals and floor plan references.",
@@ -95,13 +95,13 @@ export const cameronResidencesDetails = {
     { type: "3BR", floorArea: "For waitlist", range: "Sold out", monthlyDp: "-", status: "Sold out", note: "Message Luisa for reopening units" }
   ],
   summaryPricingNote:
-    "Use these as guide ranges only. Request Luisa's latest availability sheet, rent-to-own options, and official computation before buyer presentation or reservation.",
+    "Use these ranges only for shortlisting. Ask Luisa for current availability, rent-to-own options, and a unit-specific computation before deciding or reserving.",
   locationDetails: {
     title: "Prime Location of Cameron Residences",
     text:
       "Cameron Residences is located at Mapalad Street near Roosevelt Avenue in San Francisco del Monte, Quezon City, with access to commercial centers, schools, hospitals, MRT/LRT stations, and major road networks.",
     exactAddress: "Mapalad St., Roosevelt Avenue, Quezon City",
-    note: "Distances and travel times are reference points and should be confirmed through current maps and official project materials.",
+    note: "Distances and travel times are planning references. Check the current route before a site visit.",
     mapTitle: "Cameron Residences on Google Maps",
     mapText: "Use the map to zoom, inspect nearby roads, and open live directions before scheduling a site viewing.",
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Cameron%20Residences%20Mapalad%20St%20Roosevelt%20Avenue%20Quezon%20City",
@@ -132,11 +132,11 @@ export const cameronResidencesDetails = {
   },
   viewHighlights: [
     { title: "Audio Visual Presentation", text: "Use the project AVP as a guided visual introduction to Cameron Residences and its Quezon City setting." },
-    { title: "Virtual Tour Link Request", text: "Ask Luisa for the latest approved Cameron-specific virtual tour link before forwarding any walkthrough to buyers." }
+    { title: "Virtual Tour Link Request", text: "Ask Luisa for the latest Cameron Residences virtual tour link when you would like a detailed walkthrough." }
   ],
   videoTourTitle: "Audio Visual Presentation and Virtual Tour Request",
   videoTourCopy:
-    "Watch the lightweight YouTube AVP preview. If a current Cameron-specific 360 tour is needed, ask Luisa for the approved link before sending it to buyers.",
+    "Watch the Cameron Residences AVP, then ask Luisa for the latest 360 tour link if you would like a more detailed walkthrough.",
   videoTourImage: cameronAsset("sky-deck-pool.jpg"),
   videoTourUrl: "https://www.youtube.com/watch?v=05wObUYI310",
   videoTourEmbedUrl: "https://www.youtube.com/embed/05wObUYI310",
@@ -144,7 +144,7 @@ export const cameronResidencesDetails = {
     { label: "Watch AVP on YouTube", url: "https://www.youtube.com/watch?v=05wObUYI310", variant: "secondary" },
     { label: "DMCI Virtual Tour Guide", url: "", variant: "ghost" }
   ],
-  videoTourNote: "No Cameron-specific 360 tour link was found in the available CAR Drive folder or the official Cameron page during this update.",
+  videoTourNote: "Ask Luisa for a current Cameron Residences 360 tour or guided presentation if available.",
   amenityGroups: [
     { group: "Indoor Amenities", items: ["Fitness Gym", "Entertainment Room", "Reception Lounge", "Snack Bar", "Game Area", "Lounge Area", "Sky Lounge"] },
     { group: "Outdoor Amenities", items: ["Pool Deck", "Lap Pool", "Kiddie Pool", "Leisure Pool", "Outdoor Fitness Area", "Children's Play Area", "Sky Promenade", "Gazebo", "Garden Area"] },
@@ -153,7 +153,7 @@ export const cameronResidencesDetails = {
   amenityNote:
     "Amenity names, operations, and access rules are subject to current building administration and DMCI Homes confirmation.",
   unitIntro:
-    "Cameron Residences offers 1BR and 2BR unit references in the supplied material, with 3BR marked sold out and available only for waitlist or reopening inquiries.",
+    "Cameron Residences currently shows 1BR and 2BR unit references, with 3BR marked sold out and open only for waitlist or re-opening inquiries.",
   unitSections: [
     {
       title: "1 Bedroom Units",
@@ -175,14 +175,14 @@ export const cameronResidencesDetails = {
     },
     {
       title: "3 Bedroom Units",
-      description: "The supplied reference marks 3BR units as sold out. Message Luisa to join a waitlist or check if any reopening units become available.",
+      description: "Three-bedroom units are currently marked sold out. Message Luisa to join a waitlist or check whether inventory has re-opened.",
       layouts: ["Sold out / waitlist"],
       rows: []
     }
   ],
   floorPlansTitle: "Floor Plans of Cameron Residences",
   floorPlansDescription:
-    "Cameron Residences includes unit layouts and standard, atrium, and breezeway floor references. Request the official layout sheet for the exact unit before buyer presentation.",
+    "Cameron Residences includes standard, atrium, and breezeway layout references. Ask Luisa for the current layout sheet for the exact unit.",
   floorPlans: [
     { title: "1BR A Layout", text: "1-bedroom A layout reference.", src: cameronAsset("floorplan-1br-a.jpg") },
     { title: "1BR B Layout", text: "1-bedroom B layout reference.", src: cameronAsset("floorplan-1br-b.jpg") },
@@ -196,7 +196,7 @@ export const cameronResidencesDetails = {
   paymentTerms: {
     title: "Payment Terms and Sample Computation",
     text:
-      "The supplied reference includes a 5% down payment Chinabank promo and a 12% down payment promo. All promos, rent-to-own terms, inventory, and financing approvals must be verified with Luisa/DMCI.",
+      "The current references include a 5% Chinabank-linked option and a 12% down payment option. Ask Luisa which promo, rent-to-own term, inventory, and financing route apply to the selected unit.",
     rfoSchedule: [
       { label: "43rd to PH", value: "November 2024" },
       { label: "38th to 42nd", value: "January 2025" },
@@ -278,5 +278,5 @@ export const cameronResidencesDetails = {
     "International bills payment or remittance options subject to confirmation"
   ],
   reservationNote:
-    "Confirm computation, availability, rent-to-own terms, payment method, and official requirements with Luisa before making any reservation decision."
+    "Ask Luisa to confirm the computation, availability, rent-to-own terms, payment method, and reservation requirements before proceeding."
 };

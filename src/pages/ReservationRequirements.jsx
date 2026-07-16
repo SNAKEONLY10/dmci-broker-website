@@ -57,7 +57,7 @@ const documentGroups = [
 const reservationFaqs = [
   {
     question: "Is this the final document list?",
-    answer: "No. It is a preparation guide. The final requirements depend on the buyer profile, exact unit, payment option, financing route, and current developer policy."
+    answer: "No. It is a preparation guide. Luisa will confirm the final requirements for the buyer profile, exact unit, payment option, and financing route."
   },
   {
     question: "Should I pay immediately after choosing a unit?",
@@ -230,7 +230,7 @@ export default function ReservationRequirements() {
       </section>
 
       <div className="container support-disclaimer-wrap">
-        <DisclaimerBanner text="This is a planning checklist, not a final documentary or payment instruction. Confirm the exact requirements, forms, availability, computation, and authorized payment channel for the selected unit before reservation." />
+        <DisclaimerBanner text="Use this checklist to prepare. Before reservation, ask Luisa to confirm the exact requirements, forms, availability, computation, and DMCI Homes payment instructions for the selected unit." />
       </div>
     </div>
   );
