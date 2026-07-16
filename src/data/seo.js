@@ -119,10 +119,10 @@ const pageMeta = {
     cta: "/contact"
   },
   "/buyers-guide": {
-    h1: "DMCI Buyer Guide Before Reservation",
-    title: "DMCI Buyer Guide | Requirements, Computation, Viewing, Reservation",
+    h1: "Buy with a Clear Plan Before Reservation",
+    title: "DMCI Buyer Guide | Computation, Requirements & Reservation",
     description:
-      "Read buyer-safe guidance for DMCI inquiries, computation requests, availability checks, viewing coordination, and reservation preparation.",
+      "Compare projects, review current computations, prepare buyer documents, understand payment options, and verify reservation steps with broker guidance.",
     cta: "/request-computation"
   },
   "/reservation-requirements": {

@@ -1,6 +1,6 @@
 # External Link Audit
 
-Generated: 2026-07-13T13:57:25.334Z
+Generated: 2026-07-16T13:48:42.585Z
 
 Mode: static source/data scan. This report does not make network requests, so CI stays stable. Device links such as tel, mailto, sms, and viber are reported but not treated as failures.
 
@@ -15,6 +15,7 @@ Production canonical: https://dmci-broker-website.vercel.app
 | Device link - viber | 1 |
 | Frontend dependency | 1 |
 | Google Maps | 54 |
+| Official DMCI link | 1 |
 | Production canonical | 4 |
 | Server delivery API | 1 |
 | YouTube | 32 |
@@ -121,6 +122,12 @@ Production canonical: https://dmci-broker-website.vercel.app
 | https://www.google.com/maps/search/?api=1&query=The%20Erin%20Heights%20Commonwealth%20Avenue%20corner%20Tandang%20Sora%20Avenue%20Quezon%20City | data exports.projects.locationDetails.mapUrl |
 | https://www.google.com/maps/search/?api=1&query=The%20Oriana%20DMCI%20Aurora%20Boulevard%20Quezon%20City | data exports.projects.locationDetails.mapUrl |
 | https://www.google.com/maps/search/?api=1&query=The%20Valeron%20Tower%20C-5%20P.E.%20Antonio%20St%20Pasig | data exports.projects.locationDetails.mapUrl |
+
+## Official DMCI link
+
+| URL | Source references |
+| --- | --- |
+| https://www.dmcihomes.com/guides/buyers-guide | src/pages/BuyersGuide.jsx |
 
 ## Production canonical
 

@@ -1,12 +1,12 @@
 import { Button } from "./Button";
 import { ImagePlaceholder } from "./ImagePlaceholder";
 
-export function GuideCard({ title, summary }) {
+export function GuideCard({ title, summary, to = "/buyers-guide" }) {
   return (
     <article className="info-card" data-reveal="card">
       <h3>{title}</h3>
       <p>{summary}</p>
-      <Button to="/buyers-guide" variant="ghost">Read Guide</Button>
+      <Button to={to} variant="ghost">Open Guide</Button>
     </article>
   );
 }
