@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { X } from "lucide-react";
 import { Button } from "../components/Button";
 import { DemoForm } from "../components/LeadForm";
 import { LocationCard } from "../components/LocationCard";
@@ -13,6 +14,7 @@ import { guideCards } from "../data/guides";
 import { promos } from "../data/promos";
 import { contact } from "../data/contact";
 import { useResponsiveProjectPageSize } from "../hooks/useResponsiveProjectPageSize";
+import { useDialogFocusTrap } from "../hooks/useDialogFocusTrap";
 import { projectMatchesPurpose, sortProjectsForGoal } from "../utils/projectGoals";
 
 const HOME_BUYER_GOAL_KEY = "dmci_home_buyer_goal";
@@ -104,20 +106,6 @@ export default function Home() {
     setIntentPromptDismissed(true);
   }
 
-  useEffect(() => {
-    if (!showIntentPrompt) return undefined;
-
-    function closeOnEscape(event) {
-      if (event.key === "Escape") {
-        markIntentPromptSeen();
-        setIntentPromptDismissed(true);
-      }
-    }
-
-    window.addEventListener("keydown", closeOnEscape);
-    return () => window.removeEventListener("keydown", closeOnEscape);
-  }, [showIntentPrompt]);
-
   return (
     <>
       {showIntentPrompt && (
@@ -207,25 +195,38 @@ export default function Home() {
 }
 
 function HomeGoalPrompt({ onChoose, onDismiss }) {
+  const dialogRef = useRef(null);
+  const firstOptionRef = useRef(null);
+  useDialogFocusTrap({
+    open: true,
+    containerRef: dialogRef,
+    initialFocusRef: firstOptionRef,
+    onClose: onDismiss
+  });
+
   return (
     <div className="home-goal-prompt-backdrop" onClick={onDismiss}>
       <section
         className="home-goal-prompt"
+        ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="home-goal-prompt-title"
         aria-describedby="home-goal-prompt-copy"
+        tabIndex={-1}
         onClick={(event) => event.stopPropagation()}
       >
-        <button className="home-goal-prompt-close" type="button" onClick={onDismiss} aria-label="Close buyer goal prompt">×</button>
+        <button className="home-goal-prompt-close" type="button" onClick={onDismiss} aria-label="Close buyer goal prompt">
+          <X size={21} strokeWidth={2.2} aria-hidden="true" />
+        </button>
         <span className="eyebrow">Buyer Goal</span>
         <h2 id="home-goal-prompt-title">What are you comparing today?</h2>
         <p id="home-goal-prompt-copy">
           Select a goal to refine the project shortlist. You can change this anytime.
         </p>
         <div className="home-goal-prompt-options">
-          {primaryBuyerGoals.map((goal) => (
-            <button key={goal.value} type="button" onClick={() => onChoose(goal.value)}>
+          {primaryBuyerGoals.map((goal, index) => (
+            <button key={goal.value} ref={index === 0 ? firstOptionRef : undefined} type="button" onClick={() => onChoose(goal.value)}>
               <strong>{goal.label}</strong>
               <span>{goal.description}</span>
             </button>

@@ -5,7 +5,9 @@ import { ImagePlaceholder } from "../components/ImagePlaceholder";
 import { projects, unitTypes } from "../data/projects";
 import { locations } from "../data/locations";
 import { contact } from "../data/contact";
-import { useSearchParams } from "react-router-dom";
+import { cityPages } from "../data/seo";
+import { ChevronLeft } from "lucide-react";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const projectOptions = projects.map((project) => project.name);
@@ -188,6 +190,7 @@ function useInquiryDefaults() {
 }
 
 function FormShell({ title, text, panel, children, selectedProject }) {
+  const routeLocation = useLocation();
   const panelContent = {
     eyebrow: "Buyer Support",
     title: "Get guided before deciding",
@@ -195,6 +198,7 @@ function FormShell({ title, text, panel, children, selectedProject }) {
     cta: "Message Luisa",
     ...panel
   };
+  const returnLink = resolveFormReturnLink(routeLocation, selectedProject);
   const media = selectedProject ? {
     src: selectedProject.image,
     alt: `${selectedProject.name} project preview`,
@@ -242,6 +246,10 @@ function FormShell({ title, text, panel, children, selectedProject }) {
           </div>
         </aside>
         <div className="form-shell-content">
+          <Link className="form-return-link" to={returnLink.to}>
+            <ChevronLeft size={17} strokeWidth={2.2} aria-hidden="true" />
+            <span>{returnLink.label}</span>
+          </Link>
           <SectionHeader as="h1" align="left" eyebrow="Buyer Assistance" title={title} text={text} />
           {children}
         </div>
@@ -257,13 +265,65 @@ function normalizeInquiryType(value) {
   const normalized = value.trim().toLowerCase();
   const map = {
     computation: "Request Computation",
+    "current computations": "Request Computation",
     availability: "Check Availability",
+    "project update": "Check Availability",
     "site viewing": "Book a Site Viewing",
     viewing: "Book a Site Viewing",
-    reservation: "General Inquiry",
-    other: "General Inquiry"
+    reservation: "Reservation Concern",
+    other: "Other Concern",
+    "floor plans": "Sales Inquiry",
+    general: "Sales Inquiry",
+    "general inquiry": "Sales Inquiry"
   };
-  return map[normalized] || value;
+  const exactOption = inquiryTypes.find((option) => option.toLowerCase() === normalized);
+  return map[normalized] || exactOption || (value ? "Sales Inquiry" : "");
+}
+
+function resolveFormReturnLink(routeLocation, selectedProject) {
+  const sourcePath = safeReturnPath(routeLocation.state?.from);
+  if (sourcePath) return describeReturnPath(sourcePath);
+
+  const params = new URLSearchParams(routeLocation.search);
+  const projectParam = params.get("project") || "";
+  const matchedProject = selectedProject || projects.find((project) => (
+    project.name.toLowerCase() === projectParam.toLowerCase() ||
+    project.slug.toLowerCase() === projectParam.toLowerCase()
+  ));
+  if (matchedProject) {
+    return { to: `/projects/${matchedProject.slug}`, label: `Back to ${matchedProject.name}` };
+  }
+
+  const locationParam = params.get("location") || "";
+  if (locationParam) {
+    const city = cityPages.find((item) => item.name.toLowerCase() === locationParam.toLowerCase());
+    return city
+      ? { to: city.path, label: `Back to ${city.name} projects` }
+      : { to: `/projects?location=${encodeURIComponent(locationParam)}`, label: "Back to project results" };
+  }
+
+  return { to: "/projects", label: "Back to projects" };
+}
+
+function describeReturnPath(path) {
+  if (path === "/") return { to: path, label: "Back to home" };
+  if (path.startsWith("/projects?")) return { to: path, label: "Back to project results" };
+
+  const projectSlug = path.match(/^\/projects\/([^/?#]+)/)?.[1];
+  const project = projects.find((item) => item.slug === projectSlug);
+  if (project) return { to: path, label: `Back to ${project.name}` };
+
+  const city = cityPages.find((item) => path === item.path || path.startsWith(`${item.path}?`));
+  if (city) return { to: path, label: `Back to ${city.name} projects` };
+
+  return { to: path, label: "Back to previous page" };
+}
+
+function safeReturnPath(value) {
+  const path = String(value || "").trim();
+  if (!path.startsWith("/") || path.startsWith("//")) return "";
+  if (["/availability", "/request-computation", "/book-viewing", "/contact"].some((route) => path === route || path.startsWith(`${route}?`))) return "";
+  return path;
 }
 
 function normalizePurpose(value) {

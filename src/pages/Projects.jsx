@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { ProjectFilters } from "../components/ProjectFilters";
 import { ProjectGrid } from "../components/ProjectGrid";
@@ -18,19 +18,15 @@ import {
 } from "../utils/projectGoals";
 
 export default function Projects() {
-  const [params] = useSearchParams();
-  const [filters, setFilters] = useState({
-    location: params.get("location") || "",
-    purpose: params.get("purpose") || "",
-    status: params.get("status") || "",
-    unitType: params.get("unitType") || ""
-  });
-  const [sort, setSort] = useState("featured");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [params, setParams] = useSearchParams();
+  const resultsRef = useRef(null);
+  const filters = useMemo(() => readDirectoryFilters(params), [params]);
+  const sort = readDirectorySort(params);
+  const requestedPage = readDirectoryPage(params);
   const projectPageSize = useResponsiveProjectPageSize();
   const filtered = useMemo(() => sortProjects(projects.filter((project) => matches(project, filters)), sort, filters.purpose), [filters, sort]);
   const totalPages = Math.ceil(filtered.length / projectPageSize);
-  const safePage = Math.min(currentPage, totalPages || 1);
+  const safePage = Math.min(requestedPage, totalPages || 1);
   const startIndex = (safePage - 1) * projectPageSize;
   const endIndex = Math.min(startIndex + projectPageSize, filtered.length);
   const paginatedProjects = filtered.slice(startIndex, endIndex);
@@ -38,15 +34,30 @@ export default function Projects() {
   const goalLabel = buyerGoalLabel(filters.purpose);
 
   useEffect(() => {
-    setCurrentPage(1);
-  }, [filters, sort]);
+    if (requestedPage === safePage) return;
+    setParams(buildDirectoryParams(params, filters, sort, safePage), { replace: true });
+  }, [filters, params, requestedPage, safePage, setParams, sort]);
 
-  useEffect(() => {
-    setCurrentPage((page) => Math.min(page, totalPages || 1));
-  }, [totalPages]);
+  function setFilters(update) {
+    const nextFilters = typeof update === "function" ? update(filters) : update;
+    setParams(buildDirectoryParams(params, nextFilters, sort, 1), { replace: true });
+  }
+
+  function setSort(nextSort) {
+    setParams(buildDirectoryParams(params, filters, nextSort, 1), { replace: true });
+  }
 
   function selectBuyerGoal(purpose) {
     setFilters((current) => ({ ...current, purpose }));
+  }
+
+  function changePage(page) {
+    const nextPage = Math.max(1, Math.min(page, totalPages || 1));
+    setParams(buildDirectoryParams(params, filters, sort, nextPage));
+    window.requestAnimationFrame(() => {
+      const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+      resultsRef.current?.scrollIntoView({ block: "start", behavior: reduceMotion ? "auto" : "smooth" });
+    });
   }
 
   return (
@@ -97,7 +108,7 @@ export default function Projects() {
           </div>
         </div>
         <ProjectFilters projects={projects} filters={filters} setFilters={setFilters} sort={sort} setSort={setSort} />
-        <div className="results-bar" data-reveal="text-group">
+        <div className="results-bar" data-reveal="text-group" ref={resultsRef}>
           <strong>{isGoalView ? `${filtered.length} approved projects ranked for ${goalLabel}` : `${filtered.length} matching approved projects`}</strong>
           <span>{isGoalView ? "Goal views keep all approved projects visible; use location, status, and unit filters to narrow the list." : "Updated price available upon request. Availability subject to confirmation."}</span>
         </div>
@@ -107,7 +118,7 @@ export default function Projects() {
           </p>
         )}
         <ProjectGrid key={`projects-${safePage}-${projectPageSize}-${filtered.length}-${sort}`} projects={paginatedProjects} />
-        <Pagination currentPage={safePage} totalPages={totalPages} onPageChange={setCurrentPage} />
+        <Pagination currentPage={safePage} totalPages={totalPages} onPageChange={changePage} />
         <div className="cta-strip" data-reveal="text-group">
           <div>
             <strong>Need help choosing?</strong>
@@ -163,6 +174,35 @@ function matches(project, filters) {
     (!filters.propertyType || project.propertyType === filters.propertyType) &&
     projectMatchesPurpose(project, filters.purpose)
   );
+}
+
+const directoryFilterNames = ["search", "location", "purpose", "status", "turnoverYear", "unitType", "propertyType"];
+const directorySortOptions = new Set(["featured", "rfo", "preselling", "turnover", "location"]);
+
+function readDirectoryFilters(params) {
+  return Object.fromEntries(directoryFilterNames.map((name) => [name, params.get(name) || ""]));
+}
+
+function readDirectorySort(params) {
+  const value = params.get("sort") || "featured";
+  return directorySortOptions.has(value) ? value : "featured";
+}
+
+function readDirectoryPage(params) {
+  const value = Number.parseInt(params.get("page") || "1", 10);
+  return Number.isFinite(value) && value > 0 ? value : 1;
+}
+
+function buildDirectoryParams(currentParams, filters, sort, page) {
+  const next = new URLSearchParams(currentParams);
+  [...directoryFilterNames, "sort", "page"].forEach((name) => next.delete(name));
+
+  directoryFilterNames.forEach((name) => {
+    if (filters[name]) next.set(name, filters[name]);
+  });
+  if (sort && sort !== "featured") next.set("sort", sort);
+  if (page > 1) next.set("page", String(page));
+  return next;
 }
 
 function paginationWindow(currentPage, totalPages) {

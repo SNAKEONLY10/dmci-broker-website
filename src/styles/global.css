@@ -11071,3 +11071,118 @@ textarea {
     font-size: 2.9rem;
   }
 }
+
+/* Buyer journey navigation: predictable back behavior, modal focus, and clear mobile actions. */
+.skip-link {
+  position: fixed;
+  top: 10px;
+  left: 12px;
+  z-index: 220;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--gold);
+  border-radius: 8px;
+  padding: 10px 14px;
+  background: var(--white);
+  color: var(--navy);
+  font-weight: 850;
+  box-shadow: 0 14px 34px rgba(7,26,45,0.2);
+  transform: translateY(calc(-100% - 24px));
+  transition: transform 0.16s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+  outline: none;
+}
+
+#main-content:focus {
+  outline: none;
+}
+
+.mobile-menu-nav {
+  display: grid;
+  gap: 6px;
+}
+
+.mobile-menu-close {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  padding: 0;
+}
+
+.form-return-link {
+  width: fit-content;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin: -7px 0 11px;
+  border-radius: 8px;
+  padding: 8px 10px 8px 7px;
+  color: #38536d;
+  font-size: 0.84rem;
+  font-weight: 800;
+  transition: background-color 0.16s ease, color 0.16s ease, transform 0.16s ease;
+}
+
+.form-return-link:is(:hover, :focus-visible) {
+  background: rgba(201,162,74,0.12);
+  color: var(--navy);
+  outline: 2px solid rgba(201,162,74,0.45);
+  outline-offset: 2px;
+  transform: translateX(-2px);
+}
+
+.results-bar {
+  scroll-margin-top: 98px;
+}
+
+.home-goal-prompt-close {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+}
+
+@media (max-width: 760px) {
+  .mobile-sticky-cta a {
+    grid-template-rows: 18px auto;
+    align-content: center;
+    gap: 3px;
+  }
+
+  .mobile-sticky-cta a::before {
+    content: none;
+  }
+
+  .mobile-sticky-cta a svg {
+    display: block;
+    color: var(--quick-accent, var(--navy));
+  }
+
+  .mobile-sticky-cta a span {
+    display: block;
+    min-width: 0;
+  }
+
+  .mobile-sticky-cta a.is-primary {
+    background: linear-gradient(180deg, #f3cf75 0%, #dfb842 100%);
+  }
+
+  .form-card-compact .field input,
+  .form-card-compact .field select {
+    min-height: 44px;
+  }
+
+  .form-return-link {
+    margin-bottom: 7px;
+    font-size: 0.78rem;
+  }
+}

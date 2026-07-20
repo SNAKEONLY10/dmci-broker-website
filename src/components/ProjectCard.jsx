@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Badge } from "./Badge";
 import { Button } from "./Button";
 import { ImagePlaceholder } from "./ImagePlaceholder";
@@ -12,6 +12,8 @@ function formatTurnoverLabel(value) {
 }
 
 export function ProjectCard({ project, index = 0 }) {
+  const location = useLocation();
+  const returnState = { from: `${location.pathname}${location.search}` };
   const priceLabel = formatPriceGuide(project.priceRangeLabel);
   const hasPriceGuide = /PHP|\d/.test(priceLabel) && !/request latest/i.test(priceLabel);
   const buyerNote = hasPriceGuide
@@ -28,7 +30,7 @@ export function ProjectCard({ project, index = 0 }) {
   return (
     <article className="project-card" data-reveal="card" style={{ "--reveal-delay": revealDelay, "--slide-delay": slideDelay }}>
       <div className="project-image">
-        <Link className={`project-image-link ${imageSlides.length > 1 ? "has-slideshow" : ""}`} to={`/projects/${project.slug}`} aria-label={`View ${project.name} details`}>
+        <Link className={`project-image-link ${imageSlides.length > 1 ? "has-slideshow" : ""}`} to={`/projects/${project.slug}`} state={returnState} aria-label={`View ${project.name} details`}>
           {imageSlides.map((src, slideIndex) => (
             <span className="project-image-slide" key={`${src}-${slideIndex}`} aria-hidden={slideIndex > 0 ? "true" : undefined}>
               <ImagePlaceholder src={src} label={project.name} variant="card" />
@@ -41,7 +43,7 @@ export function ProjectCard({ project, index = 0 }) {
       </div>
       <div className="project-body">
         <p className="mini">{project.location}</p>
-        <h3><Link to={`/projects/${project.slug}`}>{project.name}</Link></h3>
+        <h3><Link to={`/projects/${project.slug}`} state={returnState}>{project.name}</Link></h3>
         <p className="card-tagline">{project.tagline}</p>
         <div className="project-meta">
           <span>{formatTurnoverLabel(project.turnoverYear)}</span>
@@ -58,12 +60,12 @@ export function ProjectCard({ project, index = 0 }) {
         <small>{buyerNote}</small>
         <small>Final availability subject to confirmation.</small>
         <div className="card-actions">
-          <Button to={`/projects/${project.slug}`} variant="secondary">View Details</Button>
-          <Button to={`/request-computation?project=${projectQuery}&inquiryType=Computation`}>
+          <Button to={`/projects/${project.slug}`} state={returnState} variant="secondary">View Details</Button>
+          <Button to={`/request-computation?project=${projectQuery}&inquiryType=Computation`} state={returnState}>
             <span className="cta-desktop-label">Request Computation</span>
             <span className="cta-mobile-label">Compute</span>
           </Button>
-          <Button to={`/availability?project=${projectQuery}&inquiryType=Availability`} variant="ghost">Check Availability</Button>
+          <Button to={`/availability?project=${projectQuery}&inquiryType=Availability`} state={returnState} variant="ghost">Check Availability</Button>
         </div>
       </div>
     </article>

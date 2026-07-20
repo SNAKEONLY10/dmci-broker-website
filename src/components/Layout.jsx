@@ -1,7 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { CalendarDays, Calculator, MessageCircle, Phone, X } from "lucide-react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { contact } from "../data/contact";
+import { projects } from "../data/projects";
 import { cityPages } from "../data/seo";
+import { useDialogFocusTrap } from "../hooks/useDialogFocusTrap";
 import { Button } from "./Button";
 import { DisclaimerBanner } from "./DisclaimerBanner";
 import { SeoManager } from "./SeoManager";
@@ -23,26 +26,22 @@ const formRoutePaths = new Set(["/availability", "/request-computation", "/book-
 export function Layout({ children }) {
   const [open, setOpen] = useState(false);
   const menuButtonRef = useRef(null);
-  const { pathname } = useLocation();
+  const menuRef = useRef(null);
+  const menuCloseRef = useRef(null);
+  const { pathname, search } = useLocation();
   useScrollReveal();
   const hideQuickActions = open || formRoutePaths.has(pathname);
-  const closeMobileMenu = useCallback((restoreFocus = true) => {
+  const closeMobileMenu = useCallback(() => {
     setOpen(false);
-    if (restoreFocus) {
-      window.requestAnimationFrame(() => menuButtonRef.current?.focus());
-    }
   }, []);
 
-  useEffect(() => {
-    if (!open) return undefined;
-
-    const handleKeyDown = (event) => {
-      if (event.key === "Escape") closeMobileMenu();
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [closeMobileMenu, open]);
+  useDialogFocusTrap({
+    open,
+    containerRef: menuRef,
+    initialFocusRef: menuCloseRef,
+    restoreFocusRef: menuButtonRef,
+    onClose: closeMobileMenu
+  });
 
   useEffect(() => {
     setOpen(false);
@@ -51,9 +50,10 @@ export function Layout({ children }) {
   return (
     <>
       <SeoManager />
+      <a className="skip-link" href="#main-content">Skip to main content</a>
       <header className="site-header">
         <div className="container nav-wrap">
-          <NavLink className="brand" to="/" onClick={() => closeMobileMenu(false)}>
+          <NavLink className="brand" to="/" onClick={closeMobileMenu}>
             <span className="brand-logo">
               <img src="/assets/img/dmci-broker-mark.png" alt={`${contact.brokerName} DMCI broker logo`} />
             </span>
@@ -84,30 +84,42 @@ export function Layout({ children }) {
         </div>
         {open && (
           <div className="mobile-menu-shell">
-            <button className="mobile-menu-backdrop" type="button" aria-label="Close mobile menu" onClick={() => closeMobileMenu()} />
-            <MobileMenu onClose={closeMobileMenu} />
+            <button className="mobile-menu-backdrop" type="button" tabIndex={-1} aria-label="Close mobile menu" onClick={closeMobileMenu} />
+            <MobileMenu menuRef={menuRef} closeButtonRef={menuCloseRef} onClose={closeMobileMenu} />
           </div>
         )}
       </header>
-      <main>{children}</main>
+      <main id="main-content" tabIndex={-1}>{children}</main>
       <Footer />
-      <MobileStickyCTA hidden={hideQuickActions} />
+      <MobileStickyCTA hidden={hideQuickActions} pathname={pathname} search={search} />
     </>
   );
 }
 
-function MobileMenu({ onClose }) {
+function MobileMenu({ menuRef, closeButtonRef, onClose }) {
   return (
-    <nav className="mobile-menu" id="mobile-site-menu" aria-label="Mobile navigation">
+    <div
+      className="mobile-menu"
+      id="mobile-site-menu"
+      ref={menuRef}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Site navigation"
+      tabIndex={-1}
+    >
       <div className="mobile-menu-head">
         <span>Menu</span>
-        <button className="mobile-menu-close" type="button" onClick={() => onClose()} aria-label="Close menu">Close</button>
+        <button className="mobile-menu-close" ref={closeButtonRef} type="button" onClick={onClose} aria-label="Close menu">
+          <X size={20} strokeWidth={2.2} aria-hidden="true" />
+        </button>
       </div>
-      {navItems.map(([label, to]) => (
-        <NavLink key={to} to={to} onClick={() => onClose(false)}>{label}</NavLink>
-      ))}
-      <Button to="/request-computation" onClick={() => onClose(false)}>Request Computation</Button>
-    </nav>
+      <nav className="mobile-menu-nav" aria-label="Mobile navigation">
+        {navItems.map(([label, to]) => (
+          <NavLink key={to} to={to} onClick={onClose}>{label}</NavLink>
+        ))}
+        <Button to="/request-computation" onClick={onClose}>Request Computation</Button>
+      </nav>
+    </div>
   );
 }
 
@@ -160,13 +172,54 @@ function Footer() {
   );
 }
 
-function MobileStickyCTA({ hidden = false }) {
+function MobileStickyCTA({ hidden = false, pathname, search }) {
+  const context = resolveQuickActionContext(pathname, search);
+  const sourcePath = `${pathname}${search}`;
+  const returnState = { from: sourcePath };
+
   return (
-    <nav className={`mobile-sticky-cta${hidden ? " is-hidden" : ""}`} aria-label="Quick actions" aria-hidden={hidden}>
-      <a className="cta-call" href={contact.phoneHref} aria-label={`Call ${contact.displayName}`}>Call</a>
-      <NavLink className="cta-message" to="/contact" aria-label={`Message ${contact.displayName}`}>Message</NavLink>
-      <NavLink className="cta-compute" to="/request-computation" aria-label="Request latest computation">Compute</NavLink>
-      <NavLink className="cta-viewing" to="/book-viewing" aria-label="Book a site viewing">Visit</NavLink>
-    </nav>
+    <aside className={`mobile-sticky-cta${hidden ? " is-hidden" : ""}`} aria-label="Quick contact and inquiry actions" aria-hidden={hidden}>
+      <a className="cta-call" href={contact.phoneHref} aria-label={`Call ${contact.displayName}; opens your phone dialer`}>
+        <Phone size={17} strokeWidth={2.2} aria-hidden="true" />
+        <span>Call</span>
+      </a>
+      <Link className="cta-message" to={inquiryPath("/contact", context, "Sales Inquiry")} state={returnState} aria-label={`Message ${contact.displayName}`}>
+        <MessageCircle size={17} strokeWidth={2.2} aria-hidden="true" />
+        <span>Message</span>
+      </Link>
+      <Link className="cta-compute is-primary" to={inquiryPath("/request-computation", context, "Computation")} state={returnState} aria-label="Request latest computation">
+        <Calculator size={17} strokeWidth={2.2} aria-hidden="true" />
+        <span>Compute</span>
+      </Link>
+      <Link className="cta-viewing" to={inquiryPath("/book-viewing", context, "Viewing")} state={returnState} aria-label="Book a site viewing">
+        <CalendarDays size={17} strokeWidth={2.2} aria-hidden="true" />
+        <span>Viewing</span>
+      </Link>
+    </aside>
   );
+}
+
+function resolveQuickActionContext(pathname, search) {
+  const projectSlug = pathname.match(/^\/projects\/([^/]+)\/?$/)?.[1];
+  const project = projects.find((item) => item.slug === projectSlug);
+  if (project) return { project: project.name };
+
+  const city = cityPages.find((item) => item.path === pathname.replace(/\/+$/, ""));
+  if (city) return { location: city.name };
+
+  if (pathname === "/projects") {
+    const location = new URLSearchParams(search).get("location");
+    if (location) return { location };
+  }
+
+  return {};
+}
+
+function inquiryPath(path, context, inquiryType) {
+  const params = new URLSearchParams();
+  if (context.project) params.set("project", context.project);
+  if (context.location) params.set("location", context.location);
+  if (inquiryType) params.set("inquiryType", inquiryType);
+  const query = params.toString();
+  return query ? `${path}?${query}` : path;
 }
